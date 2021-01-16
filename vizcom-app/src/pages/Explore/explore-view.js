@@ -1,0 +1,1 @@
+// would mostly be a pure functional Component index.js is the entry point for importing our Component.
