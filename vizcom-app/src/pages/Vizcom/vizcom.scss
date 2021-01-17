@@ -1,0 +1,52 @@
+.tools {
+    margin:10%
+}
+
+.tools h1 {
+    font-size: 26px;
+  
+}
+
+.tools-header{
+    border-bottom: 1px solid #aaa;
+    margin-bottom:5%;
+}
+
+
+.card {
+    border-radius: 15px;
+    border: 1px solid #aaa;
+   
+    
+}
+
+.card-image{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+}
+.content-container{
+ border-top: 1px solid #aaa;
+ margin-top: 2rem;
+}
+
+.card-content{
+    border-top: 1px solid #aaa;
+    padding-top:1rem !important;
+    h2 {
+        font-size: 2rem;
+       
+        color:#474747;
+        margin-bottom:0;
+    }
+    @media ( max-width: 900px ) {
+        h2 {
+            font-size: 1.5em;
+          }
+         }
+
+    p{
+        color:#474747;
+    }
+
+}
