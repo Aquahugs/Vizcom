@@ -9,7 +9,11 @@ import {
 import Profile from "../pages/Profile";
 import Explore from "../pages/Explore";
 import Vizcom from "../pages/Vizcom";
+import Generate from "../pages/Vizcom/Generate";
+import SketchToRender from "../pages/Vizcom/SketchToRender";
+
 import PrimaryNav from '../Components/Common/primary-navbar';
+import SecondaryNav from '../Components/Common/secondary-navbar';
 import Footer from '../Components/Common/footer';
 
 
@@ -23,22 +27,15 @@ export default function App() {
         So, the Route element is a bit like an if statement - if its path matches the current path, 
         it renders its element. */}
       <PrimaryNav />
+      <SecondaryNav />
       <div>
-        <ul>
-          <li>
-            <Link to="/vizcom">Vizcom</Link>
-          </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/explore">Explore</Link>
-          </li>
-        </ul>
+        
         <Routes>
           <Route path="profile" element={<Profile />} />
           <Route path="explore" element={<Explore />} />
-          <Route path="vizcom/*" element={<Vizcom />} />
+          <Route path="vizcom" element={<Vizcom />} />
+          <Route path="vizcom/generate" element={<Generate />} />
+          <Route path="vizcom/sketch-to-render" element={<SketchToRender />} />
         </Routes>
       </div>
       <Footer />
