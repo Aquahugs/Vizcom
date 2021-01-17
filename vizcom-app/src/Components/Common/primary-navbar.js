@@ -4,7 +4,7 @@ import './primary-navbar.scss'
 
 
 
-export default function Explore() {
+export default function PrimaryNav() {
   return (
     <div className = "nav">
       <div className = "row">
