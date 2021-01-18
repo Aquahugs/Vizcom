@@ -1,1 +1,0 @@
-// include mapStateToProps, mapDispatchToProps and connect functionality provided by Redux

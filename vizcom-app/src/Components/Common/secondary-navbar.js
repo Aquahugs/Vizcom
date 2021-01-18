@@ -8,7 +8,7 @@ export default function SecondaryNav() {
     <div className = "nav-container">
         <ul>
             <li>
-            <Link to="/vizcom">Vizcom</Link>
+            <Link to="/">Vizcom</Link>
             </li>
             <li>
             <Link to="/profile">Profile</Link>
