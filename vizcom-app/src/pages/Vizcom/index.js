@@ -2,15 +2,12 @@
 import './vizcom.scss'
 import React from "react";
 
-import ToolCard from "../../Components/Common/tool-card";
+import ToolCard from "../../Components/Common/card";
 import GenerateLogo from'../../assets/generate-logo.png';
 import SketchToRenderLogo from'../../assets/s2r.png';
 import {GENERATE, SKETCH_TO_RENDER } from "./vizcom-const.js"
 
-
 export default function Vizcom() {
-
-   
     return (
         <div className = "tools">
             <div className = "tools-header">
