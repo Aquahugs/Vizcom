@@ -59,7 +59,14 @@ return (
         </div>
 
 
-     
+        {/* moved this to routes index.js because it was keeping the cards in the 
+        view where as Genereate and sketch2Render should be there own views
+        */}
+        {/* <Routes>
+            <Route path="/" element={<UsersIndex />} />
+            <Route path="generate" element={<Generate />} />
+            <Route path="sketch-to-render" element={<SketchToRender />} />
+        </Routes> */}
     </div>
 );
 }

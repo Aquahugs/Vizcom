@@ -33,9 +33,9 @@ export default function App() {
         <Routes>
           <Route path="profile" element={<Profile />} />
           <Route path="explore" element={<Explore />} />
-          <Route path="vizcom" element={<Vizcom />} />
-          <Route path="vizcom/generate" element={<Generate />} />
-          <Route path="vizcom/sketch-to-render" element={<SketchToRender />} />
+          <Route path="/" element={<Vizcom />} />
+          <Route path="generate" element={<Generate />} />
+          <Route path="sketch-to-render" element={<SketchToRender />} />
         </Routes>
       </div>
       <Footer />
