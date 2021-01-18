@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 
-import history from './services/history';
+import history from './utils/history';
 import Routes from './routes';
 
 function App() {

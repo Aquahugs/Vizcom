@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './card.scss';
 
-export default function ToolBar(props) {
+const ToolBar = (props) => {
     console.log(props);
     return(
         <Link to={props.link}>
@@ -11,16 +12,17 @@ export default function ToolBar(props) {
                         <img src={props.logo}/>
                     </div>
                     <div className = "content-container">
-                    <div class="card-content">
-                        <h2>
-                            {props.name}  
-                        </h2>
-                        <p>{props.description}</p>
+                        <div class="card-content">
+                            <h2>
+                                {props.name}  
+                            </h2>
+                            <p>{props.description}</p>
+                        </div>
                     </div>
-                    </div>
-                
                 </div>
             </div>
         </Link>
     )
 }
+
+export default ToolBar
