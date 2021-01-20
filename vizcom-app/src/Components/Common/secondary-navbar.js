@@ -7,7 +7,7 @@ export default function SecondaryNav() {
     <div className = "nav-container">
         <ul>
             <li>
-              <Link to="/">Vizcom</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/profile">Profile</Link>

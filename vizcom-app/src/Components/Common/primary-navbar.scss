@@ -1,9 +1,42 @@
-.nav{
+.nav-wrapper{
     margin:2%;
+
+   
+}
+
+
+nav {
+    box-shadow: none;
+  
 }
 
 .bucket{
-    p{
-        float: right;
+    padding-right: 1rem;
+
+    img {
+        height:auto;
+        width: 20px;
+           float:right;
+        
     }
+    p{
+        float:right;
+    }
+}
+
+.logo-container{
+    
+    img{
+        width: 175px;
+    }
+}
+
+.user-icon{
+    li{
+        display: inline;
+    }
+}
+
+nav{
+    background-color: transparent;
 }
