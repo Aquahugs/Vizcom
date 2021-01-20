@@ -12,14 +12,14 @@ export default function PrimaryNav() {
         <ul className ="nav-items" class="right hide-on-med-and-down">
           <li >
             <a 
-              style = {{color:'#505050',fontSize:'20px'}} 
+              style = {{color:'#505050',fontSize:'16px'}} 
               href="">
               new bucket
             </a>
           </li>
           <li>
             <a 
-            style = {{color:'#505050',fontSize:'20px'}} 
+            style = {{color:'#505050',fontSize:'16px'}} 
             href="">
               user profile
             </a>

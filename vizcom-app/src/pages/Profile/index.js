@@ -12,7 +12,7 @@ export default function Profile() {
           </p>    
         </div>
         <div className = 'view-selector col sm6 m6 l6'>
-          <h2>View</h2>
+         <h2>View</h2>
          
           <ul>
             <li>Buckets</li>
