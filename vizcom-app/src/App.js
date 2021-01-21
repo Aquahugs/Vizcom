@@ -1,14 +1,24 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import {BrowserRouter} from "react-router-dom";
+
+import PrimaryNav from './pages/components/primary-navbar';
+import Footer from './pages/components/footer';
+import SecondaryNav from './pages/components/secondary-navbar';
 
 import history from './utils/history';
-import Routes from './routes';
+import Router from './Router';
 
-function App() {
+const App = () => {
   return (
-    <Router history={history}>
-      <Routes />
-    </Router>
+    <BrowserRouter>
+      <PrimaryNav />
+      <SecondaryNav />
+      <main>
+        <Router history={history} />
+      </main>
+      <Footer />
+    </BrowserRouter>
+
   );
 }
 

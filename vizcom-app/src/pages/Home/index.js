@@ -1,11 +1,11 @@
 
-import './vizcom.scss'
+import './home.scss'
 import React from "react";
 
-import ToolCard from "../../Components/Common/card";
+import ToolCard from "../components/card";
 import GenerateLogo from'../../assets/generate-logo.png';
 import SketchToRenderLogo from'../../assets/s2r.png';
-import {GENERATE, SKETCH_TO_RENDER } from "./vizcom-const.js"
+import {GENERATE, SKETCH_TO_RENDER } from "./home-const.js"
 
 export default function Vizcom() {
     return (

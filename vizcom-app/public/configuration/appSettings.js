@@ -1,7 +1,7 @@
 window.globalConfig = {
 //whatever the base url is to your api
 api: {
-    endpoint_uri: ''
+    endpoint_uri: 'https://designerspendroplet.getdpsvapi.com'
 },
 
 // Auth configurations
