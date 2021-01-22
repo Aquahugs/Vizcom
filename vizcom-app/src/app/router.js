@@ -1,15 +1,15 @@
 import React from "react";
 import {
-  BrowserRouter,
   Switch,
   Route,
 } from "react-router-dom";
 
-import Profile from "./pages/Profile";
-import Explore from "./pages/Explore";
-import Home from "./pages/Home";
-import Generate from "./pages/Home/Generate";
-import SketchToRender from "./pages/Home/SketchToRender";
+import Profile from "../pages/Profile";
+import Explore from "../pages/Explore";
+import Home from "../pages/Home";
+import Generate from "../pages/Home/Generate";
+import SketchToRender from "../pages/Home/SketchToRender";
+import LandingPage from "../pages/LandingPage";
 
 const Router = () => (
   <Switch>
@@ -25,8 +25,11 @@ const Router = () => (
     <Route path="/sketch-to-render">
       <SketchToRender />
     </Route>
-    <Route path="/">
+    <Route path="/home">
       <Home />
+    </Route>
+    <Route path="/">
+      <LandingPage />
     </Route>
   </Switch>
 )

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: `${globalConfig.api.endpoint_uri.replace(/\/$/, '')}/`,
+  baseURL: `${process.env.VIZCOM_API_BASE_URL.replace(/\/$/, '')}/`,
   withCredentials: false,
   headers: {
     Accept: 'application/json',

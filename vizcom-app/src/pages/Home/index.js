@@ -2,12 +2,12 @@
 import './home.scss'
 import React from "react";
 
-import ToolCard from "../components/card";
+import ToolCard from "../../common/components/Card";
 import GenerateLogo from'../../assets/generate-logo.png';
 import SketchToRenderLogo from'../../assets/s2r.png';
 import {GENERATE, SKETCH_TO_RENDER } from "./home-const.js"
 
-export default function Vizcom() {
+const Home = () => {
     return (
         <div className = "tools">
             <div className = "tools-header">
@@ -30,3 +30,5 @@ export default function Vizcom() {
         </div>
     );
 }
+
+export default Home;

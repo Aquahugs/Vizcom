@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux'
-import store from './redux/store'
+import store from './app/store'
 
 import './index.css';
-import App from './App';
-import reportWebVitals from './utils/reportWebVitals';
+import App from './app/App';
+import reportWebVitals from './common/utils/reportWebVitals';
 
 
 const rootElement = document.getElementById('root')

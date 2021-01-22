@@ -1,5 +1,5 @@
 import React from "react";
-import './primary-navbar.scss'
+import './PrimaryNavbar.scss'
 import Logo from '../../assets/logo.png'
 import NewBucket from '../../assets/create-bucket.svg'
 
