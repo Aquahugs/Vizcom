@@ -1,7 +1,60 @@
-.btn-color 
 
+.selector-container{
+    height: 10vh; /* Magic here */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .btn {
+        border : solid 1px #707070;
+        border-radius: 24px;
+        background-color:white ;
+    }
 
+    
+
+   
+  
+}
+.tag {
+    p{
+        text-align: center;
+    }
+}
+.generate-btn {
+    background-color: #0F0F0F;
+    width: 531px;
+    height:72px;
+    font-size: 20px;
+    border-radius: 34px;
+} 
+
+.waves-effect .waves-ripple{
+    background-color: white;
+}
+.genbtn-container 
 {
-    border : solid 1px #707070;
-    border-radius: 24px;
+
+    height: 10vh; /* Magic here */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn{
+        background-color: #0F0F0F;
+    }
+    .btn:active{
+        background-color: #0F0F0F;
+
+    }
+    .btn:focus{
+        background-color: #0F0F0F;
+        color:white;
+        border:solid 1px #0F0F0F;
+    }
+
+    .btn:visited{
+        background-color: #0F0F0F;
+    }
+
+
 }
