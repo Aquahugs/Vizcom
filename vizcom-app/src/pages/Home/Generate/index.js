@@ -3,23 +3,23 @@ import './generate.scss';
 
 export default function Generate() {
   
-  const [count, setCount] = useState(false);
+  const [active, setCount] = useState("cardesign");
 
   // style={{ visibility: this.state.driverDetails.firstName != undefined? 'visible': 'hidden'}}
   return( 
     <div className = "row generate-container">
       <div className =" selector-container">
         <button 
-         onClick={() => setCount(true)}
-        class=" btn btn-flat "
-        style={{ backgroundColor: count != true? 'white': ' #D9D9D9'}}>
+          onClick={() => setCount("cardesign")}
+          class=" btn btn-flat "
+          style={{ backgroundColor: active == "cardesign"? '#D9D9D9': 'white'}}>
           car-design
-          </button>
+        </button>
         <button 
-        onClick={() => setCount(false)}
-        class=" btn btn-flat "
-        style={{ backgroundColor: count != false? 'white': ' #D9D9D9'}}
-        class="btn btn-flat">footwear</button>
+          onClick={() => setCount("footwear")}
+          class=" btn btn-flat "
+          style={{ backgroundColor: active == "footwear"? '#D9D9D9': 'white'}}
+          class="btn btn-flat">footwear</button>
       </div>
       <div className = "row tag">
           <p>Every click uses artificial intelligence to generate unique images </p>
