@@ -3,6 +3,7 @@ import {useDropzone} from 'react-dropzone';
 
 import plus from '../../../assets/plus.png'
 
+//will move these styles over somewhere
 const baseStyle = {
   flex: 1,
   display: 'flex',
@@ -85,14 +86,15 @@ export default function StyledDropzone(props) {
         accept: 'image/*',
         maxFiles:3,
         onDrop: acceptedFiles => {
-        setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
-    
-        
-      })));
+            setFiles(acceptedFiles.map(file => Object.assign(file, {
+            preview: URL.createObjectURL(file)
+            })))
+            console.log(files);
         }
     });
 
+
+   // this will have to be put into index.js later on 
   const thumbs = files.map(file => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
