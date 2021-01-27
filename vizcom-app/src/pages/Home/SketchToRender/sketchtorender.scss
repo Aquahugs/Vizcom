@@ -1,0 +1,43 @@
+.image-container {
+    padding:3rem !important;
+    height: 50vh; /* Magic here */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.render-btn {
+    background-color: #0F0F0F;
+    width: 231px;
+    height:52px;
+    font-size: 20px;
+    border-radius: 34px;
+} 
+
+.renderbtn-container
+{
+
+    height: 10vh; /* Magic here */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn{
+        background-color: #0F0F0F;
+    }
+    .btn:active{
+        background-color: #0F0F0F;
+
+    }
+    .btn:focus{
+        background-color: #0F0F0F;
+        color:white;
+        border:solid 1px #0F0F0F;
+    }
+
+    .btn:visited{
+        background-color: #0F0F0F;
+    }
+
+
+}

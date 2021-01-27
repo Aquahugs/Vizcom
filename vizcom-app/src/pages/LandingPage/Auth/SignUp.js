@@ -1,15 +1,13 @@
 import React from 'react'
+import './SignIn.scss';
 
 const SignIn = () => {
     return(
         <div class="form">
-            <ul class="tab-group">
-                <li class="tab active"><a href="#signup">Sign Up</a></li>
-                <li class="tab"><a href="#login">Log In</a></li>
-            </ul>
+            
             <div class="tab-content">
                 <div id="signup">   
-                    <h1>Sign Up for Free</h1>
+                    <h1>Sign Up </h1>
                     <form action="/" method="post">
                         <div class="top-row">
                             <div class="field-wrap">
@@ -34,11 +32,13 @@ const SignIn = () => {
                         </div>
                         <div class="field-wrap">
                             <label>
-                            Set A Password<span class="req">*</span>
+                             Password<span class="req">*</span>
                             </label>
                             <input type="password"required autocomplete="off"/>
                         </div>
-                        <button type="submit" class="button button-block">Get Started</button>
+                        <div className = 'row btn-container'>
+                            <button className = 'btn login-btn lighten-1 z-depth-0'>Sign up</button>
+                        </div>
                     </form>
                 </div>
             </div> 
