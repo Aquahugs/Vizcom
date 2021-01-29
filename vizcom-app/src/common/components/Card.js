@@ -1,28 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './Card.scss';
+import "./Card.scss";
 
-const Card = (props) => {
-    console.log(props);
-    return(
-        <Link to={props.link}>
-            <div class="col s4 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src={props.logo}/>
-                    </div>
-                    <div className = "content-container">
-                        <div class="card-content">
-                            <h2>
-                                {props.name}  
-                            </h2>
-                            <p>{props.description}</p>
-                        </div>
-                    </div>
-                </div>
+const Card = ({ link, logo, name, description }) => {
+  return (
+    <Link to={link}>
+      <div class="col s4 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src={logo} />
+          </div>
+          <div className="content-container">
+            <div class="card-content">
+              <h2>{name}</h2>
+              <p>{description}</p>
             </div>
-        </Link>
-    )
-}
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
-export default Card
+export default Card;

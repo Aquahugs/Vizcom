@@ -1,40 +1,62 @@
-import React, { setState, useEffect } from 'react'
-import '../LandingPage.scss';
-import SignIn from './SignIn'
-import SignUp from './SignUp'
+import React, { setState, useEffect, useState } from "react";
+import "../LandingPage.scss";
 
-import WhiteLogo from '../../../assets/logo-white.png'
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import PasswordReset from "./PasswordReset";
 
 const Auth = () => {
-    return(
-        <div className = 'content-container'>
-            <div className = 'row'>
-                <div className = 'left-area col s7 m7 l7'>
-                    <img src = {WhiteLogo}/>
-                    <p>Accelerate your creative process.</p>
-                </div>
-                <div className = 'auth-area col s5 m5 l5'>
-                     {/* <SignIn /> */}
-                     <SignUp />
-                </div>
-            </div>
-            <div className = 'row info-container'>
-                <div className = 'col s5 m5 l5'>
-                    <h2>Vizcom is building tools that shorten 
-                        the distance between having an idea and bringing it to life.
-                    </h2>
-                </div>
-                <div className = 'col s7 m7 l7'>
-                    <img src = "https://via.placeholder.com/850x750"/>
-                </div>
-            </div>
-        </div>
-       
-        // <div>
-        //     <SignIn />
-        //     <SignUp />
-        // </div>
-    )
-}
+  let [authState, setAuthState] = useState("signUp");
+
+  const renderAuthState = () => {
+    switch (authState) {
+      case "signUp":
+        return (
+          <div>
+            <SignUp />
+            <p>
+              Already have an account?
+              <a onClick={() => setAuthState((authState = "signIn"))}>
+                Sign in
+              </a>
+            </p>
+          </div>
+        );
+      case "signIn":
+        return (
+          <div>
+            <SignIn />
+            <p>
+              Dont have an account?
+              <a onClick={() => setAuthState((authState = "signUp"))}>
+                Sign Up
+              </a>
+            </p>
+            <p>
+              <a onClick={() => setAuthState((authState = "passwordReset"))}>
+                Forgot Password?
+              </a>
+            </p>
+          </div>
+        );
+      case "passwordReset":
+        return (
+          <div>
+            <PasswordReset />
+            <p>
+              <a onClick={() => setAuthState((authState = "signIn"))}>
+                Back to login
+              </a>
+            </p>
+          </div>
+        );
+
+      default:
+        return <h1>No project match</h1>;
+    }
+  };
+
+  return <div>{renderAuthState()}</div>;
+};
 
 export default Auth;

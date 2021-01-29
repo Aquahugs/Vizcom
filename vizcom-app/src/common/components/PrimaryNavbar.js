@@ -1,32 +1,34 @@
 import React from "react";
-import './PrimaryNavbar.scss'
-import Logo from '../../assets/logo.png'
-import NewBucket from '../../assets/create-bucket.svg'
+import "./PrimaryNavbar.scss";
+import Logo from "../../assets/logo.png";
+import NewBucket from "../../assets/create-bucket.svg";
+import SignOut from "../../pages/LandingPage/Auth/SignOut";
 
 export default function PrimaryNav() {
   return (
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="logo-container"><img src ={Logo} /></a>
-        <ul className ="nav-items" class="right hide-on-med-and-down">
-          <li >
-            <a 
-              style = {{color:'#505050',fontSize:'16px'}} 
-              href="">
+        <a href="#" class="logo-container">
+          <img src={Logo} />
+        </a>
+        <ul className="nav-items" class="right hide-on-med-and-down">
+          <li>
+            <a style={{ color: "#505050", fontSize: "16px" }} href="">
               new bucket
             </a>
           </li>
           <li>
-            <a 
-            style = {{color:'#505050',fontSize:'16px'}} 
-            href="">
+            <a style={{ color: "#505050", fontSize: "16px" }} href="">
               user profile
             </a>
           </li>
           <li>
             <a href="collapsible.html">
-              <img src = "https://via.placeholder.com/30"/>
+              <img src="https://via.placeholder.com/30" />
             </a>
+          </li>
+          <li>
+            <SignOut />
           </li>
         </ul>
       </div>
@@ -45,7 +47,7 @@ export default function PrimaryNav() {
     //           <img src = {NewBucket}/>
     //         </li>
     //       </ul>
-          
+
     //     </div>
     //     <div className = "user-icon col s2 m2 l2">
     //       <ul>
