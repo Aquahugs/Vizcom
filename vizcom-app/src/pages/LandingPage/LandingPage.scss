@@ -1,0 +1,45 @@
+.left-area {
+  background-color: #262626;
+  height: 1120px;
+  padding-left: 5% !important;
+
+  img {
+    padding-top: 45%;
+  }
+
+  p {
+    color: #ebebeb;
+    font-size: 1.3rem;
+  }
+}
+
+.auth-area {
+  padding: 5% !important;
+}
+
+.info-container {
+  background-color: #262626;
+  height: 920px;
+
+  .info-image {
+    padding: 5rem;
+  }
+}
+
+.content-container {
+  margin-top: 0;
+  .row {
+    margin-bottom: 0;
+  }
+}
+
+.info-container {
+  padding: 5%;
+  h2 {
+    color: #ececec;
+    font-size: 42px;
+    font-weight: bold;
+    line-height: 4rem;
+    padding-top: 10rem;
+  }
+}
