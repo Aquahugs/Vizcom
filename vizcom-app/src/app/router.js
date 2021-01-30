@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Profile from "../pages/Profile";
 import Explore from "../pages/Explore";
@@ -32,6 +29,6 @@ const Router = () => (
       <LandingPage />
     </Route>
   </Switch>
-)
+);
 
 export default Router;

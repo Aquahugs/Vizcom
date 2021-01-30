@@ -1,20 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { Provider } from 'react-redux'
-import store from './app/store'
+import { Provider } from "react-redux";
+import store from "./app/store";
 
-import './index.css';
-import App from './app/App';
-import reportWebVitals from './common/utils/reportWebVitals';
+import "./index.css";
+import App from "./app/App";
+import reportWebVitals from "./common/utils/reportWebVitals";
+import Firebase, { FirebaseContext } from "./app/firebase";
 
-
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
+    {/* connect store with react */}
     <Provider store={store}>
-      <App />
-    </Provider>,  
+      {/* wrap app with firebase context*/}
+      <FirebaseContext.Provider value={new Firebase()}>
+        <App />
+      </FirebaseContext.Provider>
+      ,
+    </Provider>
+    ,
   </React.StrictMode>,
   rootElement
 );

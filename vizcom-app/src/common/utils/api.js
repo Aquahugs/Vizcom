@@ -1,12 +1,12 @@
 /* eslint-disable */
-import axios from 'axios';
+import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: `${process.env.VIZCOM_API_BASE_URL.replace(/\/$/, '')}/`,
+  baseURL: `${process.env.REACT_APP_API_BASE_URL.replace(/\/$/, "")}/`,
   withCredentials: false,
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
 });
 
