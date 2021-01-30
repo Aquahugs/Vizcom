@@ -1,7 +1,20 @@
-import React,{ useState } from "react";
+import React,{ useState,useEffect } from "react";
 import './generate.scss';
 
 export default function Generate() {
+  const [uuid, setUuid] = useState(null);
+  const [isLoaded, setisLoaded] = useState(true);
+  const [userphotos, setisUserphotos] = useState(data1);
+
+  useEffect(() => {
+    // document.addEventListener('scroll', this.trackScrolling);
+    const {uuid} = {uuid}
+     
+        fetch('https://designerspendroplet.getdpsvapi.com/Generate')
+
+     .then((res1) => (res1.json()))
+     .then((data1) => setisLoaded(true),)      
+    });
   
   const [active, setCount] = useState("cardesign");
 
@@ -25,9 +38,14 @@ export default function Generate() {
           <p>Every click uses artificial intelligence to generate unique images </p>
       </div>
       <div className = "row">
-        <img src = "https://via.placeholder.com/450"/>
-        <img src = "https://via.placeholder.com/450"/>
-        <img src = "https://via.placeholder.com/450"/>
+      <img 
+        className = 'generated-image'  
+        src = {this.state.userphotos.data[this.state.index].imageUrl}
+        // style = {{
+        //     visibility: this.state.isGenerating ? 'hidden': 'visible',
+        //     display: this.state.isGenerating ? 'none': 'block'
+        // }}  
+      />
       </div>
       <div className = " genbtn-container row">
         <button a href="#" className = 'btn waves-effect generate-btn lighten-1 z-depth-0'>Generate</button>
@@ -35,5 +53,5 @@ export default function Generate() {
     </div>
     
   );
-}
+};
 

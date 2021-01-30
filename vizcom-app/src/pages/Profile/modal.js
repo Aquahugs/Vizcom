@@ -3,6 +3,8 @@ import M from "materialize-css";
 import plus from '../../assets/plus.png'
 import './modal.scss'
 
+import StyledDropzone from './Dropzone'
+
 class Modal extends Component {
   componentDidMount() {
     const options = {
@@ -39,47 +41,45 @@ class Modal extends Component {
         <a
           className=" modal-trigger"
           data-target="modal1"
-        >
+          >
          <button className = "new-bucket btn-flat btn "> 
            <img src = {plus}/>
            <br/>start new bucket
          </button>
         </a>
-        <div
-          ref={Modal => {
-            this.Modal = Modal;
-          }}
-          id="modal1"
-          className="modal "
-        >
+          <div
+            ref={Modal => {
+              this.Modal = Modal;
+            }}
+            id="modal1"
+            className="modal"
+          >
           {/* If you want Bottom Sheet Modal then add 
-                        bottom-sheet class to the "modal" div
-                        If you want Fixed Footer Modal then add
-                        modal-fixed-footer to the "modal" div*/}
+          bottom-sheet class to the "modal" div
+          If you want Fixed Footer Modal then add
+          modal-fixed-footer to the "modal" div*/}
           <div className="modal-content">
             <h4>New bucket</h4>
             <div class="row">
-                <div class="input-field col s12">
+              <div class="input-field col s12">
                 <input type="text" id="autocomplete-input" class="autocomplete"/>
                 <label for="autocomplete-input">Bucket name </label>
-                </div>
+              </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+              <div class="input-field col s12">
                 <input type="text" id="autocomplete-input" class="autocomplete"/>
                 <label for="autocomplete-input">Description</label>
-                </div>
+              </div>
+            </div>
+            <div className = "row ">
+              <StyledDropzone/>                          
             </div>
           </div>
           
-          <div className="modal-footer">
-            <a className="modal-close waves-effect waves-red btn-flat">
-              Disagree
-            </a>
-            <a className="modal-close waves-effect waves-green btn-flat">
-              Agree
-            </a>
-          </div>
+          <div className="modal-footer ">
+          <a class="waves-effect waves btn-flat bucket-btn">Create bucket</a>
+          </div>  
         </div>
       </div>
     );

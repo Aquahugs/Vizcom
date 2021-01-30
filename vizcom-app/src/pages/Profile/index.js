@@ -3,10 +3,9 @@ import './profile.scss'
 import NewBucket from "./modal";
 
 
-export default function Profile() {
+export default  function Profile() {
   return (
     <div className = 'profile-container'>
-      
       <div className = 'row'>
         <div className = 'bio-container col sm6 m6 l6'>
           <h2>Bio</h2>   
@@ -31,7 +30,6 @@ export default function Profile() {
         <div className = 'row user-collection '>
           <img src = "https://via.placeholder.com/300"/>
         </div>
-        
       </div>
     </div>
   );
