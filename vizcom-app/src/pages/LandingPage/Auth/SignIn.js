@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
+import { connect } from "react-redux";
 
-import { withFirebase } from "../../../app/firebase";
+import { withFirebase } from "../../../app/auth/firebase";
 
-const SignInPage = () => (
+const SignIn = () => (
   <div>
     <h1>SignIn</h1>
     <SignInForm />
@@ -117,13 +118,18 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
-        // Create a user in your Firebase Realtime Database too
-        // return this.props.firebase.user(socialAuthUser.user.uid).set({
-        //   username: socialAuthUser.user.displayName,
-        //   email: socialAuthUser.user.email,
-        //   roles: {},
-        // });
+        console.log("Social authuser", socialAuthUser.user);
+        console.log("props", this.props);
+        debugger;
         this.props.history.push("/home");
+        debugger;
+        this.props.onSetUser(socialAuthUser.user);
+        debugger;
+        // Create a user in your firestore
+        return this.props.firebase.user(socialAuthUser.user.uid).set({
+          username: socialAuthUser.user.displayName,
+          email: socialAuthUser.user.email,
+        });
       })
       .then(() => {
         this.setState({ error: null });
@@ -152,10 +158,22 @@ class SignInGoogleBase extends Component {
   }
 }
 
-const SignInForm = compose(withRouter, withFirebase)(SignInFormBase);
+const mapDispatchToProps = (dispatch) => ({
+  onSetUser: (user) => dispatch({ type: "USER_SET", user }),
+});
 
-const SignInGoogle = compose(withRouter, withFirebase)(SignInGoogleBase);
+const SignInForm = compose(
+  withRouter,
+  withFirebase,
+  connect(mapDispatchToProps)
+)(SignInFormBase);
 
-export default SignInPage;
+const SignInGoogle = compose(
+  withRouter,
+  withFirebase,
+  connect(mapDispatchToProps)
+)(SignInGoogleBase);
+
+export default SignIn;
 
 export { SignInForm, SignInGoogle };

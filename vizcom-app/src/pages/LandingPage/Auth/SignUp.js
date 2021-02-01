@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import { withFirebase } from "../../../app/firebase";
+import { withFirebase } from "../../../app/auth/firebase";
 
 const SignUpPage = () => (
   <div>
@@ -44,10 +44,10 @@ class SignUpFormBase extends Component {
         fetch(
           `https://designerspendroplet.getdpsvapi.com/adduser?uuid=${authUser.user.uid}&username=${authUser.user.displayName}&photourl=''&bio=''&email=${authUser.user.email}`
         );
-        // return this.props.firebase.user(authUser.user.uid).set({
-        //   username,
-        //   email,
-        // });
+        return this.props.firebase.user(authUser.user.uid).set({
+          username,
+          email,
+        });
       })
       .then(() => {
         return this.props.firebase.doSendEmailVerification();
