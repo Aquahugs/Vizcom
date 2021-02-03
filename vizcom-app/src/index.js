@@ -7,7 +7,7 @@ import store from "./app/store";
 import "./index.css";
 import App from "./app/App";
 import reportWebVitals from "./common/utils/reportWebVitals";
-import Firebase, { FirebaseContext } from "./app/firebase";
+import Firebase, { FirebaseContext } from "./app/auth/firebase";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

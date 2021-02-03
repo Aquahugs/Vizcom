@@ -1,19 +1,17 @@
-import EXPLORE_TYPE from './explore.types';
+import EXPLORE_TYPE from "./explore.types";
 
 const initialState = {
-    feedImages: [],
-    boards: [],
+  feedImages: [],
+  boards: [],
 };
 
-const exploreReducer = (state = initialState, {type, payload}) => {
-    // eslint-disable-next-line default-case
-    console.log("Hola amigo, here's your state, payload and type");
-    console.log(state, type, payload);
-    switch (true) {
-
-        default: // need this for default case
-          return state 
-       }
+const exploreReducer = (state = initialState, { type, payload }) => {
+  // eslint-disable-next-line default-case
+  switch (true) {
+    default:
+      // need this for default case
+      return state;
+  }
 };
 
 export default exploreReducer;
