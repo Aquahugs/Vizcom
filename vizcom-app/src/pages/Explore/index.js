@@ -2,10 +2,7 @@ import React from "react";
 
 import { compose } from "recompose";
 
-import {
-  withAuthorization,
-  withEmailVerification,
-} from "../../app/auth/session";
+import { withAuthorization } from "../../app/auth/session";
 
 const Explore = () => {
   return <h1>explore</h1>;
@@ -13,7 +10,4 @@ const Explore = () => {
 
 const condition = (authUser) => !!authUser;
 
-export default compose(
-  withEmailVerification,
-  withAuthorization(condition)
-)(Explore);
+export default compose(withAuthorization(condition))(Explore);

@@ -13,7 +13,7 @@ const Navigation = ({ authUser }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authUser: state.sessionState.authUser,
+  authUser: state.session.authUser,
 });
 
 export default connect(mapStateToProps)(Navigation);

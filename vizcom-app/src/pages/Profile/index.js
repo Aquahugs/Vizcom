@@ -3,10 +3,7 @@ import "./profile.scss";
 
 import { compose } from "recompose";
 
-import {
-  withAuthorization,
-  withEmailVerification,
-} from "../../app/auth/session";
+import { withAuthorization } from "../../app/auth/session";
 
 const Profile = () => {
   return (
@@ -38,7 +35,4 @@ const Profile = () => {
 
 const condition = (authUser) => !!authUser;
 
-export default compose(
-  withEmailVerification,
-  withAuthorization(condition)
-)(Profile);
+export default compose(withAuthorization(condition))(Profile);

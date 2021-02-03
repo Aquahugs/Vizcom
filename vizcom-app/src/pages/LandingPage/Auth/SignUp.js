@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 import { withFirebase } from "../../../app/auth/firebase";
 
@@ -39,22 +42,18 @@ class SignUpFormBase extends Component {
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then((authUser) => {
+      // if we want to add in email verification
+      // .then(() => {
+      //   return this.props.firebase.doSendEmailVerification();
+      // })
+      .then((response) => {
         // Create a user in your Firebase realtime database
         fetch(
-          `https://designerspendroplet.getdpsvapi.com/adduser?uuid=${authUser.user.uid}&username=${authUser.user.displayName}&photourl=''&bio=''&email=${authUser.user.email}`
+          `https://designerspendroplet.getdpsvapi.com/adduser?uuid=${response.user.uid}&username=${response.user.displayName}&photourl=''&bio=''&email=${response.user.email}`
         );
-        return this.props.firebase.user(authUser.user.uid).set({
-          username,
-          email,
-        });
-      })
-      .then(() => {
-        return this.props.firebase.doSendEmailVerification();
-      })
-      .then(() => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push("/home");
+        this.props.setUser(response.user);
       })
       .catch((error) => {
         console.log(error);
@@ -156,7 +155,17 @@ class SignUpFormBase extends Component {
   }
 }
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (user) => dispatch({ type: "SET_USER", user }),
+});
+
+const enhance = compose(
+  withRouter,
+  withFirebase,
+  connect(null, mapDispatchToProps)
+);
+
+const SignUpForm = enhance(SignUpFormBase);
 
 export default SignUpPage;
 

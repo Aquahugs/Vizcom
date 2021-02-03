@@ -56,7 +56,7 @@ const withEmailVerification = (Component) => {
   }
 
   const mapStateToProps = (state) => ({
-    authUser: state.sessionState.authUser,
+    authUser: state.session.authUser,
   });
 
   return compose(withFirebase, connect(mapStateToProps))(WithEmailVerification);

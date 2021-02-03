@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
+import { UserProfileActions } from "../../Profile/redux";
+
 import { withFirebase } from "../../../app/auth/firebase";
 
 const SignIn = () => (
@@ -42,14 +44,13 @@ class SignInFormBase extends Component {
 
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((response) => {
+        console.log("USER", response.user);
         this.setState({ ...INITIAL_STATE });
-        debugger;
         this.props.history.push("/home");
+        this.props.setUser(response.user);
       })
       .catch((error) => {
-        debugger;
-
         this.setState({ error });
       });
 
@@ -118,18 +119,8 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
-        console.log("Social authuser", socialAuthUser.user);
-        console.log("props", this.props);
-        debugger;
         this.props.history.push("/home");
-        debugger;
-        this.props.onSetUser(socialAuthUser.user);
-        debugger;
-        // Create a user in your firestore
-        return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.user.displayName,
-          email: socialAuthUser.user.email,
-        });
+        this.props.setUser(socialAuthUser.user);
       })
       .then(() => {
         this.setState({ error: null });
@@ -158,21 +149,25 @@ class SignInGoogleBase extends Component {
   }
 }
 
+// const mapDispatchToProps = () => {
+//   return {
+//     setUser: UserProfileActions.setUser,
+//   };
+// };
+
 const mapDispatchToProps = (dispatch) => ({
-  onSetUser: (user) => dispatch({ type: "USER_SET", user }),
+  setUser: (user) => dispatch({ type: "SET_USER", user }),
 });
 
-const SignInForm = compose(
+const enhance = compose(
   withRouter,
   withFirebase,
-  connect(mapDispatchToProps)
-)(SignInFormBase);
+  connect(null, mapDispatchToProps)
+);
 
-const SignInGoogle = compose(
-  withRouter,
-  withFirebase,
-  connect(mapDispatchToProps)
-)(SignInGoogleBase);
+const SignInForm = enhance(SignInFormBase);
+
+const SignInGoogle = enhance(SignInGoogleBase);
 
 export default SignIn;
 
