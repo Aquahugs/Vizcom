@@ -25,8 +25,9 @@ const SecondaryNav = (props) => {
 
 const mapStateToProps = state => {
   return{
-    user: state.sessionState
+    user: state.session
   }
 }
+
 
 export default connect (mapStateToProps)(SecondaryNav);

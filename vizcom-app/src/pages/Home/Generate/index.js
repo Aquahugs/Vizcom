@@ -27,11 +27,10 @@ class Generate extends Component {
         setIsOpen:true,
         modalIsOpen:true,
         isGenerating:false,
-        imageDownload:''
-        
+        imageDownload:''   
     }
-
 }
+
   componentDidMount() {
     document.addEventListener('scroll', this.trackScrolling);
     const {uuid} = this.state

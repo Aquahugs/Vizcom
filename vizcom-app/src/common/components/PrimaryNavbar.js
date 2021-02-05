@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 
 const PrimaryNav = (props) => {
   console.log(props)
-  console.log(props.user.authUser.providerData[0].photoURL)
+  // console.log(props.user.authUser.providerData[0].photoURL)
   return (
     <nav>
       <div class="nav-wrapper">
@@ -43,7 +43,7 @@ const PrimaryNav = (props) => {
 
 const mapStateToProps = state => {
   return{
-    user: state.sessionState
+    user: state.session
   }
 }
 
