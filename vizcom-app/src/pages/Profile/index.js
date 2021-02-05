@@ -1,6 +1,6 @@
 import React from "react";
+import {connect} from 'react-redux'
 import "./profile.scss";
-
 import { compose } from "recompose";
 
 import {
@@ -8,12 +8,14 @@ import {
   withEmailVerification,
 } from "../../app/auth/session";
 
-const Profile = () => {
+const Profile = (props) => {
+  console.log(props)
   return (
     <div className="profile-container">
       <div className="row">
         <div className="bio-container col sm6 m6 l6">
           <h2>Bio</h2>
+          <h1>{props.user.authUser.firstName}</h1>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -37,9 +39,18 @@ const Profile = () => {
   );
 };
 
+const mapStateToProps = state => {
+  return{
+    user: state.sessionState
+  }
+} 
+
+// const mapDispatchToProp = dispatch => {
+//   return {
+//     sessionState: () => sessionReducer(authUser())
+//   }
+// }
+
 const condition = (authUser) => !!authUser;
 
-export default compose(
-  withEmailVerification,
-  withAuthorization(condition)
-)(Profile);
+export default connect (mapStateToProps)(Profile);
