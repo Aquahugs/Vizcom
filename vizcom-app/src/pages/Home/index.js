@@ -3,10 +3,7 @@ import React from "react";
 
 import { compose } from "recompose";
 
-import {
-  withAuthorization,
-  withEmailVerification,
-} from "../../app/auth/session";
+import { withAuthorization } from "../../app/auth/session";
 
 import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";
@@ -39,7 +36,4 @@ const Home = () => {
 
 const condition = (authUser) => !!authUser;
 
-export default compose(
-  withEmailVerification,
-  withAuthorization(condition)
-)(Home);
+export default compose(withAuthorization(condition))(Home);

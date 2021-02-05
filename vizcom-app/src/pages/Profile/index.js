@@ -3,10 +3,7 @@ import {connect} from 'react-redux'
 import "./profile.scss";
 import { compose } from "recompose";
 
-import {
-  withAuthorization,
-  withEmailVerification,
-} from "../../app/auth/session";
+import { withAuthorization } from "../../app/auth/session";
 
 const Profile = (props) => {
   console.log(props)
@@ -53,4 +50,8 @@ const mapStateToProps = state => {
 
 const condition = (authUser) => !!authUser;
 
+<<<<<<< HEAD
 export default connect (mapStateToProps)(Profile);
+=======
+export default compose(withAuthorization(condition))(Profile);
+>>>>>>> e1bd23b22b0e4ee7c4fcbb0ea5cdefbf62c976cc
