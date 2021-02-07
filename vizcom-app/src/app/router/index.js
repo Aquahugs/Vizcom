@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Profile from "../../pages/Profile";
+// import Editor from "../../pages/Editor";
 import Explore from "../../pages/Explore";
 import Home from "../../pages/Home";
 import Generate from "../../pages/Home/Generate";
@@ -15,6 +16,9 @@ const Router = () => (
     <Route path={ROUTES.PROFILE}>
       <Profile />
     </Route>
+    {/* <Route path={ROUTES.EDITOR}>
+      <Editor />
+    </Route> */}
     <Route path={ROUTES.EXPLORE}>
       <Explore />
     </Route>

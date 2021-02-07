@@ -2,7 +2,10 @@ import React, {Component} from "react";
 import {connect} from 'react-redux'
 import "./profile.scss";
 import { compose } from "recompose";
-
+import locationicon from '../../assets/location-icon.svg'
+import instaIcon from '../../assets/instagram.png'
+import twitterIcon from '../../assets/twitter.png'
+import plus from '../../assets/plus.png'
 import { withAuthorization } from "../../app/auth/session";
 
 class Profile extends Component {
@@ -85,9 +88,28 @@ class Profile extends Component {
       return (
         <div className="profile-container">
           <div className="row">
-            <div className="bio-container col sm6 m6 l6">
-              <h2>Bio</h2>
-              <h1>{this.state.displayName}</h1>
+            <div className="col sm6 m6 l6">
+              <div className = "row bio-header">
+              <button 
+                class=" btn btn-flat edit-btn "
+                >
+                Edit profile
+              </button>
+              <h2>{this.state.displayName}</h2>
+
+              </div>
+
+              <div className = "row">
+                <div className = "col s6 m6 l6 location-container">
+                  <img className = "location-icon" src = {locationicon}/> 
+                  <p>Moutainview, California</p>
+                </div>
+                <div className = "col s6 m6 l6 social-icons">
+                  <img src = {instaIcon}/> 
+                  <img src = {twitterIcon}/> 
+                </div>
+              </div>
+              
               <p>
                 {this.state.bio.data[0].bio}
               </p>
@@ -103,7 +125,12 @@ class Profile extends Component {
           </div>
 
           <div className = "row" style = {bucketActive}>
-            <img src="https://via.placeholder.com/300" />
+            <button 
+              class=" btn btn-flat create-btn "
+            >
+              <img src = {plus}/><br/>
+              Create new bucket
+            </button>
           </div>
 
           {/* Users collection */}
