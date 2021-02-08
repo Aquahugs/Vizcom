@@ -10,18 +10,13 @@ const apiClient = axios.create({
   },
 });
 
-// can set up firebase instead of oicdManager
-// adding bearer token makes it easier to debug
-
-// apiClient.interceptors.request.use(
-//   async (config) => {
-//     const accessToken = await oidcManager
-//       .getUser()
-//       .then((user) => user && user.access_token);
-//     config.headers.authorization = `Bearer ${accessToken}`;
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
+apiClient.interceptors.request.use(
+  async (config) => {
+    const token = await firebase.auth.currentUser.getIdToken();
+    config.headers.authorization = `Bearer ${token}`;
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default apiClient;

@@ -3,7 +3,7 @@ import "./profile.scss";
 
 import { compose } from "recompose";
 
-import { withAuthorization } from "../../app/auth/session";
+import { withAuthorization } from "../../common/auth/session";
 
 const Profile = () => {
   return (

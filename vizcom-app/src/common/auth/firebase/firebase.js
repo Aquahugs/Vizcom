@@ -49,6 +49,7 @@ class Firebase {
 
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged((authUser) => {
+      console.log("onAuthUserListener: USER", authUser);
       if (authUser) {
         authUser = {
           uid: authUser.uid,
@@ -61,8 +62,6 @@ class Firebase {
         fallback();
       }
     });
-
-  user = (uid) => this.db.collection("users").doc(uid);
 }
 
 export default Firebase;

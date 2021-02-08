@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { UserProfileActions } from "../../Profile/redux";
 
-import { withFirebase } from "../../../app/auth/firebase";
+import { withFirebase } from "../../../common/auth/firebase";
 
 const SignIn = () => (
   <div>

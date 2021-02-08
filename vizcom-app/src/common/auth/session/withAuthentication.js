@@ -35,7 +35,8 @@ const withAuthentication = (Component) => {
   }
 
   const mapDispatchToProps = (dispatch) => ({
-    onSetAuthUser: (authUser) => dispatch({ type: "AUTH_USER_SET", authUser }),
+    onSetAuthUser: (authUser) =>
+      dispatch({ type: "SET_FIREBASE_USER", authUser }),
   });
 
   return compose(

@@ -1,10 +1,10 @@
 import React from "react";
 
-import Navigation from "./auth/Navigation";
+import Navigation from "./common/auth/Navigation";
 
 import { BrowserRouter } from "react-router-dom";
 
-import { withAuthentication } from "./auth/session";
+import { withAuthentication } from "./common/auth/session";
 
 const App = () => {
   return (

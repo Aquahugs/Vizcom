@@ -3,7 +3,7 @@ import React from "react";
 
 import { compose } from "recompose";
 
-import { withAuthorization } from "../../app/auth/session";
+import { withAuthorization } from "../../common/auth/session";
 
 import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";

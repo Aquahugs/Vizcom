@@ -5,7 +5,7 @@ import Footer from "../../../common/components/Footer";
 import SecondaryNav from "../../../common/components/SecondaryNavbar";
 
 import history from "../../../common/utils/history";
-import Router from "../../router";
+import Router from "../../../router";
 
 const NavigationAuth = () => {
   return (
