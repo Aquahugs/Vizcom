@@ -1,5 +1,4 @@
 import React from "react";
-import {useDropzone} from 'react-dropzone';
 import StyledDropzone from './Dropzone'
 import './sketchtorender.scss'
 
@@ -10,7 +9,6 @@ export default function SketchToRender() {
     <div className = "row">
       <div className = "image-container col s6 m6 l6">
         <StyledDropzone />
-        
       </div>
       <div className = "image-container col s6 m6 l6">
         <img src = "https://via.placeholder.com/700x500"/>
