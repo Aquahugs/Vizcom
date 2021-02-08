@@ -3,8 +3,11 @@ import "./PrimaryNavbar.scss";
 import Logo from "../../assets/logo.png";
 import NewBucket from "../../assets/create-bucket.svg";
 import SignOut from "../../pages/LandingPage/Auth/SignOut";
+import {connect} from 'react-redux';
 
-export default function PrimaryNav() {
+const PrimaryNav = (props) => {
+  console.log(props)
+  // console.log(props.user.authUser.providerData[0].photoURL)
   return (
     <nav>
       <div class="nav-wrapper">
@@ -19,12 +22,13 @@ export default function PrimaryNav() {
           </li>
           <li>
             <a style={{ color: "#505050", fontSize: "16px" }} href="">
-              user profile
+            {props.user.authUser.firstName}
+             <img className = 'profile-picture' src={props.user.authUser.providerData[0].photoURL} />
             </a>
           </li>
-          <li>
+          <li >
             <a href="collapsible.html">
-              <img src="https://via.placeholder.com/30" />
+             
             </a>
           </li>
           <li>
@@ -33,33 +37,15 @@ export default function PrimaryNav() {
         </ul>
       </div>
     </nav>
-    // <div className = "nav">
-    //   <div className = "row">
-    //     <div className = "col s7 m7 l7 logo-container">
-    //       <img src ={Logo} />
-    //     </div>
-    //     <div className = " bucket col s3 m3 l3">
-    //       <ul>
-    //         <li>
-    //           <p>new bucket</p>
-    //         </li>
-    //         <li>
-    //           <img src = {NewBucket}/>
-    //         </li>
-    //       </ul>
-
-    //     </div>
-    //     <div className = "user-icon col s2 m2 l2">
-    //       <ul>
-    //         <li>
-    //           Username
-    //         </li>
-    //         <li>
-    //         <img src = "https://via.placeholder.com/30"/>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </div>
+   
   );
 }
+
+const mapStateToProps = state => {
+  return{
+    user: state.session
+  }
+}
+
+
+export default connect (mapStateToProps)(PrimaryNav);

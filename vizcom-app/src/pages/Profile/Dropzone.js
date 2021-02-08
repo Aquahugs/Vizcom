@@ -1,7 +1,7 @@
 import React, {useMemo,useEffect, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 
-import plus from '../../../assets/plus.png'
+import plus from '../../assets/picture.svg'
 
 //will move these styles over somewhere
 const baseStyle = {
@@ -10,8 +10,8 @@ const baseStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   padding: '20px',
-  height:500,
-  width:700,
+  height:'auto',
+  width:'100%',
   borderWidth: 2,
   borderRadius: 40,
   borderColor: '#5E89FF',
@@ -35,7 +35,8 @@ const rejectStyle = {
 };
 
 const plusStyle = {
-    paddingTop:'12rem'
+    width:50,
+    height:50
 };
 
 const thumbsContainer = {
@@ -51,8 +52,8 @@ const thumb = {
   border: '1px solid #eaeaea',
   marginBottom: 8,
   marginRight: 8,
-  width: 100,
-  height: 100,
+  width: 50,
+  height: 50,
   padding: 4,
   boxSizing: 'border-box'
 };
