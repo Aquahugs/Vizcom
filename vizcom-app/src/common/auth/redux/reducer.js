@@ -1,20 +1,15 @@
 import TYPES from "./types";
 
 const initialState = {
-  user: {
-    uuid: null,
-    email: null,
-    displayName: null,
-  },
+  authUser: null,
 };
 
 const sessionReducer = (state = initialState, action) => {
-  debugger;
   switch (action.type) {
     case TYPES.SET_FIREBASE_USER:
       return {
         ...state,
-        user: action.user,
+        authUser: action.authUser,
       };
     default:
       return state;

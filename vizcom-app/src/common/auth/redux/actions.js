@@ -1,8 +1,8 @@
 import TYPES from "./types";
 
-const setFirebaseUser = (user) => ({
+const setFirebaseUser = (authUser) => ({
   type: TYPES.SET_FIREBASE_USER,
-  user,
+  authUser,
 });
 
 // eslint-disable-next-line import/no-anonymous-default-export

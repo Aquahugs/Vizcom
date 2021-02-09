@@ -81,15 +81,15 @@ class SignUpFormBase extends Component {
       username === "";
 
     return (
-      <div class="form">
-        <div class="tab-content">
+      <div className="form">
+        <div className="tab-content">
           <div id="signup">
             <h1>Sign Up </h1>
             <form onSubmit={this.onSubmit}>
-              <div class="top-row">
-                <div class="field-wrap">
+              <div className="top-row">
+                <div className="field-wrap">
                   <label>
-                    Username<span class="req">*</span>
+                    Username<span className="req">*</span>
                   </label>
                   <input
                     name="username"
@@ -99,9 +99,9 @@ class SignUpFormBase extends Component {
                     placeholder="Full Name"
                   />
                 </div>
-                <div class="field-wrap">
+                <div className="field-wrap">
                   <label>
-                    Email Address<span class="req">*</span>
+                    Email Address<span className="req">*</span>
                   </label>
                   <input
                     name="email"
@@ -111,9 +111,9 @@ class SignUpFormBase extends Component {
                     placeholder="Email Address"
                   />
                 </div>
-                <div class="field-wrap">
+                <div className="field-wrap">
                   <label>
-                    Password<span class="req">*</span>
+                    Password<span className="req">*</span>
                   </label>
                   <input
                     name="passwordOne"
@@ -123,9 +123,9 @@ class SignUpFormBase extends Component {
                     placeholder="Password"
                   />
                 </div>
-                <div class="field-wrap">
+                <div className="field-wrap">
                   <label>
-                    Confirm Password<span class="req">*</span>
+                    Confirm Password<span className="req">*</span>
                   </label>
                   <input
                     name="passwordTwo"
@@ -139,7 +139,7 @@ class SignUpFormBase extends Component {
                   <button
                     disabled={isInvalid}
                     type="submit"
-                    class="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
+                    className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
                   >
                     Sign Up
                   </button>
@@ -155,15 +155,11 @@ class SignUpFormBase extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch({ type: "SET_USER", user }),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   setUser: (user) => dispatch({ type: "SET_USER", user }),
+// });
 
-const enhance = compose(
-  withRouter,
-  withFirebase,
-  connect(null, mapDispatchToProps)
-);
+const enhance = compose(withRouter, withFirebase);
 
 const SignUpForm = enhance(SignUpFormBase);
 

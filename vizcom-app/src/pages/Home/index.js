@@ -35,5 +35,4 @@ const Home = () => {
 };
 
 const condition = (authUser) => !!authUser;
-
 export default compose(withAuthorization(condition))(Home);

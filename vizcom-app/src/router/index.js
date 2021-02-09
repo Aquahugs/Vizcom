@@ -1,13 +1,13 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Profile from "../../pages/Profile";
+import Profile from "../pages/Profile";
 // import Editor from "../../pages/Editor";
-import Explore from "../../pages/Explore";
-import Home from "../../pages/Home";
-import Generate from "../../pages/Home/Generate";
-import SketchToRender from "../../pages/Home/SketchToRender";
-import LandingPage from "../../pages/LandingPage";
+import Explore from "../pages/Explore";
+import Home from "../pages/Home";
+import Generate from "../pages/Home/Generate";
+import SketchToRender from "../pages/Home/SketchToRender";
+import LandingPage from "../pages/LandingPage";
 
 import * as ROUTES from "./routes-const";
 

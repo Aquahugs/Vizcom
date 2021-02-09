@@ -13,8 +13,8 @@ class Profile extends Component {
     super(props);
     this.state = {
       images: [],
-      photoURL: props.user.authUser.providerData[0].photoURL,
-      displayName: props.user.authUser.providerData[0].displayName,
+      photoURL: props.user.authUser?.providerData[0]?.photoURL,
+      displayName: props.user.authUser?.providerData[0]?.displayName,
       uuid: props.user.authUser.uid,
       isLoaded: false,
       isLoggedIn: props.user.authUser.uid,
@@ -70,7 +70,7 @@ class Profile extends Component {
   }
 
   toggleActive = () => {
-    if (this.state.view == "bucket") {
+    if (this.state.view === "bucket") {
       this.setState({ view: "collection" });
     } else {
       this.setState({ view: "bucket" });
@@ -82,12 +82,12 @@ class Profile extends Component {
     const { isLoaded } = this.state;
     // Conditonal style logic to toggle view properties
     const bucketActive = {
-      visibility: this.state.view == "bucket" ? "visible" : "hidden",
-      display: this.state.view == "collection" ? "none" : "inline-block",
+      visibility: this.state.view === "bucket" ? "visible" : "hidden",
+      display: this.state.view === "collection" ? "none" : "inline-block",
     };
     const collectionActive = {
-      visibility: this.state.view == "collection" ? "visible" : "hidden",
-      display: this.state.view == "bucket" ? "none" : "inline-block",
+      visibility: this.state.view === "collection" ? "visible" : "hidden",
+      display: this.state.view === "bucket" ? "none" : "inline-block",
     };
 
     if (!isLoaded) {
@@ -102,7 +102,9 @@ class Profile extends Component {
           <div className="row">
             <div className="col sm6 m6 l6">
               <div className="row bio-header">
-                <button class=" btn btn-flat edit-btn ">Edit profile</button>
+                <button className=" btn btn-flat edit-btn ">
+                  Edit profile
+                </button>
                 <h2>{this.state.displayName}</h2>
               </div>
 
@@ -134,7 +136,7 @@ class Profile extends Component {
           </div>
 
           <div className="row" style={bucketActive}>
-            <button class=" btn btn-flat create-btn ">
+            <button className=" btn btn-flat create-btn ">
               <img src={plus} />
               <br />
               Create new bucket
@@ -166,4 +168,7 @@ const mapStateToProps = (state) => {
 
 const condition = (authUser) => !!authUser;
 
-export default connect(mapStateToProps)(Profile);
+export default compose(
+  withAuthorization(condition),
+  connect(mapStateToProps)
+)(Profile);

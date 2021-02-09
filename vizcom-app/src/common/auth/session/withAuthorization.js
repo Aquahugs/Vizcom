@@ -31,7 +31,7 @@ const withAuthorization = (condition) => (Component) => {
   }
 
   const mapStateToProps = (state) => ({
-    authUser: state.session.user,
+    authUser: state.session.authUser,
   });
 
   return compose(
