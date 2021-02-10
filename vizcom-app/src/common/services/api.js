@@ -12,8 +12,8 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   async (config) => {
-    const token = await firebase.auth.currentUser.getIdToken();
-    config.headers.authorization = `Bearer ${token}`;
+    console.log(`Bearer ${window.localStorage.bearer}`);
+    config.headers.authorization = `Bearer ${window.localStorage.bearer}`;
     return config;
   },
   (error) => Promise.reject(error)
