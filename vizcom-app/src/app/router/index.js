@@ -2,7 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Profile from "../../pages/Profile";
-// import Editor from "../../pages/Editor";
+import Editor from "../../pages/Editor"; //need to put this into /Profile (Profile/Editor)
+import NewBucket from "../../pages/NewBucket"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../../pages/Explore";
 import Home from "../../pages/Home";
 import Generate from "../../pages/Home/Generate";
@@ -16,9 +17,12 @@ const Router = () => (
     <Route path={ROUTES.PROFILE}>
       <Profile />
     </Route>
-    {/* <Route path={ROUTES.EDITOR}>
+    <Route path={ROUTES.EDITOR}>
       <Editor />
-    </Route> */}
+    </Route>
+    <Route path={ROUTES.NEWBUCKET}>
+      <NewBucket />
+    </Route>
     <Route path={ROUTES.EXPLORE}>
       <Explore />
     </Route>

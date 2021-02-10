@@ -90,11 +90,11 @@ class Profile extends Component {
           <div className="row">
             <div className="col sm6 m6 l6">
               <div className = "row bio-header">
-              <button 
-                class=" btn btn-flat edit-btn "
-                >
-                Edit profile
-              </button>
+              <a href = "http://localhost:3000/editor">
+                <button class=" btn btn-flat edit-btn ">
+                  Edit profile
+                </button>
+              </a>
               <h2>{this.state.displayName}</h2>
 
               </div>

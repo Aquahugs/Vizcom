@@ -8,7 +8,7 @@ import instaIcon from '../../assets/instagram.png'
 import webIcon from '../../assets/website.png'
 
 
-class Profile extends Component {
+class Editor extends Component {
   constructor(props){
     super(props);
     this.state= {  
@@ -117,4 +117,4 @@ const mapStateToProps = state => {
 const condition = (authUser) => !!authUser;
 
 
-export default connect (mapStateToProps)(Profile);
+export default connect (mapStateToProps)(Editor);
