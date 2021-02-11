@@ -3,10 +3,8 @@ import {connect} from 'react-redux'
 import "./newbucket.scss";
 import M from "materialize-css";
 import { compose } from "recompose";
-import twitterIcon from '../../assets/twitter.png'
-import instaIcon from '../../assets/instagram.png'
-import webIcon from '../../assets/website.png'
 import StyledDropzone from './Dropzone'
+import backarrow from '../../assets/back-arrow.svg'
 
 
 class NewBucket extends Component {
@@ -45,24 +43,49 @@ class NewBucket extends Component {
       <div class="row create-container">
         <form class="col s12">
           <div class="row edit-profile">
-            <h1>Edit profile</h1>
-            <div class="input-field col s6">
-              <input id="first_name" placeholder ={this.state.displayName} type="text" class="validate"/>
-              <label for="first_name">First Name</label>
+            <a href = "http://localhost:3000/profile">
+              <img class = 'backarrow' src = {backarrow}/>
+            </a>
+            <h1>Create bucket</h1>
+            <p>Collect and organize images in digital buckets</p>
+            <div class="input-field col s12">
+              <input id="bucket_name"  type="text" class="validate"/>
+              <label for="bucket_name">Bucket Name</label>
             </div>
-            <div class="input-field col s6">
+            < div class="input-field col s12">
               <input id="last_name" type="text" class="validate"/>
-              <label for="last_name">Last Name</label>
+              <label for="last_name">Description</label>
             </div>
           </div>
-          <StyledDropzone/>    
-         
+          <StyledDropzone/>  
+          <div class="switch">
+          <label class="secret-button">
+            <span>Keep it as a secret</span> 
+            <input type="checkbox"/>
+            <span class="lever"></span>
+            <br/>Only you and participants can see it
+            
+          </label>
+        </div>
+
+       
+  
+        
+
+
+        
+          <div class="switch">
+          
+          </div>
 
           <div class = "row action-buttons">
-          <button class="btn waves-effect waves-light" type="submit" name="action">
+          <a href = "http://localhost:3000/profile">
+          <button  class="btn waves-effect waves-light" >
             Cancel
           </button>
-          <button class="btn waves-effect waves-light" type="submit" name="action">
+          </a>
+        
+          <button class="btn  waves-light save-btn" type="submit" name="action">
             Save
           </button>
           </div>

@@ -6,6 +6,7 @@ import { compose } from "recompose";
 import twitterIcon from '../../assets/twitter.png'
 import instaIcon from '../../assets/instagram.png'
 import webIcon from '../../assets/website.png'
+import backarrow from '../../assets/back-arrow.svg'
 
 
 class Editor extends Component {
@@ -44,6 +45,9 @@ class Editor extends Component {
       <div class="row form-container">
         <form class="col s12">
           <div class="row edit-profile">
+            <a href = "http://localhost:3000/profile">
+              <img class = 'backarrow' src = {backarrow}/>
+            </a>
             <h1>Edit profile</h1>
             <div class="input-field col s6">
               <input id="first_name" placeholder ={this.state.displayName} type="text" class="validate"/>

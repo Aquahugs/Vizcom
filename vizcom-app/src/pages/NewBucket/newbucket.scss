@@ -8,28 +8,15 @@
 
   
 
-
 }
-
-
-.edit-profile{
+.create-container{
     h1{
-        font-size: 20px;
+        text-align: center;
+        margin-bottom: 0;
+        font-weight: bold;
     }
-}
-.socials{
-    h1{
-        font-size: 20px;
-    }
-    ul {
-        margin: 0 !important;
-    }
-}
-
-.prefix {
-    img{
-        width: 25px;
-        height:auto;
+    p{
+        text-align: center;
     }
 }
 
@@ -38,5 +25,32 @@
    
     button{
         margin-left: 2rem;
+        margin-top: 4rem;
+        border-radius: 0.2rem;
     }
+
+    .save-btn{
+        background-color: #003fff !important;
+                
+    }
+    
+}
+
+.secret-button{
+    span{
+     
+    font-size: 18px;
+    font-weight: bold;   
+    }
+
+    .lever{
+        float:right;
+        margin:5%;
+    }
+}
+
+.backarrow{
+    width: 20px;
+    height:100%;
+    margin-top:2rem;
 }

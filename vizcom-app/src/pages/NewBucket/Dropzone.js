@@ -10,7 +10,7 @@ const baseStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   padding: '20px',
-  height:'auto',
+  height:'200px',
   width:'100%',
   borderWidth: 2,
   borderRadius: 40,
@@ -52,8 +52,8 @@ const thumb = {
   border: '1px solid #eaeaea',
   marginBottom: 8,
   marginRight: 8,
-  width: 50,
-  height: 50,
+  width: 100,
+  height: 100,
   padding: 4,
   boxSizing: 'border-box'
 };
@@ -85,7 +85,7 @@ export default function StyledDropzone(props) {
     isDragReject
   } = useDropzone({
         accept: 'image/*',
-        maxFiles:3,
+        maxFiles:20,
         onDrop: acceptedFiles => {
             setFiles(acceptedFiles.map(file => Object.assign(file, {
             preview: URL.createObjectURL(file)
