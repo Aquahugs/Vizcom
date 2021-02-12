@@ -1,7 +1,7 @@
 import React from "react";
 import { compose } from "recompose";
 
-import { withAuthorization } from "../../common/auth/session";
+import { withAuthorization } from "../../router/auth/session";
 
 const Explore = () => {
   return (

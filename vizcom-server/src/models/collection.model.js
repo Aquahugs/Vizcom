@@ -1,49 +1,46 @@
 const query = require("../services/db/db-connection");
 const { multipleColumnSet } = require("../utils/common.utils");
-class UserModel {
-  tableName = "user";
+
+class CollectionModel {
+  tableName = "collection_image";
 
   find = async (params = {}) => {
-    let sql = `SELECT * FROM ${this.tableName}`;
+    let sql = `SELECT * FROM ${this.tableName} WHERE uuid = ${params}`;
 
-    if (!Object.keys(params).length) {
-      return await query(sql);
-    }
-
-    const { columnSet, values } = multipleColumnSet(params);
-    sql += ` WHERE ${columnSet}`;
     console.log("find SQL QUERY", sql);
     return await query(sql, [...values]);
   };
 
   findOne = async (params) => {
+    const { columnSet, values } = multipleColumnSet(params);
+
     const sql = `SELECT * FROM ${this.tableName}
-        WHERE uuid = '${params.id}'`;
-    console.log(sql);
-    const result = await query(sql);
+        WHERE ${columnSet}`;
+    console.log("findOne SQL QUERY", sql);
+    const result = await query(sql, [...values]);
 
     // return back the first row (user)
     return result[0];
   };
 
   create = async ({
-    uuid,
-    display_name,
-    image_uri,
-    email,
+    username,
+    password,
     first_name,
     last_name,
+    email,
+    age,
   }) => {
     const sql = `INSERT INTO ${this.tableName}
-        (uuid, display_name, image_uri, email) VALUES (?,?,?,?,?,?)`;
+        (username, password, first_name, last_name, email, age) VALUES (?,?,?,?,?,?,?)`;
 
     const result = await query(sql, [
-      uuid,
-      display_name,
-      image_uri,
-      email,
+      username,
+      password,
       first_name,
       last_name,
+      email,
+      age,
     ]);
     const affectedRows = result ? result.affectedRows : 0;
 
@@ -70,4 +67,4 @@ class UserModel {
   };
 }
 
-module.exports = new UserModel();
+module.exports = new CollectionModel();

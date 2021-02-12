@@ -6,7 +6,7 @@ import locationicon from "../../assets/location-icon.svg";
 import instaIcon from "../../assets/instagram.png";
 import twitterIcon from "../../assets/twitter.png";
 import plus from "../../assets/plus.png";
-import { withAuthorization } from "../../common/auth/session";
+import { withAuthorization } from "../../router/auth/session";
 
 class Profile extends Component {
   constructor(props) {

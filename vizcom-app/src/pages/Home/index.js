@@ -2,8 +2,9 @@ import "./home.scss";
 import React, { useEffect, useState } from "react";
 
 import { compose } from "recompose";
+import { connect } from "react-redux";
 
-import { withAuthorization } from "../../common/auth/session";
+import { withAuthorization } from "../../router/auth/session";
 
 import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";
@@ -11,13 +12,13 @@ import SketchToRenderLogo from "../../assets/s2r.png";
 import { GENERATE, SKETCH_TO_RENDER } from "./home-const.js";
 import api from "../../common/services/user-service";
 
-const Home = () => {
+const Home = ({ user }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.getAPI();
+        const response = await api.getUser(user.uid);
         console.log("ewllo", response.data);
         setData(response.data);
       } catch (error) {
@@ -32,14 +33,15 @@ const Home = () => {
       <div className="tools-header">
         <h1>Tools</h1>
       </div>
-      {data &&
+      {/* {data &&
         data.map((user, i) => {
           return (
             <p key={`${user.email}_{anObjectMapped.email}`}>
               {user.name} - {user.email}
             </p>
           );
-        })}
+        })} */}
+      {data && <p>{data.email}</p>}
       <div className="nav row">
         <ToolCard
           link={GENERATE.link}
@@ -58,5 +60,15 @@ const Home = () => {
   );
 };
 
+/*
+map state to props
+*/
+const mapStateToProps = (state) => ({
+  user: state.session.authUser,
+});
+
 const condition = (authUser) => !!authUser;
-export default compose(withAuthorization(condition))(Home);
+export default compose(
+  withAuthorization(condition),
+  connect(mapStateToProps)
+)(Home);

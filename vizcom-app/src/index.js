@@ -7,7 +7,7 @@ import store from "./redux/store";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./common/utils/reportWebVitals";
-import Firebase, { FirebaseContext } from "./common/auth/firebase";
+import Firebase, { FirebaseContext } from "./router/auth/firebase";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

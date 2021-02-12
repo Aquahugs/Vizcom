@@ -1,7 +1,6 @@
 const UserModel = require("../models/user.model");
 const HttpException = require("../utils/HttpException.utils");
 const { validationResult } = require("express-validator");
-const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -18,6 +17,7 @@ class UserController {
   };
 
   getUserById = async (req, res, next) => {
+    console.log("PARAMS", req.params);
     const user = await UserModel.findOne({ id: req.params.id });
     if (!user) {
       throw new HttpException(404, "User not found");
@@ -26,43 +26,19 @@ class UserController {
     res.send(user);
   };
 
-  getUserByuserName = async (req, res, next) => {
-    const user = await UserModel.findOne({ username: req.params.username });
-    if (!user) {
-      throw new HttpException(404, "User not found");
-    }
-
-    const { password, ...userWithoutPassword } = user;
-
-    res.send(userWithoutPassword);
-  };
-
-  getCurrentUser = async (req, res, next) => {
-    const { password, ...userWithoutPassword } = req.currentUser;
-
-    res.send(userWithoutPassword);
-  };
-
   createUser = async (req, res, next) => {
-    this.checkValidation(req);
-
-    await this.hashPassword(req);
-
+    // this.checkValidation(req);
     const result = await UserModel.create(req.body);
 
     if (!result) {
-      throw new HttpException(500, "Something went wrong");
+      throw new HttpException(500, "Something went wrong creating user");
     }
 
     res.status(201).send("User was created!");
   };
 
   updateUser = async (req, res, next) => {
-    this.checkValidation(req);
-
-    await this.hashPassword(req);
-
-    const { confirm_password, ...restOfUpdates } = req.body;
+    const { ...restOfUpdates } = req.body;
 
     // do the update query and get the result
     // it can be partial edit
@@ -78,7 +54,7 @@ class UserController {
       ? "User not found"
       : affectedRows && changedRows
       ? "User updated successfully"
-      : "Updated faild";
+      : "Update failed";
 
     res.send({ message, info });
   };
@@ -91,41 +67,12 @@ class UserController {
     res.send("User has been deleted");
   };
 
-  userLogin = async (req, res, next) => {
-    this.checkValidation(req);
-
-    const { email, password: pass } = req.body;
-
-    const user = await UserModel.findOne({ email });
-
-    if (!user) {
-      throw new HttpException(401, "Unable to login!");
-    }
-
-    const isMatch = await bcrypt.compare(pass, user.password);
-
-    if (!isMatch) {
-      throw new HttpException(401, "Incorrect password!");
-    }
-
-    const { password, ...userWithoutPassword } = user;
-
-    res.send({ ...userWithoutPassword, token });
-  };
-
-  checkValidation = (req) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      throw new HttpException(400, "Validation faild", errors);
-    }
-  };
-
-  // hash password if it exists
-  hashPassword = async (req) => {
-    if (req.body.password) {
-      req.body.password = await bcrypt.hash(req.body.password, 8);
-    }
-  };
+  // checkValidation = (req) => {
+  //   const errors = validationResult(req);
+  //   if (!errors.isEmpty()) {
+  //     throw new HttpException(400, "Validation faild", errors);
+  //   }
+  // };
 }
 
 /******************************************************************************

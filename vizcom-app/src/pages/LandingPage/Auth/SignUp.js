@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import { withFirebase } from "../../../common/auth/firebase";
+import { withFirebase } from "../../../router/auth/firebase";
 
 const SignUpPage = () => (
   <div>

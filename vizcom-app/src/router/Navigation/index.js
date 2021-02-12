@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import NavigationAuth from "./NavigationAuth";
-import NavigationNonAuth from "./NavigationNonAuth";
+import PrivateNavigation from "./PrivateNavigation";
+import PublicNavigation from "./PublicNavigation";
 
 const Navigation = ({ authUser }) => {
   return authUser ? (
-    <NavigationAuth authUser={authUser} />
+    <PrivateNavigation authUser={authUser} />
   ) : (
-    <NavigationNonAuth />
+    <PublicNavigation />
   );
 };
 

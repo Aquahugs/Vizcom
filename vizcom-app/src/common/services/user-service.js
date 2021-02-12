@@ -2,14 +2,16 @@
 import apiClient from "./api";
 
 export default {
-  getAPI() {
-    return apiClient.get("/api/v1/users", {});
+  getAPI(uuid) {
+    return apiClient.post("/api/v1/users", uuid);
   },
   createCampaign(campaign) {
     return apiClient("v2").post("/Campaign/Insert", campaign);
   },
-  getCampaign(id) {
-    return apiClient("v2").post(`/Campaign/Get?id=${id}`);
+  getUser(id) {
+    debugger;
+    const url = `/api/v1/users/id`;
+    return apiClient.post(url, id);
   },
   getVariations(campaignItemId) {
     return apiClient().post(
