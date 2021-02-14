@@ -1,5 +1,11 @@
 import React,{ useState,Component } from "react";
+import Popup from 'reactjs-popup';
+
+
+import 'reactjs-popup/dist/index.css';
 import './generate.scss';
+import downloadbutton from '../../../assets/download-button.svg'
+
 
 
 class Generate extends Component {
@@ -11,9 +17,6 @@ class Generate extends Component {
         items :[],
         users:[],
         collectedimage:'',
-        // uuid: this.props.auth.uid,
-        // displayName: props.auth.displayName,
-        // userPhotoUrl: props.auth.photoURL,
         userphotos:[],
         id:[],
         isLoaded: false,
@@ -29,40 +32,46 @@ class Generate extends Component {
         isGenerating:false,
         imageDownload:''   
     }
-}
+  }
 
   componentDidMount() {
-    document.addEventListener('scroll', this.trackScrolling);
-    const {uuid} = this.state
-     
+    document.addEventListener('scroll', this.trackScrolling);   
       fetch('https://designerspendroplet.getdpsvapi.com/Generate')
-
      .then((res1) => (res1.json()))
      .then((data1) => this.setState({
         isLoaded:true,
         userphotos:data1
      }))      
-}
+  }
 
-toggleImage = () => {
-  this.setState({ isGenerating :true });
-  this.setState({ index : this.state.index + 3 });
-  this.setState({ index1 : this.state.index1 + 8 });
-  this.setState({ index2 : this.state.index2 + 7 });
-  setTimeout(() => {
-      this.setState({ isGenerating :false });
-  }, 800);
-}
-toggleActive = () => {
-  if (this.state.mode == 'cardesign'){
-    this.setState({ mode :"footwear" });
+  toggleImage = () => {
+    this.setState({ isGenerating :true });
+    this.setState({ index : this.state.index + 3 });
+    this.setState({ index1 : this.state.index1 + 8 });
+    this.setState({ index2 : this.state.index2 + 7 });
+    setTimeout(() => {
+        this.setState({ isGenerating :false });
+    }, 800);
   }
-  else {
-    this.setState({ mode :"cardesign" })
+
+  toggleActive = () => {
+    if (this.state.mode == 'cardesign'){
+      this.setState({ mode :"footwear" });
+    }
+    else {
+      this.setState({ mode :"cardesign" })
+    }
+    
   }
-  
-}
-handleClick(e) { if (e) {e.preventDefault()}; }
+
+  handleClick(e) { if (e) {e.preventDefault()}; }
+
+  logDownload = (e) => {
+    this.setState({ imageDownload : this.state.userphotos.data[this.state.index].imageUrl});
+    console.log(this.state.userphotos.data[this.state.index].imageUrl)
+   }
+
+
 
   render(){
   console.log(this.state)
@@ -74,7 +83,6 @@ handleClick(e) { if (e) {e.preventDefault()}; }
   const hiddenStyle = {
     visibility: this.state.isGenerating ? 'visible': 'hidden',
     display: this.state.isGenerating ? 'block': 'none',
-
     marginLeft: 'auto',
     marginRight: 'auto',
     width: '40%'
@@ -97,26 +105,47 @@ handleClick(e) { if (e) {e.preventDefault()}; }
         <button 
           onClick={this.toggleActive}
           style = {carActive}
-          class=" btn btn-flat "
-          >
+          class=" btn btn-flat ">
           car-design
         </button>
         <button 
           onClick={this.toggleActive}
-          class=" btn btn-flat "
           style = {footActive}
-          class="btn btn-flat">footwear</button>
+          class="btn btn-flat">
+          footwear
+        </button>
       </div>
       <div className = "row tag">
           <p>Every click uses artificial intelligence to generate unique images </p>
       </div>
+      {/* Generated Images later need to compontize these*/}
       <div className = 'row generated-container'>
         <div className = "col s4 m4 l4">
-          <img 
-            className = 'generated-image'  
-            src = {this.state.userphotos.data[this.state.index].imageUrl}
-            style = {visibilityStyle}
-          />
+        <Popup trigger={ <img className = 'generated-image' src = {this.state.userphotos.data[this.state.index].imageUrl} style = {visibilityStyle}/>} modal>
+          <span> 
+            <div className = 'row'>
+              <div className = 'col s7 m7 l7'>
+                <img 
+                className = 'generated-image'  
+                src = {this.state.userphotos.data[this.state.index].imageUrl}
+                style = {visibilityStyle}
+                />
+              </div>
+              
+            </div>
+            
+          </span>
+        </Popup>
+
+
+
+
+          {/* Download image in current index later need to compontize this*/}
+          <div className = "row">
+            <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
+              <img className = "download-button" src = {downloadbutton} onClick={this.logDownload}/>
+            </a>
+          </div>
         </div>
         <div className = "col s4 m4 l4">
           <img 
@@ -124,6 +153,9 @@ handleClick(e) { if (e) {e.preventDefault()}; }
             src = {this.state.userphotos.data[this.state.index1].imageUrl}
             style = {visibilityStyle}
           />
+          <div className = "row">
+            <img className = "download-button" src = {downloadbutton}/>
+          </div>
         </div>
         
         <div className = "col s4 m4 l4">
@@ -132,6 +164,9 @@ handleClick(e) { if (e) {e.preventDefault()}; }
             src = {this.state.userphotos.data[this.state.index2].imageUrl}
             style = {visibilityStyle}
           />
+          <div className = "row">
+            <img className = "download-button" src = {downloadbutton}/>
+          </div>
         </div>
         <img //LOAD ANIMATION
           src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01'

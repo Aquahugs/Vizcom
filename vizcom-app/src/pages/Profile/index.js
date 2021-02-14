@@ -125,12 +125,12 @@ class Profile extends Component {
           </div>
 
           <div className = "row" style = {bucketActive}>
-            <button 
-              class=" btn btn-flat create-btn "
-            >
-              <img src = {plus}/><br/>
-              Create new bucket
-            </button>
+            <a href = "http://localhost:3000/newbucket">
+              <button class=" btn btn-flat create-btn ">
+                <img src = {plus}/><br/>
+                Create new bucket
+              </button>
+            </a>
           </div>
 
           {/* Users collection */}
