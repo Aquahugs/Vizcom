@@ -139,98 +139,6 @@ class Generate extends Component {
       e.preventDefault();
     }
   }
-<<<<<<< HEAD
-  const hiddenStyle = {
-    visibility: this.state.isGenerating ? 'visible': 'hidden',
-    display: this.state.isGenerating ? 'block': 'none',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '40%'
-  }
-  const footActive = {
-    backgroundColor: this.state.mode == "footwear"? '#D9D9D9': 'white'
-  }
-  const carActive = {
-     backgroundColor: this.state.mode == "cardesign"? '#D9D9D9': 'white'
-  }
-
-
-
- 
-  if (!isLoaded) {
-    return <div ><h1 >Loading...</h1></div>
-  }
-    
-  return( 
-    <div className = "row generate-container">
-      <div className =" selector-container">
-        <button 
-          onClick={this.toggleActive}
-          style = {carActive}
-          class=" btn btn-flat ">
-          car-design
-        </button>
-        <button 
-          onClick={this.toggleActive}
-          style = {footActive}
-          class="btn btn-flat">
-          footwear
-        </button>
-      </div>
-      <div className = "row tag">
-          <p>Every click uses artificial intelligence to generate unique images </p>
-      </div>
-      {/* Generated Images later need to compontize these*/}
-      <div className = 'row generated-container'>
-        <div className = "col s4 m4 l4">
-        <Popup trigger={ <img className = 'generated-image' src = {this.state.userphotos.data[this.state.index].imageUrl} style = {visibilityStyle}/>} modal>
-          <span> 
-            <div className = 'row'>
-              <div className = 'col s7 m7 l7'>
-                <img 
-                className = 'generated-image'  
-                src = {this.state.userphotos.data[this.state.index].imageUrl}
-                style = {visibilityStyle}
-                />
-              </div>
-              <div className = 'col s5 m5 l5 generated-info'>
-                <h1> {this.state.userphotos.data[this.state.index].imageUrl.slice(-22, -1)}g</h1>
-                <h2>collectors</h2>
-                <div className = "button-container row">
-                  <div className = "col s6 m6 l6">
-                    <button class="waves-effect waves-grey btn-flat">
-                      <i class="material-icons right">apps</i>Add to bucket
-                    </button>
-                  </div>
-                  <div className = "col s6 m6 l6">
-                  <button className = 'collect-button'>
-                  {/* // onClick={e => this.setState({collectedimage:this.state.userphotos.data[this.state.index].imageUrl},this.createNotification('success'))}  type="button" */}
-                  </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </span>
-        </Popup>
-
-
-          {/* Download image in current index (later needs to compontize this)*/}
-          <div className = "row">
-            <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
-              <img className = "download-button" src = {downloadbutton} onClick={this.logDownload}/>
-            </a>
-          </div>
-        </div>
-        <div className = "col s4 m4 l4">
-          <img 
-            className = 'generated-image'  
-            src = {this.state.userphotos.data[this.state.index1].imageUrl}
-            style = {visibilityStyle}
-          />
-          <div className = "row">
-            <img className = "download-button" src = {downloadbutton}/>
-          </div>
-=======
 
   render() {
     console.log(this.state);
@@ -284,7 +192,6 @@ class Generate extends Component {
           <p>
             Every click uses artificial intelligence to generate unique images{" "}
           </p>
->>>>>>> 99b15b75d6356f869173cd7313b7ae9179dd4192
         </div>
         <div className="row generated-container">
           <div className="col s4 m4 l4">
