@@ -1,12 +1,22 @@
 .form-container{
-    padding-left:30rem;
-    padding-right:30rem;
+    margin-left:25%;
+    margin-right:25%;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+    padding-left:5%;
+    padding-right:5%;
+    padding-bottom:5%;
+
+  
+
+
 }
 
 
 .edit-profile{
     h1{
         font-size: 20px;
+        text-align: center;
+        margin:7%
     }
 }
 .socials{
@@ -27,8 +37,14 @@
 
 .action-buttons{
     float: right;
-    padding-bottom: 20rem;
+   
     button{
         margin-left: 2rem;
     }
+}
+
+.backarrow{
+    width: 20px;
+    height:100%;
+    margin-top:2rem;
 }

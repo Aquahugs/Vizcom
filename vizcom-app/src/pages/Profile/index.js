@@ -101,11 +101,22 @@ class Profile extends Component {
         <div className="profile-container">
           <div className="row">
             <div className="col sm6 m6 l6">
+<<<<<<< HEAD
+              <div className = "row bio-header">
+              <a href = "http://localhost:3000/editor">
+                <button class=" btn btn-flat edit-btn ">
+                  Edit profile
+                </button>
+              </a>
+              <h2>{this.state.displayName}</h2>
+
+=======
               <div className="row bio-header">
                 <button className=" btn btn-flat edit-btn ">
                   Edit profile
                 </button>
                 <h2>{this.state.displayName}</h2>
+>>>>>>> 99b15b75d6356f869173cd7313b7ae9179dd4192
               </div>
 
               <div className="row">
@@ -135,12 +146,22 @@ class Profile extends Component {
             </div>
           </div>
 
+<<<<<<< HEAD
+          <div className = "row" style = {bucketActive}>
+            <a href = "http://localhost:3000/newbucket">
+              <button class=" btn btn-flat create-btn ">
+                <img src = {plus}/><br/>
+                Create new bucket
+              </button>
+            </a>
+=======
           <div className="row" style={bucketActive}>
             <button className=" btn btn-flat create-btn ">
               <img src={plus} />
               <br />
               Create new bucket
             </button>
+>>>>>>> 99b15b75d6356f869173cd7313b7ae9179dd4192
           </div>
 
           {/* Users collection */}
