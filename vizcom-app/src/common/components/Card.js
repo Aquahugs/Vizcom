@@ -5,13 +5,13 @@ import "./Card.scss";
 const Card = ({ link, logo, name, description }) => {
   return (
     <Link to={link}>
-      <div class="col s4 m4">
-        <div class="card">
-          <div class="card-image">
+      <div className="col s4 m4">
+        <div className="card">
+          <div className="card-image">
             <img src={logo} />
           </div>
           <div className="content-container">
-            <div class="card-content">
+            <div className="card-content">
               <h2>{name}</h2>
               <p>{description}</p>
             </div>

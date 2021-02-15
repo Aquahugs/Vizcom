@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { UserProfileActions } from "../../Profile/redux";
 
-import { withFirebase } from "../../../app/auth/firebase";
+import { withFirebase } from "../../../router/auth/firebase";
 
 const SignIn = () => (
   <div>
@@ -69,9 +69,9 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <div className="input-container">
-          <div class="field-wrap">
+          <div className="field-wrap">
             <label htmlFor="userEmail">
-              Email <span class="req"></span>
+              Email <span className="req"></span>
             </label>
             <input
               name="email"
@@ -81,9 +81,9 @@ class SignInFormBase extends Component {
               placeholder="Email Address"
             />
           </div>
-          <div class="field-wrap">
+          <div className="field-wrap">
             <label htmlFor="userPassword">
-              Password<span class="req"></span>
+              Password<span className="req"></span>
             </label>
             <input
               name="password"
@@ -149,21 +149,11 @@ class SignInGoogleBase extends Component {
   }
 }
 
-// const mapDispatchToProps = () => {
-//   return {
-//     setUser: UserProfileActions.setUser,
-//   };
-// };
+// const mapDispatchToProps = (dispatch) => ({
+//   setUser: (user) => dispatch({ type: "SET_USER", user }),
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch({ type: "SET_USER", user }),
-});
-
-const enhance = compose(
-  withRouter,
-  withFirebase,
-  connect(null, mapDispatchToProps)
-);
+const enhance = compose(withRouter, withFirebase);
 
 const SignInForm = enhance(SignInFormBase);
 

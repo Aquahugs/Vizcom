@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { withFirebase } from "../../../app/auth/firebase";
+import { withFirebase } from "../../../router/auth/firebase";
 
 const PasswordForgetPage = () => (
   <div>
