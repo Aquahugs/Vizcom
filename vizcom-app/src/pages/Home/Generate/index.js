@@ -94,6 +94,8 @@ class Generate extends Component {
      backgroundColor: this.state.mode == "cardesign"? '#D9D9D9': 'white'
   }
 
+
+
  
   if (!isLoaded) {
     return <div ><h1 >Loading...</h1></div>
@@ -131,16 +133,28 @@ class Generate extends Component {
                 style = {visibilityStyle}
                 />
               </div>
-              
+              <div className = 'col s5 m5 l5 generated-info'>
+                <h1> {this.state.userphotos.data[this.state.index].imageUrl.slice(-22, -1)}g</h1>
+                <h2>collectors</h2>
+                <div className = "button-container row">
+                  <div className = "col s6 m6 l6">
+                    <button class="waves-effect waves-grey btn-flat">
+                      <i class="material-icons right">apps</i>Add to bucket
+                    </button>
+                  </div>
+                  <div className = "col s6 m6 l6">
+                  <button className = 'collect-button'>
+                  {/* // onClick={e => this.setState({collectedimage:this.state.userphotos.data[this.state.index].imageUrl},this.createNotification('success'))}  type="button" */}
+                  </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            
           </span>
         </Popup>
 
 
-
-
-          {/* Download image in current index later need to compontize this*/}
+          {/* Download image in current index (later needs to compontize this)*/}
           <div className = "row">
             <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
               <img className = "download-button" src = {downloadbutton} onClick={this.logDownload}/>
