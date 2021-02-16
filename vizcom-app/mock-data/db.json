@@ -1,0 +1,26 @@
+{
+  "createUser": {
+    "uuid": "test",
+    "display_name": "test",
+    "image_uri": "",
+    "email": "kadokaelan@gmail.com",
+    "first_name": null,
+    "last_name": null
+  },
+  "getUser": {
+    "uuid": "test",
+    "display_name": "test",
+    "image_uri": "",
+    "email": "kadokaelan@gmail.com",
+    "first_name": null,
+    "last_name": null,
+    "imageUri": null,
+    "location": null,
+    "bio": null,
+    "socials": {
+      "instagramUrl": "null",
+      "personalUrl": "null",
+      "twitterUrl": "null"
+    }
+  }
+}

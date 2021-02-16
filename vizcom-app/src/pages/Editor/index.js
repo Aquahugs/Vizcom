@@ -3,23 +3,13 @@ import { connect } from "react-redux";
 import "./editor.scss";
 import M from "materialize-css";
 import { compose } from "recompose";
-<<<<<<< HEAD:vizcom-app/src/pages/Editor/index.js
-import twitterIcon from '../../assets/twitter.png'
-import instaIcon from '../../assets/instagram.png'
-import webIcon from '../../assets/website.png'
-import backarrow from '../../assets/back-arrow.svg'
-
-
-class Editor extends Component {
-  constructor(props){
-=======
 import twitterIcon from "../../assets/twitter.png";
 import instaIcon from "../../assets/instagram.png";
 import webIcon from "../../assets/website.png";
+import backarrow from "../../assets/back-arrow.svg";
 
-class Profile extends Component {
+class Editor extends Component {
   constructor(props) {
->>>>>>> 99b15b75d6356f869173cd7313b7ae9179dd4192:vizcom-app/src/pages/Profile/editor.js
     super(props);
     this.state = {
       images: [],
@@ -48,18 +38,12 @@ class Profile extends Component {
 
   render() {
     return (
-<<<<<<< HEAD:vizcom-app/src/pages/Editor/index.js
-      <div class="row form-container">
-        <form class="col s12">
-          <div class="row edit-profile">
-            <a href = "http://localhost:3000/profile">
-              <img class = 'backarrow' src = {backarrow}/>
-            </a>
-=======
       <div className="row form-container">
         <form className="col s12">
           <div className="row edit-profile">
->>>>>>> 99b15b75d6356f869173cd7313b7ae9179dd4192:vizcom-app/src/pages/Profile/editor.js
+            <a href="http://localhost:3000/profile">
+              <img className="backarrow" src={backarrow} />
+            </a>
             <h1>Edit profile</h1>
             <div className="input-field col s6">
               <input
@@ -154,9 +138,4 @@ const mapStateToProps = (state) => {
 
 const condition = (authUser) => !!authUser;
 
-<<<<<<< HEAD:vizcom-app/src/pages/Editor/index.js
-
-export default connect (mapStateToProps)(Editor);
-=======
-export default connect(mapStateToProps)(Profile);
->>>>>>> 99b15b75d6356f869173cd7313b7ae9179dd4192:vizcom-app/src/pages/Profile/editor.js
+export default connect(mapStateToProps)(Editor);

@@ -28,6 +28,7 @@ class UserController {
 
   createUser = async (req, res, next) => {
     // this.checkValidation(req);
+    console.log("request body", req.body);
     const result = await UserModel.create(req.body);
 
     if (!result) {
@@ -38,11 +39,10 @@ class UserController {
   };
 
   updateUser = async (req, res, next) => {
-    const { ...restOfUpdates } = req.body;
-
     // do the update query and get the result
     // it can be partial edit
-    const result = await UserModel.update(restOfUpdates, req.params.id);
+    console.log(req.body, req.params.id);
+    const result = await UserModel.update(req.body, req.params.id);
 
     if (!result) {
       throw new HttpException(404, "Something went wrong");

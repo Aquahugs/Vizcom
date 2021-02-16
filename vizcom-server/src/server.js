@@ -4,6 +4,7 @@ const cors = require("cors");
 const HttpException = require("./utils/HttpException.utils");
 const errorMiddleware = require("./middleware/error.middleware");
 const userRouter = require("./routes/user.route");
+const collectionRouter = require("./routes/collection.route");
 const indexRouter = require("./routes");
 const checkIfAuthenticated = require("./middleware/auth.middleware");
 
@@ -25,7 +26,8 @@ app.options("*", cors());
 
 const port = Number(3001 || 3331);
 app.use(`/`, indexRouter);
-app.use(`/api/v1/users`, userRouter);
+app.use(`/api/user`, userRouter);
+app.use(`/api/user`, collectionRouter);
 
 // 404 error
 app.all("*", (req, res, next) => {

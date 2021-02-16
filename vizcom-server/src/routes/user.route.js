@@ -14,23 +14,23 @@ router.get(
   "/",
   // checkIfAuthenticated,
   awaitHandlerFactory(userController.getAllUsers)
-); // localhost:3000/api/v1/users
+); // localhost:3000/api/v1/user
 router.get(
   "/id/:id",
   // checkIfAuthenticated,
   awaitHandlerFactory(userController.getUserById)
-); // localhost:3000/api/v1/users/id/1
-router.post("/", awaitHandlerFactory(userController.createUser)); // localhost:3000/api/v1/users
+); // localhost:3000/api/v1/user/id/1
+router.post("/create", awaitHandlerFactory(userController.createUser)); // localhost:3000/api/v1/users
 router.patch(
-  "/id/:id",
+  "/update/id/:id",
   // checkIfAuthenticated,
-  updateUserSchema,
+  // updateUserSchema,
   awaitHandlerFactory(userController.updateUser)
-); // localhost:3000/api/v1/users/id/1 , using patch for partial update
+); // localhost:3000/api/v1/user/id/1 , using patch for partial update
 router.delete(
   "/id/:id",
   // checkIfAuthenticated,
   awaitHandlerFactory(userController.deleteUser)
-); // localhost:3000/api/v1/users/id/1
+); // localhost:3000/api/v1/user/id/1
 
 module.exports = router;

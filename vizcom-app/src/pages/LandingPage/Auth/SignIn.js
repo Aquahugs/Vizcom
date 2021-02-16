@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import { UserProfileActions } from "../../Profile/redux";
+import { ProfileThunks } from "../../Profile/redux";
 
 import { withFirebase } from "../../../router/auth/firebase";
 
@@ -45,10 +45,10 @@ class SignInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log("USER", response.user);
         this.setState({ ...INITIAL_STATE });
+        // ned to handle first time sign ins with google
+        this.props.getProfile(response.user.uid);
         this.props.history.push("/home");
-        this.props.setUser(response.user);
       })
       .catch((error) => {
         this.setState({ error });
@@ -119,8 +119,9 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
+        console.log("herer");
+        this.props.getProfile(socialAuthUser.user.uid);
         this.props.history.push("/home");
-        this.props.setUser(socialAuthUser.user);
       })
       .then(() => {
         this.setState({ error: null });
@@ -149,11 +150,15 @@ class SignInGoogleBase extends Component {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setUser: (user) => dispatch({ type: "SET_USER", user }),
-// });
+const mapDispatchToProps = {
+  getProfile: ProfileThunks.getProfile,
+};
 
-const enhance = compose(withRouter, withFirebase);
+const enhance = compose(
+  withRouter,
+  withFirebase,
+  connect(null, mapDispatchToProps)
+);
 
 const SignInForm = enhance(SignInFormBase);
 

@@ -26,25 +26,13 @@ class UserModel {
     return result[0];
   };
 
-  create = async ({
-    uuid,
-    display_name,
-    image_uri,
-    email,
-    first_name,
-    last_name,
-  }) => {
-    const sql = `INSERT INTO ${this.tableName}
-        (uuid, display_name, image_uri, email) VALUES (?,?,?,?,?,?)`;
+  create = async (params) => {
+    const { values } = multipleColumnSet(params);
 
-    const result = await query(sql, [
-      uuid,
-      display_name,
-      image_uri,
-      email,
-      first_name,
-      last_name,
-    ]);
+    const sql = `INSERT INTO ${this.tableName}
+        (uuid, display_name, image_uri, email, first_name, last_name) VALUES (?,?,?,?,?,?)`;
+    console.log(sql, values);
+    const result = await query(sql, values);
     const affectedRows = result ? result.affectedRows : 0;
 
     return affectedRows;
@@ -52,8 +40,10 @@ class UserModel {
 
   update = async (params, id) => {
     const { columnSet, values } = multipleColumnSet(params);
+    console.log("YOOO", columnSet, values, id);
 
-    const sql = `UPDATE user SET ${columnSet} WHERE id = ?`;
+    const sql = `UPDATE user SET ${columnSet} WHERE uuid = ?`;
+    console.log(sql, values, id);
 
     const result = await query(sql, [...values, id]);
 
@@ -62,7 +52,7 @@ class UserModel {
 
   delete = async (id) => {
     const sql = `DELETE FROM ${this.tableName}
-        WHERE id = ?`;
+        WHERE uuid = ?`;
     const result = await query(sql, [id]);
     const affectedRows = result ? result.affectedRows : 0;
 
