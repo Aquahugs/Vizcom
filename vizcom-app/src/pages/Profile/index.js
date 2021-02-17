@@ -7,6 +7,7 @@ import instaIcon from "../../assets/instagram.png";
 import twitterIcon from "../../assets/twitter.png";
 import plus from "../../assets/plus.png";
 import { withAuthorization } from "../../router/auth/session";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   constructor(props) {
@@ -56,9 +57,9 @@ class Profile extends Component {
           <div className="row">
             <div className="col sm6 m6 l6">
               <div className="row bio-header">
-                <a href="http://localhost:3000/editor">
+                <Link to={"editor"}>
                   <button class=" btn btn-flat edit-btn ">Edit profile</button>
-                </a>
+                </Link>
                 <h2>{this.props.user.display_name}</h2>
               </div>
 
