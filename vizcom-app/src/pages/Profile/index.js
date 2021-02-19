@@ -20,8 +20,10 @@ class Profile extends Component {
       selectedFile: [],
       bio: null,
       view: "bucket",
+      userinfo:[]
     };
   }
+
 
   toggleActive = () => {
     if (this.state.view === "bucket") {
@@ -33,6 +35,7 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this.props)
     const { isLoaded } = this.state;
     // Conditonal style logic to toggle view properties
     const bucketActive = {

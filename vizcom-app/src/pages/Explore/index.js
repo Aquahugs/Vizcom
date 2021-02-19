@@ -1,6 +1,6 @@
 import React from "react";
 import { compose } from "recompose";
-
+import './explore.scss'
 import { withAuthorization } from "../../router/auth/session";
 
 const Explore = () => {
