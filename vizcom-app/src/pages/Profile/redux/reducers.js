@@ -11,6 +11,7 @@ const initialState = {
 const profileReducer = (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
+    // SUCCESS ACTIONS
     case TYPES.GET_PROFILE_SUCCESS:
       return {
         ...state,
@@ -18,6 +19,12 @@ const profileReducer = (state = initialState, action) => {
         status: null,
       };
     case TYPES.GET_COLLECTION_SUCCESS:
+      return {
+        ...state,
+        collection: action.collection,
+        status: null,
+      };
+    case TYPES.INSERT_COLLECTION_SUCCESS:
       return {
         ...state,
         collection: action.collection,
@@ -34,6 +41,8 @@ const profileReducer = (state = initialState, action) => {
         profile: action.profile,
         status: null,
       };
+
+    // API CALL STARTED ACTIONS
     case TYPES.CREATE_PROFILE_STARTED:
       return {
         ...state,
@@ -52,12 +61,20 @@ const profileReducer = (state = initialState, action) => {
         status: API_STATUS.GETTING,
         error: null,
       };
+    case TYPES.INSERT_COLLECTION_STARTED:
+      return {
+        ...state,
+        status: API_STATUS.GETTING,
+        error: null,
+      };
     case TYPES.UPDATE_PROFILE_STARTED:
       return {
         ...state,
         status: API_STATUS.UPDATING,
         error: null,
       };
+
+    // API CALL ERROR ACTIONS
     case TYPES.GET_PROFILE_ERROR:
     case TYPES.UPDATE_PROFILE_ERROR:
       return {
@@ -72,6 +89,12 @@ const profileReducer = (state = initialState, action) => {
         status: null,
       };
     case TYPES.GET_COLLECTION_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        status: null,
+      };
+    case TYPES.INSERT_COLLECTION_ERROR:
       return {
         ...state,
         error: action.error,

@@ -16,6 +16,20 @@ class CollectionController {
     res.send(collectionList);
   };
 
+  collectImage = async (req, res, next) => {
+    console.log("request body", req.body);
+
+    const result = await CollectionModel.insert(req.body);
+
+    if (!result) {
+      throw new HttpException(500, "Something went wrong saving image");
+    }
+
+    let collectionList = await CollectionModel.find({ id: req.body.uuid });
+
+    res.send(collectionList);
+  };
+
   //   getUserById = async (req, res, next) => {
   //     console.log("PARAMS", req.params);
   //     const user = await UserModel.findOne({ id: req.params.id });

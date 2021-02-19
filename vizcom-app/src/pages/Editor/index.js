@@ -1,18 +1,18 @@
 import React from "react";
-
+import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
+import { compose } from "recompose";
+import { Link } from "react-router-dom";
 
 import "./editor.scss";
 import M from "materialize-css";
-import { compose } from "recompose";
 import twitterIcon from "../../assets/twitter.png";
 import instaIcon from "../../assets/instagram.png";
 import webIcon from "../../assets/website.png";
 import backarrow from "../../assets/back-arrow.svg";
-import { Link } from "react-router-dom";
+
 import { ProfileThunks } from "../Profile/redux";
 import { withAuthorization } from "../../router/auth/session";
-import { useForm } from "react-hook-form";
 
 const Editor = ({ updateProfile, history, uid }) => {
   const { register, handleSubmit } = useForm();
