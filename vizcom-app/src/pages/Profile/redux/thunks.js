@@ -28,15 +28,20 @@ const createProfile = (user) => async (dispatch) => {
   }
 };
 
-const updateProfile = ({ user }) => async (dispatch) => {
-  const userId = { ...user.uuid };
-  const newUser = { ...user };
-  delete user.uuid;
-  debugger;
-
+const updateProfile = (user, uuid) => async (dispatch) => {
+  const newUser = {
+    uuid,
+    first_name: user.firstName,
+    last_name: user.lastName,
+    location: user.Location,
+    bio: user.bio,
+    twitter: user.twitter,
+    instagram: user.instagram,
+    personal_site: user.personalSite,
+  };
   dispatch(actions.updateProfileStarted());
   try {
-    await userService.updateUser(user, userId);
+    await userService.updateUser(newUser, uuid);
     dispatch(actions.updateProfileSuccess(newUser));
   } catch (error) {
     dispatch(actions.updateProfileError(error));
@@ -51,6 +56,15 @@ const getCollectionByUserId = (uid) => async (dispatch) => {
   } catch (error) {
     dispatch(actions.getCollectionError(error));
   }
+
+const collectImage = (imageObj) => async (dispatch) => {
+  dispatch(actions.insertCollectionStarted());
+  try {
+    const response = await collectionService.collectImage(imageObj);
+    dispatch(actions.insertCollectionSuccess(response.data));
+  } catch (error) {
+    dispatch(actions.insertCollectionError(error));
+  }
 };
 
 export default {
@@ -58,4 +72,5 @@ export default {
   getProfile,
   updateProfile,
   createProfile,
+  collectImage
 };

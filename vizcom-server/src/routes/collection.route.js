@@ -10,7 +10,10 @@ router.get(
   awaitHandlerFactory(collectionController.getUserCollection)
 ); // localhost:3000/api/v1/users/id/1/collection
 
-// router.post("/create", awaitHandlerFactory(userController.createUser)); // localhost:3000/api/v1/users
+router.post(
+  "/collection",
+  awaitHandlerFactory(collectionController.collectImage)
+); // localhost:3000/api/v1/users
 
 // router.patch(
 //   "/update/id/:id",
