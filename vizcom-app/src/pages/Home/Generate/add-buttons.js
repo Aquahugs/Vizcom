@@ -18,7 +18,7 @@ const AddButtons = ({ uid,props,toggleBuckets }) => {
   return (
     <div>
       <div className = "col s6 m6 l6">
-          <button class="waves-effect waves-grey btn-flat" onClick = {toggleBuckets}>
+          <button class="waves-effect waves-grey btn-flat add-bucket" onClick = {toggleBuckets}>
             <i class="material-icons right">apps</i>Add to bucket
           </button>
         </div>

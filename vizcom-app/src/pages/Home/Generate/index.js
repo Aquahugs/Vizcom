@@ -1,7 +1,10 @@
 import React,{ useState,Component } from "react";
+import { ProfileThunks } from "../../Profile/redux";
+
 import Popup from 'reactjs-popup';
 import BucketList from './bucket-list'
 import AddButtons from './add-buttons'
+import {connect} from 'react-redux';
 import 'reactjs-popup/dist/index.css';
 import './generate.scss';
 import downloadbutton from '../../../assets/download-button.svg'
@@ -9,11 +12,9 @@ import collectbutton from '../../../assets/collect-button.svg'
 
 
 
-class Generate extends Component {
-  constructor(props){
-        
+  class Generate extends Component {
+    constructor(props){ 
     super(props);
-
     this.toggleBuckets = this.toggleBuckets.bind(this)
     this.state= {
         mode:"cardesign",
@@ -28,56 +29,65 @@ class Generate extends Component {
         bucketSearch:false,
      
     }
-  }
-
-  componentDidMount() {
-    document.addEventListener('scroll', this.trackScrolling);   
-      fetch('https://designerspendroplet.getdpsvapi.com/Generate')
-     .then((res1) => (res1.json()))
-     .then((data1) => this.setState({
-        isLoaded:true,
-        userphotos:data1
-     }))      
-  }
-
-  toggleImage = () => {
-    this.setState({ isGenerating :true });
-    this.setState({ index : this.state.index + 3 });
-    this.setState({ index1 : this.state.index1 + 8 });
-    this.setState({ index2 : this.state.index2 + 7 });
-    setTimeout(() => {
-        this.setState({ isGenerating :false });
-    }, 800);
-  }
-
-  toggleActive = () => {
-    if (this.state.mode == 'cardesign'){
-      this.setState({ mode :"footwear" });
     }
-    else {
-      this.setState({ mode :"cardesign" })
-    }
-    
-  }
-  toggleBuckets = () => {
-    if (this.state.bucketSearch == false){
-      this.setState({ bucketSearch :true });
-    }
-    else {
-      this.setState({ bucketSearch :false })
-    }
-    console.log(this.state)
-    
-  }
 
-  handleClick(e) { if (e) {e.preventDefault()}; }
+    componentDidMount() {
+      document.addEventListener('scroll', this.trackScrolling);   
+        fetch('https://designerspendroplet.getdpsvapi.com/Generate')
+      .then((res1) => (res1.json()))
+      .then((data1) => this.setState({
+          isLoaded:true,
+          userphotos:data1
+      }))   
+      console.log(this.props.user.authUser.uid)  
+    }
 
-  logDownload = (e) => {
+    toggleImage = () => {
+      this.setState({ isGenerating :true });
+      this.setState({ index : this.state.index + 3 });
+      this.setState({ index1 : this.state.index1 + 8 });
+      this.setState({ index2 : this.state.index2 + 7 });
+      setTimeout(() => {
+          this.setState({ isGenerating :false });
+      }, 800);
+    }
+
+    toggleActive = () => {
+      if (this.state.mode == 'cardesign'){
+        this.setState({ mode :"footwear" });
+      }
+      else {
+        this.setState({ mode :"cardesign" })
+      }
+      
+    }
+
+ 
+    toggleBuckets = () => {
+      if (this.state.bucketSearch == false){
+        this.setState({ bucketSearch :true });
+      }
+      else {
+        this.setState({ bucketSearch :false })
+      }
+      console.log(this.state)
+      
+    }
+
+    handleClick(e) { if (e) {e.preventDefault()}; }
+
+    logDownload = (e) => {
     this.setState({ imageDownload : this.state.userphotos.data[this.state.index].imageUrl});
     console.log(this.state.userphotos.data[this.state.index].imageUrl)
    }
-
-
+   collectImage = (e) => {
+    const imageObj = {
+      "uuid": this.props.user.authUser.uid,
+      "generated_image_id": this.state.userphotos.data[this.state.index].Id,
+      "user_uploaded_image_id": null
+    }
+    this.props.collectImage(imageObj);
+   }
 
   render(){
   console.log(this.state)
@@ -169,16 +179,17 @@ class Generate extends Component {
         </Popup>
 
 
-
-
           {/* Download image in current index later need to compontize this*/}
           <div className = "row save-buttons">
             <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
               <img className = "download-button" src = {downloadbutton} onClick={this.logDownload}/>
             </a>
-            <a className ="colelct">Collect
+            <a className ="colelct" onClick={this.collectImage}>Collect  
               <i class="material-icons right">add_box</i>
             </a>
+            {/* <a className ="colelct-confirm" >Added  
+              <i class="material-icons right">check</i>
+            </a> */}
           </div>
         </div>
         <div className = "col s4 m4 l4">
@@ -221,5 +232,13 @@ class Generate extends Component {
   );
   }
 }
+const mapDispatchToProps = {
+  collectImage: ProfileThunks.collectImage,
+};
+const mapStateToProps = state => {
+  return{
+    user: state.session
+  }
+}
 
-export default  (Generate);
+export default  connect (mapStateToProps,mapDispatchToProps)(Generate);
