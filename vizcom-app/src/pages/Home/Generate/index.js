@@ -13,6 +13,8 @@ class Generate extends Component {
   constructor(props){
         
     super(props);
+
+    this.toggleBuckets = this.toggleBuckets.bind(this)
     this.state= {
         mode:"cardesign",
         collectedimage:'',
@@ -23,7 +25,8 @@ class Generate extends Component {
         index2: 200,
         isGenerating:false,
         imageDownload:'',
-        bucketSearch:false   
+        bucketSearch:false,
+     
     }
   }
 
@@ -61,8 +64,9 @@ class Generate extends Component {
       this.setState({ bucketSearch :true });
     }
     else {
-      this.setState({ mode :"cardesign" })
+      this.setState({ bucketSearch :false })
     }
+    console.log(this.state)
     
   }
 
@@ -143,7 +147,7 @@ class Generate extends Component {
             <div className = 'row'>
               <div className = 'col s7 m7 l7'>
                 <img 
-                className = 'generated-image'  
+                className = 'generated-imagemodal'  
                 src = {this.state.userphotos.data[this.state.index].imageUrl}
                 style = {visibilityStyle}
                 />
@@ -152,10 +156,12 @@ class Generate extends Component {
                 <h1> {this.state.userphotos.data[this.state.index].imageUrl.slice(-22, -1)}g</h1>
                 <h2>collectors</h2>
                 <div className = "button-container row">
-                    <AddButtons  />
-                  <div className = "bucket-container col s12 m12 l12">
-                    <BucketList/>
-                  </div>
+                    <div style = {hideBuckets}>
+                      <AddButtons toggleBuckets={this.toggleBuckets}/>
+                    </div>
+                    <div className = "bucket-container col s12 m12 l12" style = {showBuckets}>
+                      <BucketList toggleBuckets={this.toggleBuckets}/>
+                    </div>
                 </div>
               </div>
             </div>

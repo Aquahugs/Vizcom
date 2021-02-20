@@ -9,7 +9,7 @@ import { compose } from "recompose";
 import { withAuthorization } from "../../../router/auth/session";
 import { useForm } from "react-hook-form";
 
-const AddButtons = ({ uid,props,mode }) => {
+const AddButtons = ({ uid,props,toggleBuckets }) => {
   const { register, handleSubmit } = useForm();
   const addBucket = (bucketName) => {
     console.log("added to __ bucket")
@@ -18,7 +18,7 @@ const AddButtons = ({ uid,props,mode }) => {
   return (
     <div>
       <div className = "col s6 m6 l6">
-          <button class="waves-effect waves-grey btn-flat">
+          <button class="waves-effect waves-grey btn-flat" onClick = {toggleBuckets}>
             <i class="material-icons right">apps</i>Add to bucket
           </button>
         </div>

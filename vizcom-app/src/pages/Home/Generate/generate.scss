@@ -67,6 +67,16 @@
     max-height: 500px;
    
 }
+.generated-imagemodal {
+    background-color: white;
+    padding: 2%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+    max-height: 500px;
+   
+}
 
 .generated-container{
     padding-left: 10rem;
@@ -87,7 +97,7 @@
 
 
 .popup-content {
-    width:80%;
+    width:60% !important;
     height: 70%;
     padding: 5%;
 
