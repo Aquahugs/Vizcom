@@ -1,0 +1,34 @@
+.modal-content {
+    padding-left: 10rem !important;
+    padding-right: 10rem !important;
+    padding-top: 5rem !important;
+  
+
+    h4{
+        text-align: center;
+        font-weight: bold;
+        color:'#707070';
+    }
+}
+
+.modal {
+    height: 700px;
+    background-color: #FFFFFF;
+}
+
+
+
+
+  .modal-footer{
+      .bucket-btn{
+          width:100%;
+          height: auto;
+          background-color: white;
+          border-top: 2px solid #707070;
+          text-align: center;
+          padding:2rem;
+          font-size: 1.5rem;
+          font-weight: bold;
+      }
+  }
+  

@@ -1,0 +1,5 @@
+const PROFILE_TYPES = {
+  SET_FIREBASE_USER: "SET_FIREBASE_USER",
+};
+
+export default PROFILE_TYPES;

@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
-import store from "./app/store";
+import store from "./redux/store";
 
 import "./index.css";
-import App from "./app/App";
+import App from "./App";
 import reportWebVitals from "./common/utils/reportWebVitals";
-import Firebase, { FirebaseContext } from "./app/auth/firebase";
+import Firebase, { FirebaseContext } from "./router/auth/firebase";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

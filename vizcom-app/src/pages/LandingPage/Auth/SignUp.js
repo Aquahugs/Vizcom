@@ -4,7 +4,8 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import { withFirebase } from "../../../app/auth/firebase";
+import { ProfileThunks } from "../../Profile/redux";
+import { withFirebase } from "../../../router/auth/firebase";
 
 const SignUpPage = () => (
   <div>
@@ -47,13 +48,18 @@ class SignUpFormBase extends Component {
       //   return this.props.firebase.doSendEmailVerification();
       // })
       .then((response) => {
-        // Create a user in your Firebase realtime database
-        fetch(
-          `https://designerspendroplet.getdpsvapi.com/adduser?uuid=${response.user.uid}&username=${response.user.displayName}&photourl=''&bio=''&email=${response.user.email}`
-        );
+        console.log(response);
+        const user = {
+          uuid: response.user.uid,
+          display_name: null,
+          image_uri: null,
+          email: response.user.email,
+          first_name: null,
+          last_name: null,
+        };
+        this.props.createProfile(user);
         this.setState({ ...INITIAL_STATE });
         this.props.history.push("/home");
-        this.props.setUser(response.user);
       })
       .catch((error) => {
         console.log(error);
@@ -81,15 +87,15 @@ class SignUpFormBase extends Component {
       username === "";
 
     return (
-      <div class="form">
-        <div class="tab-content">
+      <div className="form">
+        <div className="tab-content">
           <div id="signup">
             <h1>Sign Up </h1>
             <form onSubmit={this.onSubmit}>
-              <div class="top-row">
-                <div class="field-wrap">
+              <div className="top-row">
+                <div className="field-wrap">
                   <label>
-                    Username<span class="req">*</span>
+                    Username<span className="req">*</span>
                   </label>
                   <input
                     name="username"
@@ -99,9 +105,9 @@ class SignUpFormBase extends Component {
                     placeholder="Full Name"
                   />
                 </div>
-                <div class="field-wrap">
+                <div className="field-wrap">
                   <label>
-                    Email Address<span class="req">*</span>
+                    Email Address<span className="req">*</span>
                   </label>
                   <input
                     name="email"
@@ -111,9 +117,9 @@ class SignUpFormBase extends Component {
                     placeholder="Email Address"
                   />
                 </div>
-                <div class="field-wrap">
+                <div className="field-wrap">
                   <label>
-                    Password<span class="req">*</span>
+                    Password<span className="req">*</span>
                   </label>
                   <input
                     name="passwordOne"
@@ -123,9 +129,9 @@ class SignUpFormBase extends Component {
                     placeholder="Password"
                   />
                 </div>
-                <div class="field-wrap">
+                <div className="field-wrap">
                   <label>
-                    Confirm Password<span class="req">*</span>
+                    Confirm Password<span className="req">*</span>
                   </label>
                   <input
                     name="passwordTwo"
@@ -139,7 +145,7 @@ class SignUpFormBase extends Component {
                   <button
                     disabled={isInvalid}
                     type="submit"
-                    class="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
+                    className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
                   >
                     Sign Up
                   </button>
@@ -155,9 +161,9 @@ class SignUpFormBase extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch({ type: "SET_USER", user }),
-});
+const mapDispatchToProps = {
+  createProfile: ProfileThunks.createProfile,
+};
 
 const enhance = compose(
   withRouter,

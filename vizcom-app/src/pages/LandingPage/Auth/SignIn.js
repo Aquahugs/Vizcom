@@ -3,9 +3,9 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import { UserProfileActions } from "../../Profile/redux";
+import { ProfileThunks } from "../../Profile/redux";
 
-import { withFirebase } from "../../../app/auth/firebase";
+import { withFirebase } from "../../../router/auth/firebase";
 
 const SignIn = () => (
   <div>
@@ -45,10 +45,10 @@ class SignInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log("USER", response.user);
         this.setState({ ...INITIAL_STATE });
+        // ned to handle first time sign ins with google
+        this.props.getProfile(response.user.uid);
         this.props.history.push("/home");
-        this.props.setUser(response.user);
       })
       .catch((error) => {
         this.setState({ error });
@@ -69,9 +69,9 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <div className="input-container">
-          <div class="field-wrap">
+          <div className="field-wrap">
             <label htmlFor="userEmail">
-              Email <span class="req"></span>
+              Email <span className="req"></span>
             </label>
             <input
               name="email"
@@ -81,9 +81,9 @@ class SignInFormBase extends Component {
               placeholder="Email Address"
             />
           </div>
-          <div class="field-wrap">
+          <div className="field-wrap">
             <label htmlFor="userPassword">
-              Password<span class="req"></span>
+              Password<span className="req"></span>
             </label>
             <input
               name="password"
@@ -119,8 +119,9 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
+        console.log("herer");
+        this.props.getProfile(socialAuthUser.user.uid);
         this.props.history.push("/home");
-        this.props.setUser(socialAuthUser.user);
       })
       .then(() => {
         this.setState({ error: null });
@@ -149,15 +150,9 @@ class SignInGoogleBase extends Component {
   }
 }
 
-// const mapDispatchToProps = () => {
-//   return {
-//     setUser: UserProfileActions.setUser,
-//   };
-// };
-
-const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch({ type: "SET_USER", user }),
-});
+const mapDispatchToProps = {
+  getProfile: ProfileThunks.getProfile,
+};
 
 const enhance = compose(
   withRouter,
