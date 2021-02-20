@@ -56,6 +56,7 @@ const getCollectionByUserId = (uid) => async (dispatch) => {
   } catch (error) {
     dispatch(actions.getCollectionError(error));
   }
+};
 
 const collectImage = (imageObj) => async (dispatch) => {
   dispatch(actions.insertCollectionStarted());
@@ -72,5 +73,5 @@ export default {
   getProfile,
   updateProfile,
   createProfile,
-  collectImage
+  collectImage,
 };
