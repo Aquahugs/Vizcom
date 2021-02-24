@@ -2,34 +2,24 @@ const query = require("../services/db/db-connection");
 const { multipleColumnSet } = require("../utils/common.utils");
 
 class CollectionModel {
-  tableName = "collection_image";
+  tableName = "bucket";
 
   find = async (params = {}) => {
     // let sql = `SELECT * FROM ${this.tableName} WHERE uuid = '${params.id}'`;
-    let sql = `SELECT 
-                collection_image_id, 
-                collected_date, 
-                generated_image.image_uri,
-                generated_image.generated_image_id,
-                collection_image.user_uploaded_image_id
-              FROM collection_image
-              INNER JOIN generated_image
-              ON collection_image.generated_image_id=generated_image.generated_image_id
-              WHERE collection_image.uuid = '${params.id}'
-              UNION
-              SELECT 
-                collection_image_id, 
-                collected_date, 
-                user_uploaded_image.image_uri,
-                collection_image.generated_image_id,
-                user_uploaded_image.user_uploaded_image_id
-              FROM collection_image
-              INNER JOIN user_uploaded_image
-              ON collection_image.user_uploaded_image_id = user_uploaded_image.user_uploaded_image_id
-              WHERE collection_image.uuid = '${params.id}'`;
+    let sql = 
+      `SELECT * FROM bucket 
+        INNER JOIN collection_bucket on bucket.bucket_id 
+        WHERE bucket.uuid = "${params.id}"
+      `;
 
     console.log("find SQL QUERY", sql);
-    return await query(sql);
+
+    const results = await query(sql)
+    
+    // group buckets by bucket
+    // const buckets = results.filter((bucket) => {
+    // })
+    return results;
   };
 
   findOne = async (params) => {
@@ -42,12 +32,30 @@ class CollectionModel {
     return result[0];
   };
 
+  create = async (params) => {
+    const { values } = multipleColumnSet(params);
+
+    const sql = 
+      `INSERT INTO bucket
+          (uuid, bucket_name, is_public)
+        VALUES
+          (?, ?, ?)`
+    const result = await query(sql, values)
+
+    const affectedRows = result ? result.affectedRows : 0;
+
+    return affectedRows;
+  };
+
   insert = async (params) => {
     console.log("the params", params);
     const { values } = multipleColumnSet(params);
 
-    const sql = `INSERT INTO ${this.tableName}
-        (uuid, generated_image_id, user_uploaded_image_id) VALUES (?,?,?)`;
+    const sql = 
+      `INSERT INTO collection_bucket
+        (collection_image_id, bucket_id) 
+      VALUES 
+        (?,?)`;
 
     const result = await query(sql, values);
     console.log("the params", result);
@@ -58,9 +66,13 @@ class CollectionModel {
   };
 
   delete = async (id) => {
-    const sql = `DELETE FROM ${this.tableName}
-        WHERE id = ?`;
+    const sql = `DELETE FROM bucket
+        WHERE bukcet_id = ${id}`;
+
+    const sql2 = `DELETE FROM collection_bucket WHERE bucket_id = ${id}`
+
     const result = await query(sql, [id]);
+
     const affectedRows = result ? result.affectedRows : 0;
 
     return affectedRows;

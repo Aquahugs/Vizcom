@@ -1,7 +1,7 @@
 import React, {useMemo,useEffect, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 
-import plus from '../../assets/picture.svg'
+import plus from '../../../assets/picture.svg'
 
 //will move these styles over somewhere
 const baseStyle = {

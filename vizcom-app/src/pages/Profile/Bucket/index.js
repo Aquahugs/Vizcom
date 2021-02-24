@@ -4,7 +4,7 @@ import "./newbucket.scss";
 import M from "materialize-css";
 import { compose } from "recompose";
 import StyledDropzone from "./Dropzone";
-import backarrow from "../../assets/back-arrow.svg";
+import backarrow from "../../../assets/back-arrow.svg";
 
 class NewBucket extends Component {
   constructor(props) {

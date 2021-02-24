@@ -5,6 +5,7 @@ const HttpException = require("./utils/HttpException.utils");
 const errorMiddleware = require("./middleware/error.middleware");
 const userRouter = require("./routes/user.route");
 const collectionRouter = require("./routes/collection.route");
+const bucketRouter = require("./routes/bucket.route");
 const indexRouter = require("./routes");
 const checkIfAuthenticated = require("./middleware/auth.middleware");
 
@@ -28,6 +29,7 @@ const port = Number(3001 || 3331);
 app.use(`/`, indexRouter);
 app.use(`/api/user`, userRouter);
 app.use(`/api/user`, collectionRouter);
+app.use(`/api/bucket`, bucketRouter);
 
 // 404 error
 app.all("*", (req, res, next) => {
