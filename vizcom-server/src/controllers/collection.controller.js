@@ -36,7 +36,7 @@ class CollectionController {
   //     if (!user) {
   //       throw new HttpException(404, "User not found");
   //     }
-
+  
   //     res.send(user);
   //   };
 

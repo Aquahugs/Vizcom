@@ -5,7 +5,7 @@ import { withAuthorization } from "../../router/auth/session";
 
 const Explore = () => {
   return (
-    <div className="row explore-container">
+    <div className="explore-container">
       <div className="row selectors">
         <div className="col s6 m6 l6">
           <div className="row">
@@ -25,6 +25,12 @@ const Explore = () => {
               <li>footwear</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div className = "row">
+        <div className = "col s2 m2 l2">
+          <img src = "https://via.placeholder.com/150"/>  
         </div>
       </div>
     </div>

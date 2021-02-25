@@ -1,7 +1,8 @@
 import React,{ useState,Component } from "react";
 import { ProfileThunks } from "../../Profile/redux";
-
+import { fadeInUp } from 'react-animations';
 import Popup from 'reactjs-popup';
+import Radium, {StyleRoot} from 'radium';
 import BucketList from './bucket-list'
 import AddButtons from './add-buttons'
 import {connect} from 'react-redux';
@@ -94,7 +95,8 @@ import collectbutton from '../../../assets/collect-button.svg'
   const { isLoaded,items} = this.state;
   const visibilityStyle = {
     visibility: this.state.isGenerating ? 'hidden': 'visible',
-    display: this.state.isGenerating ? 'none': 'block'
+    display: this.state.isGenerating ? 'none': 'block',
+    
   }
   const hiddenStyle = {
     visibility: this.state.isGenerating ? 'visible': 'hidden',
@@ -121,7 +123,13 @@ import collectbutton from '../../../assets/collect-button.svg'
      backgroundColor: this.state.mode == "cardesign"? '#D9D9D9': 'white'
   }
 
- 
+  const styles = {
+    fadeInUp: {
+      animation: 'x 1.2s',
+      animationName: Radium.keyframes(fadeInUp, 'fadeInUp')
+    }
+  }
+
   if (!isLoaded) {
     return <div ><h1 >Loading...</h1></div>
   }
@@ -148,35 +156,39 @@ import collectbutton from '../../../assets/collect-button.svg'
       </div>
 
       {/* Generated Images later need to compontize these*/}
-      <div className = 'row generated-container'>
+      <StyleRoot>
+      <div className = 'row generated-container' style={styles.fadeInUp}>
+      <div style = {visibilityStyle}>
+           
         <div className = "col s4 m4 l4">
-        <Popup trigger={ 
-        <img className = 'generated-image' src = {this.state.userphotos.data[this.state.index].imageUrl} style = {visibilityStyle}/>} modal>
-          {/* Pop up module */}
-          <span> 
-            <div className = 'row'>
-              <div className = 'col s7 m7 l7'>
-                <img 
-                className = 'generated-imagemodal'  
-                src = {this.state.userphotos.data[this.state.index].imageUrl}
-                style = {visibilityStyle}
-                />
-              </div>
-              <div className = 'col s5 m5 l5 generated-info'>
-                <h1> {this.state.userphotos.data[this.state.index].imageUrl.slice(-22, -1)}g</h1>
-                <h2>collectors</h2>
-                <div className = "button-container row">
-                    <div style = {hideBuckets}>
-                      <AddButtons toggleBuckets={this.toggleBuckets}/>
-                    </div>
-                    <div className = "bucket-container col s12 m12 l12" style = {showBuckets}>
-                      <BucketList toggleBuckets={this.toggleBuckets}/>
-                    </div>
+          <Popup trigger={ 
+             
+          <img className = 'generated-image' src = {this.state.userphotos.data[this.state.index].imageUrl} style = {visibilityStyle}/>} modal>
+            {/* Pop up module */}
+            <span> 
+              <div className = 'row'>
+                <div className = 'col s7 m7 l7'>
+                  <img 
+                  className = 'generated-imagemodal'  
+                  src = {this.state.userphotos.data[this.state.index].imageUrl}
+                  style = {visibilityStyle}
+                  />
+                </div>
+                <div className = 'col s5 m5 l5 generated-info'>
+                  <h1> {this.state.userphotos.data[this.state.index].imageUrl.slice(-22, -1)}g</h1>
+                  <h2>collectors</h2>
+                  <div className = "button-container row">
+                      <div style = {hideBuckets}>
+                        <AddButtons toggleBuckets={this.toggleBuckets}/>
+                      </div>
+                      <div className = "bucket-container col s12 m12 l12" style = {showBuckets}>
+                        <BucketList toggleBuckets={this.toggleBuckets}/>
+                      </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </span>
-        </Popup>
+            </span>
+          </Popup>
 
 
           {/* Download image in current index later need to compontize this*/}
@@ -213,13 +225,15 @@ import collectbutton from '../../../assets/collect-button.svg'
             <img className = "download-button" src = {downloadbutton}/>
           </div>
         </div>
+      </div> 
         <img //LOAD ANIMATION
           src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01'
           style ={hiddenStyle}
         />
       </div>
       
-      <div className = " genbtn-container row">
+      
+      <div className = " genbtn-container row"  style={styles.fadeInUp}>
         <button 
         a href="#" 
         className = 'btn waves-effect generate-btn lighten-1 z-depth-0'
@@ -227,6 +241,7 @@ import collectbutton from '../../../assets/collect-button.svg'
         onKeyUp={(e) => {if (e.keyIdentifier  === 13 || e.keyIdentifier  === 32) {this.handleClick()}}}
         >Generate</button>
       </div>
+      </StyleRoot>
     </div>
     
   );
