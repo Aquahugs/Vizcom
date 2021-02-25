@@ -4,7 +4,7 @@ import { API_STATUS } from "../../../common/constants";
 const initialState = {
   error: null,
   status: null,
-  user: {},
+  user: null,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -25,7 +25,7 @@ const profileReducer = (state = initialState, action) => {
     case TYPES.UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
-        profile: action.profile,
+        user: action.profile,
         status: null,
       };
 

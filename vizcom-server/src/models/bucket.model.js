@@ -1,7 +1,7 @@
 const query = require("../services/db/db-connection");
 const { multipleColumnSet } = require("../utils/common.utils");
 
-class CollectionModel {
+class BucketModel {
   tableName = "bucket";
 
   find = async (params = {}) => {
@@ -18,7 +18,15 @@ class CollectionModel {
     // group buckets by bucket
     // const buckets = results.filter((bucket) => {
     // })
-    return results;
+    let buckets = results.reduce((r, a) => {
+      console.log("a", a);
+      console.log("r", r);
+      r[a.bucket_id] = [...(r[a.bucket_id] || []), a];
+      return r;
+    }, {});
+    console.log("group", buckets);
+
+    return buckets;
   };
 
   findOne = async (params) => {
@@ -34,13 +42,15 @@ class CollectionModel {
   create = async (params) => {
     const { values } = multipleColumnSet(params);
 
-    const sql = `INSERT INTO bucket
+    const command = `INSERT INTO bucket
           (uuid, bucket_name, is_public)
         VALUES
           (?, ?, ?)`;
-    const result = await query(sql, values);
+    await query(command, values);
 
-    const affectedRows = result ? result.affectedRows : 0;
+    // const query =
+
+    const affectedRows = command ? command.affectedRows : 0;
 
     return affectedRows;
   };
@@ -76,4 +86,4 @@ class CollectionModel {
   };
 }
 
-module.exports = new CollectionModel();
+module.exports = new BucketModel();

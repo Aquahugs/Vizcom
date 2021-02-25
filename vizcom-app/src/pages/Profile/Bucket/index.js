@@ -36,43 +36,43 @@ class NewBucket extends Component {
 
   render() {
     return (
-      <div class="row create-container">
-        <form class="col s12">
-          <div class="row edit-profile">
+      <div className="row create-container">
+        <form className="col s12">
+          <div className="row edit-profile">
             <a href="http://localhost:3000/profile">
-              <img class="backarrow" src={backarrow} />
+              <img className="backarrow" src={backarrow} />
             </a>
             <h1>Create bucket</h1>
             <p>Collect and organize images in digital buckets</p>
-            <div class="input-field col s12">
-              <input id="bucket_name" type="text" class="validate" />
+            <div className="input-field col s12">
+              <input id="bucket_name" type="text" className="validate" />
               <label for="bucket_name">Bucket Name</label>
             </div>
-            <div class="input-field col s12">
-              <input id="last_name" type="text" class="validate" />
+            <div className="input-field col s12">
+              <input id="last_name" type="text" className="validate" />
               <label for="last_name">Description</label>
             </div>
           </div>
           <StyledDropzone />
-          <div class="switch">
-            <label class="secret-button">
+          <div className="switch">
+            <label className="secret-button">
               <span>Keep it as a secret</span>
               <input type="checkbox" />
-              <span class="lever"></span>
+              <span className="lever"></span>
               <br />
               Only you and participants can see it
             </label>
           </div>
 
-          <div class="switch"></div>
+          <div className="switch"></div>
 
-          <div class="row action-buttons">
+          <div className="row action-buttons">
             <a href="http://localhost:3000/profile">
-              <button class="btn waves-effect waves-light">Cancel</button>
+              <button className="btn waves-effect waves-light">Cancel</button>
             </a>
 
             <button
-              class="btn  waves-light save-btn"
+              className="btn  waves-light save-btn"
               type="submit"
               name="action"
             >

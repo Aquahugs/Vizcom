@@ -30,7 +30,7 @@ const insertCollectionSuccess = (collection) => ({
   collection,
 });
 
-const CollectionActions = {
+export default {
   getCollectionError,
   getCollectionStarted,
   getCollectionSuccess,
@@ -38,5 +38,3 @@ const CollectionActions = {
   insertCollectionStarted,
   insertCollectionSuccess,
 };
-
-export default CollectionActions;

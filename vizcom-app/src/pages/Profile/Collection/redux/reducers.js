@@ -4,7 +4,7 @@ import { API_STATUS } from "../../../../common/constants";
 const initialState = {
   error: null,
   status: null,
-  collection: [],
+  collection: null,
 };
 
 const collectionReducer = (state = initialState, action) => {
