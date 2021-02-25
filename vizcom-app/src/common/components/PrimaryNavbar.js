@@ -5,9 +5,13 @@ import NewBucket from "../../assets/create-bucket.svg";
 import SignOut from "../../pages/LandingPage/Auth/SignOut";
 import { connect } from "react-redux";
 
+
 const PrimaryNav = (props) => {
+  
   console.log(props);
-  // console.log(props.user.authUser.providerData[0].photoURL)
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
     <nav>
@@ -22,8 +26,8 @@ const PrimaryNav = (props) => {
             </a>
           </li>
           <li>
-            <a style={{ color: "#505050", fontSize: "16px" }} href="">
-              {props.user.authUser.firstName}
+            <a style={{ color: "#505050", fontSize: "16px" }} href="http://localhost:3000/profile">
+              {props.user.authUser.providerData[0].displayName}
               {props.user.authUser.providerData ? (
                 <img
                   className="profile-picture"
@@ -38,12 +42,14 @@ const PrimaryNav = (props) => {
           <li>
             <SignOut />
           </li>
+        
+         
         </ul>
       </div>
     </nav>
   );
 };
-
+ 
 const mapStateToProps = (state) => {
   return {
     user: state.session,

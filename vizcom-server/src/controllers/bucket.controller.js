@@ -36,13 +36,11 @@ class BucketController {
   };
 
   addToBucket = async (req, res, next) => {
-
-    const result = await BucketModel.insert(req.body)
+    const result = await BucketModel.insert(req.body);
   };
 
   deleteBucket = async (req, res, next) => {
-
-    const result = await BucketModel.insert(req.body)
+    const result = await BucketModel.insert(req.body);
   };
 }
 module.exports = new BucketController();
