@@ -57,7 +57,6 @@ const getCollectionByUserId = (uid) => async (dispatch) => {
     dispatch(actions.getCollectionError(error));
   }
 };
-
 const collectImage = (imageObj) => async (dispatch) => {
   dispatch(actions.insertCollectionStarted());
   try {
