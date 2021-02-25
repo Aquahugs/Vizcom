@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Profile from "../pages/Profile";
 import Editor from "../pages/Profile/Editor"; //need to put this into /Profile (Profile/Editor)
-import Bucket from "../pages/Profile/Bucket"; //need to put this into /Profile (Profile/Editor)
+import Bucket from "../pages/Bucket"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../pages/Explore";
 import Home from "../pages/Home";
 import Generate from "../pages/Home/Generate";

@@ -1,5 +1,5 @@
 import actions from "./actions";
-import bucketService from "../../../../common/services/bucket-service";
+import bucketService from "../../../common/services/bucket-service";
 
 const getBuckets = (uid) => async (dispatch) => {
   dispatch(actions.getBucketsStarted());

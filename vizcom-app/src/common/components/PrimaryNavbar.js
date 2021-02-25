@@ -4,14 +4,13 @@ import Logo from "../../assets/logo.png";
 import NewBucket from "../../assets/create-bucket.svg";
 import SignOut from "../../pages/LandingPage/Auth/SignOut";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 
 const PrimaryNav = (props) => {
-  
   console.log(props);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen(prevState => !prevState);
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   return (
     <nav>
@@ -26,7 +25,11 @@ const PrimaryNav = (props) => {
             </a>
           </li>
           <li>
-            <a style={{ color: "#505050", fontSize: "16px" }} href="http://localhost:3000/profile">
+            <Link
+              to="/profile"
+              style={{ color: "#505050", fontSize: "16px" }}
+              href="http://localhost:3000/profile"
+            >
               {props.user.authUser.providerData[0].displayName}
               {props.user.authUser.providerData ? (
                 <img
@@ -34,7 +37,7 @@ const PrimaryNav = (props) => {
                   src={props.user.authUser.providerData[0].photoURL}
                 />
               ) : null}
-            </a>
+            </Link>
           </li>
           <li>
             <a href="collapsible.html"></a>
@@ -42,14 +45,12 @@ const PrimaryNav = (props) => {
           <li>
             <SignOut />
           </li>
-        
-         
         </ul>
       </div>
     </nav>
   );
 };
- 
+
 const mapStateToProps = (state) => {
   return {
     user: state.session,

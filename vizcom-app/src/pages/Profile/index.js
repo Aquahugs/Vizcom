@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import ProfileThunks from "./redux/thunks";
 import CollectionThunks from "./Collection/redux/thunks";
-import BucketThunks from "./Bucket/redux/thunks";
+import BucketThunks from "../Bucket/redux/thunks";
 
 import "./profile.scss";
 
@@ -71,8 +71,26 @@ const Profile = ({
                 {profile && <p>{profile.location}</p>}
               </div>
               <div className="col s6 m6 l6 social-icons">
-                <img src={instaIcon} />
-                <img src={twitterIcon} />
+                {profile && (
+                  <a
+                    href={profile.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="logo-container"
+                  >
+                    <img src={instaIcon} />
+                  </a>
+                )}
+                {profile && (
+                  <a
+                    href={profile.twitter}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="logo-container"
+                  >
+                    <img src={twitterIcon} />
+                  </a>
+                )}
               </div>
             </div>
             {profile && <p>{profile.bio}</p>}

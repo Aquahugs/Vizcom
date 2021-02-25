@@ -1,5 +1,5 @@
 import TYPES from "./types";
-import { API_STATUS } from "../../../../common/constants";
+import { API_STATUS } from "../../../common/constants";
 
 const initialState = {
   error: null,
