@@ -1,6 +1,6 @@
 export const GENERATE = {
   link: "generate",
-  description: "Explore uniquely ai generated  generated inspiration ….",
+  description: "Explore uniquely ai generated  generated inspiration",
   name: "Generate",
 };
 

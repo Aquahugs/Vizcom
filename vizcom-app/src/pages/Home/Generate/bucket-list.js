@@ -1,4 +1,3 @@
-  
 import React from "react";
 
 import { connect } from "react-redux";
@@ -9,32 +8,29 @@ import { compose } from "recompose";
 import { withAuthorization } from "../../../router/auth/session";
 import { useForm } from "react-hook-form";
 
-const BucketList = ({  history, uid,toggleBuckets }) => {
+const BucketList = ({ history, uid, toggleBuckets }) => {
   const { register, handleSubmit } = useForm();
 
-  const AddButtons = ({ uid,props, }) => {
-    console.log("added to __ bucket")
+  const AddButtons = ({ uid, props }) => {
+    console.log("added to __ bucket");
   };
 
   return (
-    <div class = "bucket-items">
-      <div class = 'col s1 m1 l1' style = {{padding:'0'}}>
-        <i class="material-icons" onClick = {toggleBuckets}>clear</i>
+    <div className="bucket-items">
+      <div className="col s1 m1 l1" style={{ padding: "0" }}>
+        <i className="material-icons" onClick={toggleBuckets}>
+          clear
+        </i>
       </div>
-      <div class = 'col s11 m11 l11' style = {{padding:'0'}}>
-      <input
-          placeholder="search for bucket"
-          class="searchbar"  
-      />
+      <div className="col s11 m11 l11" style={{ padding: "0" }}>
+        <input placeholder="search for bucket" className="searchbar" />
       </div>
-      
-      <button class=" bucket-btn">
-        <span class ='bucket-name'>bucket name </span>
-        <span class ='item-numbers'>X items</span>
-      </button>
 
+      <button className=" bucket-btn">
+        <span className="bucket-name">bucket name </span>
+        <span className="item-numbers">X items</span>
+      </button>
     </div>
-    
   );
 };
 
@@ -46,7 +42,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  updateBucket: ""
+  updateBucket: "",
 };
 
 const condition = (authUser) => !!authUser;

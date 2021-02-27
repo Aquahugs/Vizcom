@@ -7,19 +7,29 @@ import { connect } from "react-redux";
 import { withAuthorization } from "../../router/auth/session";
 
 import { ProfileThunks } from "../Profile/redux";
+import { CollectionThunks } from "../Profile/Collection/redux";
 
 import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";
 import SketchToRenderLogo from "../../assets/s2r.png";
 import { GENERATE, SKETCH_TO_RENDER } from "./home-const.js";
 
-const Home = ({ user, authUser, getCollectionByUserId, getProfile }) => {
+const Home = ({ user, uid, collection, getCollection, getProfile }) => {
   const [data, setData] = useState([]);
-  if (!user) {
-    getProfile(authUser.uid);
-  }
+
   useEffect(() => {
-    getCollectionByUserId(authUser.uid);
+    if (!user) {
+      getProfile(uid);
+      console.log("user", user);
+    }
+    console.log("collection", collection);
+    if (!collection) {
+      getCollection(uid);
+      console.log("collection", collection);
+    }
+    // if (!buckets) {
+    //   getBuckets();
+    // }
   }, []);
 
   return (
@@ -58,13 +68,14 @@ const Home = ({ user, authUser, getCollectionByUserId, getProfile }) => {
 map state to props
 */
 const mapStateToProps = (state) => ({
-  authUser: state.session.authUser,
+  uid: state.session.authUser.uid,
   user: state.profile.user,
+  collection: state.collection.collection,
 });
 
 const mapDispatchToProps = {
-  getCollectionByUserId: ProfileThunks.getCollectionByUserId,
   getProfile: ProfileThunks.getProfile,
+  getCollection: CollectionThunks.getCollectionByUserId,
 };
 
 const condition = (authUser) => !!authUser;

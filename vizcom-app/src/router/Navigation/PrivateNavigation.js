@@ -9,7 +9,7 @@ import Router from "../index";
 
 const NavigationAuth = () => {
   return (
-    <div>
+    <div style = {{marginLeft:'10%',marginRight:'10%'}}>
       <PrimaryNav />
       <SecondaryNav />
       <main>

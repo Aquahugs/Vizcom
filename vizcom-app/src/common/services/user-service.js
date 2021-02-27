@@ -10,7 +10,6 @@ export default {
   },
   updateUser(user, uid) {
     // dont pass in the id
-    debugger;
     return apiClient.patch(`/api/user/update/id/${uid}`, user);
   },
 };

@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 
 import "./editor.scss";
 import M from "materialize-css";
-import twitterIcon from "../../assets/twitter.png";
-import instaIcon from "../../assets/instagram.png";
-import webIcon from "../../assets/website.png";
-import backarrow from "../../assets/back-arrow.svg";
+import twitterIcon from "../../../assets/twitter.png";
+import instaIcon from "../../../assets/instagram.png";
+import webIcon from "../../../assets/website.png";
+import backarrow from "../../../assets/back-arrow.svg";
 
-import { ProfileThunks } from "../Profile/redux";
-import { withAuthorization } from "../../router/auth/session";
+import { ProfileThunks } from "../redux";
+import { withAuthorization } from "../../../router/auth/session";
 
 const Editor = ({ updateProfile, history, uid }) => {
   const { register, handleSubmit } = useForm();

@@ -33,7 +33,7 @@ const updateProfile = (user, uuid) => async (dispatch) => {
     uuid,
     first_name: user.firstName,
     last_name: user.lastName,
-    location: user.Location,
+    location: user.location,
     bio: user.bio,
     twitter: user.twitter,
     instagram: user.instagram,
@@ -56,7 +56,7 @@ const getCollectionByUserId = (uid) => async (dispatch) => {
   } catch (error) {
     dispatch(actions.getCollectionError(error));
   }
-}
+};
 const collectImage = (imageObj) => async (dispatch) => {
   dispatch(actions.insertCollectionStarted());
   try {
@@ -72,5 +72,5 @@ export default {
   getProfile,
   updateProfile,
   createProfile,
-  collectImage
+  collectImage,
 };
