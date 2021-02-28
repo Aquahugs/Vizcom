@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: vizcom
 -- ------------------------------------------------------
@@ -16,30 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `collection_bucket`
+-- Table structure for table `explore_item`
 --
 
-DROP TABLE IF EXISTS `collection_bucket`;
+DROP TABLE IF EXISTS `explore_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `collection_bucket` (
+CREATE TABLE `explore_item` (
+  `explore_item_id` int NOT NULL AUTO_INCREMENT,
+  `is_image` tinyint(1) NOT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `uuid` varchar(45) NOT NULL,
   `collection_image_id` int NOT NULL,
-  `bucket_id` int NOT NULL,
-  KEY `fk_ci_cb_id_idx` (`collection_image_id`),
-  KEY `fk_b_cb_id_idx` (`bucket_id`),
-  CONSTRAINT `fk_b_cb_id` FOREIGN KEY (`bucket_id`) REFERENCES `bucket` (`bucket_id`),
-  CONSTRAINT `fk_ci_cb_id` FOREIGN KEY (`collection_image_id`) REFERENCES `collection_image` (`collection_image_id`)
+  `bucket_id` int DEFAULT NULL,
+  PRIMARY KEY (`explore_item_id`),
+  KEY `fk_u_ei_id_idx` (`uuid`),
+  KEY `fk_ci_ei_id_idx` (`collection_image_id`),
+  KEY `fk_b_ei_id_idx` (`bucket_id`),
+  CONSTRAINT `fk_b_ei_id` FOREIGN KEY (`bucket_id`) REFERENCES `bucket` (`bucket_id`),
+  CONSTRAINT `fk_ci_ei_id` FOREIGN KEY (`collection_image_id`) REFERENCES `collection_image` (`collection_image_id`),
+  CONSTRAINT `fk_u_ei_id` FOREIGN KEY (`uuid`) REFERENCES `user` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `collection_bucket`
+-- Dumping data for table `explore_item`
 --
 
-LOCK TABLES `collection_bucket` WRITE;
-/*!40000 ALTER TABLE `collection_bucket` DISABLE KEYS */;
-INSERT INTO `collection_bucket` VALUES (1,1),(2,1);
-/*!40000 ALTER TABLE `collection_bucket` ENABLE KEYS */;
+LOCK TABLES `explore_item` WRITE;
+/*!40000 ALTER TABLE `explore_item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `explore_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-24 18:16:57
+-- Dump completed on 2021-02-27 19:27:02

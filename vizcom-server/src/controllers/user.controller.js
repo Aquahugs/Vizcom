@@ -17,7 +17,6 @@ class UserController {
   };
 
   getUserById = async (req, res, next) => {
-    console.log("PARAMS", req.params);
     const user = await UserModel.findOne({ id: req.params.id });
     if (!user) {
       throw new HttpException(404, "User not found");
@@ -28,7 +27,6 @@ class UserController {
 
   createUser = async (req, res, next) => {
     // this.checkValidation(req);
-    console.log("request body", req.body);
     const result = await UserModel.create(req.body);
 
     if (!result) {

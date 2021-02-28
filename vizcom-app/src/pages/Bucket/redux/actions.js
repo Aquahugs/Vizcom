@@ -1,9 +1,9 @@
 import TYPES from "./types";
 
-const getBucketsError = () => ({
+const getBucketsError = (e) => ({
   type: TYPES.GET_BUCKETS_ERROR,
   //TODO: Helper method to create meaningful messages based on the error
-  error: "Unable to get buckets",
+  error: `Unable to get buckets, ERROR: ${e}`,
 });
 
 const getBucketsStarted = () => ({
