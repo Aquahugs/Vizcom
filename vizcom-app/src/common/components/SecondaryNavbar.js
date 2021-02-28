@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import './SecondaryNavbar.scss'
 
 const SecondaryNav = (props) => {
   console.log(props)
-  console.log(props.user.authUser.firstName)
+  const [view, setView] = useState("");
+
+  const toggleView = (e) => {
+    setView(e);
+    console.log(view);
+  };
+ 
   return(
     <div className = "nav-container">
       <ul>
@@ -13,7 +19,15 @@ const SecondaryNav = (props) => {
           <Link to="/home">Home</Link>
         </li>
         <li>
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile" onClick={() => toggleView("profile")}>Profile / 
+
+          {view === "profile" && (
+            <span style = {{fontWeight:'bold'}}>
+              {/* {props.profile.first_name} */}
+            </span>
+           )}
+          
+          </Link>
         </li>
         <li>
           <Link to="/explore">Explore</Link>
@@ -25,7 +39,9 @@ const SecondaryNav = (props) => {
 
 const mapStateToProps = state => {
   return{
-    user: state.session
+    user: state.session,
+    profile: state.profile.user
+
   }
 }
 

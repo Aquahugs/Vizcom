@@ -44,3 +44,17 @@ nav {
     margin-left: 1rem;
 
 }
+
+.sign-out {
+  display: none;
+}
+
+.nav__submenu{
+  display: none;
+}
+
+.profile-items:hover{
+  .nav__submenu {
+    display:block;
+  }
+}

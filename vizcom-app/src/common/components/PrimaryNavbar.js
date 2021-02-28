@@ -24,7 +24,7 @@ const PrimaryNav = (props) => {
               new bucket
             </a>
           </li>
-          <li>
+          <li className = 'profile-items'>
             <Link
               to="/profile"
               style={{ color: "#505050", fontSize: "16px" }}
@@ -38,13 +38,20 @@ const PrimaryNav = (props) => {
                 />
               ) : null}
             </Link>
+            <ul className="nav__submenu">
+              <li style = {{float:'right '}}>
+                <SignOut />
+              </li>
+            </ul>
           </li>
+          
           <li>
             <a href="collapsible.html"></a>
           </li>
-          <li>
+          {/* <li>
             <SignOut />
-          </li>
+          </li> */}
+         
         </ul>
       </div>
     </nav>
