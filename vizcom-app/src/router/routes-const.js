@@ -5,4 +5,4 @@ export const EXPLORE = "/explore";
 export const GENERATE = "/generate";
 export const PROFILE = "/profile";
 export const EDITOR = "/editor"; //later this can be /profile:uuid/editor
-export const NEWBUCKET = "/newbucket"; 
+export const BUCKET = "/bucket"; 

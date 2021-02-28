@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux';
-import './SecondaryNavbar.scss'
+import { connect } from "react-redux";
+import "./SecondaryNavbar.scss";
 
-const SecondaryNav = (props) => {
-  console.log(props)
-  console.log(props.user.authUser.firstName)
-  return(
-    <div className = "nav-container">
+const SecondaryNav = ({ user, profile }) => {
+  return (
+    <div className="nav-container">
       <ul>
         <li>
           <Link to="/home">Home</Link>
@@ -15,19 +13,20 @@ const SecondaryNav = (props) => {
         <li>
           <Link to="/profile">Profile</Link>
         </li>
+        {profile && <h2>{profile.first_name}</h2>}
         <li>
           <Link to="/explore">Explore</Link>
         </li>
       </ul>
     </div>
-  )
+  );
 };
 
-const mapStateToProps = state => {
-  return{
-    user: state.session
-  }
-}
+const mapStateToProps = (state) => {
+  return {
+    user: state.session,
+    profile: state.profile.user,
+  };
+};
 
-
-export default connect (mapStateToProps)(SecondaryNav);
+export default connect(mapStateToProps)(SecondaryNav);

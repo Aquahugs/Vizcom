@@ -2,38 +2,14 @@
 import apiClient from "./api";
 
 export default {
-  getAPI(uuid) {
-    return apiClient.post("/api/v1/users", uuid);
+  createUser(user) {
+    return apiClient.post("api/user/create", user);
   },
-  createCampaign(campaign) {
-    return apiClient("v2").post("/Campaign/Insert", campaign);
+  getUserById(uid) {
+    return apiClient.get(`/api/user/id/${uid}`);
   },
-  getUser(id) {
-    debugger;
-    const url = `/api/v1/users/id`;
-    return apiClient.post(url, id);
-  },
-  getVariations(campaignItemId) {
-    return apiClient().post(
-      `/Variations/GetAll?campaignItemId=${campaignItemId}`
-    );
-  },
-  addUpateVariations(variation) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        if (variation.variation.campaignItemVariationMappingId) {
-          await apiClient().post("/Variations/Update", variation);
-        } else {
-          // This must be a new variation, make the campaignItemVariationMappingId zero
-          // as the API requires
-          const varitionsWithIdZero = { ...variation };
-          varitionsWithIdZero.variation.campaignItemVariationMappingId = 0;
-          await apiClient().post("/Variations/Save", varitionsWithIdZero);
-        }
-        return resolve();
-      } catch (error) {
-        return reject(error);
-      }
-    });
+  updateUser(user, uid) {
+    // dont pass in the id
+    return apiClient.patch(`/api/user/update/id/${uid}`, user);
   },
 };

@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
+import { ProfileThunks } from "../../Profile/redux";
 import { withFirebase } from "../../../router/auth/firebase";
 
 const SignUpPage = () => (
@@ -47,13 +48,18 @@ class SignUpFormBase extends Component {
       //   return this.props.firebase.doSendEmailVerification();
       // })
       .then((response) => {
-        // Create a user in your Firebase realtime database
-        fetch(
-          `https://designerspendroplet.getdpsvapi.com/adduser?uuid=${response.user.uid}&username=${response.user.displayName}&photourl=''&bio=''&email=${response.user.email}`
-        );
+        console.log(response);
+        const user = {
+          uuid: response.user.uid,
+          display_name: null,
+          image_uri: null,
+          email: response.user.email,
+          first_name: null,
+          last_name: null,
+        };
+        this.props.createProfile(user);
         this.setState({ ...INITIAL_STATE });
         this.props.history.push("/home");
-        this.props.setUser(response.user);
       })
       .catch((error) => {
         console.log(error);
@@ -155,11 +161,15 @@ class SignUpFormBase extends Component {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setUser: (user) => dispatch({ type: "SET_USER", user }),
-// });
+const mapDispatchToProps = {
+  createProfile: ProfileThunks.createProfile,
+};
 
-const enhance = compose(withRouter, withFirebase);
+const enhance = compose(
+  withRouter,
+  withFirebase,
+  connect(null, mapDispatchToProps)
+);
 
 const SignUpForm = enhance(SignUpFormBase);
 

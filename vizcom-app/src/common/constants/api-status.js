@@ -1,6 +1,7 @@
 const API_STATUS = {
   GETTING: "GETTING",
   UPDATING: "UPDATING",
+  CREATING: "CREATING",
 };
 
 export default API_STATUS;
