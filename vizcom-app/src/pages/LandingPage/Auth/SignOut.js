@@ -1,9 +1,11 @@
 import React from "react";
 
-import { withFirebase } from "../../../app/firebase";
+import { withFirebase } from "../../../router/auth/firebase";
+
+import './Auth.scss'
 
 const SignOutButton = ({ firebase }) => (
-  <button type="button" onClick={firebase.doSignOut}>
+  <button type="button" onClick={firebase.doSignOut} class = 'btn-flat sign-out'>
     Sign Out
   </button>
 );

@@ -1,1 +1,23 @@
 /* represents the CSS file imported by our stateless view Component */
+
+.explore-container{
+    margin-left:9%;
+    margin-right:9%;
+
+    h1{
+        font-size: 18px;
+        color:#707070;
+       
+    }
+
+    .selectors {
+        width:50%;
+        float:left;
+
+        h1{
+            border-bottom: 1px solid #707070;
+            padding-bottom:1rem;
+            width:200px;
+        }
+    }
+}

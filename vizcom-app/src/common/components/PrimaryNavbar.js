@@ -1,65 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PrimaryNavbar.scss";
 import Logo from "../../assets/logo.png";
 import NewBucket from "../../assets/create-bucket.svg";
 import SignOut from "../../pages/LandingPage/Auth/SignOut";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-export default function PrimaryNav() {
+const PrimaryNav = (props) => {
+  console.log(props);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+
   return (
     <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="logo-container">
+      <div className="nav-wrapper">
+        <a href="#" className="logo-container">
           <img src={Logo} />
         </a>
-        <ul className="nav-items" class="right hide-on-med-and-down">
+        <ul className="nav-items right hide-on-med-and-down">
           <li>
             <a style={{ color: "#505050", fontSize: "16px" }} href="">
               new bucket
             </a>
           </li>
-          <li>
-            <a style={{ color: "#505050", fontSize: "16px" }} href="">
-              user profile
-            </a>
+          <li className = 'profile-items'>
+            <Link
+              to="/profile"
+              style={{ color: "#505050", fontSize: "16px" }}
+              href="http://localhost:3000/profile"
+            >
+              {props.user.authUser.providerData[0].displayName}
+              {props.user.authUser.providerData ? (
+                <img
+                  className="profile-picture"
+                  src={props.user.authUser.providerData[0].photoURL}
+                />
+              ) : null}
+            </Link>
+            <ul className="nav__submenu">
+              <li style = {{float:'right '}}>
+                <SignOut />
+              </li>
+            </ul>
           </li>
+          
           <li>
-            <a href="collapsible.html">
-              <img src="https://via.placeholder.com/30" />
-            </a>
+            <a href="collapsible.html"></a>
           </li>
-          <li>
+          {/* <li>
             <SignOut />
-          </li>
+          </li> */}
+         
         </ul>
       </div>
     </nav>
-    // <div className = "nav">
-    //   <div className = "row">
-    //     <div className = "col s7 m7 l7 logo-container">
-    //       <img src ={Logo} />
-    //     </div>
-    //     <div className = " bucket col s3 m3 l3">
-    //       <ul>
-    //         <li>
-    //           <p>new bucket</p>
-    //         </li>
-    //         <li>
-    //           <img src = {NewBucket}/>
-    //         </li>
-    //       </ul>
-
-    //     </div>
-    //     <div className = "user-icon col s2 m2 l2">
-    //       <ul>
-    //         <li>
-    //           Username
-    //         </li>
-    //         <li>
-    //         <img src = "https://via.placeholder.com/30"/>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </div>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.session,
+  };
+};
+
+export default connect(mapStateToProps)(PrimaryNav);

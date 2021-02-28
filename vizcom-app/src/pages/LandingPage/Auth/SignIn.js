@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
+import { connect } from "react-redux";
 
-import { withFirebase } from "../../../app/firebase";
+import { ProfileThunks } from "../../Profile/redux";
 
-const SignInPage = () => (
+import { withFirebase } from "../../../router/auth/firebase";
+
+const SignIn = () => (
   <div>
     <h1>SignIn</h1>
     <SignInForm />
@@ -41,14 +44,13 @@ class SignInFormBase extends Component {
 
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((response) => {
         this.setState({ ...INITIAL_STATE });
-        debugger;
+        // ned to handle first time sign ins with google
+        this.props.getProfile(response.user.uid);
         this.props.history.push("/home");
       })
       .catch((error) => {
-        debugger;
-
         this.setState({ error });
       });
 
@@ -67,9 +69,9 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <div className="input-container">
-          <div class="field-wrap">
+          <div className="field-wrap">
             <label htmlFor="userEmail">
-              Email <span class="req"></span>
+              Email <span className="req"></span>
             </label>
             <input
               name="email"
@@ -79,9 +81,9 @@ class SignInFormBase extends Component {
               placeholder="Email Address"
             />
           </div>
-          <div class="field-wrap">
+          <div className="field-wrap">
             <label htmlFor="userPassword">
-              Password<span class="req"></span>
+              Password<span className="req"></span>
             </label>
             <input
               name="password"
@@ -117,12 +119,8 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
-        // Create a user in your Firebase Realtime Database too
-        // return this.props.firebase.user(socialAuthUser.user.uid).set({
-        //   username: socialAuthUser.user.displayName,
-        //   email: socialAuthUser.user.email,
-        //   roles: {},
-        // });
+        console.log("herer");
+        this.props.getProfile(socialAuthUser.user.uid);
         this.props.history.push("/home");
       })
       .then(() => {
@@ -152,10 +150,20 @@ class SignInGoogleBase extends Component {
   }
 }
 
-const SignInForm = compose(withRouter, withFirebase)(SignInFormBase);
+const mapDispatchToProps = {
+  getProfile: ProfileThunks.getProfile,
+};
 
-const SignInGoogle = compose(withRouter, withFirebase)(SignInGoogleBase);
+const enhance = compose(
+  withRouter,
+  withFirebase,
+  connect(null, mapDispatchToProps)
+);
 
-export default SignInPage;
+const SignInForm = enhance(SignInFormBase);
+
+const SignInGoogle = enhance(SignInGoogleBase);
+
+export default SignIn;
 
 export { SignInForm, SignInGoogle };
