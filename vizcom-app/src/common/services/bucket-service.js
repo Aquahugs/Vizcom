@@ -3,11 +3,11 @@ import apiClient from "./api";
 
 export default {
   getBuckets(uid) {
-    return apiClient.get(`/api/bucket/get/all`, uid);
+    return apiClient.get(`/api/bucket/${uid}/get/all`);
   },
 
   addToBucket(image) {
-    return apiClient.post(`/api/bucket/add`, image)
+    return apiClient.post(`/api/bucket/add`, image);
   },
 
   // expecting this object

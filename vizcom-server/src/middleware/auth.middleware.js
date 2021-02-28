@@ -24,9 +24,7 @@ const checkIfAuthenticated = (req, res, next) => {
     try {
       const { authToken } = req;
       try {
-        console.log("HERE", authToken);
         const userInfo = await admin.auth().verifyIdToken(authToken);
-        console.log("HERE", userInfo);
       } catch (e) {
         console.log(e);
       }

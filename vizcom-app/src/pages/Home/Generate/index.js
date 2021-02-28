@@ -1,5 +1,5 @@
 import React, { useState, Component } from "react";
-import { ProfileThunks } from "../../Profile/redux";
+import { CollectionThunks } from "../../Profile/Collection/redux";
 import { fadeInUp } from "react-animations";
 import Popup from "reactjs-popup";
 import Radium, { StyleRoot } from "radium";
@@ -86,6 +86,7 @@ class Generate extends Component {
       uuid: this.props.user.authUser.uid,
       generated_image_id: this.state.userphotos.data[this.state.index].Id,
       user_uploaded_image_id: null,
+      image_uri: this.state.userphotos.data[this.state.index].imageUrl,
     };
     this.props.collectImage(imageObj);
   };
@@ -286,7 +287,7 @@ class Generate extends Component {
   }
 }
 const mapDispatchToProps = {
-  collectImage: ProfileThunks.collectImage,
+  collectImage: CollectionThunks.collectImage,
 };
 const mapStateToProps = (state) => {
   return {

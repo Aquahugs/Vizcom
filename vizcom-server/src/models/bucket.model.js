@@ -5,28 +5,49 @@ class BucketModel {
   tableName = "bucket";
 
   find = async (params = {}) => {
-    // let sql = `SELECT * FROM ${this.tableName} WHERE uuid = '${params.id}'`;
-    let sql = `SELECT * FROM bucket 
-        INNER JOIN collection_bucket on bucket.bucket_id 
-        WHERE bucket.uuid = "${params.id}"
+    console.log("HERERH", params.id);
+
+    let sql = `select 
+        bucket.bucket_name,
+        collection_image.image_uri,
+        bucket.create_date,
+        bucket.is_public,
+        bucket.bucket_id,
+        collection_image.collection_image_id,
+        collection_image.generated_image_id,
+        collection_image.user_uploaded_image_id
+      FROM bucket
+      JOIN collection_bucket 
+        ON bucket.bucket_id = collection_bucket.bucket_id
+      JOIN collection_image 
+        ON collection_image.collection_image_id = collection_bucket.collection_image_id
+      WHERE bucket.uuid = "${params.id}"
       `;
 
-    console.log("find SQL QUERY", sql);
+    console.log("BUCKET find SQL QUERY", sql);
 
     const results = await query(sql);
 
-    // group buckets by bucket
-    // const buckets = results.filter((bucket) => {
-    // })
     let buckets = results.reduce((r, a) => {
-      console.log("a", a);
-      console.log("r", r);
-      r[a.bucket_id] = [...(r[a.bucket_id] || []), a];
+      const obj = {
+        bucket_name: a.bucket_name,
+        image_uri: a.image_uri,
+        create_date: a.create_date,
+        is_public: a.is_public,
+        bucket_id: a.bucket_id,
+        collection_image_id: a.collection_image_id,
+        generated_image_id: a.generated_image_id,
+        user_uploaded_image_id: a.user_uploaded_image_id,
+      };
+      r[a.bucket_id] = [...(r[a.bucket_id] || []), obj];
       return r;
-    }, {});
-    console.log("group", buckets);
+    }, []);
 
-    return buckets;
+    const filteredBuckets = buckets.filter((el) => {
+      return el != null;
+    });
+
+    return filteredBuckets;
   };
 
   findOne = async (params) => {

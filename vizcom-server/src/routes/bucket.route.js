@@ -5,7 +5,7 @@ const checkIfAuthenticated = require("../middleware/auth.middleware");
 const awaitHandlerFactory = require("../middleware/awaitHandlerFactory.middleware");
 
 router.get(
-  "/get/all",
+  "/:id/get/all",
   // checkIfAuthenticated,
   awaitHandlerFactory(bucketController.getBuckets)
 ); // localhost:3000/api/v1/user

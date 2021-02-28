@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: vizcom
 -- ------------------------------------------------------
@@ -28,6 +28,7 @@ CREATE TABLE `collection_image` (
   `uuid` varchar(45) NOT NULL,
   `generated_image_id` int DEFAULT NULL,
   `user_uploaded_image_id` int DEFAULT NULL,
+  `image_uri` varchar(150) NOT NULL,
   PRIMARY KEY (`collection_image_id`),
   KEY `uuid_idx` (`uuid`),
   KEY `user_upload_id_idx` (`user_uploaded_image_id`),
@@ -35,7 +36,7 @@ CREATE TABLE `collection_image` (
   CONSTRAINT `fk_gi_ci_id` FOREIGN KEY (`generated_image_id`) REFERENCES `generated_image` (`generated_image_id`),
   CONSTRAINT `fk_u_ci_id` FOREIGN KEY (`uuid`) REFERENCES `user` (`uuid`),
   CONSTRAINT `fk_uui_ci_id` FOREIGN KEY (`user_uploaded_image_id`) REFERENCES `user_uploaded_image` (`user_uploaded_image_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +45,7 @@ CREATE TABLE `collection_image` (
 
 LOCK TABLES `collection_image` WRITE;
 /*!40000 ALTER TABLE `collection_image` DISABLE KEYS */;
-INSERT INTO `collection_image` VALUES (1,'2021-02-10 11:27:06','9hRzb2ZXtBhrovvMIROk3hvZBZp2',13,NULL),(2,'2021-02-10 11:37:16','9hRzb2ZXtBhrovvMIROk3hvZBZp2',19,NULL),(3,'2021-02-10 11:37:16','9hRzb2ZXtBhrovvMIROk3hvZBZp2',20,NULL),(4,'2021-02-10 11:37:16','9hRzb2ZXtBhrovvMIROk3hvZBZp2',21,NULL),(5,'2021-02-10 11:37:16','9hRzb2ZXtBhrovvMIROk3hvZBZp2',22,NULL),(6,'2021-02-10 11:37:16','9hRzb2ZXtBhrovvMIROk3hvZBZp2',23,NULL),(7,'2021-02-15 17:11:37','9hRzb2ZXtBhrovvMIROk3hvZBZp2',NULL,1),(8,'2021-02-15 17:11:37','9hRzb2ZXtBhrovvMIROk3hvZBZp2',NULL,2),(9,'2021-02-15 17:11:37','9hRzb2ZXtBhrovvMIROk3hvZBZp2',NULL,3),(10,'2021-02-15 17:11:37','9hRzb2ZXtBhrovvMIROk3hvZBZp2',NULL,4),(11,'2021-02-15 17:11:48','9hRzb2ZXtBhrovvMIROk3hvZBZp2',19,NULL),(12,'2021-02-15 17:11:48','9hRzb2ZXtBhrovvMIROk3hvZBZp2',20,NULL),(13,'2021-02-15 17:11:48','9hRzb2ZXtBhrovvMIROk3hvZBZp2',21,NULL),(14,'2021-02-15 17:11:48','9hRzb2ZXtBhrovvMIROk3hvZBZp2',22,NULL),(15,'2021-02-15 17:11:48','9hRzb2ZXtBhrovvMIROk3hvZBZp2',23,NULL);
+INSERT INTO `collection_image` VALUES (16,'2021-02-27 11:38:15','9hRzb2ZXtBhrovvMIROk3hvZBZp2',11093,NULL,'https://storage.googleapis.com/generated-images/file-1598039298295.png'),(17,'2021-02-27 11:38:58','9hRzb2ZXtBhrovvMIROk3hvZBZp2',4054,NULL,'https://storage.googleapis.com/generated-images/file-1595561600592.png'),(18,'2021-02-27 11:39:23','9hRzb2ZXtBhrovvMIROk3hvZBZp2',4348,NULL,'https://storage.googleapis.com/generated-images/file-1595562632143.png'),(19,'2021-02-27 11:39:36','9hRzb2ZXtBhrovvMIROk3hvZBZp2',17867,NULL,'https://storage.googleapis.com/generated-images/file-1599100022868.png');
 /*!40000 ALTER TABLE `collection_image` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-24 18:16:58
+-- Dump completed on 2021-02-27 19:27:02
