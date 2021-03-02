@@ -14,9 +14,11 @@ import backarrow from "../../../assets/back-arrow.svg";
 import { ProfileThunks } from "../redux";
 import { withAuthorization } from "../../../router/auth/session";
 
-const Editor = ({ updateProfile, history, uid }) => {
+const Editor = ({ updateProfile, history, uid, user }) => {
   const { register, handleSubmit } = useForm();
+  console.log(user)
 
+  console.log(user.first_name)
   const submitForm = (formData) => {
     updateProfile(formData, uid);
     history.push("/profile");
@@ -31,29 +33,30 @@ const Editor = ({ updateProfile, history, uid }) => {
           </Link>
           <h1>Edit profile</h1>
           <div className="input-field col s6">
-            <label htmlFor="name">First Name</label>
-            <input type="text" name="firstName" id="firstName" ref={register} />
+          <label  class = "active" for="first_name">First Name</label>
+            <input type="text" name="firstName" id="firstName" ref={register} defaultValue={user.first_name}/>
           </div>
           <div className="input-field col s6">
-            <label htmlFor="name">Last Name</label>
-            <input type="text" name="lastName" id="lastName" ref={register} />
+            <label class = "active" htmlFor="name">Last Name</label>
+            <input type="text" name="lastName" id="lastName" ref={register} defaultValue={user.last_name} />
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label htmlFor="name">Location</label>
-            <input type="text" name="location" id="location" ref={register} />
+            <label class = "active" htmlFor="name">Location</label>
+            <input type="text" name="location" id="location" ref={register} defaultValue={user.location} />
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label htmlFor="bio">Bio</label>
+            <label class = "active" htmlFor="bio">Bio</label>
             <textarea
               name="bio"
               className="materialize-textarea"
               id="bio"
               ref={register}
               maxLength="150"
+              defaultValue={user.bio}
             />
           </div>
         </div>
@@ -65,12 +68,13 @@ const Editor = ({ updateProfile, history, uid }) => {
                 <i className="material-icons prefix">
                   <img src={instaIcon} />
                 </i>
-                <label htmlFor="instagram">Instagram</label>
+                <label class = "active" htmlFor="instagram">Instagram</label>
                 <input
                   type="text"
                   name="instagram"
                   id="instagram"
                   ref={register}
+                  defaultValue={user.instagram}
                 />
               </div>
             </li>
@@ -79,8 +83,8 @@ const Editor = ({ updateProfile, history, uid }) => {
                 <i className="material-icons prefix">
                   <img src={twitterIcon} />
                 </i>
-                <label htmlFor="twitter">Twitter</label>
-                <input type="text" name="twitter" id="twitter" ref={register} />
+                <label class = "active" htmlFor="twitter">Twitter</label>
+                <input type="text" name="twitter" id="twitter" ref={register} defaultValue={user.twitter} />
               </div>
             </li>
             <li>
@@ -88,12 +92,13 @@ const Editor = ({ updateProfile, history, uid }) => {
                 <i className="material-icons prefix">
                   <img src={webIcon} />
                 </i>
-                <label htmlFor="personalSite">Website</label>
+                <label class = "active" htmlFor="personalSite">Website</label>
                 <input
                   type="text"
                   name="personalSite"
                   id="personalSite"
                   ref={register}
+                  defaultValue={user.personal_site}
                 />
               </div>
             </li>
