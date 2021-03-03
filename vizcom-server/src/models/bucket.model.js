@@ -13,6 +13,7 @@ class BucketModel {
         bucket.create_date,
         bucket.is_public,
         bucket.bucket_id,
+        bucket.description,
         collection_image.collection_image_id,
         collection_image.generated_image_id,
         collection_image.user_uploaded_image_id
@@ -38,6 +39,7 @@ class BucketModel {
         collection_image_id: a.collection_image_id,
         generated_image_id: a.generated_image_id,
         user_uploaded_image_id: a.user_uploaded_image_id,
+        description: a.description,
       };
       r[a.bucket_id] = [...(r[a.bucket_id] || []), obj];
       return r;
@@ -64,14 +66,13 @@ class BucketModel {
     const { values } = multipleColumnSet(params);
 
     const command = `INSERT INTO bucket
-          (uuid, bucket_name, is_public)
+          (bucket_name, description, is_public, uuid)
         VALUES
-          (?, ?, ?)`;
-    await query(command, values);
+          (?, ?, ?, ?)`;
 
-    // const query =
+    const result = await query(command, values);
 
-    const affectedRows = command ? command.affectedRows : 0;
+    const affectedRows = result ? result.affectedRows : 0;
 
     return affectedRows;
   };

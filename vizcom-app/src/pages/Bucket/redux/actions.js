@@ -15,7 +15,7 @@ const getBucketsSuccess = (buckets) => ({
   buckets,
 });
 
-const createBucketsError = () => ({
+const createBucketError = () => ({
   type: TYPES.CREATE_BUCKET_ERROR,
   //TODO: Helper method to create meaningful messages based on the error
   error: "Unable to create bucket",
@@ -49,7 +49,7 @@ const BucketActions = {
   getBucketsError,
   getBucketsStarted,
   getBucketsSuccess,
-  createBucketsError,
+  createBucketError,
   createBucketStarted,
   createBucketSuccess,
   addToBucketsError,

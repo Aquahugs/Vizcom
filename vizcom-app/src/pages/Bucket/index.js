@@ -5,92 +5,110 @@ import M from "materialize-css";
 import { compose } from "recompose";
 import StyledDropzone from "./Dropzone";
 import backarrow from "../../assets/back-arrow.svg";
+import { withAuthorization } from "../../router/auth/session";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { BucketThunks } from "./redux";
 
-class NewBucket extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      images: [],
-      photoURL: props.user.authUser.providerData[0].photoURL,
-      displayName: props.user.authUser.providerData[0].displayName,
-      uuid: props.user.authUser.uid,
-      isLoaded: false,
-      isLoggedIn: props.user.authUser.uid,
-      isMe: false,
-      isEdit: false,
-      isEditBio: false,
-      info: [],
-      selectedFile: [],
-      userCollection: [],
-      bio: null,
-      newbio: null,
-      view: "bucket",
+const Bucket = ({ uid, history, createBucket }) => {
+  const { register, handleSubmit } = useForm();
+
+  const submitForm = (formData) => {
+    formData.is_public = !formData.is_public;
+    const newBucket = {
+      ...formData,
+      uuid: uid,
     };
-  }
+    console.log(newBucket);
+    createBucket(newBucket);
+    history.push("/profile");
+  };
 
-  componentDidMount() {
-    const { uuid } = this.state;
-    let input = document.getElementById("textarea2");
-    M.CharacterCounter.init(input);
-  }
-
-  render() {
-    return (
-      <div className="row create-container">
-        <form className="col s12">
-          <div className="row edit-profile">
-            <a href="http://localhost:3000/profile">
-              <img className="backarrow" src={backarrow} />
-            </a>
-            <h1>Create bucket</h1>
-            <p>Collect and organize images in digital buckets</p>
-            <div className="input-field col s12">
-              <input id="bucket_name" type="text" className="validate" />
-              <label for="bucket_name">Bucket Name</label>
-            </div>
-            <div className="input-field col s12">
-              <input id="last_name" type="text" className="validate" />
-              <label for="last_name">Description</label>
-            </div>
+  return (
+    <div className="row create-container">
+      <form className="col s12" onSubmit={handleSubmit(submitForm)}>
+        <div className="row edit-profile">
+          <Link to={"profile"}>
+            <img className="backarrow" src={backarrow} />
+          </Link>
+          <h1>Create bucket</h1>
+          <p>Collect and organize images in digital buckets</p>
+          <div className="input-field col s12">
+            <input
+              id="bucket_name"
+              name="bucket_name"
+              type="text"
+              className="validate"
+              ref={register}
+            />
+            <label htmlFor="bucket_name">Bucket Name</label>
           </div>
-          <StyledDropzone />
-          <div className="switch">
-            <label className="secret-button">
-              <span>Keep it as a secret</span>
-              <input type="checkbox" />
-              <span className="lever"></span>
-              <br />
-              Only you and participants can see it
-            </label>
+          <div className="input-field col s12">
+            <input
+              id="description"
+              type="text"
+              name="description"
+              ref={register}
+              className="validate"
+            />
+            <label htmlFor="description">Description</label>
           </div>
+        </div>
+        <div className="switch">
+          <label className="secret-button">
+            <span>Keep it as a secret</span>
+            <input
+              type="checkbox"
+              id="is_public"
+              name="is_public"
+              ref={register}
+              className="validate"
+            />
+            <span className="lever"></span>
+            <br />
+            Only you and participants can see it
+          </label>
+        </div>
 
-          <div className="switch"></div>
+        <div className="switch"></div>
 
-          <div className="row action-buttons">
-            <a href="http://localhost:3000/profile">
-              <button className="btn waves-effect waves-light">Cancel</button>
-            </a>
-
+        <div className="row action-buttons">
+          <Link to={"profile"}>
             <button
-              className="btn  waves-light save-btn"
+              className="btn waves-effect waves-light"
               type="submit"
               name="action"
             >
-              Save
-            </button>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+              Cancel
+            </button>{" "}
+          </Link>
+
+          <button
+            className="btn  waves-light save-btn"
+            type="submit"
+            name="action"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
-    user: state.session,
+    uid: state.session.authUser.uid,
   };
+};
+
+const mapDispatchToProps = {
+  createBucket: BucketThunks.createBucket,
 };
 
 const condition = (authUser) => !!authUser;
 
-export default connect(mapStateToProps)(NewBucket);
+export default compose(
+  withAuthorization(condition),
+  connect(mapStateToProps, mapDispatchToProps)
+)(Bucket);

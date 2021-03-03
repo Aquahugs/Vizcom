@@ -33,9 +33,16 @@ class BucketController {
       throw new HttpException(500, "Something went wrong saving image");
     }
 
-    let collectionList = await CollectionModel.create({ id: req.body.uuid });
+    const bucketList = await BucketModel.find({ id: req.body.uuid });
 
-    res.send(collectionList);
+    if (!bucketList) {
+      throw new HttpException(
+        500,
+        "Something went wrong fetching updated bucket list"
+      );
+    }
+
+    res.send(bucketList);
   };
 
   addToBucket = async (req, res, next) => {

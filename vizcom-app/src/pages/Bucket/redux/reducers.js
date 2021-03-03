@@ -18,11 +18,9 @@ const bucketReducer = (state = initialState, action) => {
         status: null,
       };
     case TYPES.CREATE_BUCKET_SUCCESS:
-      // no idea if this works
-      const newBuckets = state.buckets.push(action.bucket);
       return {
         ...state,
-        buckets: newBuckets,
+        buckets: action.buckets,
         status: null,
       };
     case TYPES.ADD_TO_BUCKET_SUCCESS:
