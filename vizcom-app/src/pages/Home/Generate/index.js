@@ -81,13 +81,17 @@ class Generate extends Component {
     console.log(this.state.userphotos.data[this.state.index].imageUrl);
   };
   collectImage = (e) => {
+    const images = this.state.userphotos.data.slice(0, 3).map((image) => {
     const imageObj = {
       uuid: this.props.user.authUser.uid,
-      generated_image_id: this.state.userphotos.data[this.state.index].Id,
+      generated_image_id: image.Id,
       user_uploaded_image_id: null,
-      image_uri: this.state.userphotos.data[this.state.index].imageUrl,
+      image_uri: image.imageUrl,
     };
+    
     this.props.collectImage(imageObj);
+  });
+
   };
 
   render() {
@@ -198,6 +202,11 @@ class Generate extends Component {
 
     return (
       <div className="row generate-container">
+          <div className="row tag">
+            <p>
+              Every click uses artificial intelligence to generate unique images{" "}
+            </p>
+          </div>
         <div className=" selector-container">
           <button
             onClick={this.toggleActive}
@@ -213,12 +222,6 @@ class Generate extends Component {
           >
             footwear
           </button>
-        </div>
-
-        <div className="row tag">
-          <p>
-            Every click uses artificial intelligence to generate unique images{" "}
-          </p>
         </div>
         <StyleRoot>
           <div className="row" style={visibilityStyle}>

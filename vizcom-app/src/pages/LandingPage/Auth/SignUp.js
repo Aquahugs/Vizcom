@@ -90,7 +90,7 @@ class SignUpFormBase extends Component {
       <div className="form">
         <div className="tab-content">
           <div id="signup">
-            <h1>Sign Up </h1>
+            <h1 style = {{color:"#fcfbfb",fontSize:'26px'}}>Sign Up </h1>
             <form onSubmit={this.onSubmit}>
               <div className="top-row">
                 <div className="field-wrap">

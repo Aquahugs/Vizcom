@@ -1,20 +1,23 @@
 .left-area {
-  background-color: #262626;
-  height: 1120px;
+  background-color: #fcfbfb;
+  height: 900px;
   padding-left: 5% !important;
+  padding-top: 5% !important;
 
   img {
     padding-top: 45%;
   }
 
   p {
-    color: #ebebeb;
+    color: #262626;
     font-size: 1.3rem;
   }
 }
 
 .auth-area {
   padding: 5% !important;
+  background-color: #161616;
+  height: 900px;
 }
 
 .info-container {
@@ -42,4 +45,10 @@
     line-height: 4rem;
     padding-top: 10rem;
   }
+}
+
+.logo {
+  max-width: 100%;
+  margin-top: 30%;
+ 
 }
