@@ -1,5 +1,18 @@
 .btn-container {
-  margin: 7%;
+  margin: 5%;
+  background-color: #003FFF !important;
+  text-align: center;
+  .btn-flat{
+    background-color: #EEEEEE !important;
+    text-align: center !important;
+
+  }
+}
+
+.tab-content{
+  input{
+    color:white;
+  }
 }
 
 .login-btn {

@@ -1,6 +1,6 @@
 import React from "react";
-
 import { withFirebase } from "../../../router/auth/firebase";
+import './Auth.scss'
 
 import './Auth.scss'
 

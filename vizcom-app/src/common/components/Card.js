@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Card.scss";
 
-const Card = ({ link, logo, name, description }) => {
+const Card = ({ link, logo, name, description,push }) => {
   return (
     <Link to={link}>
       <div className="col s4 m4">

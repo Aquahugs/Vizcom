@@ -11,7 +11,7 @@ const NavigationAuth = () => {
   return (
     <div style = {{marginLeft:'10%',marginRight:'10%'}}>
       <PrimaryNav />
-      <SecondaryNav />
+      <SecondaryNav history={history} />
       <main>
         <Router history={history} />
       </main>

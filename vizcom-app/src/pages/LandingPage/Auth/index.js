@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import "../LandingPage.scss";
 
 import SignIn from "./SignIn";
@@ -12,10 +13,10 @@ const Auth = () => {
     switch (authState) {
       case "signUp":
         return (
-          <div>
+          <div className = 'signup-container'>
             <SignUp />
-            <p>
-              Already have an account?
+            <p style = {{color:"#ececec"}}>
+              Already have an account? 
               <a onClick={() => setAuthState((authState = "signIn"))}>
                 Sign in
               </a>
@@ -26,7 +27,7 @@ const Auth = () => {
         return (
           <div>
             <SignIn />
-            <p>
+            <p style = {{color:"#ececec"}}>
               Dont have an account?
               <a onClick={() => setAuthState((authState = "signUp"))}>
                 Sign Up

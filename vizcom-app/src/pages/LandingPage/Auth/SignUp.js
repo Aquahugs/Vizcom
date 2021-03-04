@@ -87,10 +87,10 @@ class SignUpFormBase extends Component {
       username === "";
 
     return (
-      <div className="form">
+      <div >
         <div className="tab-content">
           <div id="signup">
-            <h1>Sign Up </h1>
+            <h1 style = {{color:"#fcfbfb",fontSize:'26px'}}>Sign Up </h1>
             <form onSubmit={this.onSubmit}>
               <div className="top-row">
                 <div className="field-wrap">
@@ -145,7 +145,8 @@ class SignUpFormBase extends Component {
                   <button
                     disabled={isInvalid}
                     type="submit"
-                    className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
+                    className="  btn-flat waves-effect waves-light"
+                    style = {{float:"left",marginTop:'0'}}
                   >
                     Sign Up
                   </button>
