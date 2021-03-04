@@ -5,6 +5,7 @@ const initialState = {
   error: null,
   status: null,
   buckets: null,
+  dropdownOptions: null,
 };
 
 const bucketReducer = (state = initialState, action) => {
@@ -18,11 +19,9 @@ const bucketReducer = (state = initialState, action) => {
         status: null,
       };
     case TYPES.CREATE_BUCKET_SUCCESS:
-      // no idea if this works
-      const newBuckets = state.buckets.push(action.bucket);
       return {
         ...state,
-        buckets: newBuckets,
+        buckets: action.buckets,
         status: null,
       };
     case TYPES.ADD_TO_BUCKET_SUCCESS:
@@ -70,6 +69,11 @@ const bucketReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         status: null,
+      };
+    case TYPES.GET_BUCKETS_DROPDOWN_OPTIONS:
+      return {
+        ...state,
+        dropdownOptions: action.bucketOptions,
       };
 
     default:

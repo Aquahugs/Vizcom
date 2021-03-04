@@ -23,7 +23,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
     updateProfile(formData, uid);
     history.push("/profile");
   };
-
+  
   return (
     <div className="row form-container">
       <form className="col s12" onSubmit={handleSubmit(submitForm)}>
@@ -32,6 +32,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
             <img className="backarrow" src={backarrow} />
           </Link>
           <h1>Edit profile</h1>
+          
           <div className="input-field col s6">
           <label  class = "active" for="first_name">First Name</label>
             <input type="text" name="firstName" id="firstName" ref={register} defaultValue={user.first_name}/>
@@ -70,6 +71,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 </i>
                 <label class = "active" htmlFor="instagram">Instagram</label>
                 <input
+                  class="active" 
                   type="text"
                   name="instagram"
                   id="instagram"
@@ -94,6 +96,8 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 </i>
                 <label class = "active" htmlFor="personalSite">Website</label>
                 <input
+                  class="active" 
+                  defaultValue={user.personal_site}
                   type="text"
                   name="personalSite"
                   id="personalSite"
@@ -123,6 +127,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
           </button>
         </div>
       </form>
+      
     </div>
   );
 };
@@ -131,6 +136,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.profile.user,
     uid: state.session.authUser.uid,
+    profile: state.profile.user
   };
 };
 

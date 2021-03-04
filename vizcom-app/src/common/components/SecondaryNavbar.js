@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./SecondaryNavbar.scss";
@@ -17,9 +17,11 @@ const SecondaryNav = ({ user, profile, history }) => {
           <Link to="/home">Home <span>{history.location.pathname}</span></Link>
         </li>
         <li>
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile" >Profile / 
+
+          
+          </Link>
         </li>
-        {profile && <h2>{profile.first_name}</h2>}
         <li>
           <Link to="/explore">Explore</Link>
         </li>
