@@ -5,6 +5,7 @@ const initialState = {
   error: null,
   status: null,
   buckets: null,
+  dropdownOptions: null,
 };
 
 const bucketReducer = (state = initialState, action) => {
@@ -68,6 +69,11 @@ const bucketReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         status: null,
+      };
+    case TYPES.GET_BUCKETS_DROPDOWN_OPTIONS:
+      return {
+        ...state,
+        dropdownOptions: action.bucketOptions,
       };
 
     default:

@@ -15,6 +15,11 @@ const getBucketsSuccess = (buckets) => ({
   buckets,
 });
 
+const getBucketDropdownOptions = (bucketOptions) => ({
+  type: TYPES.GET_BUCKETS_SUCCESS,
+  bucketOptions,
+});
+
 const createBucketError = () => ({
   type: TYPES.CREATE_BUCKET_ERROR,
   //TODO: Helper method to create meaningful messages based on the error
@@ -55,6 +60,7 @@ const BucketActions = {
   addToBucketsError,
   addToBucketStarted,
   addToBucketSuccess,
+  getBucketDropdownOptions,
 };
 
 export default BucketActions;

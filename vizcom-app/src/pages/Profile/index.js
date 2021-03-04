@@ -143,6 +143,7 @@ const Profile = ({
                   key={image.collection_image_id}
                 >
                   <img className="collection-image" src={image.image_uri} />
+                  <a>add to bucket</a>
                 </div>
               );
             })}

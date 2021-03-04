@@ -5,9 +5,15 @@ class BucketModel {
   tableName = "bucket";
 
   find = async (params = {}) => {
-    console.log("HERERH", params.id);
+    console.log(params.id);
 
-    let sql = `select 
+    const getBucketsSql = `select *
+        from bucket 
+        where uuid = "${params.id}"`;
+
+    const topLevelBuckets = await query(getBucketsSql);
+
+    const getBucketsWithImageSql = `select 
         bucket.bucket_name,
         collection_image.image_uri,
         bucket.create_date,
@@ -25,37 +31,30 @@ class BucketModel {
       WHERE bucket.uuid = "${params.id}"
       `;
 
-    console.log("BUCKET find SQL QUERY", sql);
+    const bucketsWithImages = await query(getBucketsWithImageSql);
 
-    const results = await query(sql);
-
-    let buckets = results.reduce((r, a) => {
-      const obj = {
-        bucket_name: a.bucket_name,
-        image_uri: a.image_uri,
-        create_date: a.create_date,
-        is_public: a.is_public,
-        bucket_id: a.bucket_id,
-        collection_image_id: a.collection_image_id,
-        generated_image_id: a.generated_image_id,
-        user_uploaded_image_id: a.user_uploaded_image_id,
-        description: a.description,
-      };
-      r[a.bucket_id] = [...(r[a.bucket_id] || []), obj];
-      return r;
-    }, []);
-
-    const filteredBuckets = buckets.filter((el) => {
-      return el != null;
+    topLevelBuckets.forEach((bucket) => {
+      bucket.images = bucketsWithImages
+        .map((image) => {
+          if (image.bucket_id === bucket.bucket_id) {
+            return {
+              image_uri: image.image_uri,
+              collection_image_id: image.collection_image_id,
+              generated_image_id: image.generated_image_id,
+              user_uploaded_image_id: image.user_uploaded_image_id,
+            };
+          }
+          return null;
+        })
+        .filter((el) => el !== null);
     });
-
-    return filteredBuckets;
+    console.log(topLevelBuckets);
+    return topLevelBuckets;
   };
 
   findOne = async (params) => {
     const sql = `SELECT * FROM ${this.tableName}
         WHERE uuid = '${params.id}'`;
-    console.log(sql);
     const result = await query(sql);
 
     // return back the first row (user)
@@ -78,7 +77,6 @@ class BucketModel {
   };
 
   insert = async (params) => {
-    console.log("the params", params);
     const { values } = multipleColumnSet(params);
 
     const sql = `INSERT INTO collection_bucket
@@ -87,7 +85,6 @@ class BucketModel {
         (?,?)`;
 
     const result = await query(sql, values);
-    console.log("the params", result);
 
     const affectedRows = result ? result.affectedRows : 0;
 

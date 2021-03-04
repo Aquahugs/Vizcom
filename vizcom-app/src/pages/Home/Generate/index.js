@@ -1,21 +1,26 @@
 import React, { useState, Component } from "react";
-import { CollectionThunks } from "../../Profile/Collection/redux";
+import { connect } from "react-redux";
 import { fadeInUp } from "react-animations";
 import Popup from "reactjs-popup";
 import Radium, { StyleRoot } from "radium";
-import BucketList from "./bucket-list";
+
+import BucketList from "./AddToBucket";
 import AddButtons from "./add-buttons";
-import { connect } from "react-redux";
+
 import "reactjs-popup/dist/index.css";
 import "./generate.scss";
 import downloadbutton from "../../../assets/download-button.svg";
+
 import collectbutton from "../../../assets/collect-button.svg";
 import history from "../../../common/utils/history";
+
+import { CollectionThunks } from "../../Profile/Collection/redux";
 
 class Generate extends Component {
   constructor(props) {
     super(props);
     this.toggleBuckets = this.toggleBuckets.bind(this);
+    this.collectImageHandler = this.collectImageHandler.bind(this);
     this.state = {
       mode: "cardesign",
       collectedimage: "",
@@ -38,14 +43,14 @@ class Generate extends Component {
         this.setState({
           isLoaded: true,
           userphotos: data1,
-        }),
+        })
       );
   }
 
   toggleImage = () => {
     this.setState({ isGenerating: true });
-    let list = this.state.userphotos.data
-    list = list.sort(() => Math.random() - 0.5)
+    let list = this.state.userphotos.data;
+    list = list.sort(() => Math.random() - 0.5);
     setTimeout(() => {
       this.setState({ isGenerating: false });
     }, 800);
@@ -60,7 +65,7 @@ class Generate extends Component {
   };
 
   toggleBuckets = () => {
-    if (this.state.bucketSearch == false) {
+    if (this.state.bucketSearch === false) {
       this.setState({ bucketSearch: true });
     } else {
       this.setState({ bucketSearch: false });
@@ -80,19 +85,16 @@ class Generate extends Component {
     });
     console.log(this.state.userphotos.data[this.state.index].imageUrl);
   };
-  collectImage = (e) => {
-    const images = this.state.userphotos.data.slice(0, 3).map((image) => {
+  collectImageHandler(image) {
     const imageObj = {
       uuid: this.props.user.authUser.uid,
       generated_image_id: image.Id,
       user_uploaded_image_id: null,
       image_uri: image.imageUrl,
     };
-    
-    this.props.collectImage(imageObj);
-  });
 
-  };
+    this.props.collectImage(imageObj);
+  }
 
   render() {
     console.log(this.state);
@@ -142,71 +144,67 @@ class Generate extends Component {
 
     const images = this.state.userphotos.data.slice(0, 3).map((image) => {
       return (
-      <div className="col s4 m4 l4">
-        <Popup
+        <div className="col s4 m4 l4">
+          <Popup
             trigger={<img className="generated-image" src={image.imageUrl} />}
             modal
           >
-          <span> {/* Pop up modal */}
-            <div className="row">
-              <div className="col s7 m7 l7">
+            <span>
+              {" "}
+              {/* Pop up modal */}
+              <div className="row">
+                <div className="col s7 m7 l7">
                   <img
                     className="generated-imagemodal"
-                    src={
-                      image.imageUrl
-                    }
+                    src={image.imageUrl}
                     style={visibilityStyle}
                   />
                 </div>
                 <div className="col s5 m5 l5 generated-info">
-                    <h1>
-                      {" "}
-                      {image.imageUrl.slice(-22, -1)}
-                      g
-                    </h1>
-                    <h2>collectors</h2>
-                    <div className="button-container row">
-                      <div style={hideBuckets}>
-                        <AddButtons toggleBuckets={this.toggleBuckets} />
-                      </div>
-                      <div
-                        className="bucket-container col s12 m12 l12"
-                        style={showBuckets}
-                      >
-                        <BucketList toggleBuckets={this.toggleBuckets} />
-                      </div>
+                  <h1> {image.imageUrl.slice(-22, -1)}g</h1>
+                  <h2>collectors</h2>
+                  <div className="button-container row">
+                    <div style={hideBuckets}>
+                      <AddButtons toggleBuckets={this.toggleBuckets} />
                     </div>
+                    <div
+                      className="bucket-container col s12 m12 l12"
+                      style={showBuckets}
+                    >
+                      <BucketList toggleBuckets={this.toggleBuckets} />
+                    </div>
+                  </div>
                 </div>
-            </div>
-          </span>
-        </Popup>
-        <div className="row save-buttons">
-          <a
-            href={ image.imageUrl}
-            download
-          >
-            <img
-              className="download-button"
-              src={downloadbutton}
-              onClick={this.logDownload}
-            />
-          </a>
-          <a className="colelct" onClick={this.collectImage}>
-            Collect
-            <i className="material-icons right">add_box</i>
-          </a>
+              </div>
+            </span>
+          </Popup>
+          <div className="row save-buttons">
+            <a href={image.imageUrl} download>
+              <img
+                className="download-button"
+                src={downloadbutton}
+                onClick={this.logDownload}
+              />
+            </a>
+            <a
+              className="colelct"
+              onClick={() => this.collectImageHandler(image)}
+            >
+              Collect
+              <i className="material-icons right">add_box</i>
+            </a>
+          </div>
         </div>
-       
-      </div>)
+      );
     });
 
     return (
       <div className="row generate-container">
-          <div className="row tag">
-            <p>
-              Every click uses artificial intelligence to generate unique images{" "}
-            </p>
-          </div>
+        <div className="row tag">
+          <p>
+            Every click uses artificial intelligence to generate unique images{" "}
+          </p>
+        </div>
         <div className=" selector-container">
           <button
             onClick={this.toggleActive}
@@ -225,9 +223,9 @@ class Generate extends Component {
         </div>
         <StyleRoot>
           <div className="row" style={visibilityStyle}>
-              {images}
+            {images}
           </div>
-          
+
           <div className="row generated-container" style={styles.fadeInUp}>
             <img //LOAD ANIMATION
               src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01"
@@ -261,6 +259,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     user: state.session,
+    buckets: state.bucket.buckets,
   };
 };
 

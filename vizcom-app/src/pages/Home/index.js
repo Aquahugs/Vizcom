@@ -35,7 +35,7 @@ const Home = ({
       getCollection(uid);
     }
     if (!buckets) {
-      getBuckets();
+      getBuckets(uid);
     }
   }, [user, collection, buckets, uid, getProfile, getCollection, getBuckets]);
 

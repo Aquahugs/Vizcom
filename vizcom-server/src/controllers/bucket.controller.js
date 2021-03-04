@@ -6,9 +6,7 @@ dotenv.config();
 
 class BucketController {
   getBuckets = async (req, res, next) => {
-    console.log("UUID", req.body.uid);
     let bucketList = await BucketModel.find({ id: req.params.id });
-    console.log("bucketList", bucketList);
     if (!bucketList.length) {
       throw new HttpException(404, "No buckets exists");
     }
@@ -25,8 +23,6 @@ class BucketController {
   // };
 
   createBucket = async (req, res, next) => {
-    console.log("request body", req.body);
-
     const result = await BucketModel.create(req.body);
 
     if (!result) {
