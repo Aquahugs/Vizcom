@@ -8,8 +8,10 @@ import ProfileThunks from "./redux/thunks";
 import CollectionThunks from "./Collection/redux/thunks";
 import BucketThunks from "../Bucket/redux/thunks";
 
-import "./profile.scss";
+import BucketList from "../Bucket/BucketList";
+import { EDITOR, ADD_BUCKET } from "../../router/routes-const";
 
+import "./profile.scss";
 import locationIcon from "../../assets/location-icon.svg";
 import instaIcon from "../../assets/instagram.png";
 import twitterIcon from "../../assets/twitter.png";
@@ -69,7 +71,7 @@ const Profile = ({
         <div className="row">
           <div className="col sm6 m6 l6">
             <div className="row bio-header">
-              <Link to={"editor"}>
+              <Link to={EDITOR}>
                 <button class=" btn btn-flat edit-btn ">Edit profile</button>
               </Link>
               {profile && <h2>{profile.first_name}</h2>}
@@ -120,27 +122,14 @@ const Profile = ({
         </div>
         {view === "bucket" && (
           <div className="row">
-            {/* CREATE BUCKET LIST COMPONENT */}
-            <Link to={"bucket"}>
+            <Link to={ADD_BUCKET}>
               <button class=" btn btn-flat create-btn ">
                 <img src={plus} />
                 <br />
                 Create new bucket
               </button>
             </Link>
-            <div className="row">
-              {/* CREATE COLLECTION LIST COMPONENT */}
-              {buckets.map((bucket, index) => {
-                return (
-                  <div className="col s3 m3 l3" key={`Key${index}`}>
-                    <h3>{bucket[0].bucket_name}</h3>
-                    {bucket.map((image, i) => {
-                      return <img key={`Key${i}`} src={image.image_uri} />;
-                    })}
-                  </div>
-                );
-              })}
-            </div>
+            <BucketList user={profile} buckets={buckets} />
           </div>
         )}
         {view === "collection" && collection && (

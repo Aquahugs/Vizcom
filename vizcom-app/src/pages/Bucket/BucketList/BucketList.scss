@@ -1,0 +1,20 @@
+.bucket-teaser_container {
+  display: grid;
+  grid-gap: 50px 50px;
+
+  .bucket-teaser_row {
+    grid-row-start: 1;
+    grid-row-end: 5;
+  }
+}
+
+.bucket-teaser_image {
+  width: 100%;
+}
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}

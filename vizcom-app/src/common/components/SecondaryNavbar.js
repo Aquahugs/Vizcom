@@ -13,7 +13,6 @@ const SecondaryNav = ({ user, profile }) => {
         <li>
           <Link to="/profile">Profile</Link>
         </li>
-        {profile && <h2>{profile.first_name}</h2>}
         <li>
           <Link to="/explore">Explore</Link>
         </li>

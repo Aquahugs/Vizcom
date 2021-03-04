@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import "./newbucket.scss";
 import M from "materialize-css";
 import { compose } from "recompose";
-import StyledDropzone from "./Dropzone";
-import backarrow from "../../assets/back-arrow.svg";
-import { withAuthorization } from "../../router/auth/session";
+import StyledDropzone from "../Dropzone";
+import backarrow from "../../../assets/back-arrow.svg";
+import { withAuthorization } from "../../../router/auth/session";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { BucketThunks } from "./redux";
+import { BucketThunks } from "../redux";
 
 const Bucket = ({ uid, history, createBucket }) => {
   const { register, handleSubmit } = useForm();
