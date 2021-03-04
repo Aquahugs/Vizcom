@@ -1,5 +1,18 @@
 .btn-container {
-  margin: 7%;
+  margin: 5%;
+  background-color: #003FFF !important;
+  text-align: center;
+  .btn-flat{
+    background-color: #EEEEEE !important;
+    text-align: center !important;
+
+  }
+}
+
+.tab-content{
+  input{
+    color:white;
+  }
 }
 
 .login-btn {
@@ -30,4 +43,9 @@
 .sign-out:hover {
   width: 100%;
   background-color: #EEEEEE;
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> f315311d4995d49089f0ef9126c5eaf9b9fb2c93

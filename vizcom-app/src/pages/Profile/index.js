@@ -36,11 +36,21 @@ const Profile = ({
       getCollection(uid);
       console.log("collection", collection);
     }
-    // if (!buckets) {
-    //   getBuckets();
-    // }
+    if (!buckets) {
+      getBuckets(uid);
+      console.log("buckets", buckets);
+    }
     setIsLoaded(true);
-  }, [profile, collection, buckets, getProfile, getCollection, getBuckets]);
+    console.log("buckets", buckets);
+  }, [
+    profile,
+    collection,
+    buckets,
+    uid,
+    getProfile,
+    getCollection,
+    getBuckets,
+  ]);
 
   const toggleView = (e) => {
     setView(e);
@@ -118,6 +128,19 @@ const Profile = ({
                 Create new bucket
               </button>
             </Link>
+            <div className="row">
+              {/* CREATE COLLECTION LIST COMPONENT */}
+              {buckets.map((bucket, index) => {
+                return (
+                  <div className="col s3 m3 l3" key={`Key${index}`}>
+                    <h3>{bucket[0].bucket_name}</h3>
+                    {bucket.map((image, i) => {
+                      return <img key={`Key${i}`} src={image.image_uri} />;
+                    })}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
         {view === "collection" && collection && (

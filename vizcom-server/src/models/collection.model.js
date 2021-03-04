@@ -28,19 +28,16 @@ class CollectionModel {
               ON collection_image.user_uploaded_image_id = user_uploaded_image.user_uploaded_image_id
               WHERE collection_image.uuid = '${params.id}'`;
 
-    console.log("find SQL QUERY", sql);
     return await query(sql);
   };
 
   insert = async (params) => {
-    console.log("the params", params);
     const { values } = multipleColumnSet(params);
 
     const sql = `INSERT INTO ${this.tableName}
-        (uuid, generated_image_id, user_uploaded_image_id) VALUES (?,?,?)`;
+        (uuid, generated_image_id, user_uploaded_image_id, image_uri) VALUES (?,?,?,?)`;
 
     const result = await query(sql, values);
-    console.log("the params", result);
 
     const affectedRows = result ? result.affectedRows : 0;
 

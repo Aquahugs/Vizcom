@@ -1,5 +1,4 @@
 import React from "react";
-
 import Navigation from "./router/Navigation";
 
 import { BrowserRouter } from "react-router-dom";
@@ -8,7 +7,7 @@ import { withAuthentication } from "./router/auth/session";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <Navigation />
     </BrowserRouter>
   );

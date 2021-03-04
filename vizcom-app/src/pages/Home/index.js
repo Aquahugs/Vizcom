@@ -8,7 +8,7 @@ import { withAuthorization } from "../../router/auth/session";
 
 import { ProfileThunks } from "../Profile/redux";
 import { CollectionThunks } from "../Profile/Collection/redux";
-
+import history from "../../common/utils/history";
 import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";
 import SketchToRenderLogo from "../../assets/s2r.png";
@@ -30,9 +30,15 @@ const Home = ({ user, uid, collection, getCollection, getProfile }) => {
     // if (!buckets) {
     //   getBuckets();
     // }
-  }, []);
+    history.push('/');
+  }, 
+  
+  []);
+
+ 
 
   return (
+    
     <div className="tools">
       <div className="tools-header">
         <h1>Tools</h1>
@@ -47,7 +53,7 @@ const Home = ({ user, uid, collection, getCollection, getProfile }) => {
         })} */}
       {data && <p>{data.email}</p>}
       <div className="nav row">
-        <ToolCard
+        <ToolCard 
           link={GENERATE.link}
           name={GENERATE.name}
           description={GENERATE.description}

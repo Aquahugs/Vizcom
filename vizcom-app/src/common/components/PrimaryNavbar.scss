@@ -42,7 +42,13 @@ nav {
     width: 45px;
     vertical-align: middle;
     margin-left: 1rem;
+}
 
+.sign-out{
+    float:right;
+}
+
+<<<<<<< HEAD
 }
 
 .sign-out {
@@ -56,5 +62,14 @@ nav {
 .profile-items:hover{
   .nav__submenu {
     display:block;
+=======
+.nav__submenu {
+  display: none;
+}
+
+.profile-items:hover {
+  .nav__submenu {
+    display: block;
+>>>>>>> f315311d4995d49089f0ef9126c5eaf9b9fb2c93
   }
 }
