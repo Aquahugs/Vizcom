@@ -12,18 +12,13 @@ const SecondaryNav = ({ user, profile, history }) => {
   console.log(history.location)
   return (
     <div className="nav-container">
-          <ul>
+      <ul>
         <li>
           <Link to="/home">Home <span>{history.location.pathname}</span></Link>
         </li>
         <li>
-          <Link to="/profile" onClick={() => toggleView("profile")}>Profile / 
+          <Link to="/profile" >Profile / 
 
-          {view === "profile" && (
-            <span style = {{fontWeight:'bold'}}>
-              {/* {props.profile.first_name} */}
-            </span>
-           )}
           
           </Link>
         </li>

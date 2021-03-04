@@ -23,7 +23,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
     updateProfile(formData, uid);
     history.push("/profile");
   };
-  console.log(profile.first_name)
+  
   return (
     <div className="row form-container">
       <form className="col s12" onSubmit={handleSubmit(submitForm)}>
@@ -97,7 +97,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <label class = "active" htmlFor="personalSite">Website</label>
                 <input
                   class="active" 
-                  defaultValue={profile.personal_site}
+                  defaultValue={user.personal_site}
                   type="text"
                   name="personalSite"
                   id="personalSite"
