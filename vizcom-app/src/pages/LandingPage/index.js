@@ -9,18 +9,18 @@ const LandingPage = () => {
   return (
     <div className="content-container">
       <div className="row">
-        <div className="left-area col s7 m7 l7">
+        <div className="left-area col s8 m8 l8">
           <div className = "row">
             <div className = "col s4 m4 l4">
               <img className ='logo'src={WhiteLogo} />
               <p>Accelerate your creative process.</p>    
             </div>
             <div className = "col s8 m8 l8">
-              <video style = {{maxWidth:'100%'}} loop autostart autoPlay src={Video} type="video/mp4" />    
+              <video style = {{width:'100%',height:'auto',position:'relative'}} muted loop autostart autoPlay src={Video} type="video/mp4" />    
             </div>
           </div>          
         </div>
-        <div className="auth-area col s5 m5 l5">
+        <div className="auth-area col s4 m4 l4">
           <Auth />
         </div>
       </div>

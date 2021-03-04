@@ -9,7 +9,7 @@ import { withFirebase } from "../../../router/auth/firebase";
 
 const SignIn = () => (
   <div>
-    <h1>SignIn</h1>
+    <h1 style = {{color:"#fcfbfb",fontSize:'26px'}}>Sign in</h1>
     <SignInForm />
     <p> or </p>
     <SignInGoogle />

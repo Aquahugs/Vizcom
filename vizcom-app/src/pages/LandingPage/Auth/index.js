@@ -13,7 +13,7 @@ const Auth = () => {
     switch (authState) {
       case "signUp":
         return (
-          <div>
+          <div className = 'signup-container'>
             <SignUp />
             <p style = {{color:"#ececec"}}>
               Already have an account? 
@@ -27,7 +27,7 @@ const Auth = () => {
         return (
           <div>
             <SignIn />
-            <p>
+            <p style = {{color:"#ececec"}}>
               Dont have an account?
               <a onClick={() => setAuthState((authState = "signUp"))}>
                 Sign Up
