@@ -14,10 +14,10 @@ const BucketList = ({ buckets, user }) => {
           <div className="bucket-teaser_row" key={`Key${bucketIndex}`}>
             <div className="bucket-teaser_cover-card">
               <h3>{bucket?.bucket_name}</h3>
-              <p>by / {user.first_name}</p>
+              <p>by / {user?.first_name}</p>
               <p>{bucket?.images ? bucket.images.length : 0} images</p>
             </div>
-            {bucket.images.length !== 0 ? (
+            {bucket.images?.length !== 0 ? (
               bucket.images.length > 3 ? (
                 bucket.images.slice(0, 2).map((image, imageIndex) => {
                   return (
@@ -30,7 +30,7 @@ const BucketList = ({ buckets, user }) => {
                   );
                 })
               ) : (
-                bucket.images.map((image, imageIndex) => {
+                bucket.images?.map((image, imageIndex) => {
                   return (
                     <img
                       className="bucket-teaser_image"
@@ -54,7 +54,7 @@ const BucketList = ({ buckets, user }) => {
                 </Link>
               </div>
             )}
-            {bucket.images.length > 2 && (
+            {bucket.images?.length > 2 && (
               <div className="bucket_teaser_see-more-container">
                 <span className="dot"></span>
                 <span className="dot"></span>
