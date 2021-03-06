@@ -121,7 +121,6 @@ const Profile = ({
           </div>
         </div>
         {view === "bucket" && (
-<<<<<<< HEAD
           <div className = "buckets-container">
             <div className="row create-box">
               {/* CREATE BUCKET LIST COMPONENT */}
@@ -153,17 +152,6 @@ const Profile = ({
                 );
               })}
             </div>
-=======
-          <div className="row">
-            <Link to={ADD_BUCKET}>
-              <button class=" btn btn-flat create-btn ">
-                <img src={plus} />
-                <br />
-                Create new bucket
-              </button>
-            </Link>
-            <BucketList user={profile} buckets={buckets} />
->>>>>>> 549d139c3be0bb372ef94775d705ac755852f3ac
           </div>
         )}
         {view === "collection" && collection && (
