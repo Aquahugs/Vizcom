@@ -39,7 +39,6 @@ class UserController {
   updateUser = async (req, res, next) => {
     // do the update query and get the result
     // it can be partial edit
-    console.log(req.body, req.params.id);
     const result = await UserModel.update(req.body, req.params.id);
 
     if (!result) {

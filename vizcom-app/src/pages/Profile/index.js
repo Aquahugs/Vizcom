@@ -8,8 +8,10 @@ import ProfileThunks from "./redux/thunks";
 import CollectionThunks from "./Collection/redux/thunks";
 import BucketThunks from "../Bucket/redux/thunks";
 
-import "./profile.scss";
+import BucketList from "../Bucket/BucketList";
+import { EDITOR, ADD_BUCKET } from "../../router/routes-const";
 
+import "./profile.scss";
 import locationIcon from "../../assets/location-icon.svg";
 import instaIcon from "../../assets/instagram.png";
 import twitterIcon from "../../assets/twitter.png";
@@ -69,7 +71,7 @@ const Profile = ({
         <div className="row">
           <div className="col sm6 m6 l6">
             <div className="row bio-header">
-              <Link to={"editor"}>
+              <Link to={EDITOR}>
                 <button class=" btn btn-flat edit-btn ">Edit profile</button>
               </Link>
               {profile && <h2>{profile.first_name}</h2>}
@@ -119,6 +121,7 @@ const Profile = ({
           </div>
         </div>
         {view === "bucket" && (
+<<<<<<< HEAD
           <div className = "buckets-container">
             <div className="row create-box">
               {/* CREATE BUCKET LIST COMPONENT */}
@@ -150,6 +153,17 @@ const Profile = ({
                 );
               })}
             </div>
+=======
+          <div className="row">
+            <Link to={ADD_BUCKET}>
+              <button class=" btn btn-flat create-btn ">
+                <img src={plus} />
+                <br />
+                Create new bucket
+              </button>
+            </Link>
+            <BucketList user={profile} buckets={buckets} />
+>>>>>>> 549d139c3be0bb372ef94775d705ac755852f3ac
           </div>
         )}
         {view === "collection" && collection && (
@@ -163,6 +177,7 @@ const Profile = ({
                   key={image.collection_image_id}
                 >
                   <img className="collection-image" src={image.image_uri} />
+                  <a>add to bucket</a>
                 </div>
               );
             })}

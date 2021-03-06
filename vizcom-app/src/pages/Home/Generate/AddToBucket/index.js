@@ -2,17 +2,25 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-import "./bucketlist.scss";
+import "./add-to-bucket.scss";
 import M from "materialize-css";
 import { compose } from "recompose";
-import { withAuthorization } from "../../../router/auth/session";
-import { useForm } from "react-hook-form";
+import { BucketThunks } from "../../../Bucket/redux";
 
-const BucketList = ({ history, uid, toggleBuckets }) => {
-  const { register, handleSubmit } = useForm();
+import SelectSearch from "react-select-search";
 
+const BucketList = ({ history, uid, toggleBuckets, addToBucket }) => {
   const AddButtons = ({ uid, props }) => {
     console.log("added to __ bucket");
+  };
+
+  const addToBucketHandler = (collectionImageId, bucketId) => {
+    const image = {
+      collection_image_id: collectionImageId,
+      bucket_id: bucketId,
+    };
+
+    addToBucket(image);
   };
 
   return (
@@ -22,6 +30,13 @@ const BucketList = ({ history, uid, toggleBuckets }) => {
           clear
         </i>
       </div>
+      {/* <SelectSearch
+        options={}
+        search
+        filterOptions={}
+        emptyMessage="Not found"
+        placeholder="Select your country"
+      /> */}
       <div className="col s11 m11 l11" style={{ padding: "0" }}>
         <input placeholder="search for bucket" className="searchbar" />
       </div>
@@ -42,12 +57,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  updateBucket: "",
+  addToBucket: BucketThunks.addToBucket,
 };
 
-const condition = (authUser) => !!authUser;
-
-export default compose(
-  withAuthorization(condition),
-  connect(mapStateToProps, mapDispatchToProps)
-)(BucketList);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  BucketList
+);
