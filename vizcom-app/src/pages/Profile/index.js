@@ -111,10 +111,10 @@ const Profile = ({
             <h2>View</h2>
             <ul>
               <a>
-                <li onClick={() => toggleView("bucket")}>Buckets</li>
+                <li onClick={() => toggleView("bucket")} style={{ fontWeight: view == "bucket"? 'bold': '400'}}>Buckets</li>
               </a>
               <a>
-                <li onClick={() => toggleView("collection")}>Collection</li>
+                <li onClick={() => toggleView("collection")} style={{ fontWeight: view == "collection"? 'bold': '400'}}>Collection</li>
               </a>
               <li>All</li>
             </ul>
