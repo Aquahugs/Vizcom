@@ -1,13 +1,33 @@
-.btn-container {
-  margin: 5%;
-  background-color: #003FFF !important;
-  text-align: center;
-  .btn-flat{
-    background-color: #EEEEEE !important;
-    text-align: center !important;
 
+
+ .signin-btn{
+    background-color: #003FFF !important;
+    text-align: center !important;
+    color:#EEEEEE;  
+    width: 100%;
+    height: 50px;
+    box-shadow: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px; 
+    font-size: 16px;
+    font-family: Roboto, arial, sans-serif;
+    line-height: 48px;
+    border: none;
+    user-select: none;
+    margin-top:3%;
+    float:"left";
+    margin-top:'0';
+     text-align:'center'
   }
-}
+
+  .signin-btn:hover {
+    cursor: pointer;
+  }
+
+
+
+
+
+  
 
 .tab-content{
   input{

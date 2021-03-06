@@ -141,18 +141,14 @@ class SignUpFormBase extends Component {
                     placeholder="Confirm Password"
                   />
                 </div>
-                <div className="row btn-container">
                   <button
                     disabled={isInvalid}
                     type="submit"
-                    className="  btn-flat waves-effect waves-light"
-                    style = {{float:"left",marginTop:'0'}}
+                    className="  signin-btn"
                   >
                     Sign Up
                   </button>
-
                   {error && <p>{error.message}</p>}
-                </div>
               </div>
             </form>
           </div>

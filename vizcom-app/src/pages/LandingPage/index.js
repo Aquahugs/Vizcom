@@ -16,7 +16,7 @@ const LandingPage = () => {
               <p>Accelerate your creative process.</p>    
             </div>
             <div className = "col s8 m8 l8">
-              <video style = {{width:'100%',height:'auto',position:'relative'}} muted loop autostart autoPlay src={Video} type="video/mp4" />    
+              <video style = {{width:'100%',height:'720px',position:'relative'}} muted loop autostart autoPlay src={Video} type="video/mp4" />    
             </div>
           </div>          
         </div>

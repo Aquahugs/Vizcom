@@ -17,7 +17,7 @@ const Auth = () => {
             <SignUp />
             <p style = {{color:"#ececec"}}>
               Already have an account? 
-              <a onClick={() => setAuthState((authState = "signIn"))}>
+              <a onClick={() => setAuthState((authState = "signIn"))}  >
                 Sign in
               </a>
             </p>
@@ -25,11 +25,11 @@ const Auth = () => {
         );
       case "signIn":
         return (
-          <div>
+          <div className = 'signin-container' >
             <SignIn />
             <p style = {{color:"#ececec"}}>
               Dont have an account?
-              <a onClick={() => setAuthState((authState = "signUp"))}>
+              <a onClick={() => setAuthState((authState = "signUp"))} >
                 Sign Up
               </a>
             </p>
@@ -42,7 +42,7 @@ const Auth = () => {
         );
       case "passwordReset":
         return (
-          <div>
+          <div className = 'signin-container'>
             <PasswordReset />
             <p>
               <a onClick={() => setAuthState((authState = "signIn"))}>

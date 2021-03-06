@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
+import GoogleButton from 'react-google-button'
 
 import { ProfileThunks } from "../../Profile/redux";
 
 import { withFirebase } from "../../../router/auth/firebase";
 
 const SignIn = () => (
-  <div>
+  <div style = {{Textalign:'center'}}>
     <h1 style = {{color:"#fcfbfb",fontSize:'26px'}}>Sign in</h1>
     <SignInForm />
-    <p> or </p>
+    <p style = {{color:"#fcfbfb", textAlign:'center'}}> or </p>
     <SignInGoogle />
   </div>
 );
@@ -92,14 +93,13 @@ class SignInFormBase extends Component {
               type="password"
               placeholder="Password"
             />
-            <button
-              disabled={isInvalid}
-              type="submit"
-              className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
-            >
-              Sign In
-            </button>
-
+              <button
+                disabled={isInvalid}
+                type="submit"
+                className="signin-btn "
+              >
+                Sign In
+              </button>
             {error && <p>{error.message}</p>}
           </div>
         </div>
@@ -141,8 +141,14 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+      <form onSubmit={this.onSubmit} >
+        
+        <button type="submit" style = {{backgroundColor:'transparent',border:'none',width:'100%'}}>
+        <GoogleButton
+          type="light" // can be light or dark
+          style = {{width:'100%'}}
+        />
+        </button>
 
         {error && <p>{error.message}</p>}
       </form>
