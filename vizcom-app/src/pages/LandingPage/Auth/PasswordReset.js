@@ -4,7 +4,7 @@ import { withFirebase } from "../../../router/auth/firebase";
 
 const PasswordForgetPage = () => (
   <div>
-    <h1>PasswordForget</h1>
+    <h1 style = {{color:"#fcfbfb",fontSize:'26px'}}>Password Reset</h1>
     <PasswordForgetForm />
   </div>
 );
@@ -57,7 +57,7 @@ class PasswordForgetFormBase extends Component {
         <button
           disabled={isInvalid}
           type="submit"
-          className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
+          className="signin-btn" 
         >
           Reset My Password
         </button>
