@@ -119,25 +119,34 @@ const Profile = ({
           </div>
         </div>
         {view === "bucket" && (
-          <div className="row">
-            {/* CREATE BUCKET LIST COMPONENT */}
-            <Link to={"bucket"}>
-              <button class=" btn btn-flat create-btn ">
-                <img src={plus} />
-                <br />
-                Create new bucket
-              </button>
-            </Link>
-            <div className="row">
-              {/* CREATE COLLECTION LIST COMPONENT */}
+          <div className = "buckets-container">
+            <div className="row create-box">
+              {/* CREATE BUCKET LIST COMPONENT */}
+              <Link to={"bucket"}>
+                <div className = "row bucketbtn-container">
+                  <div className = "col s12 m12 l12">
+                    <button class=" btn btn-flat create-btn ">
+                      <img src={plus} />
+                      <br />
+                      Create new bucket
+                    </button>
+                  </div>
+                </div>
+              </Link>
+            </div>
+              
+            <div className = "row">
               {buckets.map((bucket, index) => {
                 return (
-                  <div className="col s3 m3 l3" key={`Key${index}`}>
-                    <h3>{bucket[0].bucket_name}</h3>
-                    {bucket.map((image, i) => {
-                      return <img key={`Key${i}`} src={image.image_uri} />;
-                    })}
-                  </div>
+                    <div key={`Key${index}`}  className = "row" style ={{marginBottom:'40px'}}>
+                      <div className = "bucket-titlecard">
+                       <h3 >{bucket[0].bucket_name}</h3>
+                       <p>{bucket.length} images</p>
+                      </div>
+                      {bucket.slice(0, 3).map((image, i) => {
+                        return  <div className = 'col s3 m3 l3 bucket-preview'> <img key={`Key${i}`} src={image.image_uri} /></div>;
+                      })}
+                    </div>
                 );
               })}
             </div>
