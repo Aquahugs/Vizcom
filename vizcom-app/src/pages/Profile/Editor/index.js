@@ -77,6 +77,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                   id="instagram"
                   ref={register}
                   defaultValue={user.instagram}
+                  placeholder = "https://www.instagram.com/yourusername/"
                 />
               </div>
             </li>
@@ -86,7 +87,13 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                   <img src={twitterIcon} />
                 </i>
                 <label class = "active" htmlFor="twitter">Twitter</label>
-                <input type="text" name="twitter" id="twitter" ref={register} defaultValue={user.twitter} />
+                <input 
+                type="text" 
+                name="twitter" 
+                id="twitter" 
+                ref={register} 
+                defaultValue={user.twitter} 
+                placeholder = "https://twitter.com/yourusername"/>
               </div>
             </li>
             <li>
