@@ -1,153 +1,136 @@
-.selector-container{
-    height: 10vh; /* Magic here */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .btn {
-        border : solid 1px #707070;
-        border-radius: 24px;
-        background-color:white;
-        margin:1rem;
-    }
-
-     
-  
+.selector-container {
+  height: 10vh; /* Magic here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .btn {
+    border: solid 1px #707070;
+    border-radius: 24px;
+    background-color: white;
+    margin: 1rem;
+  }
 }
 .tag {
-    p{
-        text-align: center;
-    }
+  p {
+    text-align: center;
+  }
 }
 .generate-btn {
-    background-color: #0F0F0F;
-    width: 331px;
-    height:52px;
-    font-size: 20px;
-    border-radius: 34px;
-    
-} 
+  background-color: #0f0f0f;
+  width: 331px;
+  height: 52px;
+  font-size: 20px;
+  border-radius: 34px;
+}
 
 .waves-effect {
-    background-color: grey;
+  background-color: grey;
 }
-.genbtn-container 
+.genbtn-container {
+  height: 10vh; /* Magic here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15%;
+  padding-top: 2%;
 
+  .btn {
+    background-color: #0f0f0f;
+  }
+  .btn:active {
+    background-color: #0f0f0f;
+  }
+  .btn:focus {
+    background-color: #0f0f0f;
+    color: white;
+    border: solid 1px #0f0f0f;
+  }
 
-{
-
-    height: 10vh; /* Magic here */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 15%;
-    padding-top: 2%;
-
-    .btn{
-        background-color: #0F0F0F;
-    }
-    .btn:active{
-        background-color: #0F0F0F;
-
-    }
-    .btn:focus{
-        background-color: #0F0F0F;
-        color:white;
-        border:solid 1px #0F0F0F;
-    }
-
-    .btn:visited{
-        background-color: #0F0F0F;
-    }
-
-
+  .btn:visited {
+    background-color: #0f0f0f;
+  }
 }
 
 .generated-image {
-    background-color: white;
-    padding: 2%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:100%;
-    max-height: 500px;
-    border-radius: 2rem;
-    cursor: pointer; 
-   
+  background-color: white;
+  padding: 2%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-height: 500px;
+  border-radius: 2rem;
+  cursor: pointer;
 }
 .generated-imagemodal {
-    background-color: white;
-    padding: 2%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:100%;
-    max-height: 500px;
-   
+  background-color: white;
+  padding: 2%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-height: 500px;
 }
 
-.generated-container{
-    padding-left: 15rem;
-    padding-right: 15rem;
-  
-
-  
+.generated-container {
+  padding-left: 15rem;
+  padding-right: 15rem;
 }
 
-.download-button{
-    width: 20px;
-    height:auto;
-    margin-left:5%;
+.download-button {
+  width: 20px;
+  height: auto;
+  margin-left: 5%;
 }
-
 
 .popup-content {
-    width:60% !important;
-    height: 70%;
-    padding: 5%;
+  width: 60% !important;
+  height: 70%;
+  padding: 5%;
 
-    .generated-info{
-        padding:2%;
-       h1{
-        font-size: 2rem;
-        color:#4E4E4E;
-       }
-
-       h2{
-        font-size: 1rem;
-        color:#4E4E4E;
-        margin:0;
-        border-bottom: solid 1px #707070;
-        padding-bottom: 4%;
-       }
+  .generated-info {
+    padding: 2%;
+    h1 {
+      font-size: 2rem;
+      color: #4e4e4e;
     }
-}
 
-.button-container{
-    .btn-flat{
-        float: left;
-        background-color: white;
-        border: solid 1px #707070;
+    h2 {
+      font-size: 1rem;
+      color: #4e4e4e;
+      margin: 0;
+      border-bottom: solid 1px #707070;
+      padding-bottom: 4%;
     }
-    padding-top:5%;
-}
-.colelct {
-    float:right;
-    cursor: pointer; 
+  }
 }
 
-.colelct-confirm{
-    float:right;
+.button-container {
+  .btn-flat {
+    float: left;
+    background-color: white;
+    border: solid 1px #707070;
+  }
+  padding-top: 5%;
+}
+.collect {
+  float: right;
+  cursor: pointer;
 }
 
-.save-buttons{
-    padding:5%;
+.collect-confirm {
+  float: right;
 }
 
-.generated-image:hover{
-    transform:scale(1.08, 1.08);
-    transition: 0.2s;
+.save-buttons {
+  padding: 5%;
 }
 
-.add-bucket{
-    font-size:0.6vw;
+.generated-image:hover {
+  transform: scale(1.08, 1.08);
+  transition: 0.2s;
+}
+
+.add-bucket {
+  font-size: 0.6vw;
 }

@@ -9,7 +9,6 @@ import { withAuthorization } from "../../../router/auth/session";
 import { useForm } from "react-hook-form";
 
 const AddButtons = ({ uid, props, toggleBuckets }) => {
-  const { register, handleSubmit } = useForm();
   const addBucket = (bucketName) => {
     console.log("added to __ bucket");
   };
@@ -25,7 +24,7 @@ const AddButtons = ({ uid, props, toggleBuckets }) => {
         </button>
       </div>
       <div className="col s6 m6 l6">
-        <a className="colelct">
+        <a className="collect">
           Collect
           <i className="material-icons right">add_box</i>
         </a>

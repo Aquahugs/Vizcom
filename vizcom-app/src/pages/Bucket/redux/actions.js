@@ -16,7 +16,7 @@ const getBucketsSuccess = (buckets) => ({
 });
 
 const getBucketDropdownOptions = (bucketOptions) => ({
-  type: TYPES.GET_BUCKETS_SUCCESS,
+  type: TYPES.GET_BUCKETS_DROPDOWN_OPTIONS,
   bucketOptions,
 });
 
