@@ -5,8 +5,6 @@ class BucketModel {
   tableName = "bucket";
 
   find = async (params = {}) => {
-    console.log(params.id);
-
     const getBucketsSql = `select *
         from bucket 
         where uuid = "${params.id}"`;
@@ -48,7 +46,6 @@ class BucketModel {
         })
         .filter((el) => el !== null);
     });
-    console.log(topLevelBuckets);
     return topLevelBuckets;
   };
 
@@ -83,6 +80,7 @@ class BucketModel {
         (collection_image_id, bucket_id) 
       VALUES 
         (?,?)`;
+    console.log(sql, values);
 
     const result = await query(sql, values);
 

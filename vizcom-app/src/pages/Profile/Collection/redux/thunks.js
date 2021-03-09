@@ -20,8 +20,22 @@ const collectImage = (imageObj) => async (dispatch) => {
     dispatch(actions.insertCollectionError(error));
   }
 };
+const collectImageAsync = (imageObj) => async (dispatch) => {
+  return new Promise(async (resolve, reject) => {
+    dispatch(actions.insertCollectionStarted());
+    try {
+      const response = await collectionService.collectImage(imageObj);
+      dispatch(actions.insertCollectionSuccess(response.data));
+      resolve(response.data);
+    } catch (error) {
+      dispatch(actions.insertCollectionError(error));
+      reject(error);
+    }
+  });
+};
 
 export default {
   getCollectionByUserId,
   collectImage,
+  collectImageAsync,
 };

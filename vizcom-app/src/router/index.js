@@ -6,7 +6,7 @@ import Editor from "../pages/Profile/Editor"; //need to put this into /Profile (
 import CreateBucket from "../pages/Bucket/CreateBucket"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../pages/Explore";
 import Home from "../pages/Home";
-import Generate from "../pages/Home/Generate/Generatev2";
+import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
 import LandingPage from "../pages/LandingPage";
 
