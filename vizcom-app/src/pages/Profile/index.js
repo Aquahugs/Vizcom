@@ -16,6 +16,8 @@ import locationIcon from "../../assets/location-icon.svg";
 import instaIcon from "../../assets/instagram.png";
 import twitterIcon from "../../assets/twitter.png";
 import plus from "../../assets/plus.png";
+import AddImageIcon from "../../assets/add-image.svg";
+import { GENERATE } from "../../router/routes-const";
 
 const Profile = ({
   uid,
@@ -111,22 +113,32 @@ const Profile = ({
             <h2>View</h2>
             <ul>
               <a>
-                <li onClick={() => toggleView("bucket")} style={{ fontWeight: view == "bucket"? 'bold': '400'}}>Buckets</li>
+                <li
+                  onClick={() => toggleView("bucket")}
+                  style={{ fontWeight: view == "bucket" ? "bold" : "400" }}
+                >
+                  Buckets
+                </li>
               </a>
               <a>
-                <li onClick={() => toggleView("collection")} style={{ fontWeight: view == "collection"? 'bold': '400'}}>Collection</li>
+                <li
+                  onClick={() => toggleView("collection")}
+                  style={{ fontWeight: view == "collection" ? "bold" : "400" }}
+                >
+                  Collection
+                </li>
               </a>
               <li>All</li>
             </ul>
           </div>
         </div>
         {view === "bucket" && (
-          <div className = "buckets-container">
+          <div className="buckets-container">
             <div className="row create-box">
               {/* CREATE BUCKET LIST COMPONENT */}
               <Link to={"bucket"}>
-                <div className = "row bucketbtn-container">
-                  <div className = "col s12 m12 l12">
+                <div className="row bucketbtn-container">
+                  <div className="col s12 m12 l12">
                     <button class=" btn btn-flat create-btn ">
                       <img src={plus} />
                       <br />
@@ -136,19 +148,61 @@ const Profile = ({
                 </div>
               </Link>
             </div>
-              
-            <div className = "row">
-              {buckets.map((bucket, index) => {
+
+            <div className="row">
+              {buckets?.map((bucket, bucketIndex) => {
                 return (
-                    <div key={`Key${index}`}  className = "row" style ={{marginBottom:'40px'}}>
-                      <div className = "bucket-titlecard">
-                       <h3 >{bucket[0].bucket_name}</h3>
-                       <p>{bucket.length} images</p>
-                      </div>
-                      {bucket.slice(0, 3).map((image, i) => {
-                        return  <div className = 'col s3 m3 l3 bucket-preview'> <img key={`Key${i}`} src={image.image_uri} /></div>;
-                      })}
+                  <div className="row" key={`Key${bucketIndex}`}>
+                    <div className="bucket-titlecard">
+                      <h3>{bucket?.bucket_name}</h3>
+                      <p>by / {profile?.first_name}</p>
+                      <p>{bucket?.images ? bucket.images.length : 0} images</p>
                     </div>
+                    {bucket.images?.length !== 0 ? (
+                      bucket.images.length > 3 ? (
+                        bucket.images.slice(0, 2).map((image, imageIndex) => {
+                          return (
+                            <img
+                              className="bucket-teaser_image"
+                              alt="images in the bucket"
+                              key={`Key${imageIndex}`}
+                              src={image.image_uri}
+                            />
+                          );
+                        })
+                      ) : (
+                        bucket.images?.map((image, imageIndex) => {
+                          return (
+                            <img
+                              className="col s3 m3 l3 bucket-preview"
+                              alt="images in the bucket"
+                              key={`Key${imageIndex}`}
+                              src={image.image_uri}
+                            />
+                          );
+                        })
+                      )
+                    ) : (
+                      <div className="bucket-teaser_add-image-card">
+                        <img
+                          className="col s3 m3 l3 bucket-preview"
+                          alt="images in the bucket"
+                          src={AddImageIcon}
+                        />
+                        <p>add images to bucket </p>
+                        <Link to={GENERATE}>
+                          <p>or collect from the generate tool</p>
+                        </Link>
+                      </div>
+                    )}
+                    {bucket.images?.length > 2 && (
+                      <div className="bucket_teaser_see-more-container">
+                        <span className="dot"></span>
+                        <span className="dot"></span>
+                        <span className="dot"></span>
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
