@@ -6,6 +6,7 @@ const errorMiddleware = require("./middleware/error.middleware");
 const userRouter = require("./routes/user.route");
 const collectionRouter = require("./routes/collection.route");
 const bucketRouter = require("./routes/bucket.route");
+const generateRouter = require("./routes/generate.route");
 const indexRouter = require("./routes");
 const checkIfAuthenticated = require("./middleware/auth.middleware");
 
@@ -30,6 +31,7 @@ app.use(`/`, indexRouter);
 app.use(`/api/user`, userRouter);
 app.use(`/api/user`, collectionRouter);
 app.use(`/api/bucket`, bucketRouter);
+app.use(`/api/generate`, generateRouter);
 
 // 404 error
 app.all("*", (req, res, next) => {

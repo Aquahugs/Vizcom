@@ -1,65 +1,109 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-
-import "./add-to-bucket.scss";
-import M from "materialize-css";
 import { compose } from "recompose";
+
+import SelectSearch, { fuzzySearch } from "react-select-search";
+import { useForm } from "react-hook-form";
+
 import { BucketThunks } from "../../../Bucket/redux";
+import { CollectionThunks } from "../../../Profile/Collection/redux";
 
-import SelectSearch from "react-select-search";
+import "./select-search.scss";
 
-const BucketList = ({ history, uid, toggleBuckets, addToBucket }) => {
-  const AddButtons = ({ uid, props }) => {
-    console.log("added to __ bucket");
+const AddToBucket = ({
+  bucketDropdownOptions,
+  addToBucket,
+  addBucketMenu,
+  image,
+  collection,
+  collectImage,
+  uid,
+}) => {
+  const { register, handleSubmit } = useForm();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [bucketId, setBucketId] = useState(null);
+
+  const onSelectChange = (value) => {
+    setBucketId(value);
+    console.log(bucketId);
   };
 
-  const addToBucketHandler = (collectionImageId, bucketId) => {
-    const image = {
-      collection_image_id: collectionImageId,
-      bucket_id: bucketId,
-    };
+  const displayBucketHandler = (data) => {
+    addBucketMenu(data);
+  };
 
-    addToBucket(image);
+  const submitForm = () => {
+    const imageObj = {
+      uuid: uid,
+      generated_image_id: image.generated_image_id,
+      user_uploaded_image_id: null,
+      image_uri: image.image_uri,
+    };
+    collectImage(imageObj).then((collectionImages) => {
+      debugger;
+      console.log(collectionImages, image);
+      const collectionImage = collectionImages.find((i) => {
+        return i.generated_image_id === image.generated_image_id;
+      });
+      const newImage = {
+        collection_image_id: collectionImage.collection_image_id,
+        bucket_id: bucketId,
+      };
+      !bucketId
+        ? setErrorMessage("Please select a bucket")
+        : addToBucket(newImage);
+      addBucketMenu(false);
+    });
   };
 
   return (
-    <div className="bucket-items">
-      <div className="col s1 m1 l1" style={{ padding: "0" }}>
-        <i className="material-icons" onClick={toggleBuckets}>
-          clear
-        </i>
-      </div>
-      {/* <SelectSearch
-        options={}
-        search
-        filterOptions={}
-        emptyMessage="Not found"
-        placeholder="Select your country"
-      /> */}
-      <div className="col s11 m11 l11" style={{ padding: "0" }}>
-        <input placeholder="search for bucket" className="searchbar" />
-      </div>
-
-      <button className=" bucket-btn">
-        <span className="bucket-name">bucket name </span>
-        <span className="item-numbers">X items</span>
-      </button>
+    <div>
+      <form onSubmit={handleSubmit(submitForm)}>
+        <SelectSearch
+          options={bucketDropdownOptions}
+          search
+          emptyMessage="Not found"
+          filterOptions={fuzzySearch}
+          placeholder="Select your bucket"
+          ref={register}
+          name="bucket_id"
+          id="bucket_id"
+          onChange={onSelectChange}
+        />
+        <button
+          className="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+          onClick={() => displayBucketHandler(false)}
+        >
+          Cancel
+        </button>
+        <button
+          className="btn  waves-light save-btn"
+          type="submit"
+          name="action"
+        >
+          Add
+        </button>
+      </form>
+      {errorMessage && <p>errorMessage</p>}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    user: state.profile.user,
     uid: state.session.authUser.uid,
+    bucketDropdownOptions: state.bucket.dropdownOptions,
+    collection: state.collection.collection,
   };
 };
 
 const mapDispatchToProps = {
   addToBucket: BucketThunks.addToBucket,
+  collectImage: CollectionThunks.collectImageAsync,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(
-  BucketList
+  AddToBucket
 );

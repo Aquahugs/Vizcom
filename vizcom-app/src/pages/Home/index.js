@@ -9,6 +9,7 @@ import { withAuthorization } from "../../router/auth/session";
 import { ProfileThunks } from "../Profile/redux";
 import { CollectionThunks } from "../Profile/Collection/redux";
 import { BucketThunks } from "../Bucket/redux";
+import { GenerateThunks } from "./Generate/redux";
 
 import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";
@@ -23,6 +24,7 @@ const Home = ({
   getProfile,
   buckets,
   getBuckets,
+  getGeneratedImages,
 }) => {
   const [data, setData] = useState([]);
 
@@ -37,7 +39,8 @@ const Home = ({
     if (!buckets) {
       getBuckets(uid);
     }
-  }, [user, collection, buckets, uid, getProfile, getCollection, getBuckets]);
+    getGeneratedImages();
+  }, []);
 
   return (
     <div className="tools">
@@ -74,6 +77,7 @@ const mapDispatchToProps = {
   getProfile: ProfileThunks.getProfile,
   getCollection: CollectionThunks.getCollectionByUserId,
   getBuckets: BucketThunks.getBuckets,
+  getGeneratedImages: GenerateThunks.getGeneratedImages,
 };
 
 const condition = (authUser) => !!authUser;

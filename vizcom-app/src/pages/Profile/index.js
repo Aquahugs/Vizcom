@@ -9,7 +9,7 @@ import CollectionThunks from "./Collection/redux/thunks";
 import BucketThunks from "../Bucket/redux/thunks";
 
 import BucketList from "../Bucket/BucketList";
-import { EDITOR, ADD_BUCKET } from "../../router/routes-const";
+import { EDITOR, ADD_BUCKET, GENERATE } from "../../router/routes-const";
 
 import "./profile.scss";
 import locationIcon from "../../assets/location-icon.svg";
@@ -40,21 +40,10 @@ const Profile = ({
       getCollection(uid);
       console.log("collection", collection);
     }
-    if (!buckets) {
-      getBuckets(uid);
-      console.log("buckets", buckets);
-    }
+    getBuckets(uid);
     setIsLoaded(true);
     console.log("buckets", buckets);
-  }, [
-    profile,
-    collection,
-    buckets,
-    uid,
-    getProfile,
-    getCollection,
-    getBuckets,
-  ]);
+  }, [profile, collection, uid, getProfile, getCollection, getBuckets]);
 
   const toggleView = (e) => {
     setView(e);
@@ -136,7 +125,7 @@ const Profile = ({
           <div className="buckets-container">
             <div className="row create-box">
               {/* CREATE BUCKET LIST COMPONENT */}
-              <Link to={"bucket"}>
+              <Link to={ADD_BUCKET}>
                 <div className="row bucketbtn-container">
                   <div className="col s12 m12 l12">
                     <button class=" btn btn-flat create-btn ">

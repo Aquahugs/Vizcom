@@ -16,14 +16,12 @@ import { withAuthorization } from "../../../router/auth/session";
 
 const Editor = ({ updateProfile, history, uid, user }) => {
   const { register, handleSubmit } = useForm();
-  console.log(user)
 
-  console.log(user.first_name)
   const submitForm = (formData) => {
     updateProfile(formData, uid);
     history.push("/profile");
   };
-  
+
   return (
     <div className="row form-container">
       <form className="col s12" onSubmit={handleSubmit(submitForm)}>
@@ -32,25 +30,51 @@ const Editor = ({ updateProfile, history, uid, user }) => {
             <img className="backarrow" src={backarrow} />
           </Link>
           <h1>Edit profile</h1>
-          
+
           <div className="input-field col s6">
-          <label  class = "active" for="first_name">First Name</label>
-            <input type="text" name="firstName" id="firstName" ref={register} defaultValue={user.first_name}/>
+            <label class="active" for="first_name">
+              First Name
+            </label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              ref={register}
+              defaultValue={user.first_name}
+            />
           </div>
           <div className="input-field col s6">
-            <label class = "active" htmlFor="name">Last Name</label>
-            <input type="text" name="lastName" id="lastName" ref={register} defaultValue={user.last_name} />
+            <label class="active" htmlFor="name">
+              Last Name
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              ref={register}
+              defaultValue={user.last_name}
+            />
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label class = "active" htmlFor="name">Location</label>
-            <input type="text" name="location" id="location" ref={register} defaultValue={user.location} />
+            <label class="active" htmlFor="name">
+              Location
+            </label>
+            <input
+              type="text"
+              name="location"
+              id="location"
+              ref={register}
+              defaultValue={user.location}
+            />
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label class = "active" htmlFor="bio">Bio</label>
+            <label class="active" htmlFor="bio">
+              Bio
+            </label>
             <textarea
               name="bio"
               className="materialize-textarea"
@@ -69,9 +93,11 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <i className="material-icons prefix">
                   <img src={instaIcon} />
                 </i>
-                <label class = "active" htmlFor="instagram">Instagram</label>
+                <label class="active" htmlFor="instagram">
+                  Instagram
+                </label>
                 <input
-                  class="active" 
+                  class="active"
                   type="text"
                   name="instagram"
                   id="instagram"
@@ -101,9 +127,11 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <i className="material-icons prefix">
                   <img src={webIcon} />
                 </i>
-                <label class = "active" htmlFor="personalSite">Website</label>
+                <label class="active" htmlFor="personalSite">
+                  Website
+                </label>
                 <input
-                  class="active" 
+                  class="active"
                   defaultValue={user.personal_site}
                   type="text"
                   name="personalSite"
@@ -134,7 +162,6 @@ const Editor = ({ updateProfile, history, uid, user }) => {
           </button>
         </div>
       </form>
-      
     </div>
   );
 };
@@ -143,7 +170,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.profile.user,
     uid: state.session.authUser.uid,
-    profile: state.profile.user
+    profile: state.profile.user,
   };
 };
 

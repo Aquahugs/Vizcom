@@ -4,17 +4,8 @@ import bucketService from "../../../common/services/bucket-service";
 const getBuckets = (uid) => async (dispatch) => {
   dispatch(actions.getBucketsStarted());
   try {
-    debugger;
     const response = await bucketService.getBuckets(uid);
     dispatch(actions.getBucketsSuccess(response.data));
-    // const bucketOptionDropdown = response.data.map((bucket) => {
-    //   const option = {
-    //     label: bucket.bucket_name,
-    //     value: bucket.bucket_id,
-    //   };
-    //   return option;
-    // });
-    // dispatch(actions.getBucketDropdownOptions(bucketOptionDropdown));
   } catch (error) {
     dispatch(actions.getBucketsError(error));
   }

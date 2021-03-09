@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Profile from "../pages/Profile";
 import Editor from "../pages/Profile/Editor"; //need to put this into /Profile (Profile/Editor)
-import AddBucket from "../pages/Bucket/AddBucket"; //need to put this into /Profile (Profile/Editor)
+import CreateBucket from "../pages/Bucket/CreateBucket"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../pages/Explore";
 import Home from "../pages/Home";
 import Generate from "../pages/Home/Generate";
@@ -21,7 +21,7 @@ const Router = () => (
       <Editor />
     </Route>
     <Route path={ROUTES.ADD_BUCKET}>
-      <AddBucket />
+      <CreateBucket />
     </Route>
     <Route path={ROUTES.EXPLORE}>
       <Explore />

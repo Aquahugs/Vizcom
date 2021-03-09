@@ -27,12 +27,13 @@ class CollectionModel {
               INNER JOIN user_uploaded_image
               ON collection_image.user_uploaded_image_id = user_uploaded_image.user_uploaded_image_id
               WHERE collection_image.uuid = '${params.id}'`;
-
-    return await query(sql);
+    const collection = await query(sql);
+    return collection;
   };
 
   insert = async (params) => {
     const { values } = multipleColumnSet(params);
+    console.log(values);
 
     const sql = `INSERT INTO ${this.tableName}
         (uuid, generated_image_id, user_uploaded_image_id, image_uri) VALUES (?,?,?,?)`;

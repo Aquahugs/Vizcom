@@ -10,16 +10,16 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { BucketThunks } from "../redux";
 
-const Bucket = ({ uid, history, createBucket }) => {
+const CreateBucket = ({ uid, history, createBucket }) => {
   const { register, handleSubmit } = useForm();
 
   const submitForm = (formData) => {
+    debugger;
     formData.is_public = !formData.is_public;
     const newBucket = {
       ...formData,
       uuid: uid,
     };
-    console.log(newBucket);
     createBucket(newBucket);
     history.push("/profile");
   };
@@ -111,4 +111,4 @@ const condition = (authUser) => !!authUser;
 export default compose(
   withAuthorization(condition),
   connect(mapStateToProps, mapDispatchToProps)
-)(Bucket);
+)(CreateBucket);

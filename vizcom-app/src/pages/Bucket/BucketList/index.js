@@ -8,11 +8,11 @@ import AddImageIcon from "../../../assets/add-image.svg";
 
 const BucketList = ({ buckets, user }) => {
   return (
-    <div className="bucket-teaser_container">
+    <div className="row">
       {buckets?.map((bucket, bucketIndex) => {
         return (
-          <div className="bucket-teaser_row" key={`Key${bucketIndex}`}>
-            <div className="bucket-teaser_cover-card">
+          <div className="row" key={`Key${bucketIndex}`}>
+            <div className="bucket-titlecard">
               <h3>{bucket?.bucket_name}</h3>
               <p>by / {user?.first_name}</p>
               <p>{bucket?.images ? bucket.images.length : 0} images</p>
@@ -33,7 +33,7 @@ const BucketList = ({ buckets, user }) => {
                 bucket.images?.map((image, imageIndex) => {
                   return (
                     <img
-                      className="bucket-teaser_image"
+                      className="col s3 m3 l3 bucket-preview"
                       alt="images in the bucket"
                       key={`Key${imageIndex}`}
                       src={image.image_uri}
