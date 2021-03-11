@@ -17,7 +17,7 @@ import instaIcon from "../../assets/instagram.png";
 import twitterIcon from "../../assets/twitter.png";
 import plus from "../../assets/plus.png";
 import AddImageIcon from "../../assets/add-image.svg";
-import { GENERATE } from "../../router/routes-const";
+
 
 const Profile = ({
   uid,
@@ -152,7 +152,7 @@ const Profile = ({
                         bucket.images.slice(0, 2).map((image, imageIndex) => {
                           return (
                             <img
-                              className="bucket-teaser_image"
+                              className="bucket-teaser_image col s3 m3 l3 "
                               alt="images in the bucket"
                               key={`Key${imageIndex}`}
                               src={image.image_uri}
