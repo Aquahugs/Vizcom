@@ -138,6 +138,8 @@ const Generate = ({
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      width:'80%',
+      height:'600px'
     },
   };
 
@@ -222,7 +224,7 @@ const Generate = ({
                 />
               </div>
               <div className="col s5 m5 l5 generated-info">
-                <h1> {modalImage.image_uri.slice(-22, -1)}g</h1>
+                <h1 style ={{fontSize:'2rem'}}> {modalImage.image_uri.slice(-22, -1)}g</h1>
                 <div className="button-container row">
                   <div style={hideBuckets}>
                     <div>
