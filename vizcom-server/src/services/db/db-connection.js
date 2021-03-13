@@ -7,7 +7,7 @@ class DBConnection {
     this.db = mysql2.createPool({
       host: "localhost",
       user: "root",
-      password: "jtaylo8994",
+      password: "Jtaylo89944!",
       database: "vizcom",
     });
 

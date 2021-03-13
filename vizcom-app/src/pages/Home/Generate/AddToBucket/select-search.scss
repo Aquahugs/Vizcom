@@ -2,7 +2,7 @@
  * Main wrapper
  */
 .select-search {
-  width: 300px;
+  width: 100%;
   position: relative;
   font-family: "Nunito Sans", sans-serif;
   box-sizing: border-box;
@@ -206,4 +206,22 @@
   padding: 16px;
   text-align: center;
   color: #888;
+}
+
+
+.add-btn {
+  margin-left: 4%;
+  width:100px;
+  background-color: #003FFF;
+}
+.add-btn:hover {
+  background-color: #7295FF;
+}
+.cancel-btn {
+  background-color: #707070;
+  width:100px;
+ 
+}
+.cancel-btn:hover{
+  background-color: #B7B7B7  !important;
 }

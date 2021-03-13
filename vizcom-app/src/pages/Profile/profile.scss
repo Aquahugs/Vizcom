@@ -136,40 +136,24 @@
 .create-box {
     border-bottom: 1px solid #707070;
     padding-bottom: 1rem;
-
 }
 
 .bucket-row {
     margin-top: 15%;
 }
-.bucket-titlecard{
-    width: 19.75rem;
-    height:19.25rem;
-    background-color: #F8F8F8;
-    border:solid 1px #707070;
-    margin-right: 0px !important ;
-    display: inline-block;
-    float: left;
-    
 
-    h3{
-        text-align: center;
-        vertical-align: middle;
-        font-size: 2rem;
-        color:#707070;
-        font-weight: 500;
-        padding-top: 15%;
-    }
+.bucket-teaser_add-image-card {
 
-    p{
-        text-align: center;
-        vertical-align: middle;
-        font-size: 1rem;
-        color:#707070;
-        font-weight: 500;
-    }
-    
-  
+
+.add-image{
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 25%;
+    margin-top: 25%;
+}
+p{
+    text-align: center;
 }
 
-
+}
