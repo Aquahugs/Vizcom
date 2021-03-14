@@ -41,3 +41,61 @@
 
 
 }
+
+    .title{
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .subtitle{
+        text-align: center;
+    }
+
+    .title2{
+        text-align: center;
+        font-size: 30px;
+    }
+
+
+    .updatesbtn2 {
+        width: 80% !important;
+        display: block;
+        margin: 0 auto;
+        text-decoration: none;
+        color: #333333;
+        background-color: white;
+        text-align: center;
+        letter-spacing: .5px;
+        transition: background-color .2s ease-out;
+        cursor: pointer;
+        font-size: 2rem;
+        outline: 0;
+        height: 72px;
+        line-height: 36px;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+        margin-top: 2%;
+        margin-bottom: 10%;
+    }
+    
+    .updatesbtn2:hover {
+        background-color: #000000;
+        color: #FFFFFF;
+        transition:.2s ease-out;
+    
+    
+    }
+
+    .email-input {
+        width:80% !important;
+      display: 'block';
+      margin-left: 200px;
+      height:70px;
+      font-size:'rem';
+    }
+
+    .input-field input[type=email]:focus {
+        border-bottom: 1px solid #003FFF !important;
+
+      }

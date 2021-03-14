@@ -6,6 +6,6 @@ export const GENERATE = {
 
 export const SKETCH_TO_RENDER = {
   link: "sketch-to-render",
-  description: "Auto fill base values for all of your line drawings",
+  description: "Auto fill base values for all of your line drawings..........",
   name: "Sketch2Render",
 };

@@ -6,7 +6,7 @@ const Card = ({ link, logo, name, description,push }) => {
   return (
     <Link to={link}>
       <div className="col s4 m4">
-        <div className="card">
+        <div className="card" style = {{ opacity: name != "Sketch2Render"? 1: 0.5}}>
           <div className="card-image">
             <img src={logo} />
           </div>

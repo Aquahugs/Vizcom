@@ -174,14 +174,14 @@ const Profile = ({
                     ) : (
                       <div className="bucket-teaser_add-image-card">
                         <img
-                          className="col s3 m3 l3 bucket-preview"
+                          className="add-image"
                           alt="images in the bucket"
                           src={AddImageIcon}
                         />
                         <p>add images to bucket </p>
-                        <Link to={GENERATE}>
+                        {/* <Link to={GENERATE}>
                           <p>or collect from the generate tool</p>
-                        </Link>
+                        </Link> */}
                       </div>
                     )}
                     {bucket.images?.length > 2 && (

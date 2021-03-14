@@ -49,9 +49,9 @@ const BucketList = ({ buckets, user }) => {
                   src={AddImageIcon}
                 />
                 <p>add images to bucket </p>
-                <Link to={GENERATE}>
+                {/* <Link to={GENERATE}>
                   <p>or collect from the generate tool</p>
-                </Link>
+                </Link> */}
               </div>
             )}
             {bucket.images?.length > 2 && (

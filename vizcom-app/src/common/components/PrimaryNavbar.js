@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./PrimaryNavbar.scss";
 import Logo from "../../assets/logo.png";
-import NewBucket from "../../assets/create-bucket.svg";
+import NewBucket from "../../assets/plus.png";
 import SignOut from "../../pages/LandingPage/Auth/SignOut";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -24,6 +24,7 @@ const PrimaryNav = ({ user }) => {
               to={ADD_BUCKET}
               style={{ color: "#505050", fontSize: "16px" }}
             >
+              <img src = {NewBucket} className = 'nav-addbucket'/>
               new bucket
             </Link>
           </li>

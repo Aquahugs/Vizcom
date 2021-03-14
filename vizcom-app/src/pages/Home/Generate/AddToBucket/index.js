@@ -71,7 +71,7 @@ const AddToBucket = ({
           onChange={onSelectChange}
         />
         <button
-          className="btn waves-effect waves-light"
+          className="btn cancel-btn"
           type="submit"
           name="action"
           onClick={() => displayBucketHandler(false)}
@@ -79,7 +79,7 @@ const AddToBucket = ({
           Cancel
         </button>
         <button
-          className="btn  waves-light save-btn"
+          className="btn add-btn"
           type="submit"
           name="action"
         >

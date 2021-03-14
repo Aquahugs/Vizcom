@@ -8,9 +8,7 @@
   }
 }
 
-.bucket-teaser_image {
-  width: 100%;
-}
+
 .dot {
   height: 20px;
   width: 20px;
@@ -22,6 +20,50 @@
 
 }
 
-.bucket_teaser_see-more-container{
+.bucket-titlecard{
+  width: 19.75rem;
+  height:19.25rem;
+  background-color: #F8F8F8;
+  border:solid 1px #707070;
+  margin-right: 0px !important ;
+  display: inline-block;
+  float: left;
   
+
+  h3{
+      text-align: center;
+      vertical-align: middle;
+      font-size: 2rem;
+      color:#707070;
+      font-weight: 500;
+      padding-top: 15%;
+  }
+
+  p{
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1rem;
+      color:#707070;
+      font-weight: 500;
+  }
+  
+
+}
+
+.bucket-teaser_add-image-card{
+  width: 19.75rem;
+  height:19.25rem;
+  margin-right: 0px !important ;
+  display: inline-block;
+  float: left;
+  border:solid 1px #707070;
+  // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23989898FF' stroke-width='3' stroke-dasharray='5' stroke-dashoffset='28' stroke-linecap='square'/%3e%3c/svg%3e");
+  margin-left: 2%;
+  cursor: pointer;
+}
+
+.bucket-teaser_add-image-card:hover{
+
+  background-color: #F8F8F8 ;
+
 }

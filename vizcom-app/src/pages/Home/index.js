@@ -55,12 +55,12 @@ const Home = ({
           description={GENERATE.description}
           logo={GenerateLogo}
         />
-        {/* <ToolCard
+        <ToolCard
           link={SKETCH_TO_RENDER.link}
           name={SKETCH_TO_RENDER.name}
           description={SKETCH_TO_RENDER.description}
           logo={SketchToRenderLogo}
-        /> */}
+        />
       </div>
     </div>
   );

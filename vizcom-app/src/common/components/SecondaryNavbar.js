@@ -14,7 +14,7 @@ const SecondaryNav = ({ user, profile, history }) => {
     <div className="nav-container">
       <ul>
         <li>
-          <Link to="/home">Home <span>{history.location.pathname}</span></Link>
+          <Link to="/home">Tools <span>{history.location.pathname}</span></Link>
         </li>
         <li>
           <Link to="/profile" >Profile / 
