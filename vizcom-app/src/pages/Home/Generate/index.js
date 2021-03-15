@@ -38,6 +38,7 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+  const [isCollected, setIsCollectedImage] = useState(false);
 
   useEffect(() => {
     !generatedImages
@@ -115,6 +116,9 @@ const Generate = ({
       image_uri: image.image_uri,
     };
     collectImage(imageObj);
+    
+    setIsCollectedImage(imageObj);
+    console.log(isCollected)
   };
 
   const logDownload = (image) => {
@@ -125,6 +129,7 @@ const Generate = ({
   const openModal = (image) => {
     setModalImage(image);
     setModalIsOpen(true);
+    console.log(modalIsOpen)
   };
   const closeModal = () => {
     setModalIsOpen(false);
@@ -139,7 +144,8 @@ const Generate = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       width:'80%',
-      height:'600px'
+      height:'600px',
+      zindex:'9999'
     },
   };
 
@@ -163,6 +169,10 @@ const Generate = ({
     marginRight: "auto",
     width: "40%",
   };
+
+  const zindexstyle = {
+    zindex: modalIsOpen ? "-9999" : "-9999"
+  }
 
   if (!isLoaded) {
     return (
@@ -290,8 +300,10 @@ const Generate = ({
 
           <div className=" genbtn-container row" style={styles.fadeInUp}>
             <button
-              a
-              href="#"
+              style={{
+                zIndex: modalIsOpen == false ? 9999: -9999
+              }}    
+              ahref="#"
               className="btn waves-effect generate-btn lighten-1 z-depth-0"
               onClick={() => toggleGeneratedImages(generatedImages, 3)}
               onMouseDown={() => handleClick}
