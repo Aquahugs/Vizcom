@@ -38,11 +38,7 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
-<<<<<<< HEAD
-  const [isCollected, setIsCollectedImage] = useState(false);
-=======
-  const [isCollected, setIsCollected] = useState(null);
->>>>>>> b2ea21b9776bd3a3bb2ec36fdf0970016d4bd6f9
+  const [isCollected, setIsCollected] = useState([]);
 
   useEffect(() => {
     !generatedImages
@@ -119,15 +115,13 @@ const Generate = ({
       user_uploaded_image_id: null,
       image_uri: image.image_uri,
     };
-    setIsCollected(imageObj.generated_image_id);
+
+    let newArray = isCollected.push(imageObj.generated_image_id)
+    setIsCollected(newArray);
+    // setIsCollected(imageObj.generated_image_id);
     collectImage(imageObj);
-<<<<<<< HEAD
-    
-    setIsCollectedImage(imageObj);
-    console.log(isCollected)
-=======
     console.log("images are collected", isCollected);
->>>>>>> b2ea21b9776bd3a3bb2ec36fdf0970016d4bd6f9
+
   };
 
   const logDownload = (image) => {
@@ -138,7 +132,6 @@ const Generate = ({
   const openModal = (image) => {
     setModalImage(image);
     setModalIsOpen(true);
-    console.log(modalIsOpen)
   };
   const closeModal = () => {
     setModalIsOpen(false);
@@ -152,14 +145,8 @@ const Generate = ({
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-<<<<<<< HEAD
-      width:'80%',
-      height:'600px',
-      zindex:'9999'
-=======
       width: "80%",
       height: "600px",
->>>>>>> b2ea21b9776bd3a3bb2ec36fdf0970016d4bd6f9
     },
   };
 
@@ -183,10 +170,6 @@ const Generate = ({
     marginRight: "auto",
     width: "40%",
   };
-
-  const zindexstyle = {
-    zindex: modalIsOpen ? "-9999" : "-9999"
-  }
 
   if (!isLoaded) {
     return (
@@ -216,10 +199,16 @@ const Generate = ({
               onClick={() => logDownload(image.image_uri)}
             />
           </a>
-          <a className="collect" onClick={() => collectImageHandler(image)}>
-            Collect
-            <i className="material-icons right">add_box</i>
-          </a>
+          {isCollected.contains(image.generated_image_id) ? (
+            <img src = "https://via.placeholder.com/20"/>
+          ) : (
+            <a className="collect" onClick={() => collectImageHandler(image)}>
+              Collect
+              <i className="material-icons right">add_box</i>
+            </a>
+          )}
+          
+        
         </div>
       </div>
     );
@@ -317,10 +306,8 @@ const Generate = ({
 
           <div className=" genbtn-container row" style={styles.fadeInUp}>
             <button
-              style={{
-                zIndex: modalIsOpen == false ? 9999: -9999
-              }}    
-              ahref="#"
+              a
+              href="#"
               className="btn waves-effect generate-btn lighten-1 z-depth-0"
               onClick={() => toggleGeneratedImages(generatedImages, 3)}
               onMouseDown={() => handleClick}
