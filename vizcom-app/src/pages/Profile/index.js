@@ -29,7 +29,7 @@ const Profile = ({
   getBuckets,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [view, setView] = useState("");
+  const [view, setView] = useState("collection");
 
   useEffect(() => {
     if (!profile) {
@@ -103,21 +103,20 @@ const Profile = ({
             <ul>
               <a>
                 <li
-                  onClick={() => toggleView("bucket")}
-                  style={{ fontWeight: view == "bucket" ? "bold" : "400" }}
-                >
-                  Buckets
-                </li>
-              </a>
-              <a>
-                <li
                   onClick={() => toggleView("collection")}
                   style={{ fontWeight: view == "collection" ? "bold" : "400" }}
                 >
                   Collection
                 </li>
               </a>
-              <li>All</li>
+              <a>
+                <li
+                  onClick={() => toggleView("bucket")}
+                  style={{ fontWeight: view == "bucket" ? "bold" : "400" }}
+                >
+                  Buckets
+                </li>
+              </a>
             </ul>
           </div>
         </div>

@@ -38,7 +38,7 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
-  const [isCollected, setIsCollected] = useState(null);
+  const [isCollected, setIsCollected] = useState([]);
 
   useEffect(() => {
     !generatedImages
@@ -115,9 +115,13 @@ const Generate = ({
       user_uploaded_image_id: null,
       image_uri: image.image_uri,
     };
-    setIsCollected(imageObj.generated_image_id);
+
+    let newArray = isCollected.push(imageObj.generated_image_id)
+    setIsCollected(newArray);
+    // setIsCollected(imageObj.generated_image_id);
     collectImage(imageObj);
     console.log("images are collected", isCollected);
+
   };
 
   const logDownload = (image) => {
@@ -195,10 +199,16 @@ const Generate = ({
               onClick={() => logDownload(image.image_uri)}
             />
           </a>
-          <a className="collect" onClick={() => collectImageHandler(image)}>
-            Collect
-            <i className="material-icons right">add_box</i>
-          </a>
+          {isCollected.contains(image.generated_image_id) ? (
+            <img src = "https://via.placeholder.com/20"/>
+          ) : (
+            <a className="collect" onClick={() => collectImageHandler(image)}>
+              Collect
+              <i className="material-icons right">add_box</i>
+            </a>
+          )}
+          
+        
         </div>
       </div>
     );
