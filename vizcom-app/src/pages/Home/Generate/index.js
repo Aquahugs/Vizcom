@@ -38,7 +38,11 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+<<<<<<< HEAD
   const [isCollected, setIsCollectedImage] = useState(false);
+=======
+  const [isCollected, setIsCollected] = useState(null);
+>>>>>>> b2ea21b9776bd3a3bb2ec36fdf0970016d4bd6f9
 
   useEffect(() => {
     !generatedImages
@@ -115,10 +119,15 @@ const Generate = ({
       user_uploaded_image_id: null,
       image_uri: image.image_uri,
     };
+    setIsCollected(imageObj.generated_image_id);
     collectImage(imageObj);
+<<<<<<< HEAD
     
     setIsCollectedImage(imageObj);
     console.log(isCollected)
+=======
+    console.log("images are collected", isCollected);
+>>>>>>> b2ea21b9776bd3a3bb2ec36fdf0970016d4bd6f9
   };
 
   const logDownload = (image) => {
@@ -143,9 +152,14 @@ const Generate = ({
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+<<<<<<< HEAD
       width:'80%',
       height:'600px',
       zindex:'9999'
+=======
+      width: "80%",
+      height: "600px",
+>>>>>>> b2ea21b9776bd3a3bb2ec36fdf0970016d4bd6f9
     },
   };
 
@@ -234,7 +248,10 @@ const Generate = ({
                 />
               </div>
               <div className="col s5 m5 l5 generated-info">
-                <h1 style ={{fontSize:'2rem'}}> {modalImage.image_uri.slice(-22, -1)}g</h1>
+                <h1 style={{ fontSize: "2rem" }}>
+                  {" "}
+                  {modalImage.image_uri.slice(-22, -1)}g
+                </h1>
                 <div className="button-container row">
                   <div style={hideBuckets}>
                     <div>
