@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./SecondaryNavbar.scss";
-import { withRouter } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 
-
-const SecondaryNav = ({ user, profile, history }) => {
-
-  console.log(profile)
-  console.log(history)
-  console.log(history.location)
+const SecondaryNav = ({ user, profile }) => {
+  let location = useLocation();
+  function capitalizeFirstLetter(string) {
+    return string.charAt(1).toUpperCase() + string.slice(2);
+  }
   return (
     <div className="nav-container">
       <ul>
         <li>
-          <Link to="/home">Tools <span>{history.location.pathname}</span></Link>
+          <Link to="/home">
+            Tools
+            {(location.pathname === "/generate" ||
+              location.pathname === "/home") && (
+              <span>/{capitalizeFirstLetter(location.pathname)}</span>
+            )}
+          </Link>
         </li>
         <li>
-          <Link to="/profile" >Profile / 
-
-          
+          <Link to="/profile">
+            Profile
+            {location.pathname === "/profile" && (
+              <span>/{profile.first_name}</span>
+            )}
           </Link>
         </li>
         {/* {profile && <h2>{profile.first_name}</h2>} */}
@@ -34,9 +40,7 @@ const SecondaryNav = ({ user, profile, history }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.session,
-    profile: state.profile.user
-    
-
+    profile: state.profile.user,
   };
 };
 
