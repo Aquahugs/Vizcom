@@ -38,6 +38,7 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+  const [isCollected, setIsCollected] = useState(null);
 
   useEffect(() => {
     !generatedImages
@@ -114,7 +115,9 @@ const Generate = ({
       user_uploaded_image_id: null,
       image_uri: image.image_uri,
     };
+    setIsCollected(imageObj.generated_image_id);
     collectImage(imageObj);
+    console.log("images are collected", isCollected);
   };
 
   const logDownload = (image) => {
@@ -138,8 +141,8 @@ const Generate = ({
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width:'80%',
-      height:'600px'
+      width: "80%",
+      height: "600px",
     },
   };
 
@@ -224,7 +227,10 @@ const Generate = ({
                 />
               </div>
               <div className="col s5 m5 l5 generated-info">
-                <h1 style ={{fontSize:'2rem'}}> {modalImage.image_uri.slice(-22, -1)}g</h1>
+                <h1 style={{ fontSize: "2rem" }}>
+                  {" "}
+                  {modalImage.image_uri.slice(-22, -1)}g
+                </h1>
                 <div className="button-container row">
                   <div style={hideBuckets}>
                     <div>
