@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./SecondaryNavbar.scss";
 import { Link, useLocation } from "react-router-dom";
+import { GENERATE, HOME, PROFILE, EXPLORE } from "../../router/routes-const";
 
-const SecondaryNav = ({ user, profile }) => {
+const SecondaryNav = ({ profile }) => {
   let location = useLocation();
   function capitalizeFirstLetter(string) {
     return string.charAt(1).toUpperCase() + string.slice(2);
@@ -12,25 +13,23 @@ const SecondaryNav = ({ user, profile }) => {
     <div className="nav-container">
       <ul>
         <li>
-          <Link to="/home">
+          <Link to={HOME}>
             Tools
-            {(location.pathname === "/generate" ||
-              location.pathname === "/home") && (
+            {(location.pathname === GENERATE || location.pathname === HOME) && (
               <span>/{capitalizeFirstLetter(location.pathname)}</span>
             )}
           </Link>
         </li>
         <li>
-          <Link to="/profile">
+          <Link to={PROFILE}>
             Profile
-            {location.pathname === "/profile" && (
-              <span>/{profile.first_name}</span>
+            {location.pathname === PROFILE && (
+              <span>/{profile?.first_name}</span>
             )}
           </Link>
         </li>
-        {/* {profile && <h2>{profile.first_name}</h2>} */}
         <li>
-          <Link to="/explore">Explore</Link>
+          <Link to={EXPLORE}>Explore</Link>
         </li>
       </ul>
     </div>

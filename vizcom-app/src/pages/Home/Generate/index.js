@@ -38,7 +38,6 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
-  const [isCollected, setIsCollected] = useState([]);
 
   useEffect(() => {
     !generatedImages
@@ -90,6 +89,12 @@ const Generate = ({
       result[n] = arr[x in taken ? taken[x] : x];
       taken[x] = --len in taken ? taken[len] : len;
     }
+    result.map((image) => {
+      return {
+        ...image,
+        isCollected: false,
+      };
+    });
     setGeneratedDisplayImages(result);
 
     setTimeout(() => {
@@ -116,12 +121,14 @@ const Generate = ({
       image_uri: image.image_uri,
     };
 
-    let newArray = isCollected.push(imageObj.generated_image_id)
-    setIsCollected(newArray);
-    // setIsCollected(imageObj.generated_image_id);
     collectImage(imageObj);
-    console.log("images are collected", isCollected);
 
+    generatedDisplayImages.map((image) => {
+      if (image.generated_image_id === imageObj.generated_image_id) {
+        image.isCollected = true;
+      }
+      return image;
+    });
   };
 
   const logDownload = (image) => {
@@ -199,16 +206,14 @@ const Generate = ({
               onClick={() => logDownload(image.image_uri)}
             />
           </a>
-          {isCollected.contains(image.generated_image_id) ? (
-            <img src = "https://via.placeholder.com/20"/>
+          {image.isCollected ? (
+            <img src="https://via.placeholder.com/20" />
           ) : (
             <a className="collect" onClick={() => collectImageHandler(image)}>
               Collect
               <i className="material-icons right">add_box</i>
             </a>
           )}
-          
-        
         </div>
       </div>
     );
@@ -254,13 +259,17 @@ const Generate = ({
                         </button>
                       </div>
                       <div className="col s6 m6 l6">
-                        <a
-                          className="collect"
-                          onClick={() => collectImageHandler(modalImage)}
-                        >
-                          Collect
-                          <i className="material-icons right">add_box</i>
-                        </a>
+                        {modalImage.isCollected ? (
+                          <img src="https://via.placeholder.com/20" />
+                        ) : (
+                          <a
+                            className="collect"
+                            onClick={() => collectImageHandler(modalImage)}
+                          >
+                            Collect
+                            <i className="material-icons right">add_box</i>
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
