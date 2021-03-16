@@ -8,6 +8,10 @@ const SecondaryNav = ({ user, profile }) => {
   function capitalizeFirstLetter(string) {
     return string.charAt(1).toUpperCase() + string.slice(2);
   }
+
+  const styles = {
+    fontWeight:600
+  };
   return (
     <div className="nav-container">
       <ul>
@@ -16,7 +20,7 @@ const SecondaryNav = ({ user, profile }) => {
             Tools
             {(location.pathname === "/generate" ||
               location.pathname === "/home") && (
-              <span>/{capitalizeFirstLetter(location.pathname)}</span>
+              <span style = {styles}>/{capitalizeFirstLetter(location.pathname)}</span>
             )}
           </Link>
         </li>
@@ -24,7 +28,7 @@ const SecondaryNav = ({ user, profile }) => {
           <Link to="/profile">
             Profile
             {location.pathname === "/profile" && (
-              <span>/{profile.first_name}</span>
+              <span style = {styles}>/{profile.first_name}</span>
             )}
           </Link>
         </li>

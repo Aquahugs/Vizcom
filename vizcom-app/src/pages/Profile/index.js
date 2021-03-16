@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import { withAuthorization } from "../../router/auth/session";
 import { Link } from "react-router-dom";
-
+import Modal from "react-modal";
 import ProfileThunks from "./redux/thunks";
 import CollectionThunks from "./Collection/redux/thunks";
 import BucketThunks from "../Bucket/redux/thunks";
-
+import AddToBucket from "../Home/Generate/AddToBucket"
 import BucketList from "../Bucket/BucketList";
 import { EDITOR, ADD_BUCKET, GENERATE } from "../../router/routes-const";
+import { BucketActions } from "../Bucket/redux";
 
 import "./profile.scss";
 import locationIcon from "../../assets/location-icon.svg";
@@ -27,9 +28,47 @@ const Profile = ({
   getProfile,
   getCollection,
   getBuckets,
+  getBucketDropdownOptions,
+  bucketDropdownOptions,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [view, setView] = useState("collection");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalImage, setModalImage] = useState("");
+  const [displayBuckets, setDisplayBuckets] = useState(false);
+
+  // modal functions
+  const openModal = (image) => {
+    setModalImage(image);
+    console.log(modalImage)
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+  const modalStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      width: "80%",
+      height: "600px",
+    },
+  };
+
+  const showBuckets = {
+    visibility: displayBuckets ? "visible" : "hidden",
+    display: displayBuckets ? "block" : "none",
+  };
+  const hideBuckets = {
+    visibility: displayBuckets ? "hidden" : "visible",
+    display: displayBuckets ? "none" : "block",
+  };
+
+
 
   useEffect(() => {
     if (!profile) {
@@ -45,9 +84,23 @@ const Profile = ({
     console.log("buckets", buckets);
   }, [profile, collection, uid, getProfile, getCollection, getBuckets]);
 
+
+  // options for bucket search
+  if (!bucketDropdownOptions) {
+    const bucketOptionDropdown = buckets?.map((bucket) => ({
+      name: bucket.bucket_name,
+      value: bucket.bucket_id,
+    }));
+    getBucketDropdownOptions(bucketOptionDropdown);
+  }
+
   const toggleView = (e) => {
     setView(e);
     console.log(view);
+  };
+
+  const toggleBuckets = () => {
+    setDisplayBuckets(!displayBuckets);
   };
 
   if (!isLoaded && profile) {
@@ -196,6 +249,7 @@ const Profile = ({
             </div>
           </div>
         )}
+        
         {view === "collection" && collection && (
           <div className="row">
             {/* CREATE COLLECTION LIST COMPONENT */}
@@ -206,22 +260,78 @@ const Profile = ({
                   className=" collection-container col s3 m3 l3"
                   key={image.collection_image_id}
                 >
-                  <img className="collection-image" src={image.image_uri} />
+                  <img className="collection-image" 
+                  src={image.image_uri} 
+                  onClick={() => {
+                    openModal(image);
+                  }}
+                  />
                   <a>add to bucket</a>
                 </div>
+                
               );
+             
             })}
           </div>
         )}
+
+        {/* Pop up modal */}
+        <div>
+          <Modal
+            ariaHideApp={false}
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={modalStyles}
+            contentLabel="Example Modal"
+            onAfterClose={closeModal}
+          >
+          <span>
+            <div className = "row">
+              <div className = "col s7 m7 l7">
+                <img className="modal-image" src={modalImage.image_uri} />
+              </div>
+              <div className="button-container  col s5 m5 l5">
+                  <div style={hideBuckets}>
+                      <div>
+                        <button
+                          className="waves-effect waves-grey btn-flat add-bucket"
+                          onClick={toggleBuckets}
+                        >
+                          <i className="material-icons right">apps</i>Add to
+                          bucket
+                        </button>
+                      </div>
+                  </div>
+                  <div
+                    className="bucket-container col s12 m12 l12"
+                    style={showBuckets}
+                  >
+                    <AddToBucket
+                      addBucketMenu={setDisplayBuckets}
+                      image={modalImage}
+                    />
+                  </div>
+                </div>
+            </div>
+          
+          </span>
+          </Modal>
+        </div>
+       
       </div>
     );
   }
+
+ 
+  
 };
 
 const mapDispatchToProps = {
   getProfile: ProfileThunks.getProfile,
   getCollection: CollectionThunks.getCollectionByUserId,
   getBuckets: BucketThunks.getBuckets,
+  getBucketDropdownOptions: BucketActions.getBucketDropdownOptions,
+
 };
 
 const mapStateToProps = (state) => {
@@ -230,6 +340,7 @@ const mapStateToProps = (state) => {
     profile: state.profile.user,
     collection: state.collection.collection,
     buckets: state.bucket.buckets,
+    bucketDropdownOptions: state.bucket.dropdownOptions,
   };
 };
 

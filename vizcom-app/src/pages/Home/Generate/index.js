@@ -199,15 +199,11 @@ const Generate = ({
               onClick={() => logDownload(image.image_uri)}
             />
           </a>
-          {isCollected.contains(image.generated_image_id) ? (
-            <img src = "https://via.placeholder.com/20"/>
-          ) : (
+         
             <a className="collect" onClick={() => collectImageHandler(image)}>
               Collect
               <i className="material-icons right">add_box</i>
             </a>
-          )}
-          
         
         </div>
       </div>
