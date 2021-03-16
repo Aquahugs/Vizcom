@@ -40,8 +40,6 @@ const AddToBucket = ({
       image_uri: image.image_uri,
     };
     collectImage(imageObj).then((collectionImages) => {
-      debugger;
-      console.log(collectionImages, image);
       const collectionImage = collectionImages.find((i) => {
         return i.generated_image_id === image.generated_image_id;
       });
@@ -78,11 +76,7 @@ const AddToBucket = ({
         >
           Cancel
         </button>
-        <button
-          className="btn add-btn"
-          type="submit"
-          name="action"
-        >
+        <button className="btn add-btn" type="submit" name="action">
           Add
         </button>
       </form>
