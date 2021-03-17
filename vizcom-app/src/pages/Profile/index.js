@@ -55,7 +55,7 @@ const Profile = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       width: "80%",
-      height: "600px",
+      height: "auto",
     },
   };
 
@@ -194,7 +194,7 @@ const Profile = ({
               {buckets?.map((bucket, bucketIndex) => {
                 return (
                   <div className="row" key={`Key${bucketIndex}`}>
-                    <div className="bucket-titlecard">
+                   <div className="bucket-titlecard">  {/* Bucket title card */}
                       <h3>{bucket?.bucket_name}</h3>
                       <p>by / {profile?.first_name}</p>
                       <p>{bucket?.images ? bucket.images.length : 0} images</p>
@@ -266,7 +266,6 @@ const Profile = ({
                     openModal(image);
                   }}
                   />
-                  <a>add to bucket</a>
                 </div>
                 
               );
@@ -285,7 +284,7 @@ const Profile = ({
             contentLabel="Example Modal"
             onAfterClose={closeModal}
           >
-          <span>
+          <span className = "modal-container">
             <div className = "row">
               <div className = "col s7 m7 l7">
                 <img className="modal-image" src={modalImage.image_uri} />

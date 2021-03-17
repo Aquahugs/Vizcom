@@ -49,6 +49,7 @@
 
 .collection-image{
     max-width: 100%;
+    cursor: pointer;
 }
 
 
@@ -162,5 +163,12 @@ p{
 .modal-image{
     height: auto;
     width: 100%;
-    padding: 5%;
+}
+
+.modal-container{
+    padding: 10%;
+}
+
+.add-bucket { 
+    width: 100%;
 }

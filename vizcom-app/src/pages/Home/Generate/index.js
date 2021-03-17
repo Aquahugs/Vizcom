@@ -16,6 +16,7 @@ import { GenerateThunks } from "./redux";
 import { withAuthorization } from "../../../router/auth/session";
 
 import downloadbutton from "../../../assets/download-button.svg";
+import collectconfirm from "../../../assets/collect-confirm.svg"
 import AddToBucket from "./AddToBucket";
 
 const Generate = ({
@@ -206,22 +207,14 @@ const Generate = ({
               onClick={() => logDownload(image.image_uri)}
             />
           </a>
-<<<<<<< HEAD
-         
-=======
           {image.isCollected ? (
-            <img src="https://via.placeholder.com/20" />
+            <img className = 'collect-confirm right'src={collectconfirm} />
           ) : (
->>>>>>> c1d52460181f583033f80f1ed6fd77e16ef1487d
             <a className="collect" onClick={() => collectImageHandler(image)}>
               Collect
               <i className="material-icons right">add_box</i>
             </a>
-<<<<<<< HEAD
-        
-=======
           )}
->>>>>>> c1d52460181f583033f80f1ed6fd77e16ef1487d
         </div>
       </div>
     );
@@ -257,18 +250,18 @@ const Generate = ({
                 <div className="button-container row">
                   <div style={hideBuckets}>
                     <div>
-                      <div className="col s6 m6 l6">
+                      <div className="col s8 m8 l8">
                         <button
                           className="waves-effect waves-grey btn-flat add-bucket"
                           onClick={toggleBuckets}
                         >
-                          <i className="material-icons right">apps</i>Add to
+                          <i className="material-icons right add-to">apps</i>Add to
                           bucket
                         </button>
                       </div>
-                      <div className="col s6 m6 l6">
+                      <div className="col s4 m4 l4">
                         {modalImage.isCollected ? (
-                          <img src="https://via.placeholder.com/20" />
+                          <img className = "collect-confirm" src={collectconfirm} />
                         ) : (
                           <a
                             className="collect"
