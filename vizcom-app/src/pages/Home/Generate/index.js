@@ -66,6 +66,7 @@ const Generate = ({
       animationName: Radium.keyframes(fadeInUp, "fadeInUp"),
     },
   };
+  
 
   async function fetchGeneratedImages() {
     try {
@@ -326,6 +327,9 @@ const Generate = ({
                   handleClick();
                 }
               }}
+              style={{
+                zIndex: modalIsOpen == false ? 9999: -9999
+              }}   
             >
               Generate
             </button>

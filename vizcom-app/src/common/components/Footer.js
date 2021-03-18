@@ -10,8 +10,8 @@ export default function Footer() {
       <ul>
         <li>About</li>
         <li>Contact</li>
-        <li>Twitter</li>
-        <li>Instagram</li>
+        <a href = "https://twitter.com/Vizcom_io"><li>Twitter</li></a>
+        <a href = "https://www.instagram.com/vizcom.io/"><li>Instagram</li></a>
       </ul>
     </div>
   </div>
