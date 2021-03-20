@@ -299,7 +299,9 @@ const Profile = ({
                           <i className="material-icons right">apps</i>Add to
                           bucket
                         </button>
+                        
                       </div>
+                      <p className="remove">Remove from collection</p>
                   </div>
                   <div
                     className="bucket-container col s12 m12 l12"
