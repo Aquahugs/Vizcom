@@ -16,32 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `bucket`
+-- Table structure for table `collection_bucket`
 --
 
-DROP TABLE IF EXISTS `bucket`;
+DROP TABLE IF EXISTS `collection_bucket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bucket` (
-  `bucket_id` int NOT NULL AUTO_INCREMENT,
-  `is_public` tinyint(1) NOT NULL,
-  `bucket_name` varchar(45) NOT NULL,
-  `uuid` varchar(45) NOT NULL,
-  `create_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`bucket_id`),
-  KEY `fk_u_b_id_idx` (`uuid`),
-  CONSTRAINT `fk_u_b_id` FOREIGN KEY (`uuid`) REFERENCES `user` (`uuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `collection_bucket` (
+  `collection_image_id` int NOT NULL,
+  `bucket_id` int NOT NULL,
+  `uuid` varchar(45) DEFAULT NULL,
+  KEY `fk_ci_cb_id_idx` (`collection_image_id`),
+  KEY `fk_b_cb_id_idx` (`bucket_id`),
+  KEY `fk_u_cb_id_idx` (`uuid`),
+  CONSTRAINT `fk_b_cb_id` FOREIGN KEY (`bucket_id`) REFERENCES `bucket` (`bucket_id`),
+  CONSTRAINT `fk_ci_cb_id` FOREIGN KEY (`collection_image_id`) REFERENCES `collection_image` (`collection_image_id`),
+  CONSTRAINT `fk_u_cb_id` FOREIGN KEY (`uuid`) REFERENCES `user` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bucket`
+-- Dumping data for table `collection_bucket`
 --
 
-LOCK TABLES `bucket` WRITE;
-/*!40000 ALTER TABLE `bucket` DISABLE KEYS */;
-INSERT INTO `bucket` VALUES (1,1,'shoes','9hRzb2ZXtBhrovvMIROk3hvZBZp2','2021-02-24 12:00:30'),(2,1,'cars','9hRzb2ZXtBhrovvMIROk3hvZBZp2','2021-02-24 22:19:22'),(3,1,'cars','qvSNOOapNWSwW54SnOct94iXiBr1','2021-02-27 19:25:06'),(4,1,'anime stuff','qvSNOOapNWSwW54SnOct94iXiBr1','2021-02-27 19:25:27');
-/*!40000 ALTER TABLE `bucket` ENABLE KEYS */;
+LOCK TABLES `collection_bucket` WRITE;
+/*!40000 ALTER TABLE `collection_bucket` DISABLE KEYS */;
+INSERT INTO `collection_bucket` VALUES (84,13,'9hRzb2ZXtBhrovvMIROk3hvZBZp2');
+/*!40000 ALTER TABLE `collection_bucket` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-27 19:27:02
+-- Dump completed on 2021-03-23 17:12:19
