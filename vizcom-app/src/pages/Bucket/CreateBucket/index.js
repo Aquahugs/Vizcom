@@ -14,7 +14,6 @@ const CreateBucket = ({ uid, history, createBucket }) => {
   const { register, handleSubmit } = useForm();
 
   const submitForm = (formData) => {
-    debugger;
     formData.is_public = !formData.is_public;
     const newBucket = {
       ...formData,

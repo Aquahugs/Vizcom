@@ -15,4 +15,7 @@ export default {
   collectImage(req) {
     return apiClient.post(`/api/user/collection`, req);
   },
+  deleteCollectionImage(req) {
+    return apiClient.post(`/api/user/collection/image`, req);
+  },
 };

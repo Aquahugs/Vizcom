@@ -27,6 +27,20 @@ class CollectionController {
 
     res.send(collectionList);
   };
+
+  deleteCollectionImage = async (req, res, next) => {
+    const result = await CollectionModel.deleteCollectionImage(req.body);
+    if (!result) {
+      throw new HttpException(404, "Collection Image not found");
+    }
+    let collectionList = await CollectionModel.find({
+      id: req.body.uuid,
+    });
+    if (!collectionList.length) {
+      throw new HttpException(404, "No collection");
+    }
+    res.send(collectionList);
+  };
 }
 
 module.exports = new CollectionController();

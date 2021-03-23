@@ -50,6 +50,36 @@ const addToBucketSuccess = (buckets) => ({
   buckets,
 });
 
+const deleteBucketError = () => ({
+  type: TYPES.DELETE_BUCKET_ERROR,
+  //TODO: Helper method to create meaningful messages based on the error
+  error: "Unable delete Bucket",
+});
+
+const deleteBucketStarted = () => ({
+  type: TYPES.DELETE_BUCKET_STARTED,
+});
+
+const deleteBucketSuccess = (buckets) => ({
+  type: TYPES.DELETE_BUCKET_SUCCESS,
+  buckets,
+});
+
+const deleteBucketImageError = () => ({
+  type: TYPES.DELETE_BUCKET_ERROR,
+  //TODO: Helper method to create meaningful messages based on the error
+  error: "Unable delete Bucket Image",
+});
+
+const deleteBucketImageStarted = () => ({
+  type: TYPES.DELETE_BUCKET_IMAGE_STARTED,
+});
+
+const deleteBucketImageSuccess = (buckets) => ({
+  type: TYPES.DELETE_BUCKET_IMAGE_SUCCESS,
+  buckets,
+});
+
 const BucketActions = {
   getBucketsError,
   getBucketsStarted,
@@ -61,6 +91,12 @@ const BucketActions = {
   addToBucketStarted,
   addToBucketSuccess,
   getBucketDropdownOptions,
+  deleteBucketError,
+  deleteBucketStarted,
+  deleteBucketSuccess,
+  deleteBucketImageError,
+  deleteBucketImageStarted,
+  deleteBucketImageSuccess,
 };
 
 export default BucketActions;

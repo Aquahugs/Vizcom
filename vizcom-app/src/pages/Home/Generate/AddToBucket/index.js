@@ -46,6 +46,7 @@ const AddToBucket = ({
       const newImage = {
         collection_image_id: collectionImage.collection_image_id,
         bucket_id: bucketId,
+        uuid: uid,
       };
       !bucketId
         ? setErrorMessage("Please select a bucket")

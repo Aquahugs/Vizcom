@@ -7,7 +7,7 @@ import Modal from "react-modal";
 import ProfileThunks from "./redux/thunks";
 import CollectionThunks from "./Collection/redux/thunks";
 import BucketThunks from "../Bucket/redux/thunks";
-import AddToBucket from "../Home/Generate/AddToBucket"
+import AddToBucket from "../Home/Generate/AddToBucket";
 import BucketList from "../Bucket/BucketList";
 import { EDITOR, ADD_BUCKET, GENERATE } from "../../router/routes-const";
 import { BucketActions } from "../Bucket/redux";
@@ -19,7 +19,6 @@ import twitterIcon from "../../assets/twitter.png";
 import plus from "../../assets/plus.png";
 import AddImageIcon from "../../assets/add-image.svg";
 
-
 const Profile = ({
   uid,
   profile,
@@ -30,6 +29,7 @@ const Profile = ({
   getBuckets,
   getBucketDropdownOptions,
   bucketDropdownOptions,
+  deleteCollectionImage,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [view, setView] = useState("collection");
@@ -40,7 +40,6 @@ const Profile = ({
   // modal functions
   const openModal = (image) => {
     setModalImage(image);
-    console.log(modalImage)
     setModalIsOpen(true);
   };
   const closeModal = () => {
@@ -68,22 +67,16 @@ const Profile = ({
     display: displayBuckets ? "none" : "block",
   };
 
-
-
   useEffect(() => {
     if (!profile) {
       getProfile(uid);
     }
-    console.log("collection", collection);
     if (!collection) {
       getCollection(uid);
-      console.log("collection", collection);
     }
     getBuckets(uid);
     setIsLoaded(true);
-    console.log("buckets", buckets);
   }, [profile, collection, uid, getProfile, getCollection, getBuckets]);
-
 
   // options for bucket search
   if (!bucketDropdownOptions) {
@@ -101,6 +94,15 @@ const Profile = ({
 
   const toggleBuckets = () => {
     setDisplayBuckets(!displayBuckets);
+  };
+
+  const deleteCollectionImageHandler = (collectionImageId) => {
+    const req = {
+      collectionImageId,
+      uuid: uid,
+    };
+    deleteCollectionImage(req);
+    closeModal();
   };
 
   if (!isLoaded && profile) {
@@ -194,7 +196,8 @@ const Profile = ({
               {buckets?.map((bucket, bucketIndex) => {
                 return (
                   <div className="row" key={`Key${bucketIndex}`}>
-                   <div className="bucket-titlecard">  {/* Bucket title card */}
+                    <div className="bucket-titlecard">
+                      {/* Bucket title card */}
                       <h3>{bucket?.bucket_name}</h3>
                       <p>by / {profile?.first_name}</p>
                       <p>{bucket?.images ? bucket.images.length : 0} images</p>
@@ -225,15 +228,14 @@ const Profile = ({
                       )
                     ) : (
                       <div className="bucket-teaser_add-image-card">
-                        <img
-                          className="add-image"
-                          alt="images in the bucket"
-                          src={AddImageIcon}
-                        />
+                        <Link to={GENERATE}>
+                          <img
+                            className="add-image"
+                            alt="images in the bucket"
+                            src={AddImageIcon}
+                          />
+                        </Link>
                         <p>add images to bucket </p>
-                        {/* <Link to={GENERATE}>
-                          <p>or collect from the generate tool</p>
-                        </Link> */}
                       </div>
                     )}
                     {bucket.images?.length > 2 && (
@@ -249,7 +251,7 @@ const Profile = ({
             </div>
           </div>
         )}
-        
+
         {view === "collection" && collection && (
           <div className="row">
             {/* CREATE COLLECTION LIST COMPONENT */}
@@ -260,16 +262,15 @@ const Profile = ({
                   className=" collection-container col s3 m3 l3"
                   key={image.collection_image_id}
                 >
-                  <img className="collection-image" 
-                  src={image.image_uri} 
-                  onClick={() => {
-                    openModal(image);
-                  }}
+                  <img
+                    className="collection-image"
+                    src={image.image_uri}
+                    onClick={() => {
+                      openModal(image);
+                    }}
                   />
                 </div>
-                
               );
-             
             })}
           </div>
         )}
@@ -284,24 +285,32 @@ const Profile = ({
             contentLabel="Example Modal"
             onAfterClose={closeModal}
           >
-          <span className = "modal-container">
-            <div className = "row">
-              <div className = "col s7 m7 l7">
-                <img className="modal-image" src={modalImage.image_uri} />
-              </div>
-              <div className="button-container  col s5 m5 l5">
+            <span className="modal-container">
+              <div className="row">
+                <div className="col s7 m7 l7">
+                  <img className="modal-image" src={modalImage.image_uri} />
+                </div>
+                <div className="button-container  col s5 m5 l5">
                   <div style={hideBuckets}>
-                      <div>
-                        <button
-                          className="waves-effect waves-grey btn-flat add-bucket"
-                          onClick={toggleBuckets}
-                        >
-                          <i className="material-icons right">apps</i>Add to
-                          bucket
-                        </button>
-                        
-                      </div>
-                      <p className="remove">Remove from collection</p>
+                    <div>
+                      <button
+                        className="waves-effect waves-grey btn-flat add-bucket"
+                        onClick={toggleBuckets}
+                      >
+                        <i className="material-icons right">apps</i>Add to
+                        bucket
+                      </button>
+                    </div>
+                    <p
+                      className="remove"
+                      onClick={() =>
+                        deleteCollectionImageHandler(
+                          modalImage.collection_image_id
+                        )
+                      }
+                    >
+                      Remove from collection
+                    </p>
                   </div>
                   <div
                     className="bucket-container col s12 m12 l12"
@@ -313,18 +322,13 @@ const Profile = ({
                     />
                   </div>
                 </div>
-            </div>
-          
-          </span>
+              </div>
+            </span>
           </Modal>
         </div>
-       
       </div>
     );
   }
-
- 
-  
 };
 
 const mapDispatchToProps = {
@@ -332,7 +336,7 @@ const mapDispatchToProps = {
   getCollection: CollectionThunks.getCollectionByUserId,
   getBuckets: BucketThunks.getBuckets,
   getBucketDropdownOptions: BucketActions.getBucketDropdownOptions,
-
+  deleteCollectionImage: CollectionThunks.deleteCollectionImage,
 };
 
 const mapStateToProps = (state) => {

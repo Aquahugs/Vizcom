@@ -29,6 +29,20 @@ const insertCollectionSuccess = (collection) => ({
   type: TYPES.INSERT_COLLECTION_SUCCESS,
   collection,
 });
+const deleteCollectionImageError = () => ({
+  type: TYPES.DELETE_COLLECTION_IMAGE_ERROR,
+  //TODO: Helper method to create meaningful messages based on the error
+  error: "Unable to delete image from collection Collection",
+});
+
+const deleteCollectionImageStarted = () => ({
+  type: TYPES.DELETE_COLLECTION_IMAGE_STARTED,
+});
+
+const deleteCollectionImageSuccess = (collection) => ({
+  type: TYPES.DELETE_COLLECTION_IMAGE_SUCCESS,
+  collection,
+});
 
 export default {
   getCollectionError,
@@ -37,4 +51,7 @@ export default {
   insertCollectionError,
   insertCollectionStarted,
   insertCollectionSuccess,
+  deleteCollectionImageError,
+  deleteCollectionImageStarted,
+  deleteCollectionImageSuccess,
 };

@@ -14,14 +14,6 @@ class BucketController {
     res.send(bucketList);
   };
 
-  // getBucket = async (req, res, next) => {
-  //   let bucket = await BucketModel.findOne(req.body);
-  //   if (!bucket) {
-  //     throw new HttpException(404, "No bucket exists");
-  //   }
-  //   res.send(bucketList);
-  // };
-
   createBucket = async (req, res, next) => {
     const result = await BucketModel.create(req.body);
 
@@ -46,7 +38,27 @@ class BucketController {
   };
 
   deleteBucket = async (req, res, next) => {
-    const result = await BucketModel.insert(req.body);
+    const result = await BucketModel.deleteBucket(req.body);
+    if (!result) {
+      throw new HttpException(404, "Bucket not found");
+    }
+    const bucketList = await BucketModel.find({ id: req.body.bucketId });
+    if (!bucketList.length) {
+      throw new HttpException(404, "No buckets exists");
+    }
+    res.send(bucketList);
+  };
+
+  deleteBucketImage = async (req, res, next) => {
+    const result = await BucketModel.deleteBucketImage(req.body);
+    if (!result) {
+      throw new HttpException(404, "Bucket Image not found");
+    }
+    const bucketList = await BucketModel.find({ id: req.body.bucketId });
+    if (!bucketList.length) {
+      throw new HttpException(404, "No buckets exists");
+    }
+    res.send(bucketList);
   };
 }
 module.exports = new BucketController();

@@ -77,10 +77,9 @@ class BucketModel {
     const { values } = multipleColumnSet(params);
 
     const sql = `INSERT INTO collection_bucket
-        (collection_image_id, bucket_id) 
+        (collection_image_id, bucket_id, uuid) 
       VALUES 
-        (?,?)`;
-    console.log(sql, values);
+        (?,?,?)`;
 
     const result = await query(sql, values);
 
@@ -89,11 +88,23 @@ class BucketModel {
     return affectedRows;
   };
 
-  delete = async (id) => {
-    const sql = `DELETE FROM bucket
-        WHERE bukcet_id = ${id}`;
+  deleteBucket = async ({ uuid, bucketId }) => {
+    // delete bucket images first
+    const sql2 = `DELETE FROM collection_bucket WHERE bucket_id = ${bucketId} AND uuid = '${uuid}'`;
+    const result2 = await query(sql2);
 
-    const sql2 = `DELETE FROM collection_bucket WHERE bucket_id = ${id}`;
+    const sql = `DELETE FROM bucket
+        WHERE bucket_id = ${bucketId}`;
+
+    const result = await query(sql);
+
+    const affectedRows = result ? result.affectedRows : 0;
+
+    return affectedRows;
+  };
+
+  deleteBucketImage = async ({ uuid, collectionImageId }) => {
+    const sql = `DELETE FROM collection_bucket WHERE uuid = ${uuid} && collection_image_id = ${collectionImageId}`;
 
     const result = await query(sql, [id]);
 

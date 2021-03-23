@@ -31,8 +31,29 @@ const addToBucket = (image) => async (dispatch) => {
   }
 };
 
+const deleteBucket = (bucket) => async (dispatch) => {
+  dispatch(actions.deleteBucketStarted());
+  try {
+    const response = await bucketService.deleteBucket(bucket);
+    dispatch(actions.deleteBucketSuccess(response.data));
+  } catch (error) {
+    dispatch(actions.deleteBucketError(error));
+  }
+};
+const deleteBucketImage = (image) => async (dispatch) => {
+  dispatch(actions.deleteBucketImageStarted());
+  try {
+    const response = await bucketService.deleteBucketImage(image);
+    dispatch(actions.deleteBucketImageSuccess(response.data));
+  } catch (error) {
+    dispatch(actions.deleteBucketImageError(error));
+  }
+};
+
 export default {
   getBuckets,
   createBucket,
   addToBucket,
+  deleteBucket,
+  deleteBucketImage,
 };

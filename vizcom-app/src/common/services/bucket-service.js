@@ -11,12 +11,19 @@ export default {
   },
 
   // expecting this object
-  //   {
-  //     "uuid": "9hRzb2ZXtBhrovvMIROk3hvZBZp2",
+  //   {0
   //     "generated_image_id": 30,
   //     "user_uploaded_image_id": null
   //   }
   createBucket(bucket) {
     return apiClient.post(`/api/bucket/create`, bucket);
+  },
+
+  deleteBucket(bucket) {
+    return apiClient.post(`/api/bucket/`, bucket);
+  },
+
+  deleteBucketImage(bucketImage) {
+    return apiClient.post(`/api/bucket/image`, bucketImage);
   },
 };

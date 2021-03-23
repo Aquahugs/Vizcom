@@ -33,7 +33,6 @@ class CollectionModel {
 
   insert = async (params) => {
     const { values } = multipleColumnSet(params);
-    console.log(values);
 
     const sql = `INSERT INTO ${this.tableName}
         (uuid, generated_image_id, user_uploaded_image_id, image_uri) VALUES (?,?,?,?)`;
@@ -45,10 +44,17 @@ class CollectionModel {
     return affectedRows;
   };
 
-  delete = async (id) => {
-    const sql = `DELETE FROM ${this.tableName}
-        WHERE id = ?`;
-    const result = await query(sql, [id]);
+  deleteCollectionImage = async ({ uuid, collectionImageId }) => {
+    // delete images from bucket first
+    const sql = `DELETE FROM collection_bucket WHERE collection_image_id = ${collectionImageId} AND uuid = '${uuid}'`;
+    const result2 = await query(sql);
+
+    // delete image from collection
+    const sql2 = `DELETE FROM collection_image
+        WHERE collection_image_id = ${collectionImageId}`;
+
+    const result = await query(sql2);
+
     const affectedRows = result ? result.affectedRows : 0;
 
     return affectedRows;

@@ -22,10 +22,10 @@ router.post(
 //   awaitHandlerFactory(userController.updateUser)
 // ); // localhost:3000/api/v1/users/id/1 , using patch for partial update
 
-// router.delete(
-//   "/id/:id",
-//   // checkIfAuthenticated,
-//   awaitHandlerFactory(userController.deleteUser)
-// ); // localhost:3000/api/v1/users/id/1
+router.post(
+  "/collection/image",
+  // checkIfAuthenticated,
+  awaitHandlerFactory(collectionController.deleteCollectionImage)
+); // localhost:3000/api/v1/users/id/1
 
 module.exports = router;

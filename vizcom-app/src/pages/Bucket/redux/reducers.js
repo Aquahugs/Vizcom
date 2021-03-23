@@ -30,6 +30,18 @@ const bucketReducer = (state = initialState, action) => {
         buckets: action.buckets,
         status: null,
       };
+    case TYPES.DELETE_BUCKET_SUCCESS:
+      return {
+        ...state,
+        buckets: action.buckets,
+        status: null,
+      };
+    case TYPES.DELETE_BUCKET_IMAGE_SUCCESS:
+      return {
+        ...state,
+        buckets: action.buckets,
+        status: null,
+      };
 
     // API CALL STARTED ACTIONS
     case TYPES.GET_BUCKETS_STARTED:
@@ -45,6 +57,18 @@ const bucketReducer = (state = initialState, action) => {
         error: null,
       };
     case TYPES.ADD_TO_BUCKET_STARTED:
+      return {
+        ...state,
+        status: API_STATUS.GETTING,
+        error: null,
+      };
+    case TYPES.DELETE_BUCKET_STARTED:
+      return {
+        ...state,
+        status: API_STATUS.GETTING,
+        error: null,
+      };
+    case TYPES.DELETE_BUCKET_IMAGE_STARTED:
       return {
         ...state,
         status: API_STATUS.GETTING,
@@ -74,6 +98,18 @@ const bucketReducer = (state = initialState, action) => {
       return {
         ...state,
         dropdownOptions: action.bucketOptions,
+      };
+    case TYPES.DELETE_BUCKET_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        status: null,
+      };
+    case TYPES.DELETE_BUCKET_IMAGE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        status: null,
       };
 
     default:

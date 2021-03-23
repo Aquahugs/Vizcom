@@ -34,7 +34,18 @@ const collectImageAsync = (imageObj) => async (dispatch) => {
   });
 };
 
+const deleteCollectionImage = (req) => async (dispatch) => {
+  dispatch(actions.deleteCollectionImageStarted());
+  try {
+    const response = await collectionService.deleteCollectionImage(req);
+    dispatch(actions.deleteCollectionImageSuccess(response.data));
+  } catch (error) {
+    dispatch(actions.deleteCollectionImageError(error));
+  }
+};
+
 export default {
+  deleteCollectionImage,
   getCollectionByUserId,
   collectImage,
   collectImageAsync,

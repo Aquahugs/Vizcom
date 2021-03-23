@@ -23,6 +23,12 @@ const collectionReducer = (state = initialState, action) => {
         collection: action.collection,
         status: null,
       };
+    case TYPES.DELETE_COLLECTION_IMAGE_SUCCESS:
+      return {
+        ...state,
+        collection: action.collection,
+        status: null,
+      };
 
     // API CALL STARTED ACTIONS
     case TYPES.GET_COLLECTION_STARTED:
@@ -32,6 +38,12 @@ const collectionReducer = (state = initialState, action) => {
         error: null,
       };
     case TYPES.INSERT_COLLECTION_STARTED:
+      return {
+        ...state,
+        status: API_STATUS.GETTING,
+        error: null,
+      };
+    case TYPES.DELETE_COLLECTION_IMAGE_STARTED:
       return {
         ...state,
         status: API_STATUS.GETTING,
@@ -51,6 +63,13 @@ const collectionReducer = (state = initialState, action) => {
         error: action.error,
         status: null,
       };
+    case TYPES.DELETE_COLLECTION_IMAGE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        status: null,
+      };
+
     default:
       return state;
   }

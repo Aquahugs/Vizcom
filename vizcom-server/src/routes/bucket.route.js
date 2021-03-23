@@ -11,10 +11,15 @@ router.get(
 ); // localhost:3000/api/v1/user
 router.post("/create", awaitHandlerFactory(bucketController.createBucket)); // localhost:3000/api/v1/users
 router.post("/add", awaitHandlerFactory(bucketController.addToBucket)); // localhost:3000/api/v1/users
-router.delete(
-  "/id/:id",
+router.post(
+  "/",
   // checkIfAuthenticated,
   awaitHandlerFactory(bucketController.deleteBucket)
+); // localhost:3000/api/v1/user/id/1
+router.post(
+  "/image",
+  // checkIfAuthenticated,
+  awaitHandlerFactory(bucketController.deleteBucketImage)
 ); // localhost:3000/api/v1/user/id/1
 
 module.exports = router;

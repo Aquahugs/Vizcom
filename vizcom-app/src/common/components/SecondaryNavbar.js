@@ -11,7 +11,7 @@ const SecondaryNav = ({ profile }) => {
   }
 
   const styles = {
-    fontWeight:600
+    fontWeight: 600,
   };
   return (
     <div className="nav-container">
@@ -21,7 +21,9 @@ const SecondaryNav = ({ profile }) => {
             Tools
             {(location.pathname === "/generate" ||
               location.pathname === "/home") && (
-              <span style = {styles}>/{capitalizeFirstLetter(location.pathname)}</span>
+              <span style={styles}>
+                /{capitalizeFirstLetter(location.pathname)}
+              </span>
             )}
           </Link>
         </li>
@@ -29,7 +31,7 @@ const SecondaryNav = ({ profile }) => {
           <Link to={PROFILE}>
             Profile
             {location.pathname === "/profile" && (
-              <span style = {styles}>/{profile.first_name}</span>
+              <span style={styles}>/{profile?.first_name}</span>
             )}
           </Link>
         </li>
