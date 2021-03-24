@@ -126,7 +126,11 @@ const Profile = ({
               <Link to={EDITOR}>
                 <button class=" btn btn-flat edit-btn ">Edit profile</button>
               </Link>
-              {profile && <h2>{profile.first_name}</h2>}
+              {profile?.first_name ? (
+                <h2>{profile.first_name}</h2>
+              ) : (
+                <h2>Your Name</h2>
+              )}
             </div>
 
             <div className="row">
