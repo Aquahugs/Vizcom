@@ -1,5 +1,10 @@
 import TYPES from "./types";
 
+const setCurrentBucket = (currentBucket) => ({
+  type: TYPES.SET_CURRENT_BUCKET,
+  currentBucket,
+});
+
 const getBucketsError = (e) => ({
   type: TYPES.GET_BUCKETS_ERROR,
   //TODO: Helper method to create meaningful messages based on the error
@@ -81,6 +86,7 @@ const deleteBucketImageSuccess = (buckets) => ({
 });
 
 const BucketActions = {
+  setCurrentBucket,
   getBucketsError,
   getBucketsStarted,
   getBucketsSuccess,

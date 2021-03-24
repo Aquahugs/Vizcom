@@ -6,6 +6,7 @@ const initialState = {
   status: null,
   buckets: null,
   dropdownOptions: null,
+  currentBucket: null,
 };
 
 const bucketReducer = (state = initialState, action) => {
@@ -110,6 +111,13 @@ const bucketReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         status: null,
+      };
+
+    // misc actions
+    case TYPES.SET_CURRENT_BUCKET:
+      return {
+        ...state,
+        currentBucket: action.currentBucket,
       };
 
     default:

@@ -9,7 +9,12 @@ import CollectionThunks from "./Collection/redux/thunks";
 import BucketThunks from "../Bucket/redux/thunks";
 import AddToBucket from "../Home/Generate/AddToBucket";
 import BucketList from "../Bucket/BucketList";
-import { EDITOR, ADD_BUCKET, GENERATE } from "../../router/routes-const";
+import {
+  EDITOR,
+  ADD_BUCKET,
+  GENERATE,
+  BUCKET,
+} from "../../router/routes-const";
 import { BucketActions } from "../Bucket/redux";
 
 import "./profile.scss";
@@ -30,6 +35,7 @@ const Profile = ({
   getBucketDropdownOptions,
   bucketDropdownOptions,
   deleteCollectionImage,
+  setCurrentBucket,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [view, setView] = useState("collection");
@@ -196,12 +202,24 @@ const Profile = ({
               {buckets?.map((bucket, bucketIndex) => {
                 return (
                   <div className="row" key={`Key${bucketIndex}`}>
-                    <div className="bucket-titlecard">
-                      {/* Bucket title card */}
-                      <h3>{bucket?.bucket_name}</h3>
-                      <p>by / {profile?.first_name}</p>
-                      <p>{bucket?.images ? bucket.images.length : 0} images</p>
-                    </div>
+                    <Link
+                      onClick={() => {
+                        setCurrentBucket(bucket);
+                      }}
+                      to={{
+                        pathname: "/bucket",
+                        state: { bucket: bucket },
+                      }}
+                    >
+                      <div className="bucket-titlecard">
+                        {/* Bucket title card */}
+                        <h3>{bucket?.bucket_name}</h3>
+                        <p>by / {profile?.first_name}</p>
+                        <p>
+                          {bucket?.images ? bucket.images.length : 0} images
+                        </p>
+                      </div>
+                    </Link>
                     {bucket.images?.length !== 0 ? (
                       bucket.images.length > 3 ? (
                         bucket.images.slice(0, 2).map((image, imageIndex) => {
@@ -337,6 +355,7 @@ const mapDispatchToProps = {
   getBuckets: BucketThunks.getBuckets,
   getBucketDropdownOptions: BucketActions.getBucketDropdownOptions,
   deleteCollectionImage: CollectionThunks.deleteCollectionImage,
+  setCurrentBucket: BucketActions.setCurrentBucket,
 };
 
 const mapStateToProps = (state) => {
