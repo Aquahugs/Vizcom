@@ -4,9 +4,16 @@ const mysql2 = require("mysql2");
 
 class DBConnection {
   constructor() {
+    // local
+    // this.db = mysql2.createPool({
+    //   host: "localhost",
+    //   user: "root",
+    //   password: "RossKadoSC2!",
+    //   database: "vizcom",
+    // });
     this.db = mysql2.createPool({
-      host: "localhost",
-      user: "root",
+      host: "vizcom-test.c9znzk3592xb.us-west-1.rds.amazonaws.com",
+      user: "admin",
       password: "RossKadoSC2!",
       database: "vizcom",
     });
