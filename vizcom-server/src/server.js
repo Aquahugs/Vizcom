@@ -12,7 +12,7 @@ const checkIfAuthenticated = require("./middleware/auth.middleware");
 
 // Init express
 const app = express();
-
+console.log("test");
 // Init environment
 dotenv.config();
 
