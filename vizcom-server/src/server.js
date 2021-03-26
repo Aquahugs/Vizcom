@@ -26,7 +26,7 @@ app.use(cors());
 // Enable pre-flight
 app.options("*", cors());
 
-const port = Number(3001 || 3331);
+const port = Number(process.env.PORT || 3001);
 app.use(`/`, indexRouter);
 app.use(`/api/user`, userRouter);
 app.use(`/api/user`, collectionRouter);
