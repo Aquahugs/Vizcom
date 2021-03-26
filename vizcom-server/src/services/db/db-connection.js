@@ -1,5 +1,5 @@
-// const dotenv = require("dotenv");
-// dotenv.config();
+const dotenv = require("dotenv");
+dotenv.config();
 const mysql2 = require("mysql2");
 
 class DBConnection {
@@ -12,10 +12,10 @@ class DBConnection {
     //   database: "vizcom",
     // });
     this.db = mysql2.createPool({
-      host: "vizcom-test.c9znzk3592xb.us-west-1.rds.amazonaws.com",
-      user: "admin",
-      password: "RossKadoSC2!",
-      database: "vizcom",
+      host: process.env.VIZCOM_MYSQL_HOST,
+      user: process.env.VIZCOM_MYSQL_USER,
+      password: process.env.VIZCOM_MYSQL_PASSWORD,
+      database: process.env.VIZCOM_MYSQL_DATABASE,
     });
 
     this.checkConnection();

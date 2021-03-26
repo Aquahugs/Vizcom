@@ -16,7 +16,7 @@ import { GenerateThunks } from "./redux";
 import { withAuthorization } from "../../../router/auth/session";
 
 import downloadbutton from "../../../assets/download-button.svg";
-import collectconfirm from "../../../assets/collect-confirm.svg"
+import collectconfirm from "../../../assets/collect-confirm.svg";
 import AddToBucket from "./AddToBucket";
 
 const Generate = ({
@@ -41,6 +41,7 @@ const Generate = ({
   const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
+    debugger;
     !generatedImages
       ? fetchGeneratedImages()
       : toggleGeneratedImages(generatedImages, 3);
@@ -66,7 +67,6 @@ const Generate = ({
       animationName: Radium.keyframes(fadeInUp, "fadeInUp"),
     },
   };
-  
 
   async function fetchGeneratedImages() {
     try {
@@ -209,7 +209,7 @@ const Generate = ({
             />
           </a>
           {image.isCollected ? (
-            <img className = 'collect-confirm right'src={collectconfirm} />
+            <img className="collect-confirm right" src={collectconfirm} />
           ) : (
             <a className="collect" onClick={() => collectImageHandler(image)}>
               Collect
@@ -256,13 +256,16 @@ const Generate = ({
                           className="waves-effect waves-grey btn-flat add-bucket"
                           onClick={toggleBuckets}
                         >
-                          <i className="material-icons right add-to">apps</i>Add to
-                          bucket
+                          <i className="material-icons right add-to">apps</i>Add
+                          to bucket
                         </button>
                       </div>
                       <div className="col s4 m4 l4">
                         {modalImage.isCollected ? (
-                          <img className = "collect-confirm" src={collectconfirm} />
+                          <img
+                            className="collect-confirm"
+                            src={collectconfirm}
+                          />
                         ) : (
                           <a
                             className="collect"
@@ -328,8 +331,8 @@ const Generate = ({
                 }
               }}
               style={{
-                zIndex: modalIsOpen == false ? 9999: -9999
-              }}   
+                zIndex: modalIsOpen == false ? 9999 : -9999,
+              }}
             >
               Generate
             </button>
