@@ -210,10 +210,7 @@ const Profile = ({
                       onClick={() => {
                         setCurrentBucket(bucket);
                       }}
-                      to={{
-                        pathname: "/bucket",
-                        state: { bucket: bucket },
-                      }}
+                      to={"/bucket"}
                     >
                       <div className="bucket-titlecard">
                         {/* Bucket title card */}

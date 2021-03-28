@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import GoogleButton from 'react-google-button'
+import GoogleButton from "react-google-button";
 
 import { ProfileThunks } from "../../Profile/redux";
 
 import { withFirebase } from "../../../router/auth/firebase";
 
 const SignIn = () => (
-  <div style = {{Textalign:'center'}}>
-    <h1 style = {{color:"#fcfbfb",fontSize:'26px'}}>Sign in</h1>
+  <div style={{ Textalign: "center" }}>
+    <h1 style={{ color: "#fcfbfb", fontSize: "26px" }}>Sign in</h1>
     <SignInForm />
-    <p style = {{color:"#fcfbfb", textAlign:'center'}}> or </p>
+    <p style={{ color: "#fcfbfb", textAlign: "center" }}> or </p>
     <SignInGoogle />
   </div>
 );
@@ -29,8 +29,7 @@ const ERROR_CODE_ACCOUNT_EXISTS =
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with an E-Mail address to
   this social account already exists. Try to login from
-  this account instead and associate your social accounts on
-  your personal account page.
+  google instead.
 `;
 
 class SignInFormBase extends Component {
@@ -93,13 +92,9 @@ class SignInFormBase extends Component {
               type="password"
               placeholder="Password"
             />
-              <button
-                disabled={isInvalid}
-                type="submit"
-                className="signin-btn "
-              >
-                Sign In
-              </button>
+            <button disabled={isInvalid} type="submit" className="signin-btn ">
+              Sign In
+            </button>
             {error && <p>{error.message}</p>}
           </div>
         </div>
@@ -119,18 +114,59 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
-        console.log("herer");
-        this.props.getProfile(socialAuthUser.user.uid);
+        debugger;
+        this.props.getProfile(socialAuthUser.user.uid).catch(() => {
+          debugger;
+          const newUser = {
+            uuid: socialAuthUser.user.uid,
+            display_name: socialAuthUser.user.displayName,
+            image_uri: socialAuthUser.user.photoUrl
+              ? socialAuthUser.user.photoUrl
+              : null,
+            email: socialAuthUser.user.email,
+            first_name: socialAuthUser.additionalUserInfo.profile.given_name,
+            last_name: socialAuthUser.additionalUserInfo.profile.family_name,
+          };
+          this.props.createProfile(newUser);
+        });
         this.props.history.push("/home");
       })
       .then(() => {
         this.setState({ error: null });
       })
       .catch((error) => {
+        debugger;
+
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
+          const pendingCred = error.credential;
+          // The provider account's email address.
+          const email = error.email;
+          // Get sign-in methods for this email.
+          this.props.firebase
+            .fetchSignInMethodsForEmail(email)
+            .then((methods) => {
+              // Step 3.
+              // If the user has several sign-in methods,
+              // the first method in the list will be the "recommended" method to use.
+              if (methods[0] === "password") {
+                // Asks the user their password.
+                // In real scenario, you should handle this asynchronously.
+                const password = prompt("Please enter your passwrod");
+                this.props.firebase
+                  .signInWithEmailAndPassword(email, password)
+                  .then((result) => {
+                    // Step 4a.
+                    return result.user.linkWithCredential(pendingCred);
+                  })
+                  .then(() => {
+                    // Google account successfully linked to the existing Firebase user.
+                    this.props.history.push("/home");
+                  });
+                return;
+              }
+            });
         }
-
         this.setState({ error });
       });
 
@@ -141,13 +177,19 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit} >
-        
-        <button type="submit" style = {{backgroundColor:'transparent',border:'none',width:'100%'}}>
-        <GoogleButton
-          type="light" // can be light or dark
-          style = {{width:'100%'}}
-        />
+      <form onSubmit={this.onSubmit}>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+            width: "100%",
+          }}
+        >
+          <GoogleButton
+            type="light" // can be light or dark
+            style={{ width: "100%" }}
+          />
         </button>
 
         {error && <p>{error.message}</p>}
@@ -157,13 +199,20 @@ class SignInGoogleBase extends Component {
 }
 
 const mapDispatchToProps = {
-  getProfile: ProfileThunks.getProfile,
+  getProfile: ProfileThunks.getProfileAsync,
+  createProfile: ProfileThunks.createProfile,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    userError: state.profile.error,
+  };
 };
 
 const enhance = compose(
   withRouter,
   withFirebase,
-  connect(null, mapDispatchToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 );
 
 const SignInForm = enhance(SignInFormBase);

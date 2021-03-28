@@ -12,6 +12,22 @@ const getProfile = (uid) => async (dispatch) => {
   }
 };
 
+const getProfileAsync = (uid) => async (dispatch) => {
+  return new Promise(async (resolve, reject) => {
+    dispatch(actions.getProfileStarted());
+    try {
+      debugger;
+      const response = await userService.getUserById(uid);
+      debugger;
+      dispatch(actions.getProfileSuccess(response.data));
+      resolve(response.data);
+    } catch (error) {
+      dispatch(actions.getProfileError(error));
+      reject(error);
+    }
+  });
+};
+
 const createProfile = (user) => async (dispatch) => {
   dispatch(actions.createProfileStarted());
   try {
@@ -52,4 +68,5 @@ export default {
   getProfile,
   updateProfile,
   createProfile,
+  getProfileAsync,
 };

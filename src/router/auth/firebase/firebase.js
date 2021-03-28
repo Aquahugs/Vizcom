@@ -2,13 +2,12 @@ import app from "firebase/app";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyCjKENzxdzGbpNEO7lpZ6ct5v2SDt6jy_8",
-  authDomain: "designerspen2.firebaseapp.com",
-  databaseURL: "https://designerspen2.firebaseio.com",
-  projectId: "designerspen2",
-  storageBucket: "designerspen2.appspot.com",
-  messagingSenderId: "791462166450",
-  appId: "1:791462166450:web:5958db2f739e13ced52eab",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 class Firebase {
