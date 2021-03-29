@@ -1,23 +1,50 @@
 /* represents the CSS file imported by our stateless view Component */
 
-.explore-container{
-    margin-left:9%;
-    margin-right:9%;
+.explore-container {
+  margin-left: 5%;
+  margin-right: 5%;
 
-    h1{
-        font-size: 18px;
-        color:#707070;
-       
+  h1 {
+    font-size: 18px;
+    color: #707070;
+  }
+
+  .selectors {
+    width: 50%;
+    float: left;
+
+    h1 {
+      border-bottom: 1px solid #707070;
+      padding-bottom: 1rem;
+      width: 200px;
     }
+  }
+}
 
-    .selectors {
-        width:50%;
-        float:left;
+.explore-mock {
+  max-width: 100%;
+  @media (max-width: 480px) {
+    width: 480px;
+    height: auto;
+    margin-top: 0;
+  }
+}
 
-        h1{
-            border-bottom: 1px solid #707070;
-            padding-bottom:1rem;
-            width:200px;
-        }
-    }
+.placeholder {
+  h1 {
+    text-align: center;
+    font-size: 56px !important;
+    font-weight: bold;
+    margin-top: 0 !important;
+  }
+
+  p {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  img {
+    -webkit-box-shadow: -1px 2px 6px 2px rgba(0, 0, 0, 0.21);
+    box-shadow: -1px 2px 6px 2px rgba(0, 0, 0, 0.21);
+  }
 }

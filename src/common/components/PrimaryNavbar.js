@@ -18,22 +18,21 @@ const PrimaryNav = ({ user }) => {
         <a href="#" className="logo-container">
           <img src={Logo} />
         </a>
-        <ul className="nav-items right hide-on-med-and-down">
+        <ul className="nav-items right ">
           <li>
             <Link
               to={ADD_BUCKET}
               style={{ color: "#505050", fontSize: "16px" }}
             >
-              <img src = {NewBucket} className = 'nav-addbucket'/>
-              new bucket
+              <img
+                src={NewBucket}
+                className="nav-addbucket hide-on-med-and-down"
+              />
+              <span className="hide-on-med-and-down">new bucket </span>
             </Link>
           </li>
           <li className="profile-items">
-            <Link
-              to={PROFILE}
-              style={{ color: "#505050", fontSize: "16px" }}
-              href="http://localhost:3000/profile"
-            >
+            <Link to={PROFILE} style={{ color: "#505050", fontSize: "16px" }}>
               {user.authUser.providerData[0].displayName}
               {user.authUser.providerData ? (
                 <img

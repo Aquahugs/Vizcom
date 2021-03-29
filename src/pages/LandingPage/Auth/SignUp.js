@@ -87,10 +87,14 @@ class SignUpFormBase extends Component {
       username === "";
 
     return (
-      <div >
+      <div>
         <div className="tab-content">
           <div id="signup">
-            <h1 style = {{color:"#fcfbfb",fontSize:'26px'}}>Sign Up </h1>
+            <h1
+              style={{ color: "#fcfbfb", fontSize: "26px", fontWeight: "bold" }}
+            >
+              Sign Up{" "}
+            </h1>
             <form onSubmit={this.onSubmit}>
               <div className="top-row">
                 <div className="field-wrap">
@@ -141,14 +145,14 @@ class SignUpFormBase extends Component {
                     placeholder="Confirm Password"
                   />
                 </div>
-                  <button
-                    disabled={isInvalid}
-                    type="submit"
-                    className="  signin-btn"
-                  >
-                    Sign Up
-                  </button>
-                  {error && <p>{error.message}</p>}
+                <button
+                  disabled={isInvalid}
+                  type="submit"
+                  className="  signin-btn"
+                >
+                  Sign Up
+                </button>
+                {error && <p>{error.message}</p>}
               </div>
             </form>
           </div>

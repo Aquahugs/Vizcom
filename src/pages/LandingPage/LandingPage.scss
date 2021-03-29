@@ -37,24 +37,24 @@
     max-width: 100%;
     height: auto;
     padding: 3%;
-    display:block;
-    margin:auto;
+    display: block;
+    margin: auto;
   }
   h2 {
     color: #ececec;
     font-size: 42px;
     font-weight: bold;
     line-height: 4rem;
-    padding-top: 5rem;
+    padding-top: 3rem;
     text-align: center;
   }
 
-  p{
+  p {
     text-align: center;
     color: #ececec;
     font-size: 20px;
-    padding-left:15%;
-    padding-right:15%;
+    padding-left: 15%;
+    padding-right: 15%;
   }
 }
 
@@ -79,33 +79,20 @@
 .logo {
   max-width: 100%;
   margin-top: 30%;
- 
 }
 
-
-.signup-container{
+.signup-container {
   a {
     padding-left: 2%;
     cursor: pointer;
   }
 }
-.signin-container{
+.signin-container {
   a {
     padding-left: 2%;
     cursor: pointer;
   }
 }
 #blue {
-  color:#0040ff
-}
-
-
-.video-mask{
-  border-radius: 20px; 
-  overflow: hidden; 
-}
-
-
-.footer-container{
-  
+  color: #0040ff;
 }

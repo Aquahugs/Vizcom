@@ -8,7 +8,7 @@ import Radium, { StyleRoot } from "radium";
 import "./generate.scss";
 import "./add-to-bucket.scss";
 import Modal from "react-modal";
-
+import { Desktop, Tablet, Mobile } from "../../Responsive";
 import { CollectionThunks } from "../../Profile/Collection/redux";
 import { BucketThunks, BucketActions } from "../../Bucket/redux";
 import { GenerateThunks } from "./redux";
@@ -41,7 +41,6 @@ const Generate = ({
   const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
-    debugger;
     !generatedImages
       ? fetchGeneratedImages()
       : toggleGeneratedImages(generatedImages, 3);
@@ -188,38 +187,90 @@ const Generate = ({
     );
   }
 
-  const images = generatedDisplayImages?.map((image, imageIndex) => {
-    return (
-      <div className="col s4 m4 l4" key={`Key${imageIndex}`}>
-        <img
-          alt="ai generated"
-          className="generated-image"
-          src={image.image_uri}
-          onClick={() => {
-            openModal(image);
-          }}
-        />
-        <div className="row save-buttons">
-          <a href={image.image_uri} download>
-            <img
-              alt="ai generated"
-              className="download-button"
-              src={downloadbutton}
-              onClick={() => logDownload(image.image_uri)}
-            />
-          </a>
-          {image.isCollected ? (
-            <img className="collect-confirm right" src={collectconfirm} />
-          ) : (
-            <a className="collect" onClick={() => collectImageHandler(image)}>
-              Collect
-              <i className="material-icons right">add_box</i>
-            </a>
-          )}
+  const images = generatedDisplayImages
+    ?.slice(0, 3)
+    .map((image, imageIndex) => {
+      return (
+        <div>
+          <Desktop>
+            <div className="col s4 m4 l4" key={`Key${imageIndex}`}>
+              <img
+                alt="ai generated"
+                className="generated-image"
+                src={image.image_uri}
+                onClick={() => {
+                  openModal(image);
+                }}
+              />
+              <div className="row save-buttons">
+                <a href={image.image_uri} download>
+                  <img
+                    alt="ai generated"
+                    className="download-button"
+                    src={downloadbutton}
+                    onClick={() => logDownload(image.image_uri)}
+                  />
+                </a>
+                {image.isCollected ? (
+                  <img className="collect-confirm right" src={collectconfirm} />
+                ) : (
+                  <a
+                    className="collect"
+                    onClick={() => collectImageHandler(image)}
+                  >
+                    Collect
+                    <i className="material-icons right">add_box</i>
+                  </a>
+                )}
+              </div>
+            </div>
+          </Desktop>
         </div>
-      </div>
-    );
-  });
+      );
+    });
+
+  //MOBILE VIEW
+  const mobileImages = generatedDisplayImages
+    ?.slice(0, 1)
+    .map((image, imageIndex) => {
+      return (
+        <div>
+          <Mobile>
+            <div className="col s12 m12 l12" key={`Key${imageIndex}`}>
+              <img
+                alt="ai generated"
+                className="generated-image"
+                src={image.image_uri}
+                onClick={() => {
+                  openModal(image);
+                }}
+              />
+              <div className="row save-buttons">
+                <a href={image.image_uri} download>
+                  <img
+                    alt="ai generated"
+                    className="download-button"
+                    src={downloadbutton}
+                    onClick={() => logDownload(image.image_uri)}
+                  />
+                </a>
+                {image.isCollected ? (
+                  <img className="collect-confirm right" src={collectconfirm} />
+                ) : (
+                  <a
+                    className="collect"
+                    onClick={() => collectImageHandler(image)}
+                  >
+                    Collect
+                    <i className="material-icons right">add_box</i>
+                  </a>
+                )}
+              </div>
+            </div>
+          </Mobile>
+        </div>
+      );
+    });
 
   const modal = (
     <div>
@@ -308,6 +359,9 @@ const Generate = ({
         <StyleRoot>
           <div className="row" style={visibilityStyle}>
             {images}
+          </div>
+          <div className="row" style={visibilityStyle}>
+            {mobileImages}
           </div>
 
           <div className="row generated-container" style={styles.fadeInUp}>

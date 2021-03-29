@@ -13,3 +13,28 @@
     float: right;
   }
 }
+
+.lightlist {
+  color: black;
+
+  a {
+    color: black;
+  }
+}
+
+.dark-list {
+  color: white;
+
+  a {
+    color: white;
+  }
+}
+
+.footer-items-dark {
+  padding: 2rem;
+
+  li {
+    display: inline;
+    padding: 1.2rem;
+  }
+}

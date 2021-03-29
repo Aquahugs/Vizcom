@@ -3,14 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aws-amplify/ui-react": "^1.0.6",
     "@react-three/drei": "^3.9.0",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "animate.css": "^4.1.1",
-    "aws-amplify": "^3.3.26",
     "axios": "^0.21.1",
     "firebase": "^8.2.4",
     "history": "^5.0.0",
@@ -30,6 +28,7 @@
     "react-hook-form": "^6.15.1",
     "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
+    "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-select-search": "^3.0.2",
@@ -49,7 +48,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "react-scripts build && aws s3 rm s3://vizcom.co/ --recursive && aws s3 cp ./build s3://vizcom.co/ --recursive --acl public-read"
   },
   "eslintConfig": {
     "extends": [

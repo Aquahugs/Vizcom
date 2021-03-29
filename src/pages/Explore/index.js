@@ -1,38 +1,44 @@
 import React from "react";
 import { compose } from "recompose";
-import './explore.scss'
+import "./explore.scss";
 import { withAuthorization } from "../../router/auth/session";
-
+import mock from "../../assets/Explore.png";
+import mobilemock from "../../assets/explore-mobile.png";
+import { Desktop, Tablet, Mobile } from "../Responsive";
 const Explore = () => {
   return (
-    <div className="explore-container">
-      <div className="row selectors">
-        <div className="col s6 m6 l6">
-          <div className="row">
-            <ul>
-              <h1>View</h1>
-              <li>All</li>
-              <li>Boards</li>
-              <li>Collected</li>
-            </ul>
+    <div>
+      <Desktop>
+        <div className="row placeholder explore-container ">
+          <div className="col s12 m12 l12">
+            <h1 className="title">Explore</h1>
+            <p> A live activity feed of the Vizcom community. Coming soon...</p>
+            <img className="explore-mock" src={mock} />
           </div>
         </div>
-        <div className="col s6 m6 l6">
-          <h1>Sort by</h1>
-          <div className="row">
-            <ul>
-              <li>car-design</li>
-              <li>footwear</li>
-            </ul>
+      </Desktop>
+      <Tablet>
+        <div className="row placeholder">
+          <div className="col s12 m12 l12">
+            <h1 className="title">Explore</h1>
+            <p> A live activity feed of the Vizcom community. Coming soon...</p>
+            <img className="explore-mock" src={mock} />
           </div>
         </div>
-      </div>
-
-      <div className = "row">
-        <div className = "col s2 m2 l2">
-          <img src = "https://via.placeholder.com/150"/>  
+      </Tablet>
+      <Mobile>
+        <div className="row placeholder">
+          <div className="col s12 m12 l12">
+            <h1 className="title">Explore</h1>
+            <p>
+              {" "}
+              A live activity feed of the Vizcom community. <br />
+              Coming soon...
+            </p>
+            <img className="explore-mock" src={mobilemock} />
+          </div>
         </div>
-      </div>
+      </Mobile>
     </div>
   );
 };

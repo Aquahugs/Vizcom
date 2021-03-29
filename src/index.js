@@ -9,10 +9,6 @@ import App from "./App";
 import reportWebVitals from "./common/utils/reportWebVitals";
 import Firebase, { FirebaseContext } from "./router/auth/firebase";
 
-import Amplify from "aws-amplify";
-import awsExports from "./aws-exports";
-Amplify.configure(awsExports);
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>

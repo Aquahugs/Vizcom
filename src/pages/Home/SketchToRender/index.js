@@ -1,25 +1,26 @@
 import React from "react";
-import StyledDropzone from './Dropzone'
-import './sketchtorender.scss'
-import demovideo from '../../../assets/SK2RDEMO.mp4'
-
+import StyledDropzone from "./Dropzone";
+import "./sketchtorender.scss";
+import demovideo from "../../../assets/SK2RDEMO.mp4";
 
 export default function SketchToRender() {
   return (
     <div>
-      <h1 className = 'title'>SketchToRender</h1>
-      <p className = 'subtitle'>Instantly render your sketches automatically. Coming soon...</p>
-    <video 
-    style = {
-      {width:'80%',
-      height:'720px',
-      display: 'block',
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }} 
-    muted loop autostart autoPlay src={demovideo} type="video/mp4" />
+      <h1 className="title">SketchToRender</h1>
+      <p className="subtitle">
+        Instantly render your sketches automatically. Coming soon...
+      </p>
+      <video
+        className="sk2r-video"
+        muted
+        loop
+        autostart
+        autoPlay
+        src={demovideo}
+        type="video/mp4"
+      />
 
-    {/* <div className = "row">
+      {/* <div className = "row">
       <div className = "image-container col s6 m6 l6">
         <StyledDropzone />
       </div>
@@ -35,16 +36,22 @@ export default function SketchToRender() {
 
     </div> */}
 
-    <p className = 'title2'>Recive early access updates</p>
-    <form >
-        <input   style = {{
-          width:'80%',
-          display: 'block',
-          marginLeft: 'auto',
-          marginRight: 'auto'
-    }}   type ='email' id='email' placeholder="Youremail@email.com" className = 'input-field' />
-        <button className = ' updatesbtn2 lighten-1 z-depth-0'>Sign up </button>
-    </form>
+      <p className="title2">Recive early access updates</p>
+      <form>
+        <input
+          style={{
+            width: "80%",
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          type="email"
+          id="email"
+          placeholder="Youremail@email.com"
+          className="input-field"
+        />
+        <button className=" updatesbtn2 lighten-1 z-depth-0">Sign up </button>
+      </form>
     </div>
-    );
+  );
 }

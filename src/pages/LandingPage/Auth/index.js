@@ -13,23 +13,23 @@ const Auth = () => {
     switch (authState) {
       case "signUp":
         return (
-          <div className = 'signup-container'>
+          <div>
             <SignUp />
-            <p style = {{color:"#ececec"}}>
-              Already have an account? 
-              <a onClick={() => setAuthState((authState = "signIn"))}  >
-                Sign in
+            <p style={{ color: "#ececec" }}>
+              Already have an account?
+              <a onClick={() => setAuthState((authState = "signIn"))}>
+                <span>Sign in</span>
               </a>
             </p>
           </div>
         );
       case "signIn":
         return (
-          <div className = 'signin-container' >
+          <div className="signin-container">
             <SignIn />
-            <p style = {{color:"#ececec"}}>
+            <p style={{ color: "#ececec" }}>
               Dont have an account?
-              <a onClick={() => setAuthState((authState = "signUp"))} >
+              <a onClick={() => setAuthState((authState = "signUp"))}>
                 Sign Up
               </a>
             </p>
@@ -42,7 +42,7 @@ const Auth = () => {
         );
       case "passwordReset":
         return (
-          <div className = 'signin-container'>
+          <div className="signin-container">
             <PasswordReset />
             <p>
               <a onClick={() => setAuthState((authState = "signIn"))}>

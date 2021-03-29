@@ -10,7 +10,9 @@ import { withFirebase } from "../../../router/auth/firebase";
 
 const SignIn = () => (
   <div style={{ Textalign: "center" }}>
-    <h1 style={{ color: "#fcfbfb", fontSize: "26px" }}>Sign in</h1>
+    <h1 style={{ color: "#fcfbfb", fontSize: "26px", fontWeight: "bold" }}>
+      Sign in
+    </h1>
     <SignInForm />
     <p style={{ color: "#fcfbfb", textAlign: "center" }}> or </p>
     <SignInGoogle />
@@ -115,6 +117,7 @@ class SignInGoogleBase extends Component {
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
         debugger;
+
         this.props.getProfile(socialAuthUser.user.uid).catch(() => {
           debugger;
           const newUser = {
@@ -135,8 +138,6 @@ class SignInGoogleBase extends Component {
         this.setState({ error: null });
       })
       .catch((error) => {
-        debugger;
-
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
           const pendingCred = error.credential;
@@ -167,6 +168,7 @@ class SignInGoogleBase extends Component {
               }
             });
         }
+
         this.setState({ error });
       });
 

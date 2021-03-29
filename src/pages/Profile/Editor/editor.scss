@@ -5,6 +5,18 @@
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 5%;
+  @media (max-width: 480px) {
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+}
+
+.input-field {
+  label {
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
 }
 
 .edit-profile {
@@ -12,11 +24,19 @@
     font-size: 20px;
     text-align: center;
     margin: 7%;
+    @media (max-width: 480px) {
+      font-size: 12px;
+      padding: 2%;
+    }
   }
 }
 .socials {
   h1 {
     font-size: 20px;
+    @media (max-width: 480px) {
+      font-size: 12px;
+      padding: 2%;
+    }
   }
   ul {
     margin: 0 !important;
@@ -42,4 +62,17 @@
   width: 20px;
   height: 100%;
   margin-top: 2rem;
+  @media (max-width: 480px) {
+    width: 10px;
+    height: auto;
+  }
+}
+
+.social-icons-mobile {
+  img {
+    @media (max-width: 480px) {
+      width: 20px;
+      height: auto;
+    }
+  }
 }

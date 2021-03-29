@@ -89,7 +89,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
           <ul>
             <h1>Socials</h1>
             <li>
-              <div className="input-field col s12">
+              <div className="input-field social-icons-mobile col s12">
                 <i className="material-icons prefix">
                   <img src={instaIcon} />
                 </i>
@@ -108,7 +108,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               </div>
             </li>
             <li>
-              <div className="input-field col s12">
+              <div className="input-field social-icons-mobile col s12">
                 <i className="material-icons prefix">
                   <img src={twitterIcon} />
                 </i>
@@ -123,7 +123,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               </div>
             </li>
             <li>
-              <div className="input-field col s12">
+              <div className="input-field col s12 social-icons-mobile">
                 <i className="material-icons prefix">
                   <img src={webIcon} />
                 </i>
@@ -146,6 +146,13 @@ const Editor = ({ updateProfile, history, uid, user }) => {
         <div className="row action-buttons">
           <Link to={"profile"}>
             <button
+              className="btn waves-effect waves-light save-btn"
+              type="submit"
+              name="action"
+            >
+              Save
+            </button>
+            <button
               className="btn waves-effect waves-light"
               type="submit"
               name="action"
@@ -153,13 +160,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               Cancel
             </button>{" "}
           </Link>
-          <button
-            className="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-          >
-            Save
-          </button>
+         
         </div>
       </form>
     </div>
