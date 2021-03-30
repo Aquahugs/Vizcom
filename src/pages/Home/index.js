@@ -40,6 +40,7 @@ const Home = ({
       getBuckets(uid);
     }
     getGeneratedImages();
+    console.log();
   }, []);
 
   return (
