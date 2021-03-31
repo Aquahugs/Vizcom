@@ -49,7 +49,7 @@ const MobileView = () => {
           </h2>
         </div>
         <div className="col s12 m12 l12">
-          <div class="video-mask">
+          <div className="video-mask">
             <video
               style={{
                 width: "100%",

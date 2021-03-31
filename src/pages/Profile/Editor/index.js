@@ -32,7 +32,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
           <h1>Edit profile</h1>
 
           <div className="input-field col s6">
-            <label class="active" for="first_name">
+            <label className="active" for="first_name">
               First Name
             </label>
             <input
@@ -44,7 +44,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
             />
           </div>
           <div className="input-field col s6">
-            <label class="active" htmlFor="name">
+            <label className="active" htmlFor="name">
               Last Name
             </label>
             <input
@@ -58,7 +58,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label class="active" htmlFor="name">
+            <label className="active" htmlFor="name">
               Location
             </label>
             <input
@@ -72,7 +72,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label class="active" htmlFor="bio">
+            <label className="active" htmlFor="bio">
               Bio
             </label>
             <textarea
@@ -93,11 +93,11 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <i className="material-icons prefix">
                   <img alt="insta icon" src={instaIcon} />
                 </i>
-                <label class="active" htmlFor="instagram">
+                <label className="active" htmlFor="instagram">
                   Instagram
                 </label>
                 <input
-                  class="active"
+                  className="active"
                   type="text"
                   name="instagram"
                   id="instagram"
@@ -112,7 +112,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <i className="material-icons prefix">
                   <img src={twitterIcon} />
                 </i>
-                <label class="active" htmlFor="twitter">
+                <label className="active" htmlFor="twitter">
                   Twitter
                 </label>
                 <input
@@ -130,11 +130,11 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <i className="material-icons prefix">
                   <img alt="web icon" src={webIcon} />
                 </i>
-                <label class="active" htmlFor="personalSite">
+                <label className="active" htmlFor="personalSite">
                   Website
                 </label>
                 <input
-                  class="active"
+                  className="active"
                   defaultValue={user?.personal_site ? user?.personal_site : ""}
                   type="text"
                   name="personalSite"

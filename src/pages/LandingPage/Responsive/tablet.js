@@ -48,7 +48,7 @@ const TabletView = () => {
           </h2>
         </div>
         <div className="col s7 m7 l7">
-          <div class="video-mask">
+          <div className="video-mask">
             <video
               style={{
                 width: "100%",

@@ -83,20 +83,16 @@ const Profile = ({
     }
     getBuckets(uid);
     setIsLoaded(true);
-  }, [profile, collection, buckets]);
-
-  // options for bucket search
-  if (!bucketDropdownOptions) {
+    // options for bucket search
     const bucketOptionDropdown = buckets?.map((bucket) => ({
       name: bucket.bucket_name,
       value: bucket.bucket_id,
     }));
     getBucketDropdownOptions(bucketOptionDropdown);
-  }
+  }, [profile, collection, buckets]);
 
   const toggleView = (e) => {
     setView(e);
-    console.log(view);
   };
 
   const toggleBuckets = () => {
@@ -127,7 +123,7 @@ const Profile = ({
               <div className="col sm6 m6 l6">
                 <div className="row bio-header">
                   <Link to={EDITOR}>
-                    <button class=" btn btn-flat edit-btn ">
+                    <button className=" btn btn-flat edit-btn ">
                       Edit profile
                     </button>
                   </Link>
@@ -203,7 +199,7 @@ const Profile = ({
                   <Link to={ADD_BUCKET}>
                     <div className="row bucketbtn-container">
                       <div className="col s12 m12 l12">
-                        <button class=" btn btn-flat create-btn ">
+                        <button className=" btn btn-flat create-btn ">
                           <img alt="plus icon" src={plus} />
                           <br />
                           Create new bucket
@@ -371,7 +367,9 @@ const Profile = ({
               <div className="col s12 m12 l12">
                 <div className="row bio-header-mobile">
                   <Link to={EDITOR}>
-                    <button class=" btn btn-flat edit-btn">Edit profile</button>
+                    <button className=" btn btn-flat edit-btn">
+                      Edit profile
+                    </button>
                   </Link>
                   {profile?.first_name ? (
                     <h2>{profile.first_name}</h2>
@@ -448,7 +446,7 @@ const Profile = ({
                   <Link to={ADD_BUCKET}>
                     <div className="row bucketbtn-container">
                       <div className="col s12 m12 l12">
-                        <button class=" btn btn-flat create-btn ">
+                        <button className=" btn btn-flat create-btn ">
                           <img src={plus} />
                           <br />
                           Create new bucket

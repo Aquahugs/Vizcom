@@ -44,7 +44,9 @@ const Generate = ({
       : toggleGeneratedImages(generatedImages, 3);
 
     getCollection(uid);
-    getBuckets(uid);
+    if (!buckets) {
+      getBuckets(uid);
+    }
 
     // options for bucket search
     if (!bucketDropdownOptions) {
@@ -56,7 +58,7 @@ const Generate = ({
     }
 
     setIsLoaded(true);
-  }, []);
+  }, [buckets]);
 
   const styles = {
     fadeInUp: {

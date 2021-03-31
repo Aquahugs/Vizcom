@@ -18,6 +18,8 @@ const SingleBucketView = ({
   getBuckets,
   deleteBucketImage,
   buckets,
+  deleteBucket,
+  history,
 }) => {
   const [bucket, setBucket] = useState(null);
 
@@ -43,6 +45,16 @@ const SingleBucketView = ({
     };
     deleteBucketImage(req);
   };
+
+  const deleteBucketHandler = ({ bucket_id }) => {
+    const req = {
+      bucket_id,
+      uuid: uid,
+    };
+    deleteBucket(req);
+    history.push("/profile");
+  };
+
   if (!bucket) {
     return (
       <div>
@@ -53,6 +65,9 @@ const SingleBucketView = ({
     return (
       <div className="view-container row">
         <h1>{bucket.bucket_name}</h1>
+        <button onClick={() => deleteBucketHandler(bucket)}>
+          Delete Bucket
+        </button>
         <div className="row">
           <Link to={"/profile"}>
             <img alt="back arrow icon" className="backarrow" src={backarrow} />
@@ -97,6 +112,7 @@ const mapDispatchToProps = {
   getCollection: CollectionThunks.getCollectionByUserId,
   getBuckets: BucketThunks.getBucketsAsync,
   deleteBucketImage: BucketThunks.deleteBucketImage,
+  deleteBucket: BucketThunks.deleteBucket,
 };
 
 const condition = (authUser) => !!authUser;
