@@ -14,8 +14,6 @@ const SingleBucketView = ({
   match,
   profile,
   getProfile,
-  collection,
-  getCollection,
   uid,
   getBuckets,
   deleteBucketImage,
@@ -57,7 +55,7 @@ const SingleBucketView = ({
         <h1>{bucket.bucket_name}</h1>
         <div className="row">
           <Link to={"/profile"}>
-            <img className="backarrow" src={backarrow} />
+            <img alt="back arrow icon" className="backarrow" src={backarrow} />
           </Link>
         </div>
         {bucket?.images !== [] ? (

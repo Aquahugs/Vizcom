@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./newbucket.scss";
-import M from "materialize-css";
 import { compose } from "recompose";
-import StyledDropzone from "../Dropzone";
 import backarrow from "../../../assets/back-arrow.svg";
 import { withAuthorization } from "../../../router/auth/session";
 import { useForm } from "react-hook-form";
@@ -28,7 +26,7 @@ const CreateBucket = ({ uid, history, createBucket }) => {
       <form className="col s12" onSubmit={handleSubmit(submitForm)}>
         <div className="row edit-profile">
           <Link to={"profile"}>
-            <img className="backarrow" src={backarrow} />
+            <img alt="back arrow icon" className="backarrow" src={backarrow} />
           </Link>
           <h1>Create bucket</h1>
           <p>Collect and organize images in digital buckets</p>

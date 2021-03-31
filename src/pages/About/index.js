@@ -33,7 +33,7 @@ const About = () => {
                 which previously only existed in the designer’s head become
                 visible.
               </p>
-              <img src={cardesign} />
+              <img alt="cardesign" src={cardesign} />
             </div>
           </div>
           <div className="row exp inspo">
@@ -104,7 +104,7 @@ const About = () => {
               </ul>
             </div>
             <div className="col s7 m7 l7">
-              <img src={artfields} />
+              <img alt="artfields" src={artfields} />
             </div>
           </div>
           <div className="row">

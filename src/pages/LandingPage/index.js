@@ -19,7 +19,7 @@ const LandingPage = () => {
             <div className="left-area col s8 m8 l8">
               <div className="row">
                 <div className="col s4 m4 l4">
-                  <img className="logo" src={WhiteLogo} />
+                  <img alt="white logo" className="logo" src={WhiteLogo} />
                   <p>Accelerate your creative process.</p>
                 </div>
                 <div className="col s8 m8 l8">

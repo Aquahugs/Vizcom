@@ -40,7 +40,7 @@ class Modal extends Component {
       <div>
         <a className=" modal-trigger" data-target="modal1">
           <button className="new-bucket btn-flat btn ">
-            <img src={plus} />
+            <img alt="plus" src={plus} />
             <br />
             start new bucket
           </button>

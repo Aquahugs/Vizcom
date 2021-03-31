@@ -155,7 +155,7 @@ const Profile = ({
                         rel="noreferrer"
                         className="logo-container"
                       >
-                        <img src={instaIcon} />
+                        <img alt="insta icon" src={instaIcon} />
                       </a>
                     )}
                     {profile && (
