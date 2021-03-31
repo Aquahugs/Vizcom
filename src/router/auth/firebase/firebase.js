@@ -49,7 +49,7 @@ class Firebase {
     this.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         authUser.getIdToken(true).then((data) => {
-          localStorage.setItem("bearer", JSON.stringify(data));
+          // localStorage.setItem("bearer", JSON.stringify(data));
         });
         authUser = {
           uid: authUser.uid,

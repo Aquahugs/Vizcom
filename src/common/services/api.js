@@ -12,8 +12,8 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   async (config) => {
-    console.log(`Bearer ${window.localStorage.bearer}`);
-    config.headers.authorization = `Bearer ${window.localStorage.bearer}`;
+    // console.log(`Bearer ${window.localStorage.bearer}`);
+    // config.headers.authorization = `Bearer ${window.localStorage.bearer}`;
     return config;
   },
   (error) => Promise.reject(error)

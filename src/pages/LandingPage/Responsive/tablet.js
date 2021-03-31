@@ -15,7 +15,7 @@ const TabletView = () => {
         <div className="left-area-tablet col s12 m12 l12">
           <div className="row">
             <div className="col s12 m12 l12">
-              <img className="logo" src={WhiteLogo} />
+              <img alt="white logo" className="logo" src={WhiteLogo} />
             </div>
             <div className="col s12 m12 l12">
               <video
@@ -75,7 +75,7 @@ const TabletView = () => {
             uncertain. What if we could dismantle each step of creative thinking
             and allocate tasks accordingly.
           </p>
-          <img src={graphic} />
+          <img alt="graphic" src={graphic} />
         </div>
       </div>
       <div className="footer-container">

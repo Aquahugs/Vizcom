@@ -8,13 +8,7 @@ import ProfileThunks from "../redux/thunks";
 import CollectionThunks from "../Collection/redux/thunks";
 import BucketThunks from "../../Bucket/redux/thunks";
 import AddToBucket from "../../Home/Generate/AddToBucket";
-import BucketList from "../../Bucket/BucketList";
-import {
-  EDITOR,
-  ADD_BUCKET,
-  GENERATE,
-  BUCKET,
-} from "../../../router/routes-const";
+import { EDITOR, ADD_BUCKET, GENERATE } from "../../../router/routes-const";
 import { BucketActions } from "../../Bucket/redux";
 
 import "./mobileprofile.scss";
@@ -120,7 +114,6 @@ const MobileProfile = ({
   } else {
     return (
       <div className="profile-container">
-       
         <div className="row">
           <div className="col sm6 m6 l6">
             <div className="row bio-header">
@@ -136,7 +129,11 @@ const MobileProfile = ({
 
             <div className="row">
               <div className="col s6 m6 l6 location-container">
-                <img className="location-icon" src={locationIcon} />
+                <img
+                  alt="location icon"
+                  className="location-icon"
+                  src={locationIcon}
+                />
                 {profile && <p>{profile.location}</p>}
               </div>
               <div className="col s6 m6 l6 social-icons">
@@ -147,7 +144,7 @@ const MobileProfile = ({
                     rel="noreferrer"
                     className="logo-container"
                   >
-                    <img src={instaIcon} />
+                    <img alt="location icon" src={instaIcon} />
                   </a>
                 )}
                 {profile && (
@@ -157,7 +154,7 @@ const MobileProfile = ({
                     rel="noreferrer"
                     className="logo-container"
                   >
-                    <img src={twitterIcon} />
+                    <img alt="location icon" src={twitterIcon} />
                   </a>
                 )}
               </div>
@@ -170,7 +167,7 @@ const MobileProfile = ({
               <a>
                 <li
                   onClick={() => toggleView("collection")}
-                  style={{ fontWeight: view == "collection" ? "bold" : "400" }}
+                  style={{ fontWeight: view === "collection" ? "bold" : "400" }}
                 >
                   Collection
                 </li>
@@ -178,7 +175,7 @@ const MobileProfile = ({
               <a>
                 <li
                   onClick={() => toggleView("bucket")}
-                  style={{ fontWeight: view == "bucket" ? "bold" : "400" }}
+                  style={{ fontWeight: view === "bucket" ? "bold" : "400" }}
                 >
                   Buckets
                 </li>
@@ -194,7 +191,7 @@ const MobileProfile = ({
                 <div className="row bucketbtn-container">
                   <div className="col s12 m12 l12">
                     <button class=" btn btn-flat create-btn ">
-                      <img src={plus} />
+                      <img alt="plus icon" src={plus} />
                       <br />
                       Create new bucket
                     </button>
@@ -230,16 +227,13 @@ const MobileProfile = ({
                         bucket.images.slice(0, 2).map((image, imageIndex) => {
                           return (
                             <div>
-                             
                               <img
                                 className="bucket-teaser_image col s3 m3 l3 "
                                 alt="images in the bucket"
                                 key={`Key${imageIndex}`}
                                 src={image.image_uri}
                               />
-                             
                             </div>
-                            
                           );
                         })
                       ) : (
@@ -252,7 +246,6 @@ const MobileProfile = ({
                                 key={`Key${imageIndex}`}
                                 src={image.image_uri}
                               />
-                             
                             </div>
                           );
                         })
@@ -277,12 +270,10 @@ const MobileProfile = ({
                       </div>
                     )}
                   </div>
-                  
-                  
                 );
               })}
             </div>
-              <p>delete bucket</p>
+            <p>delete bucket</p>
           </div>
         )}
 
@@ -297,6 +288,7 @@ const MobileProfile = ({
                   key={image.collection_image_id}
                 >
                   <img
+                    alt="collection car"
                     className="collection-image"
                     src={image.image_uri}
                     onClick={() => {
@@ -322,7 +314,11 @@ const MobileProfile = ({
             <span className="modal-container">
               <div className="row">
                 <div className="col s7 m7 l7">
-                  <img className="modal-image" src={modalImage.image_uri} />
+                  <img
+                    alt="car"
+                    className="modal-image"
+                    src={modalImage.image_uri}
+                  />
                 </div>
                 <div className="button-container  col s5 m5 l5">
                   <div style={hideBuckets}>

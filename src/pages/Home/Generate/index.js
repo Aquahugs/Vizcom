@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { fadeInUp } from "react-animations";
-import Popup from "reactjs-popup";
 import Radium, { StyleRoot } from "radium";
 import "./generate.scss";
 import "./add-to-bucket.scss";
@@ -20,7 +19,6 @@ import collectconfirm from "../../../assets/collect-confirm.svg";
 import AddToBucket from "./AddToBucket";
 
 const Generate = ({
-  collection,
   buckets,
   uid,
   getCollection,
@@ -212,8 +210,13 @@ const Generate = ({
                   />
                 </a>
                 {image.isCollected ? (
-                  <img className="collect-confirm right" src={collectconfirm} />
+                  <img
+                    alt="collect confirm icon"
+                    className="collect-confirm right"
+                    src={collectconfirm}
+                  />
                 ) : (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     className="collect"
                     onClick={() => collectImageHandler(image)}
@@ -255,8 +258,13 @@ const Generate = ({
                   />
                 </a>
                 {image.isCollected ? (
-                  <img className="collect-confirm right" src={collectconfirm} />
+                  <img
+                    alt="collect confirm icon"
+                    className="collect-confirm right"
+                    src={collectconfirm}
+                  />
                 ) : (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     className="collect"
                     onClick={() => collectImageHandler(image)}
@@ -314,10 +322,12 @@ const Generate = ({
                       <div className="col s4 m4 l4">
                         {modalImage.isCollected ? (
                           <img
+                            alt="confirm icon"
                             className="collect-confirm"
                             src={collectconfirm}
                           />
                         ) : (
+                          // eslint-disable-next-line jsx-a11y/anchor-is-valid
                           <a
                             className="collect"
                             onClick={() => collectImageHandler(modalImage)}
@@ -385,7 +395,7 @@ const Generate = ({
                 }
               }}
               style={{
-                zIndex: modalIsOpen == false ? 9999 : -9999,
+                zIndex: modalIsOpen === false ? 9999 : -9999,
               }}
             >
               Generate

@@ -27,7 +27,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
       <form className="col s12" onSubmit={handleSubmit(submitForm)}>
         <div className="row edit-profile">
           <Link to={"profile"}>
-            <img className="backarrow" src={backarrow} />
+            <img alt="back arrow" className="backarrow" src={backarrow} />
           </Link>
           <h1>Edit profile</h1>
 
@@ -40,7 +40,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="firstName"
               id="firstName"
               ref={register}
-              defaultValue={user.first_name}
+              defaultValue={user?.first_name ? user?.first_name : ""}
             />
           </div>
           <div className="input-field col s6">
@@ -52,7 +52,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="lastName"
               id="lastName"
               ref={register}
-              defaultValue={user.last_name}
+              defaultValue={user?.last_name ? user?.last_name : ""}
             />
           </div>
         </div>
@@ -66,7 +66,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="location"
               id="location"
               ref={register}
-              defaultValue={user.location}
+              defaultValue={user?.location ? user?.location : ""}
             />
           </div>
         </div>
@@ -81,7 +81,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               id="bio"
               ref={register}
               maxLength="150"
-              defaultValue={user.bio}
+              defaultValue={user?.bio ? user?.bio : ""}
             />
           </div>
         </div>
@@ -91,7 +91,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
             <li>
               <div className="input-field social-icons-mobile col s12">
                 <i className="material-icons prefix">
-                  <img src={instaIcon} />
+                  <img alt="insta icon" src={instaIcon} />
                 </i>
                 <label class="active" htmlFor="instagram">
                   Instagram
@@ -102,7 +102,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                   name="instagram"
                   id="instagram"
                   ref={register}
-                  defaultValue={user.instagram}
+                  defaultValue={user?.instagram ? user?.instagram : ""}
                   placeholder="https://www.instagram.com/yourusername/"
                 />
               </div>
@@ -120,7 +120,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                   name="twitter"
                   id="twitter"
                   ref={register}
-                  defaultValue={user.twitter}
+                  defaultValue={user?.twitter ? user?.twitter : ""}
                   placeholder="https://twitter.com/yourusername"
                 />
               </div>
@@ -128,19 +128,18 @@ const Editor = ({ updateProfile, history, uid, user }) => {
             <li>
               <div className="input-field col s12 social-icons-mobile">
                 <i className="material-icons prefix">
-                  <img src={webIcon} />
+                  <img alt="web icon" src={webIcon} />
                 </i>
                 <label class="active" htmlFor="personalSite">
                   Website
                 </label>
                 <input
                   class="active"
-                  defaultValue={user.personal_site}
+                  defaultValue={user?.personal_site ? user?.personal_site : ""}
                   type="text"
                   name="personalSite"
                   id="personalSite"
                   ref={register}
-                  defaultValue={user.personal_site}
                 />
               </div>
             </li>

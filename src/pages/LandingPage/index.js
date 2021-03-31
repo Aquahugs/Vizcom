@@ -78,7 +78,7 @@ const LandingPage = () => {
                 usually uncertain. What if we could dismantle each step of
                 creative thinking and allocate tasks accordingly.
               </p>
-              <img src={graphic} />
+              <img alt="graphic" src={graphic} />
             </div>
           </div>
           <div className="footer-container">

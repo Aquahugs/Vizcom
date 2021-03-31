@@ -1,12 +1,12 @@
 import React from "react";
 import { compose } from "recompose";
 import "./about-tablet.scss";
-import { withAuthorization } from "../../router/auth/session";
+
 import demovideo from "../../assets/SK2RDEMO.mp4";
 import demovideo2 from "../../assets/aboutgan.mp4";
 import artfields from "../../assets/artfields.png";
 import cardesign from "../../assets/cardesign.png";
-import { Desktop, Tablet, Mobile, Phone } from "./responsive";
+
 const TabletView = () => {
   return (
     <div>
@@ -31,7 +31,7 @@ const TabletView = () => {
               which previously only existed in the designer’s head become
               visible.
             </p>
-            <img src={cardesign} />
+            <img alt="car design" src={cardesign} />
           </div>
         </div>
         <div className="row exp-tablet inspo">
@@ -99,7 +99,7 @@ const TabletView = () => {
             </ul>
           </div>
           <div className="col s7 m7 l7">
-            <img src={artfields} />
+            <img alt="car design" src={artfields} />
           </div>
         </div>
         <div className="row">
@@ -112,7 +112,5 @@ const TabletView = () => {
     </div>
   );
 };
-
-const condition = (authUser) => !!authUser;
 
 export default compose(TabletView);

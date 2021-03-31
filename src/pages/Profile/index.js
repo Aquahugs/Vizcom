@@ -4,17 +4,12 @@ import { compose } from "recompose";
 import { withAuthorization } from "../../router/auth/session";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
+
 import ProfileThunks from "./redux/thunks";
 import CollectionThunks from "./Collection/redux/thunks";
 import BucketThunks from "../Bucket/redux/thunks";
 import AddToBucket from "../Home/Generate/AddToBucket";
-import BucketList from "../Bucket/BucketList";
-import {
-  EDITOR,
-  ADD_BUCKET,
-  GENERATE,
-  BUCKET,
-} from "../../router/routes-const";
+import { EDITOR, ADD_BUCKET, GENERATE } from "../../router/routes-const";
 import { BucketActions } from "../Bucket/redux";
 
 import "./profile.scss";
@@ -42,7 +37,6 @@ const Profile = ({
   getBucketDropdownOptions,
   bucketDropdownOptions,
   deleteCollectionImage,
-  setCurrentBucket,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [view, setView] = useState("collection");
@@ -89,7 +83,7 @@ const Profile = ({
     }
     getBuckets(uid);
     setIsLoaded(true);
-  }, [profile, collection, uid, getProfile, getCollection, getBuckets]);
+  }, [profile, collection, buckets]);
 
   // options for bucket search
   if (!bucketDropdownOptions) {
@@ -137,7 +131,7 @@ const Profile = ({
                       Edit profile
                     </button>
                   </Link>
-                  {profile?.first_name ? (
+                  {profile && profile?.first_name ? (
                     <h2>{profile.first_name}</h2>
                   ) : (
                     <h2>Your Name</h2>
@@ -146,7 +140,11 @@ const Profile = ({
 
                 <div className="row">
                   <div className="col s6 m6 l6 location-container">
-                    <img className="location-icon" src={locationIcon} />
+                    <img
+                      alt="location icon"
+                      className="location-icon"
+                      src={locationIcon}
+                    />
                     {profile && <p>{profile.location}</p>}
                   </div>
                   <div className="col s6 m6 l6 social-icons">
@@ -167,7 +165,7 @@ const Profile = ({
                         rel="noreferrer"
                         className="logo-container"
                       >
-                        <img src={twitterIcon} />
+                        <img alt="twitter icon" src={twitterIcon} />
                       </a>
                     )}
                   </div>
@@ -190,7 +188,7 @@ const Profile = ({
                   <a>
                     <li
                       onClick={() => toggleView("bucket")}
-                      style={{ fontWeight: view == "bucket" ? "bold" : "400" }}
+                      style={{ fontWeight: view === "bucket" ? "bold" : "400" }}
                     >
                       Buckets
                     </li>
@@ -206,7 +204,7 @@ const Profile = ({
                     <div className="row bucketbtn-container">
                       <div className="col s12 m12 l12">
                         <button class=" btn btn-flat create-btn ">
-                          <img src={plus} />
+                          <img alt="plus icon" src={plus} />
                           <br />
                           Create new bucket
                         </button>
@@ -219,15 +217,7 @@ const Profile = ({
                   {buckets?.map((bucket, bucketIndex) => {
                     return (
                       <div className="row" key={`Key${bucketIndex}`}>
-                        <Link
-                          onClick={() => {
-                            setCurrentBucket(bucket);
-                          }}
-                          to={{
-                            pathname: "/bucket",
-                            state: { bucket: bucket },
-                          }}
-                        >
+                        <Link to={`/bucket/${bucket.bucket_id}`}>
                           <div className="bucket-titlecard">
                             {/* Bucket title card */}
                             <h3>{bucket?.bucket_name}</h3>
@@ -290,7 +280,6 @@ const Profile = ({
                     );
                   })}
                 </div>
-                <p>delete bucket</p>
               </div>
             )}
 
@@ -305,6 +294,7 @@ const Profile = ({
                       key={image.collection_image_id}
                     >
                       <img
+                        alt="collect icon"
                         className="collection-image"
                         src={image.image_uri}
                         onClick={() => {
@@ -330,7 +320,11 @@ const Profile = ({
                 <span className="modal-container">
                   <div className="row">
                     <div className="col s7 m7 l7">
-                      <img className="modal-image" src={modalImage.image_uri} />
+                      <img
+                        alt="car"
+                        className="modal-image"
+                        src={modalImage.image_uri}
+                      />
                     </div>
                     <div className="button-container  col s5 m5 l5">
                       <div style={hideBuckets}>
@@ -371,7 +365,6 @@ const Profile = ({
           </div>
         </Desktop>
         <Tablet>Tablet</Tablet>
-
         <Mobile>
           <div className="mobile-profile-container">
             <div className="row">
@@ -389,7 +382,11 @@ const Profile = ({
 
                 <div className="row">
                   <div className="col s12 m12 l12 location-container">
-                    <img className="location-icon" src={locationIcon} />
+                    <img
+                      alt="location icon"
+                      className="location-icon"
+                      src={locationIcon}
+                    />
                     {profile && <p>{profile.location}</p>}
                     <div className="col s8 m8 l8 social-icons">
                       {profile && (
@@ -399,7 +396,7 @@ const Profile = ({
                           rel="noreferrer"
                           className="logo-container"
                         >
-                          <img src={instaIcon} />
+                          <img alt="insta icon" src={instaIcon} />
                         </a>
                       )}
                       {profile && (
@@ -409,7 +406,7 @@ const Profile = ({
                           rel="noreferrer"
                           className="logo-container"
                         >
-                          <img src={twitterIcon} />
+                          <img alt="twitter icon" src={twitterIcon} />
                         </a>
                       )}
                     </div>
@@ -424,7 +421,7 @@ const Profile = ({
                       <li
                         onClick={() => toggleView("collection")}
                         style={{
-                          fontWeight: view == "collection" ? "bold" : "400",
+                          fontWeight: view === "collection" ? "bold" : "400",
                         }}
                       >
                         Collection
@@ -434,7 +431,7 @@ const Profile = ({
                       <li
                         onClick={() => toggleView("bucket")}
                         style={{
-                          fontWeight: view == "bucket" ? "bold" : "400",
+                          fontWeight: view === "bucket" ? "bold" : "400",
                         }}
                       >
                         Buckets
@@ -465,15 +462,7 @@ const Profile = ({
                   {buckets?.map((bucket, bucketIndex) => {
                     return (
                       <div className="row" key={`Key${bucketIndex}`}>
-                        <Link
-                          onClick={() => {
-                            setCurrentBucket(bucket);
-                          }}
-                          to={{
-                            pathname: "/bucket",
-                            state: { bucket: bucket },
-                          }}
-                        >
+                        <Link to={`/bucket/${bucket.bucket_id}`}>
                           <div className="bucket-titlecard">
                             {/* Bucket title card */}
                             <h3>{bucket?.bucket_name}</h3>
@@ -536,7 +525,6 @@ const Profile = ({
                     );
                   })}
                 </div>
-                <p>delete bucket</p>
               </div>
             )}
 
@@ -551,6 +539,7 @@ const Profile = ({
                       key={image.collection_image_id}
                     >
                       <img
+                        alt="images in the collection"
                         className="collection-image"
                         src={image.image_uri}
                         onClick={() => {
@@ -616,7 +605,6 @@ const Profile = ({
             </div>
           </div>
         </Mobile>
-        {/* <Mobile><MobileProfile/></Mobile> */}
       </div>
     );
   }
@@ -628,7 +616,6 @@ const mapDispatchToProps = {
   getBuckets: BucketThunks.getBuckets,
   getBucketDropdownOptions: BucketActions.getBucketDropdownOptions,
   deleteCollectionImage: CollectionThunks.deleteCollectionImage,
-  setCurrentBucket: BucketActions.setCurrentBucket,
 };
 
 const mapStateToProps = (state) => {
