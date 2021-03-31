@@ -103,7 +103,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                   id="instagram"
                   ref={register}
                   defaultValue={user.instagram}
-                  placeholder = "https://www.instagram.com/yourusername/"
+                  placeholder="https://www.instagram.com/yourusername/"
                 />
               </div>
             </li>
@@ -112,14 +112,17 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <i className="material-icons prefix">
                   <img src={twitterIcon} />
                 </i>
-                <label class = "active" htmlFor="twitter">Twitter</label>
-                <input 
-                type="text" 
-                name="twitter" 
-                id="twitter" 
-                ref={register} 
-                defaultValue={user.twitter} 
-                placeholder = "https://twitter.com/yourusername"/>
+                <label class="active" htmlFor="twitter">
+                  Twitter
+                </label>
+                <input
+                  type="text"
+                  name="twitter"
+                  id="twitter"
+                  ref={register}
+                  defaultValue={user.twitter}
+                  placeholder="https://twitter.com/yourusername"
+                />
               </div>
             </li>
             <li>
@@ -144,23 +147,20 @@ const Editor = ({ updateProfile, history, uid, user }) => {
           </ul>
         </div>
         <div className="row action-buttons">
-          <Link to={"profile"}>
-            <button
-              className="btn waves-effect waves-light save-btn"
-              type="submit"
-              name="action"
-            >
-              Save
-            </button>
-            <button
-              className="btn waves-effect waves-light"
-              type="submit"
-              name="action"
-            >
-              Cancel
-            </button>{" "}
-          </Link>
-         
+          <button
+            className="btn waves-effect waves-light save-btn"
+            type="submit"
+            name="action"
+          >
+            Save
+          </button>
+          <button
+            className="btn waves-effect waves-light"
+            type="submit"
+            name="action"
+          >
+            Cancel
+          </button>{" "}
         </div>
       </form>
     </div>
