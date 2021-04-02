@@ -89,7 +89,7 @@ const Profile = ({
       value: bucket.bucket_id,
     }));
     getBucketDropdownOptions(bucketOptionDropdown);
-  }, [profile, collection, buckets]);
+  }, []);
 
   const toggleView = (e) => {
     setView(e);

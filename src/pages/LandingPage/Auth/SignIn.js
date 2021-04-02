@@ -116,17 +116,26 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
+        debugger;
         this.props.getProfile(socialAuthUser.user.uid).catch(() => {
+          debugger;
           const newUser = {
             uuid: socialAuthUser.user.uid,
-            display_name: socialAuthUser.user.displayName,
+            display_name: socialAuthUser.user.displayName
+              ? socialAuthUser.user.displayName
+              : null,
             image_uri: socialAuthUser.user.photoUrl
               ? socialAuthUser.user.photoUrl
               : null,
             email: socialAuthUser.user.email,
-            first_name: socialAuthUser.additionalUserInfo.profile.given_name,
-            last_name: socialAuthUser.additionalUserInfo.profile.family_name,
+            first_name: socialAuthUser.additionalUserInfo.profile.given_name
+              ? socialAuthUser.additionalUserInfo.profile.given_name
+              : null,
+            last_name: socialAuthUser.additionalUserInfo.profile.family_name
+              ? socialAuthUser.additionalUserInfo.profile.family_name
+              : null,
           };
+          debugger;
           this.props.createProfile(newUser);
         });
         this.props.history.push("/home");
