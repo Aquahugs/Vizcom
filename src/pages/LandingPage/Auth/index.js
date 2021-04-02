@@ -7,7 +7,7 @@ import SignUp from "./SignUp";
 import PasswordReset from "./PasswordReset";
 
 const Auth = () => {
-  let [authState, setAuthState] = useState("signUp");
+  let [authState, setAuthState] = useState("signIn");
 
   const renderAuthState = () => {
     switch (authState) {

@@ -97,7 +97,7 @@ export default function StyledDropzone(props) {
   const thumbs = files.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
-        <img src={file.preview} style={img} />
+        <img alt="car" src={file.preview} style={img} />
       </div>
     </div>
   ));
@@ -116,7 +116,7 @@ export default function StyledDropzone(props) {
     <div>
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <img src={plus} style={plusStyle} />
+        <img alt="plus icon" src={plus} style={plusStyle} />
         <p>Drag 'n' drop files here, or click to select files</p>
       </div>
       <aside style={thumbsContainer}>{thumbs}</aside>

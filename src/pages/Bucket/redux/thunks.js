@@ -10,6 +10,19 @@ const getBuckets = (uid) => async (dispatch) => {
     dispatch(actions.getBucketsError(error));
   }
 };
+const getBucketsAsync = (uid) => async (dispatch) => {
+  return new Promise(async (resolve, reject) => {
+    dispatch(actions.getBucketsStarted());
+    try {
+      const response = await bucketService.getBuckets(uid);
+      dispatch(actions.getBucketsSuccess(response.data));
+      resolve(response.data);
+    } catch (error) {
+      dispatch(actions.getBucketsError(error));
+      reject(error);
+    }
+  });
+};
 
 const createBucket = (bucket) => async (dispatch) => {
   dispatch(actions.createBucketStarted());
@@ -52,6 +65,7 @@ const deleteBucketImage = (image) => async (dispatch) => {
 
 export default {
   getBuckets,
+  getBucketsAsync,
   createBucket,
   addToBucket,
   deleteBucket,

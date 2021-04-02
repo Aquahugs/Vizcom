@@ -14,7 +14,7 @@ const Card = ({ link, logo, name, description, push }) => {
               style={{ opacity: name != "Sketch2Render" ? 1 : 0.5 }}
             >
               <div className="card-image">
-                <img src={logo} />
+                <img alt="logo" src={logo} />
               </div>
               <div className="content-container">
                 <div className="card-content">
@@ -31,10 +31,10 @@ const Card = ({ link, logo, name, description, push }) => {
           <div className="col s6 m6">
             <div
               className="card"
-              style={{ opacity: name != "Sketch2Render" ? 1 : 0.5 }}
+              style={{ opacity: name !== "Sketch2Render" ? 1 : 0.5 }}
             >
               <div className="card-image">
-                <img src={logo} />
+                <img alt="logo" src={logo} />
               </div>
               <div className="content-container">
                 <div className="card-content">
@@ -51,10 +51,10 @@ const Card = ({ link, logo, name, description, push }) => {
           <div className="col s=12 m12">
             <div
               className="card"
-              style={{ opacity: name != "Sketch2Render" ? 1 : 0.5 }}
+              style={{ opacity: name !== "Sketch2Render" ? 1 : 0.5 }}
             >
               <div className="card-image">
-                <img src={logo} />
+                <img alt="logo" src={logo} />
               </div>
               <div className="content-container">
                 <div className="card-content">

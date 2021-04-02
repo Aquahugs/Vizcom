@@ -18,9 +18,7 @@ ReactDOM.render(
       <FirebaseContext.Provider value={new Firebase()}>
         <App />
       </FirebaseContext.Provider>
-      
     </Provider>
-    
   </React.StrictMode>,
   rootElement
 );
