@@ -18,7 +18,18 @@ const MobileView = () => {
               <img className="logo-mobile" src={WhiteLogo} />
             </div>
             <div className="col s12 m12 l12">
-              <video
+            <div dangerouslySetInnerHTML={{ __html: `
+                  <video
+                    loop
+                    muted
+                    autoplay
+                    playsinline
+                    src="${Video}"
+                    class="mobile-introvid"
+                   
+                  />,
+                ` }}></div>
+              {/* <video
                 style={{
                   width: "100%",
                   height: "220px",
@@ -32,7 +43,7 @@ const MobileView = () => {
                 autoPlay
                 src={Video}
                 type="video/mp4"
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -60,6 +71,7 @@ const MobileView = () => {
               muted
               loop
               autostart
+              playsInline
               autoPlay
               src={Video2}
               type="video/mp4"
@@ -70,7 +82,7 @@ const MobileView = () => {
 
       <div className=" row graph-container-mobile">
         <div className="col s12 m12 l12">
-          <h2>New Work Flow</h2>
+          <h2>Work Flow</h2>
           <p>
             In the early stage of creative thinking, the final idea is usually
             uncertain. What if we could dismantle each step of creative thinking

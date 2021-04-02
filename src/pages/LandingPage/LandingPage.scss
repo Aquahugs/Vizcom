@@ -23,7 +23,7 @@
 
 .info-container {
   background-color: #262626;
-  height: 920px;
+  height: 1020px !important;
 
   .info-image {
     padding: 5rem;
@@ -45,7 +45,7 @@
     font-size: 42px;
     font-weight: bold;
     line-height: 4rem;
-    padding-top: 3rem;
+    padding-top: 5rem;
     text-align: center;
   }
 
@@ -96,3 +96,4 @@
 #blue {
   color: #0040ff;
 }
+

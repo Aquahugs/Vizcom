@@ -18,7 +18,7 @@ const Auth = () => {
             <p style={{ color: "#ececec" }}>
               Already have an account?
               <a onClick={() => setAuthState((authState = "signIn"))}>
-                <span>Sign in</span>
+                <span className = 'alr-signin'> Sign in</span>
               </a>
             </p>
           </div>

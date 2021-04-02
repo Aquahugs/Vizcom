@@ -352,9 +352,7 @@ const Generate = ({
       {modal}
       <div className="row generate-container">
         <div className="row tag">
-          <p>
-            Every click uses artificial intelligence to generate unique images{" "}
-          </p>
+         
         </div>
         <StyleRoot>
           <div className="row" style={visibilityStyle}>

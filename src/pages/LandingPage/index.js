@@ -23,6 +23,7 @@ const LandingPage = () => {
                   <p>Accelerate your creative process.</p>
                 </div>
                 <div className="col s8 m8 l8">
+          
                   <video
                     style={{
                       width: "100%",
@@ -32,6 +33,7 @@ const LandingPage = () => {
                     muted
                     loop
                     autostart
+                    playsInline
                     autoPlay
                     src={Video}
                     type="video/mp4"
@@ -56,7 +58,7 @@ const LandingPage = () => {
                 <video
                   style={{
                     width: "100%",
-                    height: "auto",
+                    height: "750px",
                     position: "relative",
                   }}
                   muted
@@ -72,7 +74,7 @@ const LandingPage = () => {
 
           <div className=" row graph-container">
             <div className="col s12 m12 l12">
-              <h2>New Work Flow</h2>
+              <h2>Work Flow</h2>
               <p>
                 In the early stage of creative thinking, the final idea is
                 usually uncertain. What if we could dismantle each step of
