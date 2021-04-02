@@ -40,8 +40,8 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="firstName"
               id="firstName"
               ref={register}
-              defaultValue={user.first_name}
-            />
+              defaultValue={user?.first_name ? user?.first_name : ""}
+              />
           </div>
           <div className="input-field col s6">
             <label class="active" htmlFor="name">
@@ -52,7 +52,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="lastName"
               id="lastName"
               ref={register}
-              defaultValue={user.last_name}
+              // defaultValue={user.last_name}
             />
           </div>
         </div>
@@ -66,7 +66,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="location"
               id="location"
               ref={register}
-              defaultValue={user.location}
+              // defaultValue={user.location}
             />
           </div>
         </div>
@@ -81,7 +81,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               id="bio"
               ref={register}
               maxLength="150"
-              defaultValue={user.bio}
+              // defaultValue={user.bio}
             />
           </div>
         </div>
@@ -102,7 +102,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                   name="instagram"
                   id="instagram"
                   ref={register}
-                  defaultValue={user.instagram}
+                  // defaultValue={user.instagram}
                   placeholder = "https://www.instagram.com/yourusername/"
                 />
               </div>
@@ -118,7 +118,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 name="twitter" 
                 id="twitter" 
                 ref={register} 
-                defaultValue={user.twitter} 
+                // defaultValue={user.twitter} 
                 placeholder = "https://twitter.com/yourusername"/>
               </div>
             </li>
@@ -132,12 +132,12 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 </label>
                 <input
                   class="active"
-                  defaultValue={user.personal_site}
+                  // defaultValue={user.personal_site}
                   type="text"
                   name="personalSite"
                   id="personalSite"
                   ref={register}
-                  defaultValue={user.personal_site}
+                  // defaultValue={user.personal_site}
                 />
               </div>
             </li>
