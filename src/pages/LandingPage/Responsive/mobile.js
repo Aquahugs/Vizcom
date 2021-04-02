@@ -15,7 +15,7 @@ const MobileView = () => {
         <div className="left-area-mobile col s12 m12 l12">
           <div className="row">
             <div className="col s12 m12 l12">
-              <img className="logo-mobile" src={WhiteLogo} />
+              <img alt="white logo" className="logo-mobile" src={WhiteLogo} />
             </div>
             <div className="col s12 m12 l12">
               <video
@@ -49,7 +49,7 @@ const MobileView = () => {
           </h2>
         </div>
         <div className="col s12 m12 l12">
-          <div class="video-mask">
+          <div className="video-mask">
             <video
               style={{
                 width: "100%",

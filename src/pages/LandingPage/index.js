@@ -19,7 +19,7 @@ const LandingPage = () => {
             <div className="left-area col s8 m8 l8">
               <div className="row">
                 <div className="col s4 m4 l4">
-                  <img className="logo" src={WhiteLogo} />
+                  <img alt="white logo" className="logo" src={WhiteLogo} />
                   <p>Accelerate your creative process.</p>
                 </div>
                 <div className="col s8 m8 l8">
@@ -52,7 +52,7 @@ const LandingPage = () => {
               </h2>
             </div>
             <div className="col s7 m7 l7">
-              <div class="video-mask">
+              <div className="video-mask">
                 <video
                   style={{
                     width: "100%",
@@ -71,14 +71,14 @@ const LandingPage = () => {
           </div>
 
           <div className=" row graph-container">
-            <div className="col s12 m12 l12">
+            <div className="col s12 m12 l12" style = {{paddingTop:"10%"}}>
               <h2>New Work Flow</h2>
               <p>
                 In the early stage of creative thinking, the final idea is
                 usually uncertain. What if we could dismantle each step of
                 creative thinking and allocate tasks accordingly.
               </p>
-              <img src={graphic} />
+              <img alt="graphic" src={graphic} />
             </div>
           </div>
           <div className="footer-container">

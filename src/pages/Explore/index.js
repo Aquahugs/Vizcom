@@ -13,7 +13,7 @@ const Explore = () => {
           <div className="col s12 m12 l12">
             <h1 className="title">Explore</h1>
             <p> A live activity feed of the Vizcom community. Coming soon...</p>
-            <img className="explore-mock" src={mock} />
+            <img alt="mock" className="explore-mock" src={mock} />
           </div>
         </div>
       </Desktop>
@@ -22,7 +22,7 @@ const Explore = () => {
           <div className="col s12 m12 l12">
             <h1 className="title">Explore</h1>
             <p> A live activity feed of the Vizcom community. Coming soon...</p>
-            <img className="explore-mock" src={mock} />
+            <img alt="mock" className="explore-mock" src={mock} />
           </div>
         </div>
       </Tablet>
@@ -31,11 +31,10 @@ const Explore = () => {
           <div className="col s12 m12 l12">
             <h1 className="title">Explore</h1>
             <p>
-              {" "}
               A live activity feed of the Vizcom community. <br />
               Coming soon...
             </p>
-            <img className="explore-mock" src={mobilemock} />
+            <img alt="mock" className="explore-mock" src={mobilemock} />
           </div>
         </div>
       </Mobile>

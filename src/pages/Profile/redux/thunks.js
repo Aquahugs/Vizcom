@@ -1,6 +1,5 @@
 import actions from "./actions";
 import userService from "../../../common/services/user-service";
-import collectionService from "../../../common/services/collection-service";
 
 const getProfile = (uid) => async (dispatch) => {
   dispatch(actions.getProfileStarted());
@@ -16,9 +15,7 @@ const getProfileAsync = (uid) => async (dispatch) => {
   return new Promise(async (resolve, reject) => {
     dispatch(actions.getProfileStarted());
     try {
-      debugger;
       const response = await userService.getUserById(uid);
-      debugger;
       dispatch(actions.getProfileSuccess(response.data));
       resolve(response.data);
     } catch (error) {
@@ -64,6 +61,7 @@ const updateProfile = (user, uuid) => async (dispatch) => {
   }
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getProfile,
   updateProfile,

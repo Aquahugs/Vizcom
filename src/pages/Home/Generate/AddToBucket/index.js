@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
@@ -15,9 +15,9 @@ const AddToBucket = ({
   addToBucket,
   addBucketMenu,
   image,
-  collection,
   collectImage,
   uid,
+  collection,
 }) => {
   const { register, handleSubmit } = useForm();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -25,7 +25,6 @@ const AddToBucket = ({
 
   const onSelectChange = (value) => {
     setBucketId(value);
-    console.log(bucketId);
   };
 
   const displayBucketHandler = (data) => {
@@ -39,20 +38,37 @@ const AddToBucket = ({
       user_uploaded_image_id: null,
       image_uri: image.image_uri,
     };
-    collectImage(imageObj).then((collectionImages) => {
-      const collectionImage = collectionImages.find((i) => {
-        return i.generated_image_id === image.generated_image_id;
+    if (
+      !collection.some(
+        (image) => imageObj.generated_image_id === image.generated_image_id
+      )
+    ) {
+      collectImage(imageObj).then((collectionImages) => {
+        const collectionImage = collectionImages.find((i) => {
+          return i.generated_image_id === image.generated_image_id;
+        });
+        const newImage = {
+          collection_image_id: collectionImage.collection_image_id,
+          bucket_id: bucketId,
+          uuid: uid,
+        };
+        !bucketId
+          ? setErrorMessage("Please select a bucket")
+          : addToBucket(newImage);
+        addBucketMenu(false);
       });
+    } else {
+      const collectionImage = collection.find(
+        (image) => imageObj.generated_image_id === image.generated_image_id
+      );
       const newImage = {
         collection_image_id: collectionImage.collection_image_id,
         bucket_id: bucketId,
         uuid: uid,
       };
-      !bucketId
-        ? setErrorMessage("Please select a bucket")
-        : addToBucket(newImage);
+      addToBucket(newImage);
       addBucketMenu(false);
-    });
+    }
   };
 
   return (

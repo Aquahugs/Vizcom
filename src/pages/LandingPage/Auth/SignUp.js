@@ -51,7 +51,7 @@ class SignUpFormBase extends Component {
         console.log(response);
         const user = {
           uuid: response.user.uid,
-          display_name: null,
+          display_name: username,
           image_uri: null,
           email: response.user.email,
           first_name: null,

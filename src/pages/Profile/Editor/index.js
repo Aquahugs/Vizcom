@@ -27,12 +27,12 @@ const Editor = ({ updateProfile, history, uid, user }) => {
       <form className="col s12" onSubmit={handleSubmit(submitForm)}>
         <div className="row edit-profile">
           <Link to={"profile"}>
-            <img className="backarrow" src={backarrow} />
+            <img alt="back arrow" className="backarrow" src={backarrow} />
           </Link>
           <h1>Edit profile</h1>
 
           <div className="input-field col s6">
-            <label class="active" for="first_name">
+            <label className="active" for="first_name">
               First Name
             </label>
             <input
@@ -44,7 +44,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               />
           </div>
           <div className="input-field col s6">
-            <label class="active" htmlFor="name">
+            <label className="active" htmlFor="name">
               Last Name
             </label>
             <input
@@ -52,13 +52,13 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="lastName"
               id="lastName"
               ref={register}
-              // defaultValue={user.last_name}
+              defaultValue={user?.last_name ? user?.last_name : ""}
             />
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label class="active" htmlFor="name">
+            <label className="active" htmlFor="name">
               Location
             </label>
             <input
@@ -66,13 +66,13 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               name="location"
               id="location"
               ref={register}
-              // defaultValue={user.location}
+              defaultValue={user?.location ? user?.location : ""}
             />
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <label class="active" htmlFor="bio">
+            <label className="active" htmlFor="bio">
               Bio
             </label>
             <textarea
@@ -81,7 +81,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               id="bio"
               ref={register}
               maxLength="150"
-              // defaultValue={user.bio}
+              defaultValue={user?.bio ? user?.bio : ""}
             />
           </div>
         </div>
@@ -91,19 +91,19 @@ const Editor = ({ updateProfile, history, uid, user }) => {
             <li>
               <div className="input-field social-icons-mobile col s12">
                 <i className="material-icons prefix">
-                  <img src={instaIcon} />
+                  <img alt="insta icon" src={instaIcon} />
                 </i>
-                <label class="active" htmlFor="instagram">
+                <label className="active" htmlFor="instagram">
                   Instagram
                 </label>
                 <input
-                  class="active"
+                  className="active"
                   type="text"
                   name="instagram"
                   id="instagram"
                   ref={register}
-                  // defaultValue={user.instagram}
-                  placeholder = "https://www.instagram.com/yourusername/"
+                  defaultValue={user?.instagram ? user?.instagram : ""}
+                  placeholder="https://www.instagram.com/yourusername/"
                 />
               </div>
             </li>
@@ -112,55 +112,54 @@ const Editor = ({ updateProfile, history, uid, user }) => {
                 <i className="material-icons prefix">
                   <img src={twitterIcon} />
                 </i>
-                <label class = "active" htmlFor="twitter">Twitter</label>
-                <input 
-                type="text" 
-                name="twitter" 
-                id="twitter" 
-                ref={register} 
-                // defaultValue={user.twitter} 
-                placeholder = "https://twitter.com/yourusername"/>
+                <label className="active" htmlFor="twitter">
+                  Twitter
+                </label>
+                <input
+                  type="text"
+                  name="twitter"
+                  id="twitter"
+                  ref={register}
+                  defaultValue={user?.twitter ? user?.twitter : ""}
+                  placeholder="https://twitter.com/yourusername"
+                />
               </div>
             </li>
             <li>
               <div className="input-field col s12 social-icons-mobile">
                 <i className="material-icons prefix">
-                  <img src={webIcon} />
+                  <img alt="web icon" src={webIcon} />
                 </i>
-                <label class="active" htmlFor="personalSite">
+                <label className="active" htmlFor="personalSite">
                   Website
                 </label>
                 <input
-                  class="active"
-                  // defaultValue={user.personal_site}
+                  className="active"
+                  defaultValue={user?.personal_site ? user?.personal_site : ""}
                   type="text"
                   name="personalSite"
                   id="personalSite"
                   ref={register}
-                  // defaultValue={user.personal_site}
                 />
               </div>
             </li>
           </ul>
         </div>
         <div className="row action-buttons">
-          <Link to={"profile"}>
-            <button
-              className="btn waves-effect waves-light save-btn"
-              type="submit"
-              name="action"
-            >
-              Save
-            </button>
-            <button
-              className="btn waves-effect waves-light"
-              type="submit"
-              name="action"
-            >
-              Cancel
-            </button>{" "}
-          </Link>
-         
+          <button
+            className="btn waves-effect waves-light save-btn"
+            type="submit"
+            name="action"
+          >
+            Save
+          </button>
+          <button
+            className="btn waves-effect waves-light"
+            type="submit"
+            name="action"
+          >
+            Cancel
+          </button>{" "}
         </div>
       </form>
     </div>

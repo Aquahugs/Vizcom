@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-import { GENERATE } from "../../../router/routes-const";
+import React from "react";
 
 import "./BucketList.scss";
 import AddImageIcon from "../../../assets/add-image.svg";
@@ -49,9 +46,6 @@ const BucketList = ({ buckets, user }) => {
                   src={AddImageIcon}
                 />
                 <p>add images to bucket </p>
-                {/* <Link to={GENERATE}>
-                  <p>or collect from the generate tool</p>
-                </Link> */}
               </div>
             )}
             {bucket.images?.length > 2 && (
