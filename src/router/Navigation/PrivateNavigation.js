@@ -1,7 +1,7 @@
 import React from "react";
 
 import PrimaryNav from "../../common/components/PrimaryNavbar";
-import Footer from "../../common/components/Footer";
+import LightFooter from "../../common/components/LightFooter";
 import SecondaryNav from "../../common/components/SecondaryNavbar";
 
 import history from "../../common/utils/history";
@@ -15,7 +15,9 @@ const NavigationAuth = () => {
       <main>
         <Router history={history} />
       </main>
-      <Footer darkmode="light" />
+      <div style = {{marginTop:"25%"}}>
+        <LightFooter/>
+      </div>
     </div>
   );
 };
