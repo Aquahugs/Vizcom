@@ -1,6 +1,6 @@
 import React from "react";
-import Video from "../../../assets/LandingVideo.mp4";
-import Video2 from "../../../assets/morph.mp4";
+import Video from "../../../assets/Mobile-LandingVideo.gif";
+import Video2 from "../../../assets/Mobile-morph.gif";
 import Footer from "../../../common/components/Footer";
 import Auth from "../Auth";
 import "./mobile.scss";
@@ -18,32 +18,13 @@ const MobileView = () => {
               <img alt="white logo" className="logo-mobile" src={WhiteLogo} />
             </div>
             <div className="col s12 m12 l12">
-            <div dangerouslySetInnerHTML={{ __html: `
-                  <video
-                    loop
-                    muted
-                    autoplay
-                    playsinline
-                    src="${Video}"
-                    class="mobile-introvid"
-                   
-                  />,
-                ` }}></div>
-              {/* <video
-                style={{
-                  width: "100%",
-                  height: "220px",
-                  position: "relative",
-                  padding: "5%",
-                  paddingBottom: "15%",
-                }}
-                muted
-                loop
-                autostart
-                autoPlay
-                src={Video}
-                type="video/mp4"
-              /> */}
+              <img src = {Video}
+              style={{
+                width: "50%",
+                height: "auto",
+                position: "relative",
+                paddingBottom: "15%",
+              }}/>
             </div>
           </div>
         </div>
@@ -61,22 +42,15 @@ const MobileView = () => {
         </div>
         <div className="col s12 m12 l12">
           <div className="video-mask">
-            <video
+            <img src ={Video2}  
               style={{
                 width: "100%",
                 height: "auto",
                 position: "relative",
                 paddingTop: "10%",
               }}
-              muted
-              loop
-              autostart
-              playsInline
-              autoPlay
-              src={Video2}
-              type="video/mp4"
             />
-          </div>
+            </div>
         </div>
       </div>
 

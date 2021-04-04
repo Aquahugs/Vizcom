@@ -1,9 +1,55 @@
-import React from "react";
+import React, {Component} from "react";
+import {connect} from 'react-redux' 
 import StyledDropzone from "./Dropzone";
 import "./sketchtorender.scss";
 import demovideo from "../../../assets/SK2RDEMO.mp4";
 
-export default function SketchToRender() {
+
+
+class SketchToRender extends Component {
+
+  constructor(props){
+        
+    super(props);
+    this.state= {
+        items :[],
+        users:[],
+        description: '',
+        postTag: '',
+        collection:[],
+        userphotos:[],
+        tags:[],
+        bio:[],
+        id:[],
+        isLoaded: false,
+        submitted:true
+ 
+    }
+  }
+
+    handleChange = (e) => {
+      this.setState({
+          [e.target.id] : e.target.value
+      })
+    }
+    handleSubmit = (e) => {
+        // event to submit the email data to the api server dawg
+        e.preventDefault();
+        console.log(e)
+        const { email} = this.state;
+
+        let formData = new FormData();;
+        formData.append('email', email);
+            
+        fetch(`https://designerspendroplet.getdpsvapi.com/submitemail?email=${email}`)
+            .then((result) => {
+            // access results...
+            console.log(result)
+            })
+            .then(() => {
+        })
+    }
+    render(){
   return (
     <div>
       <h1 className="title">SketchToRender</h1>
@@ -20,25 +66,14 @@ export default function SketchToRender() {
         type="video/mp4"
       />
 
-      {/* <div className = "row">
-      <div className = "image-container col s6 m6 l6">
-        <StyledDropzone />
-      </div>
-      <div className = "image-container col s6 m6 l6">
-        <img src = "https://via.placeholder.com/700x500"/>
-        
-      </div>
      
-    </div>
-     <div className = "row renderbtn-container">
-     
-     <button a href="#" className = 'btn waves-effect render-btn lighten-1 z-depth-0'>Render</button>
 
-    </div> */}
-
-      <p className="title2">Recive early access updates</p>
-      <form>
-        <input
+      <p className="title2"  style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}} >Recive early access updates</p>
+      <p className="title2"  style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'visible': 'hidden'}} >Submitted</p>
+      <form 
+      onSubmit={this.handleSubmit} 
+      style ={{visibility: this.state.submitted != true? 'hidden': 'visible'}}>
+        <input 
           style={{
             width: "80%",
             display: "block",
@@ -49,9 +84,13 @@ export default function SketchToRender() {
           id="email"
           placeholder="Youremail@email.com"
           className="input-field"
-        />
-        <button className=" updatesbtn2 lighten-1 z-depth-0">Sign up </button>
+          
+          onChange={this.handleChange} />
+        <button className=" updatesbtn2 lighten-1 z-depth-0" onClick={e => this.setState({submitted: false})}>Sign up </button>
       </form>
     </div>
   );
 }
+}
+
+export default  connect() (SketchToRender);
