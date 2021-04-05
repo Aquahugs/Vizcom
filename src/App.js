@@ -7,7 +7,7 @@ import { withAuthentication } from "./router/auth/session";
 
 const App = () => {
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       <Navigation />
     </BrowserRouter>
   );

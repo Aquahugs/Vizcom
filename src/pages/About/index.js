@@ -1,7 +1,5 @@
 import React from "react";
-import { compose } from "recompose";
 import "./about.scss";
-import { withAuthorization } from "../../router/auth/session";
 import demovideo from "../../assets/SK2RDEMO.mp4";
 import demovideo2 from "../../assets/aboutgan.mp4";
 import artfields from "../../assets/artfields.png";
@@ -125,6 +123,4 @@ const About = () => {
   );
 };
 
-const condition = (authUser) => !!authUser;
-
-export default compose(About);
+export default About;
