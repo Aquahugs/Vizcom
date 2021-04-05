@@ -23,6 +23,7 @@ const LandingPage = () => {
                   <p>Accelerate your creative process.</p>
                 </div>
                 <div className="col s8 m8 l8">
+          
                   <video
                     style={{
                       width: "100%",
@@ -32,6 +33,7 @@ const LandingPage = () => {
                     muted
                     loop
                     autostart
+                    playsInline
                     autoPlay
                     src={Video}
                     type="video/mp4"
@@ -56,7 +58,7 @@ const LandingPage = () => {
                 <video
                   style={{
                     width: "100%",
-                    height: "auto",
+                    height: "750px",
                     position: "relative",
                   }}
                   muted

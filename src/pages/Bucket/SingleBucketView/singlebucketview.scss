@@ -5,8 +5,10 @@
 
   h1 {
     padding-top: 5%;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
     border-bottom: 1px solid #707070;
+    font-size: 42px;
+    font-weight: 500;
   }
 }
 
@@ -16,11 +18,115 @@
 .backarrow {
   width: 20px;
   height: 100%;
-  margin-top: 2rem;
+  margin-top: 0;
   float: left;
   @media (max-width: 480px) {
     width: 20px;
     height: auto;
     margin-top: 0;
   }
+}
+
+
+.delete-btn {
+  border: solid 1px #707070;
+  border-radius: 24px;
+  background-color: rgb(221, 221, 221);
+
+  font-size: 1rem;
+  text-align: center;
+  line-height: 5px;
+  color: #707070;
+  padding-left: 12%;
+  padding-right: 12%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  
+}
+.delete-btn:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+.modal-close{
+  margin-left:2%  !important;
+  width:100px;
+  text-align: center;
+  border-radius: 6px;
+
+}
+
+.yes{
+  background-color: #003fff ;
+  color: white;
+}
+.modal-content{
+  h4{
+    font-weight: bold;
+  }
+
+  p{
+    font-size: 20px;
+  }
+}
+
+.modal{
+  padding: 2%;
+}
+
+.view-container{
+  padding:5%;
+}
+
+.top-items{
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.bucket-teaser_image:hover + .remove-collection {
+  display: inline-block;
+  
+
+  
+  
+}
+
+.remove-collection:hover{
+  display: inline-block;
+}
+
+.remove-collection{
+  display: none;
+
+}
+
+.bucket-image {
+  position: relative;
+  width: 50%;
+}
+
+/* Make the image responsive */
+.bucket-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.bucket-image .remove-collection {
+  position: absolute;
+  top: 90%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.remove-collection:hover {
+  background-color: black;
 }

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { withAuthorization } from "../../../router/auth/session";
 import "./singlebucketview.scss";
 import backarrow from "../../../assets/back-arrow.svg";
-
+import Modal from "./Modal"
 import ProfileThunks from "../../Profile/redux/thunks";
 import CollectionThunks from "../../Profile/Collection/redux/thunks";
 import BucketThunks from "../redux/thunks";
@@ -65,26 +65,35 @@ const SingleBucketView = ({
     return (
       <div className="view-container row">
         <h1>{bucket.bucket_name}</h1>
-        <button onClick={() => deleteBucketHandler(bucket)}>
-          Delete Bucket
-        </button>
-        <div className="row">
-          <Link to={"/profile"}>
-            <img alt="back arrow icon" className="backarrow" src={backarrow} />
-          </Link>
+       
+        <div className="row top-items">
+          <div className = "col s9 m9 l9">
+            <Link to={"/profile"}>
+              <img alt="back arrow icon" className="backarrow" src={backarrow} />
+            </Link>  
+          </div>
+          <div className = "col s3 m3 l3">
+            {/* <button  className = "edit-btn" onClick={() => deleteBucketHandler(bucket)}> */}
+            {/* <button  className = "edit-btn" >
+              Delete Bucket
+            </button> */}
+               <Modal   />
+          </div>
+          
+        
         </div>
         {bucket?.images !== [] ? (
           bucket?.images?.map((image, imageIndex) => {
             return (
               <div className="col s6 m6 l6 bucket-image">
                 <img
-                  className="bucket-teaser_image  "
+                  className="bucket-teaser_image"
                   alt="images in the bucket"
                   key={`Key${imageIndex}`}
                   src={image.image_uri}
                 />
-                <button onClick={() => deleteBucketImageHandler(image)}>
-                  Remove from collection
+                <button className = "remove-collection" onClick={() => deleteBucketImageHandler(image)}>
+                  Remove from bucket
                 </button>
               </div>
             );
@@ -92,6 +101,9 @@ const SingleBucketView = ({
         ) : (
           <p>Add some images to your bucket!</p>
         )}
+
+   
+
       </div>
     );
   }
