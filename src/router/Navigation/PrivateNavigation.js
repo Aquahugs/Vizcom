@@ -15,8 +15,8 @@ const NavigationAuth = () => {
       <main>
         <Router history={history} />
       </main>
-      <div style = {{marginTop:"25%"}}>
-        <LightFooter/>
+      <div style={{ marginTop: "25%" }}>
+        <LightFooter />
       </div>
     </div>
   );

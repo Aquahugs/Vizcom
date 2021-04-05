@@ -116,9 +116,7 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then((socialAuthUser) => {
-        debugger;
         this.props.getProfile(socialAuthUser.user.uid).catch(() => {
-          debugger;
           const newUser = {
             uuid: socialAuthUser.user.uid,
             display_name: socialAuthUser.user.displayName
@@ -135,7 +133,6 @@ class SignInGoogleBase extends Component {
               ? socialAuthUser.additionalUserInfo.profile.family_name
               : null,
           };
-          debugger;
           this.props.createProfile(newUser);
         });
         this.props.history.push("/home");
