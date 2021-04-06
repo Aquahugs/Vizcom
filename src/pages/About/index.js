@@ -123,9 +123,4 @@ const About = () => {
   );
 };
 
-<<<<<<< HEAD
-
-export default (About);
-=======
 export default About;
->>>>>>> bb159c85a5f966d2092c4765bd4ca48818b7de9c
