@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import PrivateNavigation from "./PrivateNavigation";
 import PublicNavigation from "./PublicNavigation";
+import About from "../../pages/About"
 
 const Navigation = ({ authUser }) => {
   return authUser ? (
@@ -10,6 +11,7 @@ const Navigation = ({ authUser }) => {
   ) : (
     <PublicNavigation />
   );
+
 };
 
 const mapStateToProps = (state) => ({
