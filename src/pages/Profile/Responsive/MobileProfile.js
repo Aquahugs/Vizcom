@@ -282,7 +282,7 @@ const MobileProfile = ({
         {view === "collection" && collection && (
           <div className="row">
             {/* CREATE COLLECTION LIST COMPONENT */}
-            {collection.map((image) => {
+            {collection?.map((image) => {
               return (
                 //post tags
                 <div
