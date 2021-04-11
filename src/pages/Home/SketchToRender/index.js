@@ -68,7 +68,7 @@ class SketchToRender extends Component {
 
      
 
-      <p className="title2"  style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}} >Recive early access updates</p>
+      <p className="title2"  style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}} >Recieve early access updates</p>
       <p className="title2"  style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'visible': 'hidden'}} >Submitted</p>
       <form 
       onSubmit={this.handleSubmit} 
