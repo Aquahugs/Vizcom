@@ -180,19 +180,8 @@ const Generate = ({
   };
 
   if (!isLoaded) {
-<<<<<<< HEAD
-    return (
-      
-  <div className =" selector-container">
-   
-  </div>
-    );
-  }
- 
-=======
     return <div></div>;
   }
->>>>>>> 8b5d402d1965bf405bc1b70a0f42c904c7f54d8e
 
   const images = generatedDisplayImages
     ?.slice(0, 3)
@@ -200,11 +189,7 @@ const Generate = ({
       return (
         <div key={`Key${imageIndex}`}>
           <Desktop>
-<<<<<<< HEAD
-            <div className="col s4 m4 l4" key={`Key${imageIndex}`}>
-=======
             <div className="col s4 m4 l4">
->>>>>>> 8b5d402d1965bf405bc1b70a0f42c904c7f54d8e
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -213,10 +198,6 @@ const Generate = ({
                   openModal(image);
                 }}
               />
-<<<<<<< HEAD
-=======
-
->>>>>>> 8b5d402d1965bf405bc1b70a0f42c904c7f54d8e
               <div className="row save-buttons">
                 <a href={image.image_uri} download>
                   <img
