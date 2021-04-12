@@ -3,12 +3,16 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import { Link } from "react-router-dom";
 import { withAuthorization } from "../../../router/auth/session";
+
 import "./singlebucketview.scss";
 import backarrow from "../../../assets/back-arrow.svg";
-import Modal from "./Modal"
+
+import { Modal, Button } from "react-materialize";
+
 import ProfileThunks from "../../Profile/redux/thunks";
 import CollectionThunks from "../../Profile/Collection/redux/thunks";
 import BucketThunks from "../redux/thunks";
+import ToastsActions from "../../../redux/common/Toasts/actions";
 
 const SingleBucketView = ({
   match,
@@ -20,6 +24,7 @@ const SingleBucketView = ({
   buckets,
   deleteBucket,
   history,
+  addToast,
 }) => {
   const [bucket, setBucket] = useState(null);
 
@@ -29,13 +34,21 @@ const SingleBucketView = ({
     if (!profile) {
       getProfile(uid);
     }
-    getBuckets(uid).then(() => {
+    if (!buckets) {
+      getBuckets(uid).then(() => {
+        setBucket(
+          buckets?.find(
+            (bucket) => bucket.bucket_id === parseInt(params.bucket_id)
+          )
+        );
+      });
+    } else {
       setBucket(
         buckets?.find(
           (bucket) => bucket.bucket_id === parseInt(params.bucket_id)
         )
       );
-    });
+    }
   }, [buckets]);
 
   const deleteBucketImageHandler = ({ collection_image_id }) => {
@@ -44,16 +57,19 @@ const SingleBucketView = ({
       uuid: uid,
     };
     deleteBucketImage(req);
+    addToast({ text: `Deleted Image from ${bucket.bucket_name}` });
   };
 
-  const deleteBucketHandler = ({ bucket_id }) => {
+  const deleteBucketHandler = () => {
     const req = {
-      bucket_id,
+      bucket_id: bucket.bucket_id,
       uuid: uid,
     };
     deleteBucket(req);
     history.push("/profile");
   };
+
+  const trigger = <Button className="delete-btn ">Delete Bucket</Button>;
 
   if (!bucket) {
     return (
@@ -65,34 +81,64 @@ const SingleBucketView = ({
     return (
       <div className="view-container row">
         <h1>{bucket.bucket_name}</h1>
-       
+
         <div className="row top-items">
-          <div className = "col s9 m9 l9">
+          <div className="col s9 m9 l9">
             <Link to={"/profile"}>
-              <img alt="back arrow icon" className="backarrow" src={backarrow} />
-            </Link>  
+              <img
+                alt="back arrow icon"
+                className="backarrow"
+                src={backarrow}
+              />
+            </Link>
           </div>
-          <div className = "col s3 m3 l3">
-            {/* <button  className = "edit-btn" onClick={() => deleteBucketHandler(bucket)}> */}
-            {/* <button  className = "edit-btn" >
-              Delete Bucket
-            </button> */}
-               <Modal   />
+          <div className="col s3 m3 l3">
+            <Modal
+              actions={[
+                <Button
+                  className="delete-bucket-btn"
+                  flat
+                  modal="close"
+                  node="button"
+                  waves="red"
+                  onClick={() => deleteBucketHandler(bucket)}
+                >
+                  Delete
+                </Button>,
+                <Button flat modal="close" node="button" waves="light">
+                  Cancel
+                </Button>,
+              ]}
+              options={{
+                dismissible: true,
+                endingTop: "10%",
+                inDuration: 250,
+                opacity: 0.5,
+                outDuration: 250,
+                preventScrolling: true,
+                startingTop: "4%",
+              }}
+              header="Are you sure you want to delete this bucket?"
+              trigger={trigger}
+            ></Modal>
           </div>
-          
-        
         </div>
-        {bucket?.images !== [] ? (
+        {bucket?.images ? (
           bucket?.images?.map((image, imageIndex) => {
             return (
-              <div className="col s6 m6 l6 bucket-image">
+              <div
+                key={`Key${imageIndex}`}
+                className="col s6 m6 l6 bucket-image"
+              >
                 <img
                   className="bucket-teaser_image"
                   alt="images in the bucket"
-                  key={`Key${imageIndex}`}
                   src={image.image_uri}
                 />
-                <button className = "remove-collection" onClick={() => deleteBucketImageHandler(image)}>
+                <button
+                  className="remove-collection"
+                  onClick={() => deleteBucketImageHandler(image)}
+                >
                   Remove from bucket
                 </button>
               </div>
@@ -101,9 +147,6 @@ const SingleBucketView = ({
         ) : (
           <p>Add some images to your bucket!</p>
         )}
-
-   
-
       </div>
     );
   }
@@ -125,6 +168,7 @@ const mapDispatchToProps = {
   getBuckets: BucketThunks.getBucketsAsync,
   deleteBucketImage: BucketThunks.deleteBucketImage,
   deleteBucket: BucketThunks.deleteBucket,
+  addToast: ToastsActions.addToast,
 };
 
 const condition = (authUser) => !!authUser;

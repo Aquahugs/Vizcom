@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Example from "./noti"
+import Example from "./noti";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { fadeInUp } from "react-animations";
@@ -18,7 +18,6 @@ import downloadbutton from "../../../assets/download-button.svg";
 import collectconfirm from "../../../assets/collect-confirm.svg";
 import genanimation from "../../../assets/gen-animation.mp4";
 import AddToBucket from "./AddToBucket";
-
 
 const Generate = ({
   buckets,
@@ -51,16 +50,14 @@ const Generate = ({
     }
 
     // options for bucket search
-    if (!bucketDropdownOptions) {
-      const bucketOptionDropdown = buckets?.map((bucket) => ({
-        name: bucket.bucket_name,
-        value: bucket.bucket_id,
-      }));
-      getBucketDropdownOptions(bucketOptionDropdown);
-    }
+    const bucketOptionDropdown = buckets?.map((bucket) => ({
+      name: bucket.bucket_name,
+      value: bucket.bucket_id,
+    }));
+    getBucketDropdownOptions(bucketOptionDropdown);
 
     setIsLoaded(true);
-  }, [buckets]);
+  }, []);
 
   const styles = {
     fadeInUp: {
@@ -92,7 +89,7 @@ const Generate = ({
       result[n] = arr[x in taken ? taken[x] : x];
       taken[x] = --len in taken ? taken[len] : len;
     }
-    result.map((image) => {
+    result?.map((image) => {
       return {
         ...image,
         isCollected: false,
@@ -147,7 +144,7 @@ const Generate = ({
     setModalIsOpen(false);
     setDisplayBuckets(false);
   };
-  
+
   const modalStyles = {
     content: {
       top: "50%",
@@ -179,12 +176,11 @@ const Generate = ({
     display: isGenerating ? "block" : "none",
     marginLeft: "auto",
     marginRight: "auto",
-    paddingBottom:'9.5%'
-  
-    
+    paddingBottom: "9.5%",
   };
 
   if (!isLoaded) {
+<<<<<<< HEAD
     return (
       
   <div className =" selector-container">
@@ -193,14 +189,22 @@ const Generate = ({
     );
   }
  
+=======
+    return <div></div>;
+  }
+>>>>>>> 8b5d402d1965bf405bc1b70a0f42c904c7f54d8e
 
   const images = generatedDisplayImages
     ?.slice(0, 3)
     .map((image, imageIndex) => {
       return (
-        <div>
+        <div key={`Key${imageIndex}`}>
           <Desktop>
+<<<<<<< HEAD
             <div className="col s4 m4 l4" key={`Key${imageIndex}`}>
+=======
+            <div className="col s4 m4 l4">
+>>>>>>> 8b5d402d1965bf405bc1b70a0f42c904c7f54d8e
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -209,6 +213,10 @@ const Generate = ({
                   openModal(image);
                 }}
               />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b5d402d1965bf405bc1b70a0f42c904c7f54d8e
               <div className="row save-buttons">
                 <a href={image.image_uri} download>
                   <img
@@ -228,12 +236,12 @@ const Generate = ({
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     className="collect"
-                    onClick={() => collectImageHandler(image)}>
-                      <Example />
-                   
+                    onClick={() => collectImageHandler(image)}
+                  >
+                    <Example />
                   </a>
                 )}
-                  {/* <div onClick={() => collectImageHandler(image)}>
+                {/* <div onClick={() => collectImageHandler(image)}>
                     
                   </div> */}
               </div>
@@ -249,9 +257,9 @@ const Generate = ({
     ?.slice(0, 1)
     .map((image, imageIndex) => {
       return (
-        <div>
+        <div key={`Key${imageIndex}`}>
           <Mobile>
-            <div className="col s12 m12 l12" key={`Key${imageIndex}`}>
+            <div className="col s12 m12 l12">
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -260,7 +268,7 @@ const Generate = ({
                   openModal(image);
                 }}
               />
-              
+
               <div className="row save-buttons">
                 <a href={image.image_uri} download>
                   <img
@@ -374,39 +382,39 @@ const Generate = ({
     <div>
       {modal}
       <div className="row generate-container">
-        <div className="row tag">
-         
+        <div className="row tag"></div>
+        <div className="row gen-animation">
+          <div className="col s4 m4 l4" style={hiddenStyle}>
+            <video
+              style={{ width: "100%" }}
+              muted
+              loop
+              autoPlay
+              src={genanimation}
+              type="video/mp4"
+            />
+          </div>
+          <div className="col s4 m4 l4" style={hiddenStyle}>
+            <video
+              style={{ width: "100%" }}
+              muted
+              loop
+              autoPlay
+              src={genanimation}
+              type="video/mp4"
+            />
+          </div>
+          <div className="col s4 m4 l4" style={hiddenStyle}>
+            <video
+              style={{ width: "100%" }}
+              muted
+              loop
+              autoPlay
+              src={genanimation}
+              type="video/mp4"
+            />
+          </div>
         </div>
-        <div className = "row gen-animation" >
-              <div className="col s4 m4 l4" style={hiddenStyle} >
-                <video style={{width: "100%",}}
-                      muted
-                      loop
-                      autoPlay
-                      src={genanimation}
-                      type="video/mp4"
-                />
-              </div>
-              <div className="col s4 m4 l4" style={hiddenStyle} >
-                <video style={{width: "100%"}}
-                        muted
-                        loop
-                        autoPlay
-                        src={genanimation}
-                        type="video/mp4"
-                  />
-              </div>
-              <div className="col s4 m4 l4" style={hiddenStyle} >
-                <video style={{width: "100%"}}
-                        muted
-                        loop
-                        autoPlay
-                        src={genanimation}
-                        type="video/mp4"
-                  />
-              </div>
-    
-            </div>
         <StyleRoot>
           <div className="row" style={visibilityStyle}>
             {images}
@@ -415,14 +423,11 @@ const Generate = ({
             {mobileImages}
           </div>
 
-    
-            {/* <img //LOAD ANIMATION
+          {/* <img //LOAD ANIMATION
               alt="loading animation"
               src="https://via.placeholder.com/1080"
               style={hiddenStyle}
             /> */}
-           
-            
 
           <div className=" genbtn-container row" style={styles.fadeInUp}>
             <button
@@ -438,7 +443,6 @@ const Generate = ({
               }}
               style={{
                 zIndex: modalIsOpen === false ? 9999 : -9999,
-               
               }}
             >
               Generate

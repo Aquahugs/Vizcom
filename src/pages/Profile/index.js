@@ -13,7 +13,7 @@ import { EDITOR, ADD_BUCKET, GENERATE } from "../../router/routes-const";
 import { BucketActions } from "../Bucket/redux";
 
 import "./profile.scss";
-import "../Bucket/BucketList/BucketList.scss"
+import "../Bucket/BucketList/BucketList.scss";
 import locationIcon from "../../assets/location-icon.svg";
 import instaIcon from "../../assets/instagram.png";
 import twitterIcon from "../../assets/twitter.png";
@@ -83,14 +83,19 @@ const Profile = ({
       getCollection(uid);
     }
     getBuckets(uid);
+
     setIsLoaded(true);
+    // options for bucket search
+  }, []);
+
+  useEffect(() => {
     // options for bucket search
     const bucketOptionDropdown = buckets?.map((bucket) => ({
       name: bucket.bucket_name,
       value: bucket.bucket_id,
     }));
     getBucketDropdownOptions(bucketOptionDropdown);
-  }, []);
+  }, [buckets]);
 
   const toggleView = (e) => {
     setView(e);
@@ -230,11 +235,10 @@ const Profile = ({
                               .slice(0, 2)
                               .map((image, imageIndex) => {
                                 return (
-                                  <div>
+                                  <div key={`Key${imageIndex}`}>
                                     <img
                                       className="bucket-teaser_image col s3 m3 l3 "
                                       alt="images in the bucket"
-                                      key={`Key${imageIndex}`}
                                       src={image.image_uri}
                                     />
                                   </div>
@@ -243,11 +247,10 @@ const Profile = ({
                           ) : (
                             bucket.images?.map((image, imageIndex) => {
                               return (
-                                <div>
+                                <div key={`Key${imageIndex}`}>
                                   <img
                                     className="col s3 m3 l3 bucket-preview"
                                     alt="images in the bucket"
-                                    key={`Key${imageIndex}`}
                                     src={image.image_uri}
                                   />
                                 </div>
@@ -280,31 +283,35 @@ const Profile = ({
               </div>
             )}
 
-            {view === "collection" && collection && (
-              <div className="row">
-                {/* CREATE COLLECTION LIST COMPONENT */}
-                {collection.map((image) => {
-                  return (
-                    //post tags
-                    <div
-                      className=" collection-container col s3 m3 l3"
-                      key={image.collection_image_id}
-                    >
-                      <img
-                        alt="collect icon"
-                        className="collection-image"
-                        src={image.image_uri}
-                        onClick={() => {
-                          openModal(image);
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+            {view === "collection" &&
+              (collection ? (
+                <div className="row">
+                  {collection?.map((image) => {
+                    return (
+                      <div
+                        className=" collection-container col s3 m3 l3"
+                        key={image.collection_image_id}
+                      >
+                        <img
+                          alt="collect icon"
+                          className="collection-image"
+                          src={image.image_uri}
+                          onClick={() => {
+                            openModal(image);
+                          }}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div>
+                  <p>
+                    <Link to={GENERATE}>Add</Link> images to your collection
+                  </p>
+                </div>
+              ))}
 
-            {/* Pop up modal */}
             <div>
               <Modal
                 ariaHideApp={false}
@@ -362,7 +369,7 @@ const Profile = ({
           </div>
         </Desktop>
         <Tablet>
-        <div className="profile-container">
+          <div className="profile-container">
             <div className="row">
               <div className="col sm6 m6 l6">
                 <div className="row bio-header">
@@ -473,11 +480,10 @@ const Profile = ({
                               .slice(0, 2)
                               .map((image, imageIndex) => {
                                 return (
-                                  <div>
+                                  <div key={`Key${imageIndex}`}>
                                     <img
                                       className="bucket-teaser_image col s3 m3 l3 "
                                       alt="images in the bucket"
-                                      key={`Key${imageIndex}`}
                                       src={image.image_uri}
                                     />
                                   </div>
@@ -486,11 +492,10 @@ const Profile = ({
                           ) : (
                             bucket.images?.map((image, imageIndex) => {
                               return (
-                                <div>
+                                <div key={`Key${imageIndex}`}>
                                   <img
                                     className="col s3 m3 l3 bucket-preview"
                                     alt="images in the bucket"
-                                    key={`Key${imageIndex}`}
                                     src={image.image_uri}
                                   />
                                 </div>
@@ -526,7 +531,7 @@ const Profile = ({
             {view === "collection" && collection && (
               <div className="row">
                 {/* CREATE COLLECTION LIST COMPONENT */}
-                {collection.map((image) => {
+                {collection?.map((image) => {
                   return (
                     //post tags
                     <div
@@ -719,11 +724,10 @@ const Profile = ({
                               .slice(0, 2)
                               .map((image, imageIndex) => {
                                 return (
-                                  <div>
+                                  <div key={`Key${imageIndex}`}>
                                     <img
                                       className="bucket-teaser_image col s3 m3 l3 "
                                       alt="images in the bucket"
-                                      key={`Key${imageIndex}`}
                                       src={image.image_uri}
                                     />
                                   </div>
@@ -732,11 +736,10 @@ const Profile = ({
                           ) : (
                             bucket.images?.map((image, imageIndex) => {
                               return (
-                                <div>
+                                <div key={`Key${imageIndex}`}>
                                   <img
                                     className="col s3 m3 l3 bucket-preview"
                                     alt="images in the bucket"
-                                    key={`Key${imageIndex}`}
                                     src={image.image_uri}
                                   />
                                 </div>
@@ -772,7 +775,7 @@ const Profile = ({
             {view === "collection" && collection && (
               <div className="row">
                 {/* CREATE COLLECTION LIST COMPONENT */}
-                {collection.map((image) => {
+                {collection?.map((image) => {
                   return (
                     //post tags
                     <div

@@ -28,7 +28,7 @@ const createBucket = (bucket) => async (dispatch) => {
   dispatch(actions.createBucketStarted());
   try {
     const response = await bucketService.createBucket(bucket);
-    dispatch(actions.createBucketSuccess(bucket));
+    dispatch(actions.createBucketSuccess(response.data));
   } catch (error) {
     dispatch(actions.createBucketError(error));
   }

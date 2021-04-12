@@ -39,7 +39,7 @@ const AddToBucket = ({
       image_uri: image.image_uri,
     };
     if (
-      !collection.some(
+      !collection?.some(
         (image) => imageObj.generated_image_id === image.generated_image_id
       )
     ) {

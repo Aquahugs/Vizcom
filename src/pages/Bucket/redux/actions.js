@@ -35,9 +35,9 @@ const createBucketStarted = () => ({
   type: TYPES.CREATE_BUCKET_STARTED,
 });
 
-const createBucketSuccess = (bucket) => ({
+const createBucketSuccess = (buckets) => ({
   type: TYPES.CREATE_BUCKET_SUCCESS,
-  bucket,
+  buckets,
 });
 
 const addToBucketsError = () => ({
