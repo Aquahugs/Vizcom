@@ -27,7 +27,6 @@
   }
 }
 
-
 .delete-btn {
   border: solid 1px #707070;
   border-radius: 24px;
@@ -41,63 +40,56 @@
   padding-right: 12%;
   padding-top: 5%;
   padding-bottom: 5%;
-  
 }
 .delete-btn:hover {
   background-color: white;
   cursor: pointer;
 }
 
-.modal-close{
-  margin-left:2%  !important;
-  width:100px;
+.modal-close {
+  margin-left: 2% !important;
+  width: 100px;
   text-align: center;
   border-radius: 6px;
-
 }
 
-.yes{
-  background-color: #003fff ;
+.yes {
+  background-color: #003fff;
   color: white;
 }
-.modal-content{
-  h4{
+.modal-content {
+  h4 {
     font-weight: bold;
   }
 
-  p{
+  p {
     font-size: 20px;
   }
 }
 
-.modal{
+.modal {
   padding: 2%;
 }
 
-.view-container{
-  padding:5%;
+.view-container {
+  padding: 5%;
 }
 
-.top-items{
+.top-items {
   padding-top: 2%;
   padding-bottom: 2%;
 }
 
 .bucket-teaser_image:hover + .remove-collection {
   display: inline-block;
-  
-
-  
-  
 }
 
-.remove-collection:hover{
+.remove-collection:hover {
   display: inline-block;
 }
 
-.remove-collection{
+.remove-collection {
   display: none;
-
 }
 
 .bucket-image {
@@ -129,4 +121,8 @@
 
 .remove-collection:hover {
   background-color: black;
+}
+
+.delete-bucket-btn {
+  background-color: #d11a2a;
 }

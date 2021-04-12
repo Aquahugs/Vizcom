@@ -50,16 +50,14 @@ const Generate = ({
     }
 
     // options for bucket search
-    if (!bucketDropdownOptions) {
-      const bucketOptionDropdown = buckets?.map((bucket) => ({
-        name: bucket.bucket_name,
-        value: bucket.bucket_id,
-      }));
-      getBucketDropdownOptions(bucketOptionDropdown);
-    }
+    const bucketOptionDropdown = buckets?.map((bucket) => ({
+      name: bucket.bucket_name,
+      value: bucket.bucket_id,
+    }));
+    getBucketDropdownOptions(bucketOptionDropdown);
 
     setIsLoaded(true);
-  }, [buckets]);
+  }, []);
 
   const styles = {
     fadeInUp: {
@@ -240,9 +238,9 @@ const Generate = ({
     ?.slice(0, 1)
     .map((image, imageIndex) => {
       return (
-        <div>
+        <div key={`Key${imageIndex}`}>
           <Mobile>
-            <div className="col s12 m12 l12" key={`Key${imageIndex}`}>
+            <div className="col s12 m12 l12">
               <img
                 alt="ai generated"
                 className="generated-image"

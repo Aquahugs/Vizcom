@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import { Link } from "react-router-dom";
 import { withAuthorization } from "../../../router/auth/session";
+
 import "./singlebucketview.scss";
 import backarrow from "../../../assets/back-arrow.svg";
-import Modal from "./Modal";
+
+import { Modal, Button } from "react-materialize";
+
 import ProfileThunks from "../../Profile/redux/thunks";
 import CollectionThunks from "../../Profile/Collection/redux/thunks";
 import BucketThunks from "../redux/thunks";
@@ -55,6 +58,8 @@ const SingleBucketView = ({
     history.push("/profile");
   };
 
+  const trigger = <Button className="delete-btn ">Delete Bucket</Button>;
+
   if (!bucket) {
     return (
       <div>
@@ -81,7 +86,34 @@ const SingleBucketView = ({
             {/* <button  className = "edit-btn" >
               Delete Bucket
             </button> */}
-            <Modal />
+            <Modal
+              actions={[
+                <Button
+                  className="delete-bucket-btn"
+                  flat
+                  modal="close"
+                  node="button"
+                  waves="red"
+                  onClick={() => deleteBucketHandler(bucket)}
+                >
+                  Delete
+                </Button>,
+                <Button flat modal="close" node="button" waves="light">
+                  Cancel
+                </Button>,
+              ]}
+              options={{
+                dismissible: true,
+                endingTop: "10%",
+                inDuration: 250,
+                opacity: 0.5,
+                outDuration: 250,
+                preventScrolling: true,
+                startingTop: "4%",
+              }}
+              header="Are you sure you want to delete this bucket?"
+              trigger={trigger}
+            ></Modal>
           </div>
         </div>
         {bucket?.images !== [] ? (

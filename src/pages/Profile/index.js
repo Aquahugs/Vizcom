@@ -82,15 +82,19 @@ const Profile = ({
     if (!collection) {
       getCollection(uid);
     }
-    getBuckets(uid);
     setIsLoaded(true);
+    // options for bucket search
+  }, []);
+
+  useEffect(() => {
+    getBuckets(uid);
     // options for bucket search
     const bucketOptionDropdown = buckets?.map((bucket) => ({
       name: bucket.bucket_name,
       value: bucket.bucket_id,
     }));
     getBucketDropdownOptions(bucketOptionDropdown);
-  }, []);
+  }, [buckets]);
 
   const toggleView = (e) => {
     setView(e);
