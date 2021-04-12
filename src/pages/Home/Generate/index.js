@@ -102,7 +102,7 @@ const Generate = ({
 
     setTimeout(() => {
       setIsGenerating(false);
-    }, 2800);
+    }, 2400);
   };
 
   const toggleBuckets = () => {
@@ -186,12 +186,12 @@ const Generate = ({
 
   if (!isLoaded) {
     return (
-      <div>
       
-      </div>
+  <div className =" selector-container">
+   
+  </div>
     );
   }
-
  
 
   const images = generatedDisplayImages
@@ -200,12 +200,7 @@ const Generate = ({
       return (
         <div>
           <Desktop>
-         
-      
-            
-
-            <div className="col s4 m4 l4" key={`Key${imageIndex}`} >
-            
+            <div className="col s4 m4 l4" key={`Key${imageIndex}`}>
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -213,9 +208,7 @@ const Generate = ({
                 onClick={() => {
                   openModal(image);
                 }}
-               
               />
-            
               <div className="row save-buttons">
                 <a href={image.image_uri} download>
                   <img
@@ -244,14 +237,12 @@ const Generate = ({
                     
                   </div> */}
               </div>
-              
             </div>
-            
-          
           </Desktop>
         </div>
       );
     });
+  
 
   //MOBILE VIEW
   const mobileImages = generatedDisplayImages
