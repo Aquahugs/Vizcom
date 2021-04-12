@@ -187,9 +187,9 @@ const Generate = ({
     ?.slice(0, 3)
     .map((image, imageIndex) => {
       return (
-        <div>
+        <div key={`Key${imageIndex}`}>
           <Desktop>
-            <div className="col s4 m4 l4" key={`Key${imageIndex}`}>
+            <div className="col s4 m4 l4">
               <img
                 alt="ai generated"
                 className="generated-image"

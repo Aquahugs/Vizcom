@@ -12,6 +12,7 @@ import { Modal, Button } from "react-materialize";
 import ProfileThunks from "../../Profile/redux/thunks";
 import CollectionThunks from "../../Profile/Collection/redux/thunks";
 import BucketThunks from "../redux/thunks";
+import ToastsActions from "../../../redux/common/Toasts/actions";
 
 const SingleBucketView = ({
   match,
@@ -23,6 +24,7 @@ const SingleBucketView = ({
   buckets,
   deleteBucket,
   history,
+  addToast,
 }) => {
   const [bucket, setBucket] = useState(null);
 
@@ -32,13 +34,21 @@ const SingleBucketView = ({
     if (!profile) {
       getProfile(uid);
     }
-    getBuckets(uid).then(() => {
+    if (!buckets) {
+      getBuckets(uid).then(() => {
+        setBucket(
+          buckets?.find(
+            (bucket) => bucket.bucket_id === parseInt(params.bucket_id)
+          )
+        );
+      });
+    } else {
       setBucket(
         buckets?.find(
           (bucket) => bucket.bucket_id === parseInt(params.bucket_id)
         )
       );
-    });
+    }
   }, [buckets]);
 
   const deleteBucketImageHandler = ({ collection_image_id }) => {
@@ -47,6 +57,7 @@ const SingleBucketView = ({
       uuid: uid,
     };
     deleteBucketImage(req);
+    addToast({ text: `Deleted Image from ${bucket.bucket_name}` });
   };
 
   const deleteBucketHandler = () => {
@@ -82,10 +93,6 @@ const SingleBucketView = ({
             </Link>
           </div>
           <div className="col s3 m3 l3">
-            {/* <button  className = "edit-btn" onClick={() => deleteBucketHandler(bucket)}> */}
-            {/* <button  className = "edit-btn" >
-              Delete Bucket
-            </button> */}
             <Modal
               actions={[
                 <Button
@@ -116,7 +123,7 @@ const SingleBucketView = ({
             ></Modal>
           </div>
         </div>
-        {bucket?.images !== [] ? (
+        {bucket?.images ? (
           bucket?.images?.map((image, imageIndex) => {
             return (
               <div
@@ -161,6 +168,7 @@ const mapDispatchToProps = {
   getBuckets: BucketThunks.getBucketsAsync,
   deleteBucketImage: BucketThunks.deleteBucketImage,
   deleteBucket: BucketThunks.deleteBucket,
+  addToast: ToastsActions.addToast,
 };
 
 const condition = (authUser) => !!authUser;

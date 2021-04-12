@@ -228,11 +228,10 @@ const MobileProfile = ({
                       bucket.images.length > 3 ? (
                         bucket.images.slice(0, 2).map((image, imageIndex) => {
                           return (
-                            <div>
+                            <div key={`Key${imageIndex}`}>
                               <img
                                 className="bucket-teaser_image col s3 m3 l3 "
                                 alt="images in the bucket"
-                                key={`Key${imageIndex}`}
                                 src={image.image_uri}
                               />
                             </div>
@@ -241,11 +240,10 @@ const MobileProfile = ({
                       ) : (
                         bucket.images?.map((image, imageIndex) => {
                           return (
-                            <div>
+                            <div key={`Key${imageIndex}`}>
                               <img
                                 className="col s3 m3 l3 bucket-preview"
                                 alt="images in the bucket"
-                                key={`Key${imageIndex}`}
                                 src={image.image_uri}
                               />
                             </div>
