@@ -16,6 +16,8 @@ import { withAuthorization } from "../../../router/auth/session";
 
 import downloadbutton from "../../../assets/download-button.svg";
 import collectconfirm from "../../../assets/collect-confirm.svg";
+import conceptart from "../../../assets/conceptart-holder.png";
+import footwear from "../../../assets/footwear-holder.png";
 import genanimation from "../../../assets/gen-animation.mp4";
 import AddToBucket from "./AddToBucket";
 
@@ -38,6 +40,8 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+  const [generatorState, setToggle] = useState("cardesign");
+
 
   useEffect(() => {
     !generatedImages
@@ -145,6 +149,7 @@ const Generate = ({
     setDisplayBuckets(false);
   };
 
+//  STYLES
   const modalStyles = {
     content: {
       top: "50%",
@@ -157,7 +162,7 @@ const Generate = ({
       height: "600px",
     },
   };
-
+  
   const showBuckets = {
     visibility: displayBuckets ? "visible" : "hidden",
     display: displayBuckets ? "block" : "none",
@@ -178,6 +183,31 @@ const Generate = ({
     marginRight: "auto",
     paddingBottom: "9.5%",
   };
+
+const footActive = {
+    backgroundColor: generatorState == "footwear" ? "#D9D9D9" : "white",
+};
+const carActive = {
+  backgroundColor: generatorState == "cardesign" ? "#D9D9D9" : "white",
+};
+const conceptActive = {
+  backgroundColor: generatorState == "conceptart" ? "#D9D9D9" : "white",
+};
+const conceptImage = {
+  visibility: generatorState  !== "conceptart" ? "hidden" : "visible",
+  display: generatorState  == "conceptart" ? "block" : "none",
+
+};
+const cardesignImage = {
+  visibility: generatorState  !== "cardesign" ? "hidden" : "visible",
+  display: generatorState  == "cardesign" ? "block" : "none",
+};
+const footwearImage = {
+  visibility: generatorState  !== "footwear" ? "hidden" : "visible",
+  display: generatorState  == "footwear" ? "block" : "none",
+
+};
+
 
   if (!isLoaded) {
     return <div></div>;
@@ -364,51 +394,82 @@ const Generate = ({
       {modal}
       <div className="row generate-container">
         <div className="row tag"></div>
-        <div className="row gen-animation">
-          <div className="col s4 m4 l4" style={hiddenStyle}>
-            <video
-              style={{ width: "100%" }}
-              muted
-              loop
-              autoPlay
-              src={genanimation}
-              type="video/mp4"
-            />
-          </div>
-          <div className="col s4 m4 l4" style={hiddenStyle}>
-            <video
-              style={{ width: "100%" }}
-              muted
-              loop
-              autoPlay
-              src={genanimation}
-              type="video/mp4"
-            />
-          </div>
-          <div className="col s4 m4 l4" style={hiddenStyle}>
-            <video
-              style={{ width: "100%" }}
-              muted
-              loop
-              autoPlay
-              src={genanimation}
-              type="video/mp4"
-            />
-          </div>
-        </div>
+        
         <StyleRoot>
-          <div className="row" style={visibilityStyle}>
-            {images}
+          <div className = "row" >
+            {/* GENERATOR MODE SELECTOR */}
+            <div className =" selector-container">
+              <button 
+                onClick={() => setToggle("cardesign")}
+                style = {carActive}
+                class=" btn btn-flat "
+                >
+                car-design
+              </button>
+              <button 
+               onClick={() => setToggle("conceptart")}
+                class=" btn btn-flat "
+                style = {conceptActive}
+                class="btn btn-flat">concept art
+              </button>
+              <button 
+               onClick={() => setToggle("footwear")}
+                class=" btn btn-flat "
+                style = {footActive}
+                class="btn btn-flat">footwear
+              </button>
+            </div>
           </div>
-          <div className="row" style={visibilityStyle}>
-            {mobileImages}
+          <div className = "row comingsoon" style = {conceptImage}>
+            <h1>coming soon</h1>
+            <img  src = {conceptart}/>
+          </div>
+          <div className = "row comingsoon" style = {footwearImage}>
+            <h1>coming soon</h1>
+            <img src = {footwear}/>
           </div>
 
-          {/* <img //LOAD ANIMATION
-              alt="loading animation"
-              src="https://via.placeholder.com/1080"
-              style={hiddenStyle}
-            /> */}
+          {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
+          <div className="row gen-animation">
+            <div className="col s4 m4 l4" style={hiddenStyle}>
+              <video
+                style={{ width: "100%" }}
+                muted
+                loop
+                autoPlay
+                src={genanimation}
+                type="video/mp4"
+              />
+            </div>
+            <div className="col s4 m4 l4" style={hiddenStyle}>
+              <video
+                style={{ width: "100%" }}
+                muted
+                loop
+                autoPlay
+                src={genanimation}
+                type="video/mp4"
+              />
+            </div>
+            <div className="col s4 m4 l4" style={hiddenStyle}>
+              <video
+                style={{ width: "100%" }}
+                muted
+                loop
+                autoPlay
+                src={genanimation}
+                type="video/mp4"
+              />
+            </div>
+          </div>
+          <div className="row " style={visibilityStyle}>
+            <div style = {cardesignImage}>{images}</div>
+          </div>
+          <div className="row" style={visibilityStyle}>
+          <div style = {cardesignImage}>{mobileImages}</div>
+          </div>
+
+      
 
           <div className=" genbtn-container row" style={styles.fadeInUp}>
             <button

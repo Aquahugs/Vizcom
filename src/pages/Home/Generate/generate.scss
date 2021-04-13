@@ -10,6 +10,18 @@
     margin: 1rem;
   }
 }
+
+@media  (max-width: 480px) {
+  .selector-container {
+
+    .btn{
+      font-size: 8px;
+      margin: 0.4rem;
+      
+    }
+    
+  }
+}
 .tag {
   p {
     text-align: center;
@@ -147,5 +159,39 @@
 .gen-animation{
   video {
     border-radius: 2rem
+  }
+}
+
+.comingsoon {
+  img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+  h1{
+    text-align: center;
+    font-size: 20px;
+    padding: 1%;
+  }
+  
+}
+
+@media  (max-width: 480px) {
+  .comingsoon {
+    img{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+  
+    h1{
+      text-align: center;
+      font-size: 20px;
+      padding: 1%;
+    }
+    
   }
 }

@@ -12,7 +12,7 @@ const PrimaryNav = ({ user, profile }) => {
     <nav>
       <div className="nav-wrapper">
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#" className="logo-container">
+        <a href="/home" className="logo-container">
           <img alt="logo" src={Logo} />
         </a>
         <ul className="nav-items right ">
