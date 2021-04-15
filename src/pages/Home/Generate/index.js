@@ -258,6 +258,46 @@ const footwearImage = {
               </div>
             </div>
           </Desktop>
+          <Tablet>
+            <div className="col s4 m4 l4">
+              <img
+                alt="ai generated"
+                className="generated-image"
+                src={image.image_uri}
+                onClick={() => {
+                  openModal(image);
+                }}
+              />
+              <div className="row save-buttons">
+                <a href={image.image_uri} download>
+                  <img
+                    alt="ai generated"
+                    className="download-button"
+                    src={downloadbutton}
+                    onClick={() => logDownload(image.image_uri)}
+                  />
+                </a>
+                {image.isCollected ? (
+                  <img
+                    alt="collect confirm icon"
+                    className="collect-confirm right"
+                    src={collectconfirm}
+                  />
+                ) : (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                  <a
+                    className="collect"
+                    onClick={() => collectImageHandler(image)}
+                  >
+                    <Example />
+                  </a>
+                )}
+                {/* <div onClick={() => collectImageHandler(image)}>
+                    
+                  </div> */}
+              </div>
+            </div>
+          </Tablet>
         </div>
       );
     });
@@ -430,6 +470,7 @@ const footwearImage = {
           </div>
 
           {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
+          <Desktop>
           <div className="row gen-animation">
             <div className="col s4 m4 l4" style={hiddenStyle}>
               <video
@@ -462,6 +503,13 @@ const footwearImage = {
               />
             </div>
           </div>
+          </Desktop>
+          <Mobile>
+            <div className = "mobile-loader">
+              <img style={hiddenStyle} src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"/>
+            </div>
+            
+          </Mobile>
           <div className="row " style={visibilityStyle}>
             <div style = {cardesignImage}>{images}</div>
           </div>
@@ -472,23 +520,25 @@ const footwearImage = {
       
 
           <div className=" genbtn-container row" style={styles.fadeInUp}>
-            <button
-              a
-              href="#"
-              className="btn waves-effect generate-btn lighten-1 z-depth-0"
-              onClick={() => toggleGeneratedImages(generatedImages, 3)}
-              onMouseDown={() => handleClick}
-              onKeyUp={(e) => {
-                if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {
-                  handleClick();
-                }
-              }}
-              style={{
-                zIndex: modalIsOpen === false ? 9999 : -9999,
-              }}
-            >
-              Generate
-            </button>
+            <div style = {cardesignImage}>
+              <button
+                a
+                href="#"
+                className="btn waves-effect generate-btn lighten-1 z-depth-0"
+                onClick={() => toggleGeneratedImages(generatedImages, 3)}
+                onMouseDown={() => handleClick}
+                onKeyUp={(e) => {
+                  if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {
+                    handleClick();
+                  }
+                }}
+                style={{
+                  zIndex: modalIsOpen === false ? 9999 : -9999,
+                }}
+              >
+                Generate
+              </button>
+            </div>
           </div>
         </StyleRoot>
       </div>

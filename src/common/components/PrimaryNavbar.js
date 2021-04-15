@@ -30,7 +30,7 @@ const PrimaryNav = ({ user, profile }) => {
             </Link>
           </li>
           <li className="profile-items">
-            <Link to={PROFILE} style={{ color: "#505050", fontSize: "16px" }}>
+            <Link to={PROFILE}  className = "profile-name">
               {user?.authUser?.providerData[0]?.displayName
                 ? user?.authUser?.providerData[0]?.displayName
                 : profile?.display_name
