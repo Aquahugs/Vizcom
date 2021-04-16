@@ -117,7 +117,6 @@ const Generate = ({
   };
 
   const collectImageHandler = (image) => {
-    console.log(image);
     const imageObj = {
       uuid: uid,
       generated_image_id: image.generated_image_id,
@@ -252,9 +251,6 @@ const footwearImage = {
                     <Example />
                   </a>
                 )}
-                {/* <div onClick={() => collectImageHandler(image)}>
-                    
-                  </div> */}
               </div>
             </div>
           </Desktop>

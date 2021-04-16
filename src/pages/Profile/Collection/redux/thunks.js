@@ -1,5 +1,11 @@
 import actions from "./actions";
 import collectionService from "../../../../common/services/collection-service";
+import { createNotification } from "react-redux-notify";
+import {
+  SUCCESS_NOTIFICATION_CONFIG,
+  ERROR_NOTIFICATION_CONFIG,
+  INFO_NOTIFICATION_CONFIG,
+} from "../../../../common/constants/notify-configs";
 
 const getCollectionByUserId = (uid) => async (dispatch) => {
   dispatch(actions.getCollectionStarted());
@@ -39,7 +45,12 @@ const deleteCollectionImage = (req) => async (dispatch) => {
   try {
     const response = await collectionService.deleteCollectionImage(req);
     dispatch(actions.deleteCollectionImageSuccess(response.data));
+    SUCCESS_NOTIFICATION_CONFIG.message = `Image deleted from your collection!`;
+    dispatch(createNotification(SUCCESS_NOTIFICATION_CONFIG));
   } catch (error) {
+    ERROR_NOTIFICATION_CONFIG.message =
+      "We fumbled the bag on deleting the image! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
+    dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.deleteCollectionImageError(error));
   }
 };

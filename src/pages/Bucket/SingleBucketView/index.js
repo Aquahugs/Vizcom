@@ -12,7 +12,6 @@ import { Modal, Button } from "react-materialize";
 import ProfileThunks from "../../Profile/redux/thunks";
 import CollectionThunks from "../../Profile/Collection/redux/thunks";
 import BucketThunks from "../redux/thunks";
-import ToastsActions from "../../../redux/common/Toasts/actions";
 
 const SingleBucketView = ({
   match,
@@ -24,7 +23,6 @@ const SingleBucketView = ({
   buckets,
   deleteBucket,
   history,
-  addToast,
 }) => {
   const [bucket, setBucket] = useState(null);
 
@@ -57,7 +55,6 @@ const SingleBucketView = ({
       uuid: uid,
     };
     deleteBucketImage(req);
-    addToast({ text: `Deleted Image from ${bucket.bucket_name}` });
   };
 
   const deleteBucketHandler = () => {
@@ -168,7 +165,6 @@ const mapDispatchToProps = {
   getBuckets: BucketThunks.getBucketsAsync,
   deleteBucketImage: BucketThunks.deleteBucketImage,
   deleteBucket: BucketThunks.deleteBucket,
-  addToast: ToastsActions.addToast,
 };
 
 const condition = (authUser) => !!authUser;
