@@ -1,10 +1,11 @@
 import React from "react";
 
+import "react-redux-notify/dist/ReactReduxNotify.css";
+
 import PrimaryNav from "../../common/components/PrimaryNavbar";
 import LightFooter from "../../common/components/LightFooter";
 import SecondaryNav from "../../common/components/SecondaryNavbar";
-
-import Toasts from "../../common/components/Toasts";
+import { Notify } from "react-redux-notify";
 
 import history from "../../common/utils/history";
 import Router from "../index";
@@ -17,7 +18,7 @@ const NavigationAuth = () => {
       <main>
         <Router history={history} />
       </main>
-      <Toasts />
+      <Notify />
       <div style={{ marginTop: "25%" }}>
         <LightFooter />
       </div>
