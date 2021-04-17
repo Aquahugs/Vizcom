@@ -504,6 +504,40 @@ const footwearImage = {
             </div>
           </div>
           </Desktop>
+          <Tablet>
+          <div className="row gen-animation">
+            <div className="col s4 m4 l4" style={hiddenStyle}>
+              <video
+                style={{ width: "100%" }}
+                muted
+                loop
+                autoPlay
+                src={genanimation}
+                type="video/mp4"
+              />
+            </div>
+            <div className="col s4 m4 l4" style={hiddenStyle}>
+              <video
+                style={{ width: "100%" }}
+                muted
+                loop
+                autoPlay
+                src={genanimation}
+                type="video/mp4"
+              />
+            </div>
+            <div className="col s4 m4 l4" style={hiddenStyle}>
+              <video
+                style={{ width: "100%" }}
+                muted
+                loop
+                autoPlay
+                src={genanimation}
+                type="video/mp4"
+              />
+            </div>
+          </div>
+          </Tablet>
           <Mobile>
             <div className = "mobile-loader">
               <img style={hiddenStyle} src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"/>
