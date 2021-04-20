@@ -1,7 +1,7 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-import plus from "../../assets/picture.svg";
+import plus from "../../../assets/plus.png";
 
 //will move these styles over somewhere
 const baseStyle = {
@@ -10,8 +10,8 @@ const baseStyle = {
   flexDirection: "column",
   alignItems: "center",
   padding: "20px",
-  height: "200px",
-  width: "100%",
+  height: 500,
+  width: 700,
   borderWidth: 2,
   borderRadius: 40,
   borderColor: "#5E89FF",
@@ -35,8 +35,7 @@ const rejectStyle = {
 };
 
 const plusStyle = {
-  width: 50,
-  height: 50,
+  paddingTop: "12rem",
 };
 
 const thumbsContainer = {
@@ -70,8 +69,7 @@ const img = {
   height: "100%",
 };
 
-export default function StyledDropzone(props) {
-  const [files, setFiles] = useState([]);
+const StyledDropzone = ({ files, setFiles, multiple }) => {
   const {
     getRootProps,
     getInputProps,
@@ -80,16 +78,11 @@ export default function StyledDropzone(props) {
     isDragReject,
   } = useDropzone({
     accept: "image/*",
-    maxFiles: 20,
+    maxFiles: 1000,
+    multiple: multiple,
     onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
-      console.log(files);
+      console.log("files", acceptedFiles);
+      setFiles(acceptedFiles);
     },
   });
 
@@ -97,7 +90,7 @@ export default function StyledDropzone(props) {
   const thumbs = files.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
-        <img alt="car" src={file.preview} style={img} />
+        <img alt="file preview" src={URL.createObjectURL(file)} style={img} />
       </div>
     </div>
   ));
@@ -122,5 +115,6 @@ export default function StyledDropzone(props) {
       <aside style={thumbsContainer}>{thumbs}</aside>
     </div>
   );
-}
-<StyledDropzone />;
+};
+
+export default StyledDropzone;
