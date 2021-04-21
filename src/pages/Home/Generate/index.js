@@ -218,6 +218,7 @@ const footwearImage = {
       return (
         <div key={`Key${imageIndex}`}>
           <Desktop>
+            <div className = "generate-images"></div>
             <div className="col s4 m4 l4">
               <img
                 alt="ai generated"
