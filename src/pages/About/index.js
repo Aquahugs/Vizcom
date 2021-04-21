@@ -6,6 +6,7 @@ import artfields from "../../assets/artfields.png";
 import cardesign from "../../assets/cardesign.png";
 import { Desktop, Tablet, Mobile, Phone } from "./responsive";
 import TabletView from "./tablet";
+import MobileView from "./mobile";
 const About = () => {
   return (
     <div>
@@ -117,7 +118,7 @@ const About = () => {
         <TabletView />
       </Tablet>
       <Mobile>
-        <h1>Mobile</h1>
+       <MobileView />
       </Mobile>
     </div>
   );
