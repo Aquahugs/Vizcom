@@ -103,7 +103,7 @@ const Generate = ({
 
     setTimeout(() => {
       setIsGenerating(false);
-    }, 2400);
+    }, 1800);
   };
 
   const toggleBuckets = () => {
