@@ -1,11 +1,11 @@
 import React from "react";
-import Video from "../../../assets/Mobile-LandingVideo.gif";
+import Video from "../../../assets/logo.png";
 import Video2 from "../../../assets/Mobile-morph.gif";
 import Footer from "../../../common/components/Footer";
 import Auth from "../Auth";
 import "./mobile.scss";
 
-import WhiteLogo from "../../../assets/logo.png";
+import WhiteLogo from "../../../assets/white-logo.png";
 import graphic from "../../../assets/creative-thinking.svg";
 
 const MobileView = () => {
@@ -14,11 +14,9 @@ const MobileView = () => {
       <div className="row auth-container-mobile">
         <div className="left-area-mobile col s12 m12 l12">
           <div className="row">
+            
             <div className="col s12 m12 l12">
-              <img alt="white logo" className="logo-mobile" src={WhiteLogo} />
-            </div>
-            <div className="col s12 m12 l12">
-              <img src = {Video}
+              <img src = {WhiteLogo}
               style={{
                 width: "50%",
                 height: "auto",
@@ -54,7 +52,7 @@ const MobileView = () => {
         </div>
       </div>
 
-      <div className=" row graph-container-mobile">
+      {/* <div className=" row graph-container-mobile">
         <div className="col s12 m12 l12">
           <h2>Work Flow</h2>
           <p>
@@ -67,7 +65,7 @@ const MobileView = () => {
             style={{ paddingTop: "10%", paddingBottom: "10%" }}
           />
         </div>
-      </div>
+      </div> */}
       <div className="footer-container">
         <Footer darkmode="dark" />
       </div>
