@@ -72,7 +72,7 @@ const AddToBucket = ({
   };
 
   return (
-    <div>
+    <div style = {{marginLeft:'5%'}}>
       <form onSubmit={handleSubmit(submitForm)}>
         <SelectSearch
           options={bucketDropdownOptions}

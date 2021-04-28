@@ -46,7 +46,7 @@ const Generate = ({
   useEffect(() => {
     !generatedImages
       ? fetchGeneratedImages()
-      : toggleGeneratedImages(generatedImages, 3);
+      : toggleGeneratedImages(generatedImages,18);
 
     getCollection(uid);
     if (!buckets) {
@@ -74,7 +74,7 @@ const Generate = ({
     try {
       const response = await getGeneratedImages();
       if (response) {
-        toggleGeneratedImages(generatedImages, 3);
+        toggleGeneratedImages(generatedImages, 18);
       }
     } catch (e) {
       console.log(e);
@@ -157,8 +157,9 @@ const Generate = ({
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "80%",
-      height: "600px",
+      maxWidth: "60%",
+      width: "900px",
+      height: "750px",
     },
   };
   
@@ -213,13 +214,13 @@ const footwearImage = {
   }
 
   const images = generatedDisplayImages
-    ?.slice(0, 3)
+    ?.slice(0, 19)
     .map((image, imageIndex) => {
       return (
         <div key={`Key${imageIndex}`}>
           <Desktop>
             <div className = "generate-images"></div>
-            <div className="col s4 m4 l4">
+            <div className="col s2 m2 l2 image-box">
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -228,7 +229,7 @@ const footwearImage = {
                   openModal(image);
                 }}
               />
-              <div className="row save-buttons">
+              {/* <div className="row save-buttons">
                 <a href={image.image_uri} download>
                   <img
                     alt="ai generated"
@@ -252,52 +253,62 @@ const footwearImage = {
                     <Example />
                   </a>
                 )}
-              </div>
+              </div> */}
             </div>
           </Desktop>
-          <Tablet>
-            <div className="col s4 m4 l4">
-              <img
-                alt="ai generated"
-                className="generated-image"
-                src={image.image_uri}
-                onClick={() => {
-                  openModal(image);
-                }}
-              />
-              <div className="row save-buttons">
-                <a href={image.image_uri} download>
-                  <img
-                    alt="ai generated"
-                    className="download-button"
-                    src={downloadbutton}
-                    onClick={() => logDownload(image.image_uri)}
-                  />
-                </a>
-                {image.isCollected ? (
-                  <img
-                    alt="collect confirm icon"
-                    className="collect-confirm right"
-                    src={collectconfirm}
-                  />
-                ) : (
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                  <a
-                    className="collect"
-                    onClick={() => collectImageHandler(image)}
-                  >
-                    <Example />
-                  </a>
-                )}
-                {/* <div onClick={() => collectImageHandler(image)}>
-                    
-                  </div> */}
-              </div>
-            </div>
-          </Tablet>
+          
         </div>
       );
     });
+
+     //TABLET VIEW
+  const tabletImages = generatedDisplayImages
+  ?.slice(0, 12)
+  .map((image, imageIndex) => {
+    return (
+      <div key={`Key${imageIndex}`}>
+        <Tablet>
+          <div className="col s3 m3 l3 ">
+            <img
+              alt="ai generated"
+              className="generated-image"
+              src={image.image_uri}
+              onClick={() => {
+                openModal(image);
+              }}
+            />
+
+            {/* <div className="row save-buttons">
+              <a href={image.image_uri} download>
+                <img
+                  alt="ai generated"
+                  className="download-button"
+                  src={downloadbutton}
+                  onClick={() => logDownload(image.image_uri)}
+                />
+              </a>
+              {image.isCollected ? (
+                <img
+                  alt="collect confirm icon"
+                  className="collect-confirm right"
+                  src={collectconfirm}
+                />
+              ) : (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                <a
+                  className="collect"
+                  onClick={() => collectImageHandler(image)}
+                >
+                  Collect
+                  <i className="material-icons right">add_box</i>
+                </a>
+              )}
+            </div> */}
+          </div>
+        </Tablet>
+      </div>
+    );
+  });
   
 
   //MOBILE VIEW
@@ -350,7 +361,7 @@ const footwearImage = {
     });
 
   const modal = (
-    <div>
+    <div >
       {modalImage && (
         <Modal
           ariaHideApp={false}
@@ -362,8 +373,9 @@ const footwearImage = {
         >
           <span>
             {/* Pop up modal */}
-            <div className="row">
-              <div className="col s7 m7 l7">
+            <div className="row container-modal">
+            
+              <div className="col s12 m12 l12">
                 <img
                   alt="ai generated"
                   className="generated-imagemodal"
@@ -371,15 +383,30 @@ const footwearImage = {
                   style={visibilityStyle}
                 />
               </div>
-              <div className="col s5 m5 l5 generated-info">
-                <h1 style={{ fontSize: "2rem" }}>
-                  {" "}
-                  {modalImage.image_uri.slice(-22, -1)}g
-                </h1>
+              <div className="col s12 m12 l12 generated-info">
+                
                 <div className="button-container row">
                   <div style={hideBuckets}>
                     <div>
-                      <div className="col s8 m8 l8">
+                      <div className="col s12 m12 l12">
+                          {modalImage.isCollected ? (
+                            <img
+                              alt="confirm icon"
+                              className="collect-confirm"
+                              src={collectconfirm}
+                            />
+                          ) : (
+                            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                            <a
+                              className="collect"
+                              onClick={() => collectImageHandler(modalImage)}
+                            >
+                              Collect
+                              <i className="material-icons right">add_box</i>
+                            </a>
+                          )}
+                      </div>
+                      <div className="col s12 m12 l12">
                         <button
                           className="waves-effect waves-grey btn-flat add-bucket"
                           onClick={toggleBuckets}
@@ -388,28 +415,11 @@ const footwearImage = {
                           to bucket
                         </button>
                       </div>
-                      <div className="col s4 m4 l4">
-                        {modalImage.isCollected ? (
-                          <img
-                            alt="confirm icon"
-                            className="collect-confirm"
-                            src={collectconfirm}
-                          />
-                        ) : (
-                          // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                          <a
-                            className="collect"
-                            onClick={() => collectImageHandler(modalImage)}
-                          >
-                            Collect
-                            <i className="material-icons right">add_box</i>
-                          </a>
-                        )}
-                      </div>
+                      
                     </div>
                   </div>
                   <div
-                    className="bucket-container col s12 m12 l12"
+                    className=" col s12 m12 l12"
                     style={showBuckets}
                   >
                     <AddToBucket
@@ -468,71 +478,16 @@ const footwearImage = {
 
           {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
           <Desktop>
-          <div className="row gen-animation">
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
+          <div className="row ">
+            <div className="col s12 m12 l12 load-animation" style={hiddenStyle}>
+              <img src = "https://via.placeholder.com/750x550"/>
             </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
+  
           </div>
           </Desktop>
           <Tablet>
-          <div className="row gen-animation">
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
+          <div className="row load-animation">
+            
           </div>
           </Tablet>
           <Mobile>
@@ -541,11 +496,14 @@ const footwearImage = {
             </div>
             
           </Mobile>
-          <div className="row " style={visibilityStyle}>
+          <div className="row gen-container" style={visibilityStyle}>
             <div style = {cardesignImage}>{images}</div>
           </div>
           <div className="row" style={visibilityStyle}>
-          <div style = {cardesignImage}>{mobileImages}</div>
+            <div style = {cardesignImage}>{mobileImages}</div>
+          </div>
+          <div className="row tablet-images" style={visibilityStyle}>
+            <div style = {cardesignImage}>{tabletImages}</div>
           </div>
 
       
@@ -556,7 +514,7 @@ const footwearImage = {
                 a
                 href="#"
                 className="btn waves-effect generate-btn lighten-1 z-depth-0"
-                onClick={() => toggleGeneratedImages(generatedImages, 3)}
+                onClick={() => toggleGeneratedImages(generatedImages, 18)}
                 onMouseDown={() => handleClick}
                 onKeyUp={(e) => {
                   if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {

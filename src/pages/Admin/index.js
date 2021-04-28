@@ -74,9 +74,9 @@ export const Admin = ({ history, user, uid, getProfile }) => {
           }}
           value="2"
         >
-          {/* <option value="car">Car</option> */}
+          <option value="car">Car</option>
           <option value="concept">Concept</option>
-          {/* <option value="shoe">Shoe</option> */}
+          <option value="shoe">Shoe</option>
         </Select>
         <button className="btn btn-primary" type="submit" name="action">
           Upload

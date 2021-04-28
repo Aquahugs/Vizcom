@@ -21,7 +21,7 @@ const MobileView = () => {
                 width: "50%",
                 height: "auto",
                 position: "relative",
-                paddingBottom: "15%",
+                padding: "15%",
               }}/>
             </div>
           </div>
