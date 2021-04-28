@@ -80,17 +80,7 @@ const LandingPage = ({ authUser, history }) => {
             </div>
           </div>
 
-          <div className=" row graph-container">
-            <div className="col s12 m12 l12" style={{ paddingTop: "10%" }}>
-              <h2>Work Flow</h2>
-              <p>
-                In the early stage of creative thinking, the final idea is
-                usually uncertain. What if we could dismantle each step of
-                creative thinking and allocate tasks accordingly.
-              </p>
-              <img alt="graphic" src={graphic} />
-            </div>
-          </div>
+        
           <div className="footer-container">
             <Footer />
           </div>
