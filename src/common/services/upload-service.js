@@ -1,12 +1,16 @@
 /* eslint-disable import/no-anonymous-default-export */
-import apiClient from "./api";
+/* eslint-disable */
+import axios from "axios";
+
+const apiUploadClient = axios.create({
+  baseURL: `${process.env.REACT_APP_API_BASE_URL.replace(/\/$/, "")}/`,
+  withCredentials: false,
+});
 
 export default {
-  uploadImages(files) {
-    return apiClient.post(`/api/upload/multiple`, files, {
-      onUploadProgress: (progressEvent) => {
-        console.log(progressEvent.loaded / progressEvent.total);
-      },
+  uploadImages(req) {
+    return apiUploadClient.post(`/api/upload/multiple`, req.formData, {
+      params: { generated_image_type: req.generated_image_type },
     });
   },
 };
