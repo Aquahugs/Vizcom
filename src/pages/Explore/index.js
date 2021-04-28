@@ -3,22 +3,13 @@ import { compose } from "recompose";
 import "./explore.scss";
 import { withAuthorization } from "../../router/auth/session";
 import mock from "../../assets/Explore.png";
-import mobilemock from "../../assets/explore-mobile.png";
 import { Desktop, Tablet, Mobile } from "../Responsive";
-import StackGrid, { transitions } from "react-stack-grid";
 import { connect } from "react-redux";
-import {
-  LazyLoadImage,
-  trackWindowScroll,
-} from "react-lazy-load-image-component";
-import genanimation from "../../assets/gen-animation.mp4";
 import RenderSmoothImage from "render-smooth-image-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "render-smooth-image-react/build/style.css";
 
-const { scaleDown } = transitions;
-
-const Explore = ({ allImages, scrollPosition }) => {
+const Explore = ({ allImages }) => {
   const [images, setImages] = useState([]);
   const [loaded, setIsLoaded] = useState(false);
 
@@ -45,93 +36,6 @@ const Explore = ({ allImages, scrollPosition }) => {
       <div>
         <Desktop>
           <h3>Explore</h3>
-          {/* <StackGrid
-            appear={scaleDown.appear}
-            appeared={scaleDown.appeared}
-            enter={scaleDown.enter}
-            entered={scaleDown.entered}
-            leaved={scaleDown.leaved}
-            monitorImagesLoaded={true}
-            gutterWidth={50}
-            gutterHeight={50}
-            columnWidth={200}
-          >
-            {images &&
-              images?.slice(0, 100).map((image, imageKey) => {
-                return (
-                  <div>
-                    <LazyLoadImage
-                      key={imageKey}
-                      className="gallery-image"
-                      src={image.image_uri}
-                      effect="opacity"
-                      scrollPosition={scrollPosition}
-                      width={200}
-                      height={200}
-                    />
-                  </div>
-                );
-              })}
-          </StackGrid> */}
-          {/* <StackGrid
-            appear={scaleDown.appear}
-            appeared={scaleDown.appeared}
-            enter={scaleDown.enter}
-            entered={scaleDown.entered}
-            leaved={scaleDown.leaved}
-            monitorImagesLoaded={true}
-            gutterWidth={50}
-            gutterHeight={50}
-            columnWidth={200}
-          >
-            {images &&
-              images?.slice(0, 1000).map((image, imageKey) => {
-                return (
-                  <div style={{ width: 200, height: 200 }}>
-                    <RenderSmoothImage
-                      src={image.image_uri}
-                      alt="alternate-text"
-                    />
-                  </div>
-                );
-              })}
-          </StackGrid> */}
-
-          {/* <InfiniteScroll
-            dataLength={images}
-            next={() => fetchImages(5)}
-            hasMore={true}
-            loader={
-              <img
-                src="https://res.cloudinary.com/chuloo/image/upload/v1550093026/scotch-logo-gif_jq4tgr.gif"
-                alt="loading"
-              />
-            }
-          >
-            <StackGrid
-              appear={scaleDown.appear}
-              appeared={scaleDown.appeared}
-              enter={scaleDown.enter}
-              entered={scaleDown.entered}
-              leaved={scaleDown.leaved}
-              monitorImagesLoaded={true}
-              gutterWidth={50}
-              gutterHeight={50}
-              columnWidth={200}
-            >
-              {loaded
-                ? images.map((image, index) => (
-                    <div style={{ width: 200, height: 200 }}>
-                      <RenderSmoothImage
-                        src={image.image_uri}
-                        alt="alternate-text"
-                      />
-                    </div>
-                  ))
-                : ""}
-            </StackGrid>
-          </InfiniteScroll> */}
-
           <InfiniteScroll
             dataLength={images}
             next={() => fetchImages(5)}
@@ -214,6 +118,5 @@ const condition = (authUser) => !!authUser;
 
 export default compose(
   withAuthorization(condition),
-  connect(mapStateToProps),
-  trackWindowScroll
+  connect(mapStateToProps)
 )(Explore);
