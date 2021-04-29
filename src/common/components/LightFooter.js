@@ -11,7 +11,7 @@ const LightFooter = ({ darkmode }) => {
             <Link to="/about">
               <li>About</li>
             </Link>
-            <a href="https://twitter.com/Vizcom_io">
+            <a href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
             <a href="https://www.instagram.com/vizcom.io/">

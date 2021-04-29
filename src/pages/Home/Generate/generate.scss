@@ -64,7 +64,11 @@
     background-color: #0f0f0f;
   }
 }
-
+.gen-container{
+padding-left:10%;
+padding-right:10%;
+margin: 0;
+}
 .generated-image {
   background-color: white;
   padding: 2%;
@@ -73,7 +77,8 @@
   margin-right: auto;
   width: 100%;
   max-height: 500px;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #b7b7b7;
   cursor: pointer;
 }
 .generated-imagemodal {
@@ -82,9 +87,20 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 600px;
+  max-width: 100%;
   max-height: 500px;
 }
+
+.container-modal{
+  padding-left:10%;
+  padding-right:10%;
+  h1{
+    font-size: 1rem;
+    padding-left:4%
+  }
+}
+
 
 .generated-container {
   padding-left: 15rem;
@@ -97,6 +113,55 @@
   margin-left: 5%;
 }
 
+
+
+.tablet-images{
+  padding-bottom: 10%;
+}
+
+.button-container {
+  .btn-flat {
+    float: left;
+    background-color: white;
+    border: solid 1px #707070;
+  }
+  padding-top: 5%;
+}
+.collect {
+  float: left;
+  padding-left: 5%;
+  padding-bottom: 5%;
+  cursor: pointer;
+}
+
+.collect-confirm {
+  width: 25px;
+  height: auto;
+  float: left;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  
+}
+
+
+
+
+.save-buttons {
+  padding: 5%;
+}
+
+.generated-image:hover {
+  transform: scale(1.08, 1.08);
+  transition: 0.2s;
+}
+
+.add-bucket {
+  font-size: 1rem;
+  margin-left: 5%;
+  @media  (max-width: 480px) {
+  
+  }
+}
 .popup-content {
   width: 60% !important;
   height: 70%;
@@ -104,7 +169,7 @@
   background-color: white;
 
   .generated-info {
-    padding: 2%;
+    
     h1 {
       font-size: 2rem;
       color: #4e4e4e;
@@ -120,47 +185,19 @@
   }
 }
 
-.button-container {
-  .btn-flat {
-    float: left;
-    background-color: white;
-    border: solid 1px #707070;
+
+
+
+.load-animation{
+  img{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+
+
   }
-  padding-top: 5%;
-}
-.collect {
-  float: right;
-  cursor: pointer;
-}
-
-.collect-confirm {
-  float: right;
-}
-
-.save-buttons {
-  padding: 5%;
-}
-
-.generated-image:hover {
-  transform: scale(1.08, 1.08);
-  transition: 0.2s;
-}
-
-.add-bucket {
-  font-size: 0.6vw;
-}
-
-
-.collect-confirm{
-  width: 25px;
-  height: auto;
-}
-
-
-.gen-animation{
-  video {
-    border-radius: 2rem
-  }
+  
 }
 
 .comingsoon {
@@ -195,6 +232,18 @@
     }
     
   }
+}
+
+.modalStyles{
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  max-width: 60%;
+  width: 900px;
+  height: 750px;
 }
 
 .mobile-loader{
