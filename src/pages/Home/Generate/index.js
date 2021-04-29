@@ -490,7 +490,9 @@ const footwearImage = {
           </Desktop>
           <Tablet>
           <div className="row load-animation">
-            
+            <div className="col s12 m12 l12 " style={hiddenStyle}>
+                <img src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233"/>
+            </div>
           </div>
           </Tablet>
           <Mobile>
