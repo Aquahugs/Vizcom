@@ -2,20 +2,17 @@
 import apiClient from "./api";
 
 export default {
-  getCollectionByUserId(uid) {
-    return apiClient.get(`/api/user/id/${uid}/collection`);
+  // {
+  //     is_image: true,
+  //     description: '',
+  //     uuid: '',
+  //     collection_image_id: 1, //optional
+  //     bucket_id: 1, //optional
+  // }
+  postFeedItem(item) {
+    return apiClient.post(`/api/explore/feed/item`, item);
   },
-
-  // expecting this object
-  //   {
-  //     "uuid": "9hRzb2ZXtBhrovvMIROk3hvZBZp2",
-  //     "generated_image_id": 30,
-  //     "user_uploaded_image_id": null
-  //   }
-  collectImage(req) {
-    return apiClient.post(`/api/user/collection`, req);
-  },
-  deleteCollectionImage(req) {
-    return apiClient.post(`/api/user/collection/image`, req);
+  getFeed() {
+    return apiClient.get(`/api/explore/feed`);
   },
 };
