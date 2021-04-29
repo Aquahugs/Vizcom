@@ -36,8 +36,8 @@ const createBucket = (bucket) => async (dispatch) => {
   try {
     const response = await bucketService.createBucket(bucket);
     dispatch(actions.createBucketSuccess(response.data));
-    SUCCESS_NOTIFICATION_CONFIG.message = `${bucket.bucket_name} is ready for some images!`;
-    dispatch(createNotification(SUCCESS_NOTIFICATION_CONFIG));
+    INFO_NOTIFICATION_CONFIG.message = `${bucket.bucket_name} is ready for some images!`;
+    dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on creating ${bucket.bucket_name}! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
@@ -53,8 +53,8 @@ const addToBucket = (image) => async (dispatch) => {
     const bucket = response.data.find(
       (bucket) => bucket.bucket_id === image.bucket_id
     );
-    SUCCESS_NOTIFICATION_CONFIG.message = `image added to ${bucket.bucket_name}`;
-    dispatch(createNotification(SUCCESS_NOTIFICATION_CONFIG));
+    INFO_NOTIFICATION_CONFIG.message = `image added to ${bucket.bucket_name}`;
+    dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on adding your image! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
@@ -67,8 +67,8 @@ const deleteBucket = (bucket) => async (dispatch) => {
   try {
     const response = await bucketService.deleteBucket(bucket);
     dispatch(actions.deleteBucketSuccess(response.data));
-    SUCCESS_NOTIFICATION_CONFIG.message = `Bucket deleted`;
-    dispatch(createNotification(SUCCESS_NOTIFICATION_CONFIG));
+    INFO_NOTIFICATION_CONFIG.message = `Bucket deleted`;
+    dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on deleting your bucket! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
@@ -80,8 +80,8 @@ const deleteBucketImage = (image) => async (dispatch) => {
   try {
     const response = await bucketService.deleteBucketImage(image);
     dispatch(actions.deleteBucketImageSuccess(response.data));
-    SUCCESS_NOTIFICATION_CONFIG.message = `Image deleted`;
-    dispatch(createNotification(SUCCESS_NOTIFICATION_CONFIG));
+    INFO_NOTIFICATION_CONFIG.message = `Image deleted`;
+    dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on deleting your image! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));

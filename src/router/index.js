@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Profile from "../pages/Profile";
+import DynamicProfile from "../pages/Profile/DynamicProfile";
 import Editor from "../pages/Profile/Editor"; //need to put this into /Profile (Profile/Editor)
 import CreateBucket from "../pages/Bucket/CreateBucket"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../pages/Explore";
@@ -40,6 +41,9 @@ const Router = () => (
     </Route>
     <Route path="/bucket/:bucket_id">
       <SingleBucketView />
+    </Route>
+    <Route path="/user/:uid">
+      <DynamicProfile />
     </Route>
     <Route path={ROUTES.ABOUT}>
       <About />

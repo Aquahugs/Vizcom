@@ -68,9 +68,9 @@ const updateProfile = (user, uuid) => async (dispatch) => {
   try {
     await userService.updateUser(newUser, uuid);
     dispatch(actions.updateProfileSuccess(newUser));
-    SUCCESS_NOTIFICATION_CONFIG.message =
+    INFO_NOTIFICATION_CONFIG.message =
       "Your profile has been updated successfully";
-    dispatch(createNotification(SUCCESS_NOTIFICATION_CONFIG));
+    dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message =
       "We fumbled the bag on saving your profile!";

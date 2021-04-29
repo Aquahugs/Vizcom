@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Example from "./noti";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { fadeInUp } from "react-animations";
@@ -41,7 +40,6 @@ const Generate = ({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
   const [generatorState, setToggle] = useState("cardesign");
-
 
   useEffect(() => {
     !generatedImages
@@ -148,7 +146,7 @@ const Generate = ({
     setDisplayBuckets(false);
   };
 
-//  STYLES
+  //  STYLES
   const modalStyles = {
     content: {
       top: "50%",
@@ -161,7 +159,7 @@ const Generate = ({
       height: "600px",
     },
   };
-  
+
   const showBuckets = {
     visibility: displayBuckets ? "visible" : "hidden",
     display: displayBuckets ? "block" : "none",
@@ -183,30 +181,27 @@ const Generate = ({
     paddingBottom: "9.5%",
   };
 
-const footActive = {
+  const footActive = {
     backgroundColor: generatorState == "footwear" ? "#D9D9D9" : "white",
-};
-const carActive = {
-  backgroundColor: generatorState == "cardesign" ? "#D9D9D9" : "white",
-};
-const conceptActive = {
-  backgroundColor: generatorState == "conceptart" ? "#D9D9D9" : "white",
-};
-const conceptImage = {
-  visibility: generatorState  !== "conceptart" ? "hidden" : "visible",
-  display: generatorState  == "conceptart" ? "block" : "none",
-
-};
-const cardesignImage = {
-  visibility: generatorState  !== "cardesign" ? "hidden" : "visible",
-  display: generatorState  == "cardesign" ? "block" : "none",
-};
-const footwearImage = {
-  visibility: generatorState  !== "footwear" ? "hidden" : "visible",
-  display: generatorState  == "footwear" ? "block" : "none",
-
-};
-
+  };
+  const carActive = {
+    backgroundColor: generatorState == "cardesign" ? "#D9D9D9" : "white",
+  };
+  const conceptActive = {
+    backgroundColor: generatorState == "conceptart" ? "#D9D9D9" : "white",
+  };
+  const conceptImage = {
+    visibility: generatorState !== "conceptart" ? "hidden" : "visible",
+    display: generatorState == "conceptart" ? "block" : "none",
+  };
+  const cardesignImage = {
+    visibility: generatorState !== "cardesign" ? "hidden" : "visible",
+    display: generatorState == "cardesign" ? "block" : "none",
+  };
+  const footwearImage = {
+    visibility: generatorState !== "footwear" ? "hidden" : "visible",
+    display: generatorState == "footwear" ? "block" : "none",
+  };
 
   if (!isLoaded) {
     return <div></div>;
@@ -218,7 +213,7 @@ const footwearImage = {
       return (
         <div key={`Key${imageIndex}`}>
           <Desktop>
-            <div className = "generate-images"></div>
+            <div className="generate-images"></div>
             <div className="col s4 m4 l4">
               <img
                 alt="ai generated"
@@ -249,7 +244,8 @@ const footwearImage = {
                     className="collect"
                     onClick={() => collectImageHandler(image)}
                   >
-                    <Example />
+                    Collect
+                    <i className="material-icons right">add_box</i>
                   </a>
                 )}
               </div>
@@ -285,20 +281,14 @@ const footwearImage = {
                   <a
                     className="collect"
                     onClick={() => collectImageHandler(image)}
-                  >
-                    <Example />
-                  </a>
+                  ></a>
                 )}
-                {/* <div onClick={() => collectImageHandler(image)}>
-                    
-                  </div> */}
               </div>
             </div>
           </Tablet>
         </div>
       );
     });
-  
 
   //MOBILE VIEW
   const mobileImages = generatedDisplayImages
@@ -431,127 +421,131 @@ const footwearImage = {
       {modal}
       <div className="row generate-container">
         <div className="row tag"></div>
-        
+
         <StyleRoot>
-          <div className = "row" >
+          <div className="row">
             {/* GENERATOR MODE SELECTOR */}
-            <div className =" selector-container">
-              <button 
+            <div className=" selector-container">
+              <button
                 onClick={() => setToggle("cardesign")}
-                style = {carActive}
+                style={carActive}
                 class=" btn btn-flat "
-                >
+              >
                 car-design
               </button>
-              <button 
-               onClick={() => setToggle("conceptart")}
+              <button
+                onClick={() => setToggle("conceptart")}
                 class=" btn btn-flat "
-                style = {conceptActive}
-                class="btn btn-flat">concept art
+                style={conceptActive}
+                class="btn btn-flat"
+              >
+                concept art
               </button>
-              <button 
-               onClick={() => setToggle("footwear")}
+              <button
+                onClick={() => setToggle("footwear")}
                 class=" btn btn-flat "
-                style = {footActive}
-                class="btn btn-flat">footwear
+                style={footActive}
+                class="btn btn-flat"
+              >
+                footwear
               </button>
             </div>
           </div>
-          <div className = "row comingsoon" style = {conceptImage}>
+          <div className="row comingsoon" style={conceptImage}>
             <h1>coming soon</h1>
-            <img  src = {conceptart}/>
+            <img src={conceptart} />
           </div>
-          <div className = "row comingsoon" style = {footwearImage}>
+          <div className="row comingsoon" style={footwearImage}>
             <h1>coming soon</h1>
-            <img src = {footwear}/>
+            <img src={footwear} />
           </div>
 
           {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
           <Desktop>
-          <div className="row gen-animation">
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
+            <div className="row gen-animation">
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
             </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
-          </div>
           </Desktop>
           <Tablet>
-          <div className="row gen-animation">
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
+            <div className="row gen-animation">
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
             </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
-            <div className="col s4 m4 l4" style={hiddenStyle}>
-              <video
-                style={{ width: "100%" }}
-                muted
-                loop
-                autoPlay
-                src={genanimation}
-                type="video/mp4"
-              />
-            </div>
-          </div>
           </Tablet>
           <Mobile>
-            <div className = "mobile-loader">
-              <img style={hiddenStyle} src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"/>
+            <div className="mobile-loader">
+              <img
+                style={hiddenStyle}
+                src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"
+              />
             </div>
-            
           </Mobile>
           <div className="row " style={visibilityStyle}>
-            <div style = {cardesignImage}>{images}</div>
+            <div style={cardesignImage}>{images}</div>
           </div>
           <div className="row" style={visibilityStyle}>
-          <div style = {cardesignImage}>{mobileImages}</div>
+            <div style={cardesignImage}>{mobileImages}</div>
           </div>
 
-      
-
           <div className=" genbtn-container row" style={styles.fadeInUp}>
-            <div style = {cardesignImage}>
+            <div style={cardesignImage}>
               <button
                 a
                 href="#"
