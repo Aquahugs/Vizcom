@@ -17,7 +17,17 @@
   text-align: "center";
 }
 
+.field-wrap{
+  input{
+    color:white;
+  }
+}
+
 .signin-btn:hover {
+  cursor: pointer;
+}
+
+.alr-signin{
   cursor: pointer;
 }
 

@@ -9,12 +9,12 @@ import cardesign from "../../assets/cardesign.png";
 
 const MobileView = () => {
   return (
-    <div>
+    <div className = "mobile-content">
       <div className="about-container-mobile">
         <div className="row title-banner-mobile">
           <h1>
-            Ai Creative tools, <br />
-            helping bring ideas to life.{" "}
+             Reimagining how we create
+    
           </h1>
           <p>
             In 2020 we began to explore the possibilities of <br />
@@ -25,19 +25,13 @@ const MobileView = () => {
         <div className="row exp-mobile">
           <div className="col s12 m12 l12">
             <h1>Car Design</h1>
-            <p>
-              The car design process always begins with an idea, which gives
-              rise to a drawing. On a sketch pad or a computer screen, ideas
-              which previously only existed in the designer’s head become
-              visible.
-            </p>
+            
             <img alt="cardesign" src={cardesign} />
           </div>
         </div>
         <div className="row exp-mobile inspo">
-          <div className="col s3 m3 l3"></div>
-          <div className="col s9 m9 l9">
-            <h1>We started experimenting with what was possible with GANs </h1>
+          <div className="col s12 m12 l12">
+            {/* <h1>We started experimenting with what was possible with GANs </h1> */}
             <p>
               Instantly we started to see how GANs could be a creative assistant
               for car designers to explore millions of generated ideation
@@ -62,32 +56,9 @@ const MobileView = () => {
           </div>
         </div>
 
-        <div className="row exp2 insta-box-mobile"></div>
-
-        <div className="row sk2r-mobile">
-          <div className="col s12 m12 l12">
-            <h1>So we kept building</h1>
-            <p>
-              We saw this as an opportunity to apply machine learning to help
-              further accelerate this process by providing an automatic digital
-              rendering tool.
-            </p>
-          </div>
-          <div className="row">
-            <video
-              className="sk2r-video-mobile"
-              style={{ width: "100%", height: "auto" }}
-              muted
-              loop
-              autostart
-              autoPlay
-              src={demovideo}
-              type="video/mp4"
-            />
-          </div>
-        </div>
+        
         <div className="row final">
-          <div className="col s5 m5 l5">
+          <div className="col s12 m12 l12">
             <h1>But, it dosen't stop there</h1>
             <ul>
               <li>Concept Art</li>
@@ -98,13 +69,13 @@ const MobileView = () => {
               <li>Industrial Design</li>
             </ul>
           </div>
-          <div className="col s7 m7 l7">
+          <div className="col s12 m12 l12">
             <img alt="cardesign" src={artfields} />
           </div>
         </div>
         <div className="row">
-          <div className="col s12 m12 l12 mission">
-            <h1>Our vision is to</h1>
+          <div className="col s12 m12 l12 mission mission-mobile">
+            <h1>Our mission is to</h1>
             <h2>Build tools that accelerate creative thinking.</h2>
           </div>
         </div>

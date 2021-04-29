@@ -10,6 +10,8 @@ import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
 import About from "../pages/About";
 import SingleBucketView from "../pages/Bucket/SingleBucketView";
+import LandingPage from "../pages/LandingPage";
+import Admin from "../pages/Admin";
 
 import * as ROUTES from "./routes-const";
 
@@ -41,6 +43,12 @@ const Router = () => (
     </Route>
     <Route path={ROUTES.ABOUT}>
       <About />
+    </Route>
+    <Route path="/admin">
+      <Admin />
+    </Route>
+    <Route path={ROUTES.LANDING_PAGE}>
+      <LandingPage />
     </Route>
   </Switch>
 );

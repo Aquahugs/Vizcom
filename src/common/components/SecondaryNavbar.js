@@ -29,7 +29,7 @@ const SecondaryNav = ({ profile }) => {
         </li>
         <li>
           <Link to={PROFILE}>
-            Profile
+            Collection
             {location.pathname === "/profile" && profile?.first_name && (
               <span style={styles}>/{profile?.first_name}</span>
             )}

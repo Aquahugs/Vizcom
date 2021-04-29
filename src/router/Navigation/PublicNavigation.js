@@ -1,9 +1,14 @@
 import React from "react";
 
-import LandingPage from "../../pages/LandingPage";
+import history from "../../common/utils/history";
+import Router from "../index";
 
 const NavigationNonAuth = () => {
-  return <LandingPage />;
+  return (
+    <div>
+      <Router history={history} />
+    </div>
+  );
 };
 
 export default NavigationNonAuth;

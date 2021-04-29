@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Video from "../../assets/LandingVideo.mp4";
 import Video2 from "../../assets/morph.mp4";
 import Footer from "../../common/components/Footer";
@@ -9,8 +9,17 @@ import TabletView from "./Responsive/tablet";
 import MobileView from "./Responsive/mobile";
 import WhiteLogo from "../../assets/logo.png";
 import graphic from "../../assets/creative-thinking.svg";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
-const LandingPage = () => {
+const LandingPage = ({ authUser, history }) => {
+  useEffect(() => {
+    if (authUser) {
+      history.push("/home");
+    }
+  }, []);
+
   return (
     <div>
       <Desktop>
@@ -32,6 +41,7 @@ const LandingPage = () => {
                     muted
                     loop
                     autostart
+                    playsInline
                     autoPlay
                     src={Video}
                     type="video/mp4"
@@ -56,7 +66,7 @@ const LandingPage = () => {
                 <video
                   style={{
                     width: "100%",
-                    height: "auto",
+                    height: "750px",
                     position: "relative",
                   }}
                   muted
@@ -70,17 +80,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div className=" row graph-container">
-            <div className="col s12 m12 l12" style = {{paddingTop:"10%"}}>
-              <h2>New Work Flow</h2>
-              <p>
-                In the early stage of creative thinking, the final idea is
-                usually uncertain. What if we could dismantle each step of
-                creative thinking and allocate tasks accordingly.
-              </p>
-              <img alt="graphic" src={graphic} />
-            </div>
-          </div>
+        
           <div className="footer-container">
             <Footer />
           </div>
@@ -97,4 +97,8 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+const mapStateToProps = (state) => ({
+  authUser: state.session.authUser,
+});
+
+export default compose(withRouter, connect(mapStateToProps))(LandingPage);

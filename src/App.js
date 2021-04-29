@@ -4,10 +4,12 @@ import Navigation from "./router/Navigation";
 import { BrowserRouter } from "react-router-dom";
 
 import { withAuthentication } from "./router/auth/session";
+import ScrollToTop from "./common/utils/ScrollToTop";
 
 const App = () => {
   return (
-    <BrowserRouter >
+    <BrowserRouter>
+      <ScrollToTop />
       <Navigation />
     </BrowserRouter>
   );

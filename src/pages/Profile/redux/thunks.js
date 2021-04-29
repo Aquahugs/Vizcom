@@ -1,5 +1,11 @@
 import actions from "./actions";
 import userService from "../../../common/services/user-service";
+import { createNotification } from "react-redux-notify";
+import {
+  SUCCESS_NOTIFICATION_CONFIG,
+  ERROR_NOTIFICATION_CONFIG,
+  INFO_NOTIFICATION_CONFIG,
+} from "../../../common/constants/notify-configs";
 
 const getProfile = (uid) => async (dispatch) => {
   dispatch(actions.getProfileStarted());
@@ -36,7 +42,13 @@ const createProfile = (user) => async (dispatch) => {
     } catch (error) {
       dispatch(actions.getProfileError(error));
     }
+    INFO_NOTIFICATION_CONFIG.message =
+      "Congrats! You are officially a user of Vizcom!";
+    dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
+    ERROR_NOTIFICATION_CONFIG.message =
+      "We fumbled the bag on creating your profile! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
+    dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.createProfileError(error));
   }
 };
@@ -56,7 +68,13 @@ const updateProfile = (user, uuid) => async (dispatch) => {
   try {
     await userService.updateUser(newUser, uuid);
     dispatch(actions.updateProfileSuccess(newUser));
+    SUCCESS_NOTIFICATION_CONFIG.message =
+      "Your profile has been updated successfully";
+    dispatch(createNotification(SUCCESS_NOTIFICATION_CONFIG));
   } catch (error) {
+    ERROR_NOTIFICATION_CONFIG.message =
+      "We fumbled the bag on saving your profile!";
+    dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.updateProfileError(error));
   }
 };

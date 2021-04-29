@@ -1,13 +1,12 @@
 import React from "react";
-import { compose } from "recompose";
 import "./about.scss";
-import { withAuthorization } from "../../router/auth/session";
 import demovideo from "../../assets/SK2RDEMO.mp4";
 import demovideo2 from "../../assets/aboutgan.mp4";
 import artfields from "../../assets/artfields.png";
 import cardesign from "../../assets/cardesign.png";
 import { Desktop, Tablet, Mobile, Phone } from "./responsive";
 import TabletView from "./tablet";
+import MobileView from "./mobile";
 const About = () => {
   return (
     <div>
@@ -119,12 +118,10 @@ const About = () => {
         <TabletView />
       </Tablet>
       <Mobile>
-        <h1>Mobile</h1>
+       <MobileView />
       </Mobile>
     </div>
   );
 };
 
-const condition = (authUser) => !!authUser;
-
-export default compose(About);
+export default About;

@@ -1,3 +1,4 @@
+
 .selector-container {
   height: 10vh; /* Magic here */
   display: flex;
@@ -8,6 +9,18 @@
     border-radius: 24px;
     background-color: white;
     margin: 1rem;
+  }
+}
+
+@media  (max-width: 480px) {
+  .selector-container {
+
+    .btn{
+      font-size: 8px;
+      margin: 0.4rem;
+      
+    }
+    
   }
 }
 .tag {
@@ -141,4 +154,58 @@
 .collect-confirm{
   width: 25px;
   height: auto;
+}
+
+
+.gen-animation{
+  video {
+    border-radius: 2rem
+  }
+}
+
+.comingsoon {
+  img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+  h1{
+    text-align: center;
+    font-size: 20px;
+    padding: 1%;
+  }
+  
+}
+
+@media  (max-width: 480px) {
+  .comingsoon {
+    img{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+  
+    h1{
+      text-align: center;
+      font-size: 20px;
+      padding: 1%;
+    }
+    
+  }
+}
+
+.mobile-loader{
+  img{
+    padding: 2%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-height: 500px;
+  border-radius: 2rem;
+  }
+  
 }

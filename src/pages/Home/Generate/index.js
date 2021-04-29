@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Example from "./noti";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { fadeInUp } from "react-animations";
@@ -16,6 +16,9 @@ import { withAuthorization } from "../../../router/auth/session";
 
 import downloadbutton from "../../../assets/download-button.svg";
 import collectconfirm from "../../../assets/collect-confirm.svg";
+import conceptart from "../../../assets/conceptart-holder.png";
+import footwear from "../../../assets/footwear-holder.png";
+import genanimation from "../../../assets/gen-animation.mp4";
 import AddToBucket from "./AddToBucket";
 
 const Generate = ({
@@ -27,6 +30,8 @@ const Generate = ({
   generatedImages,
   collectImage,
   getGeneratedImages,
+  conceptGeneratedImages,
+  carGeneratedImages,
   bucketDropdownOptions,
 }) => {
   // Local state
@@ -37,11 +42,12 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+  const [generatorState, setToggle] = useState("cardesign");
 
   useEffect(() => {
     !generatedImages
-      ? fetchGeneratedImages()
-      : toggleGeneratedImages(generatedImages, 3);
+      ? fetchGeneratedImages(carGeneratedImages)
+      : toggleGeneratedImages(carGeneratedImages, 3);
 
     getCollection(uid);
     if (!buckets) {
@@ -49,16 +55,14 @@ const Generate = ({
     }
 
     // options for bucket search
-    if (!bucketDropdownOptions) {
-      const bucketOptionDropdown = buckets?.map((bucket) => ({
-        name: bucket.bucket_name,
-        value: bucket.bucket_id,
-      }));
-      getBucketDropdownOptions(bucketOptionDropdown);
-    }
+    const bucketOptionDropdown = buckets?.map((bucket) => ({
+      name: bucket.bucket_name,
+      value: bucket.bucket_id,
+    }));
+    getBucketDropdownOptions(bucketOptionDropdown);
 
     setIsLoaded(true);
-  }, [buckets]);
+  }, []);
 
   const styles = {
     fadeInUp: {
@@ -67,11 +71,11 @@ const Generate = ({
     },
   };
 
-  async function fetchGeneratedImages() {
+  async function fetchGeneratedImages(generatedImageParam) {
     try {
       const response = await getGeneratedImages();
       if (response) {
-        toggleGeneratedImages(generatedImages, 3);
+        toggleGeneratedImages(generatedImageParam, 3);
       }
     } catch (e) {
       console.log(e);
@@ -90,7 +94,7 @@ const Generate = ({
       result[n] = arr[x in taken ? taken[x] : x];
       taken[x] = --len in taken ? taken[len] : len;
     }
-    result.map((image) => {
+    result?.map((image) => {
       return {
         ...image,
         isCollected: false,
@@ -100,7 +104,7 @@ const Generate = ({
 
     setTimeout(() => {
       setIsGenerating(false);
-    }, 800);
+    }, 1800);
   };
 
   const toggleBuckets = () => {
@@ -114,7 +118,6 @@ const Generate = ({
   };
 
   const collectImageHandler = (image) => {
-    console.log(image);
     const imageObj = {
       uuid: uid,
       generated_image_id: image.generated_image_id,
@@ -145,6 +148,8 @@ const Generate = ({
     setModalIsOpen(false);
     setDisplayBuckets(false);
   };
+
+  //  STYLES
   const modalStyles = {
     content: {
       top: "50%",
@@ -176,24 +181,43 @@ const Generate = ({
     display: isGenerating ? "block" : "none",
     marginLeft: "auto",
     marginRight: "auto",
-    width: "40%",
+    paddingBottom: "9.5%",
+  };
+
+  const footActive = {
+    backgroundColor: generatorState == "footwear" ? "#D9D9D9" : "white",
+  };
+  const carActive = {
+    backgroundColor: generatorState == "cardesign" ? "#D9D9D9" : "white",
+  };
+  const conceptActive = {
+    backgroundColor: generatorState == "conceptart" ? "#D9D9D9" : "white",
+  };
+  const conceptImage = {
+    visibility: generatorState !== "conceptart" ? "hidden" : "visible",
+    display: generatorState == "conceptart" ? "block" : "none",
+  };
+  const cardesignImage = {
+    visibility: generatorState !== "cardesign" ? "hidden" : "visible",
+    display: generatorState == "cardesign" ? "block" : "none",
+  };
+  const footwearImage = {
+    visibility: generatorState !== "footwear" ? "hidden" : "visible",
+    display: generatorState == "footwear" ? "block" : "none",
   };
 
   if (!isLoaded) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <div></div>;
   }
 
   const images = generatedDisplayImages
     ?.slice(0, 3)
     .map((image, imageIndex) => {
       return (
-        <div>
+        <div key={`Key${imageIndex}`}>
           <Desktop>
-            <div className="col s4 m4 l4" key={`Key${imageIndex}`}>
+            <div className="generate-images"></div>
+            <div className="col s4 m4 l4">
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -223,13 +247,52 @@ const Generate = ({
                     className="collect"
                     onClick={() => collectImageHandler(image)}
                   >
-                    Collect
-                    <i className="material-icons right">add_box</i>
+                    <Example />
                   </a>
                 )}
               </div>
             </div>
           </Desktop>
+          <Tablet>
+            <div className="col s4 m4 l4">
+              <img
+                alt="ai generated"
+                className="generated-image"
+                src={image.image_uri}
+                onClick={() => {
+                  openModal(image);
+                }}
+              />
+              <div className="row save-buttons">
+                <a href={image.image_uri} download>
+                  <img
+                    alt="ai generated"
+                    className="download-button"
+                    src={downloadbutton}
+                    onClick={() => logDownload(image.image_uri)}
+                  />
+                </a>
+                {image.isCollected ? (
+                  <img
+                    alt="collect confirm icon"
+                    className="collect-confirm right"
+                    src={collectconfirm}
+                  />
+                ) : (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                  <a
+                    className="collect"
+                    onClick={() => collectImageHandler(image)}
+                  >
+                    <Example />
+                  </a>
+                )}
+                {/* <div onClick={() => collectImageHandler(image)}>
+                    
+                  </div> */}
+              </div>
+            </div>
+          </Tablet>
         </div>
       );
     });
@@ -239,9 +302,9 @@ const Generate = ({
     ?.slice(0, 1)
     .map((image, imageIndex) => {
       return (
-        <div>
+        <div key={`Key${imageIndex}`}>
           <Mobile>
-            <div className="col s12 m12 l12" key={`Key${imageIndex}`}>
+            <div className="col s12 m12 l12">
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -250,6 +313,7 @@ const Generate = ({
                   openModal(image);
                 }}
               />
+
               <div className="row save-buttons">
                 <a href={image.image_uri} download>
                   <img
@@ -363,45 +427,150 @@ const Generate = ({
     <div>
       {modal}
       <div className="row generate-container">
-        <div className="row tag">
-          <p>
-            Every click uses artificial intelligence to generate unique images{" "}
-          </p>
-        </div>
+        <div className="row tag"></div>
+
         <StyleRoot>
-          <div className="row" style={visibilityStyle}>
-            {images}
+          <div className="row">
+            {/* GENERATOR MODE SELECTOR */}
+            <div className=" selector-container">
+              <button
+                onClick={() => setToggle("cardesign")}
+                style={carActive}
+                class=" btn btn-flat "
+              >
+                car-design
+              </button>
+              <button
+                onClick={() => setToggle("conceptart")}
+                class=" btn btn-flat "
+                style={conceptActive}
+                class="btn btn-flat"
+              >
+                concept art
+              </button>
+              <button
+                onClick={() => setToggle("footwear")}
+                class=" btn btn-flat "
+                style={footActive}
+                class="btn btn-flat"
+              >
+                footwear
+              </button>
+            </div>
           </div>
-          <div className="row" style={visibilityStyle}>
-            {mobileImages}
+          <div className="row comingsoon" style={conceptImage}>
+            <h1>coming soon</h1>
+            <img src={conceptart} />
+          </div>
+          <div className="row comingsoon" style={footwearImage}>
+            <h1>coming soon</h1>
+            <img src={footwear} />
           </div>
 
-          <div className="row generated-container" style={styles.fadeInUp}>
-            <img //LOAD ANIMATION
-              alt="loading animation"
-              src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01"
-              style={hiddenStyle}
-            />
+          {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
+          <Desktop>
+            <div className="row gen-animation">
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+            </div>
+          </Desktop>
+          <Tablet>
+            <div className="row gen-animation">
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+              <div className="col s4 m4 l4" style={hiddenStyle}>
+                <video
+                  style={{ width: "100%" }}
+                  muted
+                  loop
+                  autoPlay
+                  src={genanimation}
+                  type="video/mp4"
+                />
+              </div>
+            </div>
+          </Tablet>
+          <Mobile>
+            <div className="mobile-loader">
+              <img
+                style={hiddenStyle}
+                src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"
+              />
+            </div>
+          </Mobile>
+          <div className="row " style={visibilityStyle}>
+            <div style={cardesignImage}>{images}</div>
+          </div>
+          <div className="row" style={visibilityStyle}>
+            <div style={cardesignImage}>{mobileImages}</div>
           </div>
 
           <div className=" genbtn-container row" style={styles.fadeInUp}>
-            <button
-              a
-              href="#"
-              className="btn waves-effect generate-btn lighten-1 z-depth-0"
-              onClick={() => toggleGeneratedImages(generatedImages, 3)}
-              onMouseDown={() => handleClick}
-              onKeyUp={(e) => {
-                if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {
-                  handleClick();
-                }
-              }}
-              style={{
-                zIndex: modalIsOpen === false ? 9999 : -9999,
-              }}
-            >
-              Generate
-            </button>
+            <div style={cardesignImage}>
+              <button
+                a
+                href="#"
+                className="btn waves-effect generate-btn lighten-1 z-depth-0"
+                onClick={() => toggleGeneratedImages(carGeneratedImages, 3)}
+                onMouseDown={() => handleClick}
+                onKeyUp={(e) => {
+                  if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {
+                    handleClick();
+                  }
+                }}
+                style={{
+                  zIndex: modalIsOpen === false ? 9999 : -9999,
+                }}
+              >
+                Generate
+              </button>
+            </div>
           </div>
         </StyleRoot>
       </div>
@@ -415,6 +584,8 @@ const mapStateToProps = (state) => ({
   collection: state.collection.collection,
   buckets: state.bucket.buckets,
   generatedImages: state.generate.images,
+  conceptGeneratedImages: state.generate.images.concept,
+  carGeneratedImages: state.generate.images.car,
   bucketDropdownOptions: state.bucket.dropdownOptions,
 });
 

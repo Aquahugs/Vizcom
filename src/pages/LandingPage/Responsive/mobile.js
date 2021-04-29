@@ -1,6 +1,6 @@
 import React from "react";
-import Video from "../../../assets/LandingVideo.mp4";
-import Video2 from "../../../assets/morph.mp4";
+import Video from "../../../assets/Mobile-LandingVideo.gif";
+import Video2 from "../../../assets/Mobile-morph.gif";
 import Footer from "../../../common/components/Footer";
 import Auth from "../Auth";
 import "./mobile.scss";
@@ -18,21 +18,13 @@ const MobileView = () => {
               <img alt="white logo" className="logo-mobile" src={WhiteLogo} />
             </div>
             <div className="col s12 m12 l12">
-              <video
-                style={{
-                  width: "100%",
-                  height: "220px",
-                  position: "relative",
-                  padding: "5%",
-                  paddingBottom: "15%",
-                }}
-                muted
-                loop
-                autostart
-                autoPlay
-                src={Video}
-                type="video/mp4"
-              />
+              <img src = {Video}
+              style={{
+                width: "50%",
+                height: "auto",
+                position: "relative",
+                paddingBottom: "15%",
+              }}/>
             </div>
           </div>
         </div>
@@ -50,27 +42,21 @@ const MobileView = () => {
         </div>
         <div className="col s12 m12 l12">
           <div className="video-mask">
-            <video
+            <img src ={Video2}  
               style={{
                 width: "100%",
                 height: "auto",
                 position: "relative",
                 paddingTop: "10%",
               }}
-              muted
-              loop
-              autostart
-              autoPlay
-              src={Video2}
-              type="video/mp4"
             />
-          </div>
+            </div>
         </div>
       </div>
 
       <div className=" row graph-container-mobile">
         <div className="col s12 m12 l12">
-          <h2>New Work Flow</h2>
+          <h2>Work Flow</h2>
           <p>
             In the early stage of creative thinking, the final idea is usually
             uncertain. What if we could dismantle each step of creative thinking

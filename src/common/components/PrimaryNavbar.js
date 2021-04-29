@@ -12,7 +12,7 @@ const PrimaryNav = ({ user, profile }) => {
     <nav>
       <div className="nav-wrapper">
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#" className="logo-container">
+        <a href="/home" className="logo-container">
           <img alt="logo" src={Logo} />
         </a>
         <ul className="nav-items right ">
@@ -30,7 +30,7 @@ const PrimaryNav = ({ user, profile }) => {
             </Link>
           </li>
           <li className="profile-items">
-            <Link to={PROFILE} style={{ color: "#505050", fontSize: "16px" }}>
+            <Link to={PROFILE}  className = "profile-name">
               {user?.authUser?.providerData[0]?.displayName
                 ? user?.authUser?.providerData[0]?.displayName
                 : profile?.display_name
