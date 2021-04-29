@@ -216,10 +216,6 @@ const Generate = ({
     backgroundColor: generatorState === "concept" ? "#D9D9D9" : "white",
   };
 
-  if (!generateStatus === "GETTING") {
-    return <div></div>;
-  }
-
   const images = generatedDisplayImages
     ?.slice(0, 19)
     .map((image, imageIndex) => {
@@ -388,117 +384,121 @@ const Generate = ({
       )}
     </div>
   );
+  if (generateStatus === "GETTING") {
+    return <div>LOADING</div>;
+  } else {
+    return (
+      <div>
+        {modal}
+        <div className="row generate-container">
+          <div className="row tag"></div>
 
-  return (
-    <div>
-      {modal}
-      <div className="row generate-container">
-        <div className="row tag"></div>
-
-        <StyleRoot>
-          <div className="row">
-            {/* GENERATOR MODE SELECTOR */}
-            <div className=" selector-container">
-              <button
-                onClick={() => setToggle("car")}
-                style={carActive}
-                class=" btn btn-flat "
-              >
-                car-design
-              </button>
-              <button
-                onClick={() => setToggle("concept")}
-                class=" btn btn-flat "
-                style={conceptActive}
-                class="btn btn-flat"
-              >
-                concept art
-              </button>
-              <button
-                onClick={() => setToggle("footwear")}
-                class=" btn btn-flat "
-                style={footActive}
-                class="btn btn-flat"
-              >
-                footwear
-              </button>
-            </div>
-          </div>
-          {generatorState === "footwear" && (
-            <div className="row comingsoon">
-              <h1>coming soon</h1>
-              <img src={footwear} />
-            </div>
-          )}
-
-          {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
-          <Desktop>
-            <div className="row load-animation ">
-              <div className="col s12 m12 l12 " style={hiddenStyle}>
-                <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233" />
-              </div>
-            </div>
-          </Desktop>
-          <Tablet>
-            <div className="row load-animation">
-              <div className="col s12 m12 l12 " style={hiddenStyle}>
-                <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233" />
-              </div>
-            </div>
-          </Tablet>
-          <Mobile>
-            <div className="mobile-loader">
-              <img
-                style={hiddenStyle}
-                src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"
-              />
-            </div>
-          </Mobile>
-          {generatorState === "footwear" && (
-            <div>
-              <div className="row gen-container" style={visibilityStyle}>
-                <div>{images}</div>
-              </div>
-              <div className="row" style={visibilityStyle}>
-                <div>{mobileImages}</div>
-              </div>
-              <div className="row tablet-images" style={visibilityStyle}>
-                <div>{tabletImages}</div>
-              </div>
-            </div>
-          )}
-
-          {generatorState !== "footwear" && (
-            <div className=" genbtn-container row" style={styles.fadeInUp}>
-              <div>
+          <StyleRoot>
+            <div className="row">
+              {/* GENERATOR MODE SELECTOR */}
+              <div className=" selector-container">
                 <button
-                  a
-                  href="#"
-                  className="btn waves-effect generate-btn lighten-1 z-depth-0"
-                  onClick={
-                    generatorState === "car"
-                      ? () => toggleGeneratedImages(generatedImages.car, 18)
-                      : () => toggleGeneratedImages(generatedImages.concept, 18)
-                  }
-                  onMouseDown={() => handleClick}
-                  onKeyUp={(e) => {
-                    if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {
-                      handleClick();
-                    }
-                  }}
-                  style={{
-                    zIndex: modalIsOpen === false ? 9999 : -9999,
-                  }}
+                  onClick={() => setToggle("car")}
+                  style={carActive}
+                  class=" btn btn-flat "
                 >
-                  Generate
+                  car-design
+                </button>
+                <button
+                  onClick={() => setToggle("concept")}
+                  class=" btn btn-flat "
+                  style={conceptActive}
+                  class="btn btn-flat"
+                >
+                  concept art
+                </button>
+                <button
+                  onClick={() => setToggle("footwear")}
+                  class=" btn btn-flat "
+                  style={footActive}
+                  class="btn btn-flat"
+                >
+                  footwear
                 </button>
               </div>
             </div>
-          )}
-        </StyleRoot>
+            {generatorState === "footwear" && (
+              <div className="row comingsoon">
+                <h1>coming soon</h1>
+                <img src={footwear} />
+              </div>
+            )}
+
+            {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
+            <Desktop>
+              <div className="row load-animation ">
+                <div className="col s12 m12 l12 " style={hiddenStyle}>
+                  <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233" />
+                </div>
+              </div>
+            </Desktop>
+            <Tablet>
+              <div className="row load-animation">
+                <div className="col s12 m12 l12 " style={hiddenStyle}>
+                  <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233" />
+                </div>
+              </div>
+            </Tablet>
+            <Mobile>
+              <div className="mobile-loader">
+                <img
+                  style={hiddenStyle}
+                  src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"
+                />
+              </div>
+            </Mobile>
+            {generatorState !== "footwear" && (
+              <div>
+                <div className="row gen-container" style={visibilityStyle}>
+                  <div>{images}</div>
+                </div>
+                <div className="row" style={visibilityStyle}>
+                  <div>{mobileImages}</div>
+                </div>
+                <div className="row tablet-images" style={visibilityStyle}>
+                  <div>{tabletImages}</div>
+                </div>
+              </div>
+            )}
+
+            {generatorState !== "footwear" && (
+              <div className=" genbtn-container row" style={styles.fadeInUp}>
+                <div>
+                  <button
+                    a
+                    href="#"
+                    className="btn waves-effect generate-btn lighten-1 z-depth-0"
+                    onClick={
+                      generatorState === "car"
+                        ? () => toggleGeneratedImages(generatedImages.car, 18)
+                        : () =>
+                            toggleGeneratedImages(generatedImages.concept, 18)
+                    }
+                    onMouseDown={() => handleClick}
+                    onKeyUp={(e) => {
+                      if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {
+                        handleClick();
+                      }
+                    }}
+                    style={{
+                      zIndex: modalIsOpen === false ? 9999 : -9999,
+                    }}
+                  >
+                    Generate
+                  </button>
+                </div>
+              </div>
+            )}
+          </StyleRoot>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 const mapStateToProps = (state) => ({
