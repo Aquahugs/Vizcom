@@ -33,6 +33,8 @@ const Generate = ({
   generatedImages,
   collectImage,
   getGeneratedImages,
+  conceptGeneratedImages,
+  carGeneratedImages,
   bucketDropdownOptions,
 }) => {
   // Local state
@@ -43,19 +45,16 @@ const Generate = ({
   const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
-  const [generatorState, setToggle] = useState("cardesign");
-
+  const [generatorState, setToggle] = useState("car");
 
   useEffect(() => {
     !generatedImages
-      ? fetchGeneratedImages()
-      : toggleGeneratedImages(generatedImages,18);
-
+    ? fetchGeneratedImages(carGeneratedImages)
+    : toggleGeneratedImages(carGeneratedImages, 18);
     getCollection(uid);
     if (!buckets) {
       getBuckets(uid);
     }
-
     // options for bucket search
     const bucketOptionDropdown = buckets?.map((bucket) => ({
       name: bucket.bucket_name,
@@ -66,6 +65,21 @@ const Generate = ({
     setIsLoaded(true);
   }, []);
 
+  useEffect(() => {
+    if (generatorState === "car") {
+      !generatedImages
+        ? fetchGeneratedImages(carGeneratedImages)
+        : toggleGeneratedImages(carGeneratedImages, 18);
+    }
+
+    if (generatorState === "concept") {
+      !generatedImages
+        ? fetchGeneratedImages(conceptGeneratedImages)
+        : toggleGeneratedImages(conceptGeneratedImages, 18);
+    }
+  }, [generatorState]);
+
+
   const styles = {
     fadeInUp: {
       animation: "x 1.2s",
@@ -73,11 +87,11 @@ const Generate = ({
     },
   };
 
-  async function fetchGeneratedImages() {
+  async function fetchGeneratedImages(generatedImageParam) {
     try {
       const response = await getGeneratedImages();
       if (response) {
-        toggleGeneratedImages(generatedImages, 18);
+        toggleGeneratedImages(generatedImageParam, 18);
       }
     } catch (e) {
       console.log(e);
@@ -151,7 +165,7 @@ const Generate = ({
     setDisplayBuckets(false);
   };
 
-//  STYLES
+  //  STYLES
   const modalStyles = {
     content: {
       top: "50%",
@@ -165,7 +179,7 @@ const Generate = ({
       height: "750px",
     },
   };
-  
+
   const showBuckets = {
     visibility: displayBuckets ? "visible" : "hidden",
     display: displayBuckets ? "block" : "none",
@@ -187,30 +201,27 @@ const Generate = ({
     paddingBottom: "9.5%",
   };
 
-const footActive = {
+  const footActive = {
     backgroundColor: generatorState == "footwear" ? "#D9D9D9" : "white",
-};
-const carActive = {
-  backgroundColor: generatorState == "cardesign" ? "#D9D9D9" : "white",
-};
-const conceptActive = {
-  backgroundColor: generatorState == "conceptart" ? "#D9D9D9" : "white",
-};
-const conceptImage = {
-  visibility: generatorState  !== "conceptart" ? "hidden" : "visible",
-  display: generatorState  == "conceptart" ? "block" : "none",
-
-};
-const cardesignImage = {
-  visibility: generatorState  !== "cardesign" ? "hidden" : "visible",
-  display: generatorState  == "cardesign" ? "block" : "none",
-};
-const footwearImage = {
-  visibility: generatorState  !== "footwear" ? "hidden" : "visible",
-  display: generatorState  == "footwear" ? "block" : "none",
-
-};
-
+  };
+  const carActive = {
+    backgroundColor: generatorState == "cardesign" ? "#D9D9D9" : "white",
+  };
+  const conceptActive = {
+    backgroundColor: generatorState == "conceptart" ? "#D9D9D9" : "white",
+  };
+  const conceptImage = {
+    visibility: generatorState !== "conceptart" ? "hidden" : "visible",
+    display: generatorState == "conceptart" ? "block" : "none",
+  };
+  const cardesignImage = {
+    visibility: generatorState !== "cardesign" ? "hidden" : "visible",
+    display: generatorState == "cardesign" ? "block" : "none",
+  };
+  const footwearImage = {
+    visibility: generatorState !== "footwear" ? "hidden" : "visible",
+    display: generatorState == "footwear" ? "block" : "none",
+  };
 
   if (!isLoaded) {
     return <div></div>;
@@ -445,39 +456,43 @@ const footwearImage = {
       {modal}
       <div className="row generate-container">
         <div className="row tag"></div>
-        
+
         <StyleRoot>
-          <div className = "row" >
+          <div className="row">
             {/* GENERATOR MODE SELECTOR */}
-            <div className =" selector-container">
-              <button 
+            <div className=" selector-container">
+              <button
                 onClick={() => setToggle("cardesign")}
-                style = {carActive}
+                style={carActive}
                 class=" btn btn-flat "
-                >
+              >
                 car-design
               </button>
-              <button 
-               onClick={() => setToggle("conceptart")}
+              <button
+                onClick={() => setToggle("conceptart")}
                 class=" btn btn-flat "
-                style = {conceptActive}
-                class="btn btn-flat">concept art
+                style={conceptActive}
+                class="btn btn-flat"
+              >
+                concept art
               </button>
-              <button 
-               onClick={() => setToggle("footwear")}
+              <button
+                onClick={() => setToggle("footwear")}
                 class=" btn btn-flat "
-                style = {footActive}
-                class="btn btn-flat">footwear
+                style={footActive}
+                class="btn btn-flat"
+              >
+                footwear
               </button>
             </div>
           </div>
-          <div className = "row comingsoon" style = {conceptImage}>
+          <div className="row comingsoon" style={conceptImage}>
             <h1>coming soon</h1>
-            <img  src = {conceptart}/>
+            <img src={conceptart} />
           </div>
-          <div className = "row comingsoon" style = {footwearImage}>
+          <div className="row comingsoon" style={footwearImage}>
             <h1>coming soon</h1>
-            <img src = {footwear}/>
+            <img src={footwear} />
           </div>
 
           {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
@@ -486,7 +501,7 @@ const footwearImage = {
             <div className="col s12 m12 l12 " style={hiddenStyle}>
               <img src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233"/>
             </div>
-          </div>
+            </div>
           </Desktop>
           <Tablet>
           <div className="row load-animation">
@@ -496,8 +511,11 @@ const footwearImage = {
           </div>
           </Tablet>
           <Mobile>
-            <div className = "mobile-loader">
-              <img style={hiddenStyle} src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"/>
+            <div className="mobile-loader">
+              <img
+                style={hiddenStyle}
+                src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"
+              />
             </div>
           </Mobile>
           <div className="row gen-container" style={visibilityStyle}>
@@ -510,15 +528,17 @@ const footwearImage = {
             <div style = {cardesignImage}>{tabletImages}</div>
           </div>
 
-      
-
           <div className=" genbtn-container row" style={styles.fadeInUp}>
-            <div style = {cardesignImage}>
-              <button
+            <div style={cardesignImage}>
+            <button
                 a
                 href="#"
                 className="btn waves-effect generate-btn lighten-1 z-depth-0"
-                onClick={() => toggleGeneratedImages(generatedImages, 18)}
+                onClick={
+                  generatorState === "car"
+                    ? () => toggleGeneratedImages(carGeneratedImages, 18)
+                    : () => toggleGeneratedImages(conceptGeneratedImages, 18)
+                }
                 onMouseDown={() => handleClick}
                 onKeyUp={(e) => {
                   if (e.keyIdentifier === 13 || e.keyIdentifier === 32) {
@@ -545,6 +565,8 @@ const mapStateToProps = (state) => ({
   collection: state.collection.collection,
   buckets: state.bucket.buckets,
   generatedImages: state.generate.images,
+  conceptGeneratedImages: state.generate.images.concept,
+  carGeneratedImages: state.generate.images.car,
   bucketDropdownOptions: state.bucket.dropdownOptions,
 });
 
