@@ -136,27 +136,12 @@ export const Admin = ({ history, user, uid, getProfile }) => {
             preventScrolling: true,
             startingTop: "4%",
           }}
-<<<<<<< HEAD
-          value="2"
-        >
-          <option value="car">Car</option>
-          <option value="concept">Concept</option>
-          <option value="shoe">Shoe</option>
-        </Select>
-        <button className="btn btn-primary" type="submit" name="action">
-          Upload
-        </button>
-      </form>
-    </div>
-  );
-=======
           header="DID YOU CHOSE YOUR IMAGE TYPE"
           trigger={trigger}
         ></Modal>
       </div>
     );
   }
->>>>>>> e397dd722bae7636805c6ea117e19ad2f6ef8ad4
 };
 
 const mapStateToProps = (state) => ({

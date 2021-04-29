@@ -13,6 +13,7 @@ import { BucketThunks, BucketActions } from "../../Bucket/redux";
 import { GenerateThunks } from "./redux";
 
 import { withAuthorization } from "../../../router/auth/session";
+// import "render-smooth-image-react/build/style.css";
 
 import downloadbutton from "../../../assets/download-button.svg";
 import collectconfirm from "../../../assets/collect-confirm.svg";
@@ -20,6 +21,8 @@ import conceptart from "../../../assets/conceptart-holder.png";
 import footwear from "../../../assets/footwear-holder.png";
 import genanimation from "../../../assets/gen-animation.mp4";
 import AddToBucket from "./AddToBucket";
+import RenderSmoothImage from 'render-smooth-image-react';
+import 'render-smooth-image-react/build/style.css';
 
 const Generate = ({
   buckets,
@@ -221,6 +224,7 @@ const footwearImage = {
           <Desktop>
             <div className = "generate-images"></div>
             <div className="col s2 m2 l2 image-box">
+              
               <img
                 alt="ai generated"
                 className="generated-image"
@@ -478,11 +482,10 @@ const footwearImage = {
 
           {/* LOAD ANIMATION THIS CAN BE REFACTORED INTO A LOT LESS CODE LATER */}
           <Desktop>
-          <div className="row ">
-            <div className="col s12 m12 l12 load-animation" style={hiddenStyle}>
-              <img src = "https://via.placeholder.com/750x550"/>
+          <div className="row load-animation ">
+            <div className="col s12 m12 l12 " style={hiddenStyle}>
+              <img src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233"/>
             </div>
-  
           </div>
           </Desktop>
           <Tablet>
@@ -494,7 +497,6 @@ const footwearImage = {
             <div className = "mobile-loader">
               <img style={hiddenStyle} src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"/>
             </div>
-            
           </Mobile>
           <div className="row gen-container" style={visibilityStyle}>
             <div style = {cardesignImage}>{images}</div>
