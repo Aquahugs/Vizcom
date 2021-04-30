@@ -5,31 +5,34 @@ import { withAuthorization } from "../../router/auth/session";
 import mock from "../../assets/Explore.png";
 import { Desktop, Tablet, Mobile } from "../Responsive";
 import { connect } from "react-redux";
+
 import RenderSmoothImage from "render-smooth-image-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "render-smooth-image-react/build/style.css";
 
-const Explore = ({ allImages }) => {
-  const [images, setImages] = useState([]);
+import { ExploreThunks } from "./redux";
+
+const Explore = ({ exploreFeed }) => {
+  const [feed, setFeed] = useState([]);
   const [loaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!images) {
-      setImages(...allImages.slice(0, 10));
+    if (!feed) {
+      setFeed(...exploreFeed.slice(0, 10));
     }
-    fetchImages();
+    fetchExploreFeed();
   }, []);
 
-  const fetchImages = (count = 10) => {
-    console.log(images.length);
-    if (images) {
-      const tempArray = allImages?.slice(images.length, images.length + count);
-      setImages([...images, ...tempArray]);
+  const fetchExploreFeed = (count = 10) => {
+    console.log(feed.length);
+    if (feed) {
+      const tempArray = exploreFeed?.slice(feed.length, feed.length + count);
+      setFeed([...feed, ...tempArray]);
       setIsLoaded(true);
     }
   };
 
-  if (!allImages) {
+  if (!exploreFeed) {
     return <div></div>;
   } else {
     return (
@@ -37,8 +40,8 @@ const Explore = ({ allImages }) => {
         <Desktop>
           <h3>Explore</h3>
           <InfiniteScroll
-            dataLength={images}
-            next={() => fetchImages(5)}
+            dataLength={feed}
+            next={() => fetchExploreFeed(5)}
             hasMore={true}
             loader={
               <img
@@ -50,7 +53,7 @@ const Explore = ({ allImages }) => {
           >
             <div className="image-grid" style={{ marginTop: "30px" }}>
               {loaded
-                ? images.map((image, index) => (
+                ? exploreFeed.map((image, index) => (
                     <div className="image-item" key={index}>
                       <RenderSmoothImage
                         src={image.image_uri}
@@ -77,8 +80,8 @@ const Explore = ({ allImages }) => {
         </Tablet>
         <Mobile>
           <InfiniteScroll
-            dataLength={images}
-            next={() => fetchImages(5)}
+            dataLength={exploreFeed}
+            next={() => fetchExploreFeed(5)}
             hasMore={true}
             loader={
               <img
@@ -90,7 +93,7 @@ const Explore = ({ allImages }) => {
           >
             <div className="image-grid" style={{ marginTop: "30px" }}>
               {loaded
-                ? images.map((image, index) => (
+                ? exploreFeed.map((image, index) => (
                     <div className="image-item" key={index}>
                       <RenderSmoothImage
                         src={image.image_uri}
@@ -110,13 +113,17 @@ const Explore = ({ allImages }) => {
 
 const mapStateToProps = (state) => {
   return {
-    allImages: state.generate.images,
+    exploreFeed: state.explore.feed,
   };
+};
+
+const mapDispatchToProps = {
+  getExploreFeed: ExploreThunks.getExploreFeed,
 };
 
 const condition = (authUser) => !!authUser;
 
 export default compose(
   withAuthorization(condition),
-  connect(mapStateToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(Explore);

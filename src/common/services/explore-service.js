@@ -15,4 +15,7 @@ export default {
   getFeed() {
     return apiClient.get(`/api/explore/feed`);
   },
+  deleteFeedItem(id) {
+    return apiClient.post(`/api/explore/feed/item/delete`, id);
+  },
 };

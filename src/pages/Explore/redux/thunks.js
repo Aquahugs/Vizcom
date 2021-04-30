@@ -1,5 +1,5 @@
 import actions from "./actions";
-import exploreService from "../../../../common/services/explore-service";
+import exploreService from "../../../common/services/explore-service";
 
 const getExploreFeed = () => async (dispatch) => {
   dispatch(actions.getExploreFeedStarted());

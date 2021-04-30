@@ -20,7 +20,7 @@ const collectionReducer = (state = initialState, action) => {
     case TYPES.INSERT_COLLECTION_SUCCESS:
       return {
         ...state,
-        collection: action.collection,
+        collection: [...state.collection, action.collectionImage],
         status: null,
       };
     case TYPES.DELETE_COLLECTION_IMAGE_SUCCESS:
