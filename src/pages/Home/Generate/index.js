@@ -224,7 +224,7 @@ const Generate = ({
           <Desktop>
             <div className="generate-images"></div>
             <div
-              className="col s2 m2 l2 image-box"
+              className="col s2 m2 l2 image-box "
               onClick={() => {
                 openModal(image);
               }}
@@ -266,7 +266,7 @@ const Generate = ({
 
   //MOBILE VIEW
   const mobileImages = generatedDisplayImages
-    ?.slice(0, 1)
+    ?.slice(0,4)
     .map((image, imageIndex) => {
       return (
         <div
@@ -276,39 +276,12 @@ const Generate = ({
           }}
         >
           <Mobile>
-            <div className="col s12 m12 l12">
+            <div className="col s6 m6 l6">
               <RenderSmoothImage
                 alt="ai generated"
                 className="generated-image"
                 src={image.image_uri}
               />
-
-              <div className="row save-buttons">
-                <a href={image.image_uri} download>
-                  <img
-                    alt="ai generated"
-                    className="download-button"
-                    src={downloadbutton}
-                    onClick={() => logDownload(image.image_uri)}
-                  />
-                </a>
-                {image.isCollected ? (
-                  <img
-                    alt="collect confirm icon"
-                    className="collect-confirm right"
-                    src={collectconfirm}
-                  />
-                ) : (
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                  <a
-                    className="collect"
-                    onClick={() => collectImageHandler(image)}
-                  >
-                    Collect
-                    <i className="material-icons right">add_box</i>
-                  </a>
-                )}
-              </div>
             </div>
           </Mobile>
         </div>
@@ -322,14 +295,14 @@ const Generate = ({
           ariaHideApp={false}
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          style={modalStyles}
+          className="modalStyles"
           contentLabel="Example Modal"
           onAfterClose={closeModal}
         >
           <span>
             {/* Pop up modal */}
             <div className="row container-modal">
-              <div className="col s12 m12 l12">
+              <div className="col s12 m12 l12 ">
                 <RenderSmoothImage
                   alt="ai generated"
                   className="generated-imagemodal"
@@ -433,14 +406,14 @@ const Generate = ({
             <Desktop>
               <div className="row load-animation ">
                 <div className="col s12 m12 l12 " style={hiddenStyle}>
-                  <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233" />
+                  <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Rolling-1.9s-200px.gif?alt=media&token=37081324-82b9-473f-a4ac-bd23bce13f55" />
                 </div>
               </div>
             </Desktop>
             <Tablet>
               <div className="row load-animation">
                 <div className="col s12 m12 l12 " style={hiddenStyle}>
-                  <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Pulse-1s-200px%20(1).gif?alt=media&token=48b58512-121b-4630-a4a5-fdc5fa137233" />
+                  <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Rolling-1.9s-200px.gif?alt=media&token=37081324-82b9-473f-a4ac-bd23bce13f55" />
                 </div>
               </div>
             </Tablet>
@@ -453,7 +426,7 @@ const Generate = ({
               </div>
             </Mobile>
             {generatorState !== "footwear" && (
-              <div>
+              <div >
                 <div className="row gen-container" style={visibilityStyle}>
                   <div>{images}</div>
                 </div>
