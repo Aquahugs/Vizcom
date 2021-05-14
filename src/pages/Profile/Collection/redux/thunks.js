@@ -38,14 +38,6 @@ const collectImage = (imageObj) => async (dispatch) => {
     dispatch(actions.insertCollectionSuccess(response.data));
     INFO_NOTIFICATION_CONFIG.message = `Image was added to your collection!`;
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
-    const exploreItem = {
-      is_image: true,
-      description: "Collected Image",
-      uuid: imageObj.uuid,
-      collection_image_id: response.data.collection_image_id, //optional
-      bucket_id: null,
-    };
-    await exploreService.postFeedItem(exploreItem);
   } catch (error) {
     dispatch(actions.insertCollectionError(error));
   }
@@ -58,14 +50,6 @@ const collectImageAsync = (imageObj) => async (dispatch) => {
       dispatch(actions.insertCollectionSuccess(response.data));
       INFO_NOTIFICATION_CONFIG.message = `Image was added to your collection!`;
       dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
-      const exploreItem = {
-        is_image: true,
-        description: "Collected Image",
-        uuid: imageObj.uuid,
-        collection_image_id: response.data.collection_image_id, //optional
-        bucket_id: null,
-      };
-      await exploreService.postFeedItem(exploreItem);
       resolve(response.data);
     } catch (error) {
       ERROR_NOTIFICATION_CONFIG.message =

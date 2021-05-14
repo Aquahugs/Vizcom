@@ -25,9 +25,9 @@ const insertCollectionStarted = () => ({
   type: TYPES.INSERT_COLLECTION_STARTED,
 });
 
-const insertCollectionSuccess = (collectionImage) => ({
+const insertCollectionSuccess = (collection) => ({
   type: TYPES.INSERT_COLLECTION_SUCCESS,
-  collectionImage,
+  collection,
 });
 const deleteCollectionImageError = () => ({
   type: TYPES.DELETE_COLLECTION_IMAGE_ERROR,

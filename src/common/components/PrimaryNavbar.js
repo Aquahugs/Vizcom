@@ -42,11 +42,11 @@ const PrimaryNav = ({ user, profile }) => {
                   className="profile-picture"
                   src={user.authUser.providerData[0].photoURL}
                 />
-              ) : profile?.image_uri ? (
+              ) : profile?.profile_photo ? (
                 <img
                   alt="profile icon"
                   className="profile-picture"
-                  src={profile.image_uri}
+                  src={profile.profile_photo}
                 />
               ) : (
                 ""

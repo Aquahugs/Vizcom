@@ -5,6 +5,7 @@ import { withAuthorization } from "../../router/auth/session";
 import mock from "../../assets/Explore.png";
 import { Desktop, Tablet, Mobile } from "../Responsive";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import RenderSmoothImage from "render-smooth-image-react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -12,24 +13,54 @@ import "render-smooth-image-react/build/style.css";
 
 import { ExploreThunks } from "./redux";
 
-const Explore = ({ exploreFeed }) => {
-  const [feed, setFeed] = useState([]);
+const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
+  const [allExploreFeed, setAllExploreFeed] = useState(null);
+  const [localFeed, setLocalFeed] = useState([]);
   const [loaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!feed) {
-      setFeed(...exploreFeed.slice(0, 10));
-    }
-    fetchExploreFeed();
+    fetchExploreFeed().then(() => {
+      if (!allExploreFeed && exploreFeed) {
+        setAllExploreFeed(exploreFeed);
+        console.log(allExploreFeed);
+      }
+      if (!localFeed && allExploreFeed) {
+        setLocalFeed(...allExploreFeed.slice(0, 10));
+      }
+      addToExploreFeed();
+    });
   }, []);
 
-  const fetchExploreFeed = (count = 10) => {
-    console.log(feed.length);
-    if (feed) {
-      const tempArray = exploreFeed?.slice(feed.length, feed.length + count);
-      setFeed([...feed, ...tempArray]);
+  useEffect(() => {
+    if (!localFeed && allExploreFeed) {
+      console.log("YEEEEEEEEEET", allExploreFeed.slice(0, 10));
+      addToExploreFeed();
+    }
+    addToExploreFeed();
+  }, [exploreFeed, allExploreFeed]);
+
+  const addToExploreFeed = (count = 10) => {
+    if (allExploreFeed) {
+      const tempArray = allExploreFeed?.slice(
+        localFeed.length,
+        localFeed.length + count
+      );
+      setLocalFeed([...localFeed, ...tempArray]);
+
       setIsLoaded(true);
     }
+  };
+
+  const fetchExploreFeed = async () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await getExploreFeed();
+        setAllExploreFeed(response);
+        resolve(response);
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 
   if (!exploreFeed) {
@@ -40,8 +71,8 @@ const Explore = ({ exploreFeed }) => {
         <Desktop>
           <h3>Explore</h3>
           <InfiniteScroll
-            dataLength={feed}
-            next={() => fetchExploreFeed(5)}
+            dataLength={localFeed}
+            next={() => addToExploreFeed(5)}
             hasMore={true}
             loader={
               <img
@@ -50,16 +81,74 @@ const Explore = ({ exploreFeed }) => {
                 alt="loading"
               />
             }
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>you have made it to the end!</b>
+              </p>
+            }
           >
             <div className="image-grid" style={{ marginTop: "30px" }}>
               {loaded
-                ? exploreFeed.map((image, index) => (
+                ? localFeed.map((item, index) => (
                     <div className="image-item" key={index}>
-                      <RenderSmoothImage
-                        src={image.image_uri}
-                        alt="alternate-text"
-                        className="hover-zoom"
-                      />
+                      {item.image_uri ? (
+                        item.bucket_id ? (
+                          <div>
+                            <RenderSmoothImage
+                              src={item.image_uri}
+                              alt="alternate-text"
+                              className="hover-zoom"
+                            />
+                            <p>
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                              added to
+                              <Link
+                                to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
+                              >
+                                {item.bucket_name}
+                              </Link>
+                            </p>
+                          </div>
+                        ) : (
+                          <div>
+                            {" "}
+                            <RenderSmoothImage
+                              src={item.image_uri}
+                              alt="alternate-text"
+                              className="hover-zoom"
+                            />
+                            <p>
+                              collected by{" "}
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                            </p>
+                          </div>
+                        )
+                      ) : (
+                        <Link
+                          to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
+                        >
+                          <div className="bucket-titlecard">
+                            {/* Bucket title card */}
+                            <h3>{item?.bucket_name}</h3>
+                            <p>
+                              By:{" "}
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                            </p>
+                          </div>
+                        </Link>
+                      )}
                     </div>
                   ))
                 : ""}
@@ -80,8 +169,8 @@ const Explore = ({ exploreFeed }) => {
         </Tablet>
         <Mobile>
           <InfiniteScroll
-            dataLength={exploreFeed}
-            next={() => fetchExploreFeed(5)}
+            dataLength={localFeed}
+            next={() => addToExploreFeed(5)}
             hasMore={true}
             loader={
               <img
@@ -93,13 +182,66 @@ const Explore = ({ exploreFeed }) => {
           >
             <div className="image-grid" style={{ marginTop: "30px" }}>
               {loaded
-                ? exploreFeed.map((image, index) => (
+                ? localFeed.map((item, index) => (
                     <div className="image-item" key={index}>
-                      <RenderSmoothImage
-                        src={image.image_uri}
-                        alt="alternate-text"
-                        className="hover-zoom"
-                      />
+                      {item.image_uri ? (
+                        item.bucket_id ? (
+                          <div>
+                            <RenderSmoothImage
+                              src={item.image_uri}
+                              alt="alternate-text"
+                              className="hover-zoom"
+                            />
+                            <p>
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                              added to
+                              <Link
+                                to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
+                              >
+                                {item.bucket_name}
+                              </Link>
+                            </p>
+                          </div>
+                        ) : (
+                          <div>
+                            {" "}
+                            <RenderSmoothImage
+                              src={item.image_uri}
+                              alt="alternate-text"
+                              className="hover-zoom"
+                            />
+                            <p>
+                              collected by{" "}
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                            </p>
+                          </div>
+                        )
+                      ) : (
+                        <Link
+                          to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
+                        >
+                          <div className="bucket-titlecard">
+                            {/* Bucket title card */}
+                            <h3>{item?.bucket_name}</h3>
+                            <p>
+                              By:{" "}
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                            </p>
+                          </div>
+                        </Link>
+                      )}
                     </div>
                   ))
                 : ""}
@@ -114,11 +256,12 @@ const Explore = ({ exploreFeed }) => {
 const mapStateToProps = (state) => {
   return {
     exploreFeed: state.explore.feed,
+    exploreStatus: state.explore.status,
   };
 };
 
 const mapDispatchToProps = {
-  getExploreFeed: ExploreThunks.getExploreFeed,
+  getExploreFeed: ExploreThunks.getExploreFeedAsync,
 };
 
 const condition = (authUser) => !!authUser;

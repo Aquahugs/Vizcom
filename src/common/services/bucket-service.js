@@ -5,6 +5,9 @@ export default {
   getBuckets(uid) {
     return apiClient.get(`/api/bucket/${uid}/get/all`);
   },
+  getBucket(bucket_id) {
+    return apiClient.get(`/api/bucket/${bucket_id}/get/one`);
+  },
 
   addToBucket(image) {
     return apiClient.post(`/api/bucket/add`, image);

@@ -88,3 +88,29 @@
   margin-right: auto;
   width: 40%;
 }
+
+.bucket-titlecard {
+  width: 19.75rem;
+  height: 19.25rem;
+  border: solid 1px #707070;
+  margin-right: 0px !important ;
+  display: inline-block;
+  float: left;
+
+  h3 {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2rem;
+    color: #707070;
+    font-weight: 500;
+    padding-top: 15%;
+  }
+
+  p {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem;
+    color: #707070;
+    font-weight: 500;
+  }
+}

@@ -15,6 +15,7 @@ import {
 } from "../../../common/components/Responsive/Responsive";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
+import backarrow from "../../../assets/back-arrow.svg";
 
 import userService from "../../../common/services/user-service";
 import collectionService from "../../../common/services/collection-service";
@@ -62,12 +63,23 @@ const DynamicProfile = ({ match }) => {
         <Desktop>
           <div className="profile-container">
             <div className="row">
+              <div className="col s9 m9 l9">
+                <Link to={"/explore"}>
+                  <img
+                    alt="back arrow icon"
+                    className="backarrow"
+                    src={backarrow}
+                  />
+                </Link>
+              </div>
+            </div>
+            <div className="row">
               <div className="col sm6 m6 l6">
                 <div className="row bio-header">
                   {profile && profile?.first_name ? (
                     <h2>{profile.first_name}</h2>
                   ) : (
-                    <h2>Your Name</h2>
+                    <h2>{profile?.display_name}</h2>
                   )}
                 </div>
 
@@ -139,7 +151,12 @@ const DynamicProfile = ({ match }) => {
                           <div className="bucket-titlecard">
                             {/* Bucket title card */}
                             <h3>{bucket?.bucket_name}</h3>
-                            <p>by / {profile?.first_name}</p>
+                            <p>
+                              by /{" "}
+                              {profile?.first_name
+                                ? profile?.first_name
+                                : profile?.display_name}
+                            </p>
                             <p>
                               {bucket?.images ? bucket.images.length : 0} images
                             </p>
@@ -220,12 +237,23 @@ const DynamicProfile = ({ match }) => {
         <Tablet>
           <div className="profile-container">
             <div className="row">
+              <div className="col s9 m9 l9">
+                <Link to={"/explore"}>
+                  <img
+                    alt="back arrow icon"
+                    className="backarrow"
+                    src={backarrow}
+                  />
+                </Link>
+              </div>
+            </div>
+            <div className="row">
               <div className="col sm6 m6 l6">
                 <div className="row bio-header">
                   {profile && profile?.first_name ? (
-                    <h2>{profile.first_name}</h2>
+                    <h2>{profile?.first_name}</h2>
                   ) : (
-                    <h2>Your Name</h2>
+                    <h2>{profile?.display_name}</h2>
                   )}
                 </div>
 
@@ -297,7 +325,12 @@ const DynamicProfile = ({ match }) => {
                           <div className="bucket-titlecard">
                             {/* Bucket title card */}
                             <h3>{bucket?.bucket_name}</h3>
-                            <p>by / {profile?.first_name}</p>
+                            <p>
+                              by /{" "}
+                              {profile?.first_name
+                                ? profile?.first_name
+                                : profile?.display_name}
+                            </p>
                             <p>
                               {bucket?.images ? bucket.images.length : 0} images
                             </p>
@@ -377,12 +410,23 @@ const DynamicProfile = ({ match }) => {
         <Mobile>
           <div className="mobile-profile-container">
             <div className="row">
+              <div className="col s9 m9 l9">
+                <Link to={"/explore"}>
+                  <img
+                    alt="back arrow icon"
+                    className="backarrow"
+                    src={backarrow}
+                  />
+                </Link>
+              </div>
+            </div>
+            <div className="row">
               <div className="col s12 m12 l12">
                 <div className="row bio-header-mobile">
                   {profile?.first_name ? (
-                    <h2>{profile.first_name}</h2>
+                    <h2>{profile?.first_name}</h2>
                   ) : (
-                    <h2>Your Name</h2>
+                    <h2>{profile?.display_name}</h2>
                   )}
                 </div>
 
@@ -457,7 +501,12 @@ const DynamicProfile = ({ match }) => {
                           <div className="bucket-titlecard">
                             {/* Bucket title card */}
                             <h3>{bucket?.bucket_name}</h3>
-                            <p>by / {profile?.first_name}</p>
+                            <p>
+                              by /{" "}
+                              {profile?.first_name
+                                ? profile?.first_name
+                                : profile?.display_name}
+                            </p>
                             <p>
                               {bucket?.images ? bucket.images.length : 0} images
                             </p>
