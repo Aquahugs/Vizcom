@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Example from "./noti";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { fadeInUp } from "react-animations";

@@ -29,8 +29,6 @@ export const Admin = ({ history, user, uid, getProfile }) => {
     });
   };
 
-  const { handleSubmit } = useForm();
-
   const handleDropdownClick = (e) => {
     console.log(e.target.value);
     setImageType(e.target.value);
@@ -82,7 +80,7 @@ export const Admin = ({ history, user, uid, getProfile }) => {
   } else {
     return (
       <div>
-        <form enctype="multipart/form-data">
+        <form>
           <h3>Upload Images to Google Cloud</h3>
           <Dropzone files={files} setFiles={setFiles} multiple={true} />
           <Select

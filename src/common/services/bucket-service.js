@@ -5,6 +5,9 @@ export default {
   getBuckets(uid) {
     return apiClient.get(`/api/bucket/${uid}/get/all`);
   },
+  getBucket(bucket_id) {
+    return apiClient.get(`/api/bucket/${bucket_id}/get/one`);
+  },
 
   addToBucket(image) {
     return apiClient.post(`/api/bucket/add`, image);
@@ -25,5 +28,8 @@ export default {
 
   deleteBucketImage(bucketImage) {
     return apiClient.post(`/api/bucket/image`, bucketImage);
+  },
+  updateBucket(bucket) {
+    return apiClient.patch(`/api/bucket/update/id/${bucket.bucket_id}`, bucket);
   },
 };

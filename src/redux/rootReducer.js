@@ -5,6 +5,7 @@ import sessionReducer from "../router/auth/redux/reducer";
 import bucketReducer from "../pages/Bucket/redux/reducers";
 import collectionReducer from "../pages/Profile/Collection/redux/reducers";
 import generateReducer from "../pages/Home/Generate/redux/reducers";
+import exploreReducer from "../pages/Explore/redux/reducers";
 import notifyReducer from "react-redux-notify";
 
 export default combineReducers({
@@ -14,4 +15,5 @@ export default combineReducers({
   collection: collectionReducer,
   generate: generateReducer,
   notifications: notifyReducer,
+  explore: exploreReducer,
 });
