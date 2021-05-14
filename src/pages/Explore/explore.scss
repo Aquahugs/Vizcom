@@ -89,13 +89,16 @@
   width: 40%;
 }
 
-.bucket-titlecard {
-  width: 19.75rem;
-  height: 19.25rem;
+.bucket-card {
+  display: flex;
+  width: 17rem;
+  height: 17rem;
+  object-fit: cover;
   border: solid 1px #707070;
   margin-right: 0px !important ;
   display: inline-block;
   float: left;
+  padding: 5px;
 
   h3 {
     text-align: center;

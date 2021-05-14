@@ -85,7 +85,24 @@ const deleteBucketImageSuccess = (buckets) => ({
   buckets,
 });
 
+const updateBucketError = () => ({
+  type: TYPES.UPDATE_BUCKET_ERROR,
+  error: "Unable to update bucket",
+});
+
+const updateBucketStarted = () => ({
+  type: TYPES.UPDATE_BUCKET_STARTED,
+});
+
+const updateBucketSuccess = (buckets) => ({
+  type: TYPES.UPDATE_BUCKET_SUCCESS,
+  buckets,
+});
+
 const BucketActions = {
+  updateBucketError,
+  updateBucketStarted,
+  updateBucketSuccess,
   setCurrentBucket,
   getBucketsError,
   getBucketsStarted,

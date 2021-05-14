@@ -115,7 +115,6 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
                           </div>
                         ) : (
                           <div>
-                            {" "}
                             <RenderSmoothImage
                               src={item.image_uri}
                               alt="alternate-text"
@@ -135,7 +134,7 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
                         <Link
                           to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
                         >
-                          <div className="bucket-titlecard">
+                          <div className="bucket-card">
                             {/* Bucket title card */}
                             <h3>{item?.bucket_name}</h3>
                             <p>
@@ -156,16 +155,90 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
           </InfiniteScroll>
         </Desktop>
         <Tablet>
-          <div className="row placeholder">
-            <div className="col s12 m12 l12">
-              <h1 className="title">Explore</h1>
-              <p>
-                {" "}
-                A live activity feed of the Vizcom community. Coming soon...
+          <h3>Explore</h3>
+          <InfiniteScroll
+            dataLength={localFeed}
+            next={() => addToExploreFeed(5)}
+            hasMore={true}
+            loader={
+              <img
+                className="infinite-loading-icon"
+                src="https://media.giphy.com/media/feN0YJbVs0fwA/giphy.gif"
+                alt="loading"
+              />
+            }
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>you have made it to the end!</b>
               </p>
-              <img alt="mock" className="explore-mock" src={mock} />
+            }
+          >
+            <div className="image-grid" style={{ marginTop: "30px" }}>
+              {loaded
+                ? localFeed.map((item, index) => (
+                    <div className="image-item" key={index}>
+                      {item.image_uri ? (
+                        item.bucket_id ? (
+                          <div>
+                            <RenderSmoothImage
+                              src={item.image_uri}
+                              alt="alternate-text"
+                              className="hover-zoom"
+                            />
+                            <p>
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                              added to
+                              <Link
+                                to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
+                              >
+                                {item.bucket_name}
+                              </Link>
+                            </p>
+                          </div>
+                        ) : (
+                          <div>
+                            <RenderSmoothImage
+                              src={item.image_uri}
+                              alt="alternate-text"
+                              className="hover-zoom"
+                            />
+                            <p>
+                              collected by{" "}
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                            </p>
+                          </div>
+                        )
+                      ) : (
+                        <Link
+                          to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
+                        >
+                          <div className="bucket-card">
+                            {/* Bucket title card */}
+                            <h3>{item?.bucket_name}</h3>
+                            <p>
+                              By:{" "}
+                              <Link to={`/user/${item.uuid}`}>
+                                {item.first_name
+                                  ? item.first_name
+                                  : item.display_name}
+                              </Link>
+                            </p>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                  ))
+                : ""}
             </div>
-          </div>
+          </InfiniteScroll>
         </Tablet>
         <Mobile>
           <InfiniteScroll
@@ -228,7 +301,7 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
                         <Link
                           to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
                         >
-                          <div className="bucket-titlecard">
+                          <div className="bucket-card">
                             {/* Bucket title card */}
                             <h3>{item?.bucket_name}</h3>
                             <p>

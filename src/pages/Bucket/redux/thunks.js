@@ -88,8 +88,25 @@ const deleteBucketImage = (image) => async (dispatch) => {
     dispatch(actions.deleteBucketImageError(error));
   }
 };
+const updateBucket = (bucket) => async (dispatch) => {
+  dispatch(actions.updateBucketStarted());
+  try {
+    const response = await bucketService.updateBucket(bucket);
+    dispatch(actions.updateBucketSuccess(response.data));
+    debugger;
+    INFO_NOTIFICATION_CONFIG.message =
+      "Your profile has been updated successfully";
+    dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
+  } catch (error) {
+    ERROR_NOTIFICATION_CONFIG.message =
+      "We fumbled the bag on saving your profile!";
+    dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
+    dispatch(actions.updateBucketError(error));
+  }
+};
 
 export default {
+  updateBucket,
   getBuckets,
   getBucketsAsync,
   createBucket,

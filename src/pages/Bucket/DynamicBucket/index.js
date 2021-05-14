@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import { compose } from "recompose";
 import { Link } from "react-router-dom";
 import { withAuthorization } from "../../../router/auth/session";
@@ -48,11 +47,11 @@ const SingleBucketView = ({ match }) => {
     return (
       <div className="view-container row">
         <h1>{bucket[0]?.bucket_name}</h1>
-        {bucket[0]?.description && <h4>{bucket.description}</h4>}
-        <h4>
+        {bucket[0]?.description && <h4>{bucket[0].description}</h4>}
+        <h5>
           By:{" "}
           {profile?.first_name ? profile?.first_name : profile?.display_name}
-        </h4>
+        </h5>
         <div className="row top-items">
           <div className="col s9 m9 l9">
             <Link to={"/explore"}>

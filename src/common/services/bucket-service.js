@@ -29,4 +29,7 @@ export default {
   deleteBucketImage(bucketImage) {
     return apiClient.post(`/api/bucket/image`, bucketImage);
   },
+  updateBucket(bucket) {
+    return apiClient.patch(`/api/bucket/update/id/${bucket.bucket_id}`, bucket);
+  },
 };
