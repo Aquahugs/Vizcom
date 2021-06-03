@@ -12,7 +12,7 @@ const Footer = ({ darkmode }) => {
               <li>About</li>
             </Link>
             <li>Contact</li>
-            <a href="https://twitter.com/Vizcom_io">
+            <a href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
             <a href="https://www.instagram.com/vizcom.io/">
