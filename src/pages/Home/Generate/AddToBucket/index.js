@@ -44,7 +44,7 @@ const AddToBucket = ({
       )
     ) {
       collectImage(imageObj).then((collectionImages) => {
-        const collectionImage = collectionImages.find((i) => {
+        const collectionImage = collectionImages?.find((i) => {
           return i.generated_image_id === image.generated_image_id;
         });
         const newImage = {
@@ -72,7 +72,7 @@ const AddToBucket = ({
   };
 
   return (
-    <div>
+    <div style={{ marginLeft: "5%" }}>
       <form onSubmit={handleSubmit(submitForm)}>
         <SelectSearch
           options={bucketDropdownOptions}

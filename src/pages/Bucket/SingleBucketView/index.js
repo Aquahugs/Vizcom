@@ -6,8 +6,10 @@ import { withAuthorization } from "../../../router/auth/session";
 
 import "./singlebucketview.scss";
 import backarrow from "../../../assets/back-arrow.svg";
+import pencilIcon from "../../../assets/pencil.png";
 
 import { Modal, Button } from "react-materialize";
+import UpdateBucketModal from "../UpdateBucketModal";
 
 import ProfileThunks from "../../Profile/redux/thunks";
 import CollectionThunks from "../../Profile/Collection/redux/thunks";
@@ -49,6 +51,14 @@ const SingleBucketView = ({
     }
   }, [buckets]);
 
+  useEffect(() => {
+    const { params } = match;
+
+    setBucket(
+      buckets?.find((bucket) => bucket.bucket_id === parseInt(params.bucket_id))
+    );
+  }, [buckets]);
+
   const deleteBucketImageHandler = ({ collection_image_id }) => {
     const req = {
       collection_image_id,
@@ -67,6 +77,9 @@ const SingleBucketView = ({
   };
 
   const trigger = <Button className="delete-btn ">Delete Bucket</Button>;
+  const updateModalTrigger = (
+    <img className="clickable-icon" src={pencilIcon}></img>
+  );
 
   if (!bucket) {
     return (
@@ -77,7 +90,10 @@ const SingleBucketView = ({
   } else {
     return (
       <div className="view-container row">
-        <h1>{bucket.bucket_name}</h1>
+        <div className="row top-items">
+          <h1>{bucket.bucket_name}</h1>
+          <UpdateBucketModal bucket={bucket} trigger={updateModalTrigger} />
+        </div>
 
         <div className="row top-items">
           <div className="col s9 m9 l9">

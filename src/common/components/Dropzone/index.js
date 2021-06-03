@@ -78,7 +78,7 @@ const StyledDropzone = ({ files, setFiles, multiple }) => {
     isDragReject,
   } = useDropzone({
     accept: "image/*",
-    maxFiles: 1000,
+    maxFiles: 1300,
     multiple: multiple,
     onDrop: (acceptedFiles) => {
       console.log("files", acceptedFiles);
