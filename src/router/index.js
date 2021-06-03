@@ -9,7 +9,7 @@ import CreateBucket from "../pages/Bucket/CreateBucket"; //need to put this into
 import Explore from "../pages/Explore";
 import Home from "../pages/Home";
 import Generate from "../pages/Home/Generate";
-import SketchToRender from "../pages/Home/SketchToRender";
+import SketchToRender from "../pages/Home/Sk2R";
 import About from "../pages/About";
 import SingleBucketView from "../pages/Bucket/SingleBucketView";
 import LandingPage from "../pages/LandingPage";
