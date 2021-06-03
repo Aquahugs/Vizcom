@@ -16,7 +16,7 @@ const renderImage = async (req) => {
 };
 
 const uploadRender = async (req) => {
-  return apiUploadClient.post(`/api/sk2r/upload/render`, req);
+  return apiUploadClient.post(`/api/sk2r/upload/render`, req.renderedImage);
 };
 const uploadPrerender = async (req) => {
   return apiUploadClient.post(`/api/sk2r/upload/prerender`, req.formData);

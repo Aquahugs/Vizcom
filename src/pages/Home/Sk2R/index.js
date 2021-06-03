@@ -34,14 +34,14 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
     debugger;
     sk2rService.renderImage(req).then((resp) => {
       debugger;
-      const renderedReq = {
-        file: {
-          buffer: resp.data.toString("base64"),
-          originalname: files[0].name,
-        },
+      const renderedImage = new FormData();
+      renderedImage.append("file", resp.data);
+      const renderedRequest = {
+        renderedImage,
       };
+
       debugger;
-      sk2rService.uploadRender(renderedReq).then((resp) => {
+      sk2rService.uploadRender(renderedRequest).then((resp) => {
         img.renderedImage = resp;
       });
       sk2rService.uploadPrerender(req).then((resp) => {
