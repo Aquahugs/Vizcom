@@ -9,7 +9,17 @@ const apiUploadClient = axios.create({
 
 const renderImage = async (req) => {
   try {
-    return axios.post("http://localhost:5000/gen", req.formData);
+    return axios.post("http://localhost:5000/gen", req.formData, { responseType: 'arraybuffer' })
+    .then((response) => {
+      let image = btoa(
+        new Uint8Array(response.data)
+          .reduce((data, byte) => data + String.fromCharCode(byte), '')
+          
+      );
+      console.log(image)
+      return `data:${response.headers['content-type'].toLowerCase()};base64,${image}`;
+    })
+  
   } catch (error) {
     console.log(error);
   }

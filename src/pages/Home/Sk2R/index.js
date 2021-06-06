@@ -10,7 +10,8 @@ import { Button } from "react-materialize";
 export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [renderedImage, setRenderedImage] = useState();
+  const [renderedImage, setRenderedImage] = useState("");
+  const [testImage, setTestImage] = useState("");
 
   useEffect(() => {}, []);
 
@@ -31,45 +32,64 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
       renderedImage: "",
       uuid: uid,
     };
-    debugger;
+
     sk2rService.renderImage(req).then((resp) => {
-      debugger;
-      const renderedImage = new FormData();
-      renderedImage.append("file", resp.data);
+      console.log(resp)
+     
+      console.log(img)
+      setRenderedImage(resp)
+      setTestImage(resp)
+      console.log(renderedImage)
+      console.log(testImage)
+      
+  
+     
+    
       const renderedRequest = {
         renderedImage,
       };
 
-      debugger;
+     
+     
+
+   
       sk2rService.uploadRender(renderedRequest).then((resp) => {
-        img.renderedImage = resp;
+        console.log(resp)
+        
+        img.renderedImage = resp.data;
       });
       sk2rService.uploadPrerender(req).then((resp) => {
         img.prerenderedImage = resp;
       });
       setIsLoading(false);
     });
+    
   };
+
 
   if (isLoading) {
     return <div></div>;
   } else {
     return (
-      <div>
-        <form>
-          <h3>Sketch To Render</h3>
-          <Dropzone files={files} setFiles={setFiles} multiple={false} />
-          <Button
-            flat
-            modal="close"
-            node="button"
-            waves="green"
-            onClick={() => handleSubmitForm()}
-          >
-            YES
-          </Button>
-        </form>
-        <img src={renderedImage}></img>
+      <div className = "row">
+        <div className = 'col s6 m6 l6'>
+          <form>
+            <h3>Sketch To Render</h3>
+            <Dropzone files={files} setFiles={setFiles} multiple={false} />
+            <Button
+              flat
+              modal="close"
+              node="button"
+              waves="green"
+              onClick={() => handleSubmitForm()}
+            >
+              YES
+            </Button>
+          </form>   
+        </div>
+        <div className = 'col s6 m6 l6'>
+          <img  style = {{maxWidth:'100%'}}src={renderedImage}/>  
+        </div>
       </div>
     );
   }
