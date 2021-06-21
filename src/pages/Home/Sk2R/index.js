@@ -21,6 +21,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
 
     for (let i = 0; i < files.length; i += 1) {
       formData.append("file", files[i]);
+      debugger;
     }
 
     const req = {
@@ -34,45 +35,31 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
     };
 
     sk2rService.renderImage(req).then((resp) => {
-      console.log(resp)
-     
-      console.log(img)
-      setRenderedImage(resp)
-      setTestImage(resp)
-      console.log(renderedImage)
-      console.log(testImage)
-      
-  
-     
-    
-      const renderedRequest = {
-        renderedImage,
-      };
+      setRenderedImage(resp);
+      setTestImage(resp);
+      console.log(renderedImage);
 
-     
-     
-
-   
-      sk2rService.uploadRender(renderedRequest).then((resp) => {
-        console.log(resp)
-        
-        img.renderedImage = resp.data;
-      });
+      // sk2rService.uploadRender(resp).then((resp) => {
+      //   img.renderedImage = resp.data;
+      //   console.log(img);
+      //   debugger;
+      // });
       sk2rService.uploadPrerender(req).then((resp) => {
         img.prerenderedImage = resp;
+        console.log(resp);
+        debugger;
       });
+
       setIsLoading(false);
     });
-    
   };
 
-
   if (isLoading) {
-    return <div></div>;
+    return <div>Loading</div>;
   } else {
     return (
-      <div className = "row">
-        <div className = 'col s6 m6 l6'>
+      <div className="row">
+        <div className="col s6 m6 l6">
           <form>
             <h3>Sketch To Render</h3>
             <Dropzone files={files} setFiles={setFiles} multiple={false} />
@@ -85,10 +72,10 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
             >
               YES
             </Button>
-          </form>   
+          </form>
         </div>
-        <div className = 'col s6 m6 l6'>
-          <img  style = {{maxWidth:'100%'}}src={renderedImage}/>  
+        <div className="col s6 m6 l6">
+          <img style={{ maxWidth: "100%" }} src={renderedImage} />
         </div>
       </div>
     );
