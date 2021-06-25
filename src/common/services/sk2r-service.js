@@ -5,32 +5,33 @@ import axios from "axios";
 const apiUploadClient = axios.create({
   baseURL: `${process.env.REACT_APP_API_BASE_URL.replace(/\/$/, "")}/`,
   withCredentials: false,
-  headers: {
-    "Content-type": "multipart/form-data",
-  },
 });
 
 const renderImage = async (req) => {
   try {
     return axios
-      .post("http://localhost:5000/gen", req.formData, {
+      .post("http://jordobranch.io:5000/gen", req.formData, {
         responseType: "arraybuffer",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       })
       .then((response) => {
-        let binary = new Uint8Array(response.data);
-        console.log(binary);
-        var fd = new FormData();
-        fd.append("file", new Blob([binary.buffer]));
-        uploadRender(fd).then((resp) => {
-          console.log(resp);
-        });
+        // TODO
+        // let binary = new Uint8Array(response.data);
+        // console.log(binary);
+        // var fd = new FormData();
+        // fd.append("file", new Blob([binary.buffer]));
+        // uploadRender(fd).then((resp) => {
+        //   console.log(resp);
+        // });
         let image = btoa(
           new Uint8Array(response.data).reduce(
             (data, byte) => data + String.fromCharCode(byte),
             ""
           )
         );
-        console.log(image);
         return `data:${response.headers[
           "content-type"
         ].toLowerCase()};base64,${image}`;
@@ -49,7 +50,7 @@ const uploadPrerender = async (req) => {
 };
 
 const insertImages = async (req) => {
-  return apiUploadClient.post(`/api/sk2r/insert`);
+  return apiUploadClient.post(`/api/sk2r/insert`, req);
 };
 
 export default {
