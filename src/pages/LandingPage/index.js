@@ -30,7 +30,7 @@ const LandingPage = ({ authUser, history }) => {
   return (
     <div>
       <Desktop>
-        <div className="content-container">
+        <div className="content-container2">
           <div className = "row">
             <div className = "col s12 m12 l12 landing-banner">
               <div style = {{padding:"20%",paddingBottom:'10%'}}>
