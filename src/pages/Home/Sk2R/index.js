@@ -5,14 +5,27 @@ import { compose } from "recompose";
 import Dropzone from "../../../common/components/Dropzone";
 import sk2rService from "../../../common/services/sk2r-service";
 import { Button } from "react-materialize";
+import ProfileThunks from "../../Profile/redux/thunks";
 
-export const Sk2R = ({ uid }) => {
+export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [renderedImage, setRenderedImage] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!user) {
+      getUserInfo();
+    }
+  }, []);
 
+  const getUserInfo = async () => {
+    getProfile(uid).then((dbUser) => {
+      console.log(dbUser);
+      if (!dbUser?.sk2r_beta) {
+        history.push("/home");
+      }
+    });
+  };
   const handleSubmitForm = () => {
     setIsLoading(true);
     const formData = new FormData();
@@ -76,5 +89,11 @@ const mapStateToProps = (state) => ({
   uid: state.session.authUser.uid,
   user: state.profile.user,
 });
+const mapDispatchToProps = {
+  getProfile: ProfileThunks.getProfileAsync,
+};
 
-export default compose(withRouter, connect(mapStateToProps))(Sk2R);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Sk2R);
