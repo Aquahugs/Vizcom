@@ -10,6 +10,7 @@ import Explore from "../pages/Explore";
 import Home from "../pages/Home";
 import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
+import SketchToRenderBeta from "../pages/Home/Sk2R";
 import About from "../pages/About";
 import SingleBucketView from "../pages/Bucket/SingleBucketView";
 import LandingPage from "../pages/LandingPage";
@@ -34,6 +35,9 @@ const Router = () => (
     <Route path={ROUTES.GENERATE}>
       <Generate />
     </Route>
+    <Route path="/sketch-to-render/beta">
+      <SketchToRenderBeta />
+    </Route>
     <Route path={ROUTES.SKETCH_TO_RENDER}>
       <SketchToRender />
     </Route>
@@ -55,6 +59,7 @@ const Router = () => (
     <Route path="/admin">
       <Admin />
     </Route>
+
     <Route path={ROUTES.LANDING_PAGE}>
       <LandingPage />
     </Route>

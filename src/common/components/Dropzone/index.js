@@ -10,8 +10,8 @@ const baseStyle = {
   flexDirection: "column",
   alignItems: "center",
   padding: "20px",
-  height: 500,
-  width: 700,
+  height: "30rem",
+  width: "40rem",
   borderWidth: 2,
   borderRadius: 40,
   borderColor: "#5E89FF",
@@ -35,7 +35,13 @@ const rejectStyle = {
 };
 
 const plusStyle = {
-  paddingTop: "12rem",
+  display: "block",
+  margin: "auto",
+};
+
+const plusContainer = {
+  display: "block",
+  margin: "auto",
 };
 
 const thumbsContainer = {
@@ -68,6 +74,8 @@ const img = {
   width: "auto",
   height: "100%",
 };
+
+const dropzoneContainer = { display: "block", width: "auto", height: "100%" };
 
 const StyledDropzone = ({ files, setFiles, multiple }) => {
   const {
@@ -107,12 +115,14 @@ const StyledDropzone = ({ files, setFiles, multiple }) => {
 
   return (
     <div>
-      <div {...getRootProps({ style })}>
-        <input {...getInputProps()} />
-        <img alt="plus icon" src={plus} style={plusStyle} />
-        <p>Drag 'n' drop files here, or click to select files</p>
-      </div>
       <aside style={thumbsContainer}>{thumbs}</aside>
+      <div style={dropzoneContainer} {...getRootProps({ style })}>
+        <input {...getInputProps()} />
+        <div style={plusContainer}>
+          <img alt="plus icon" src={plus} style={plusStyle} />
+          <p>Drag or upload a sketch</p>
+        </div>
+      </div>
     </div>
   );
 };
