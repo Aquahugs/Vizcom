@@ -10,10 +10,10 @@ const baseStyle = {
   flexDirection: "column",
   alignItems: "center",
   padding: "20px",
-  height: 'auto',
+  height: '450px',
   width: '100%',
   borderWidth: 2,
-  borderRadius: 40,
+  borderRadius: 10,
   borderColor: "#5E89FF",
   borderStyle: "dashed",
   backgroundColor: "#EBF8FF",
@@ -51,8 +51,8 @@ const thumb = {
   border: "1px solid #eaeaea",
   marginBottom: 8,
   marginRight: 8,
-  width: 100,
-  height: 100,
+  width:'100%',
+  height: 450,
   padding: 4,
   boxSizing: "border-box",
 };
@@ -107,12 +107,17 @@ const StyledDropzone = ({ files, setFiles, multiple }) => {
 
   return (
     <div>
-      <div {...getRootProps({ style })}>
-        <input {...getInputProps()} />
-        <img alt="plus icon" src={plus} style={plusStyle} />
-        <p>Drag 'n' drop files here, or click to select files</p>
+      <div className = "user-image">
+        <aside style={thumbsContainer}>{thumbs}</aside>
       </div>
-      <aside style={thumbsContainer}>{thumbs}</aside>
+      <div className = "drop-zone">
+        <div {...getRootProps({ style })}>
+        <input {...getInputProps()} />
+        <img alt="plus icon" src={plus} style={plusStyle}/>
+        <p>Drag 'n' drop files here, or click to select files</p>
+        </div>
+      </div>
+      
     </div>
   );
 };

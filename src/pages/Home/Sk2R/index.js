@@ -9,7 +9,9 @@ import { Button } from "react-materialize";
 
 export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
+  const [dookie, setDookie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [placeHold, setIsPlaceHold] = useState(true);
   const [renderedImage, setRenderedImage] = useState("");
   const [testImage, setTestImage] = useState("");
 
@@ -17,6 +19,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
 
   const handleSubmitForm = () => {
     setIsLoading(true);
+   
     const formData = new FormData();
 
     for (let i = 0; i < files.length; i += 1) {
@@ -33,10 +36,11 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
       uuid: uid,
     };
 
-    sk2rService.renderImage(req).then((resp) => {
+    sk2rService.renderImage(req).then((resp) => { 
       console.log(resp)
      
       console.log(img)
+      
       setRenderedImage(resp)
       setTestImage(resp)
       console.log(renderedImage)
@@ -65,30 +69,45 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
     });
     
   };
+  const imageDrop = () => {
+    console.log("pop")
+  }
+  const placeHoldStyle = {
+   
+      width: placeHold === false ? '25px' : '450px',
+     
+
+  }
 
 
   if (isLoading) {
-    return <div></div>;
+    return <div><img src = "https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Loader.gif?alt=media&token=82578f82-d720-4b61-9473-a3f4a68de2ec"/></div>;
   } else {
     return (
       <div className = "row">
+        <h1 style = {{fontSize:'14px',textAlign:'center'}}>SK2R Beta v 0.0.1</h1>
         <div className = 'col s6 m6 l6'>
           <form>
-            <h3>Sketch To Render</h3>
-            <Dropzone files={files} setFiles={setFiles} multiple={false} />
+            <h3 style = {{fontSize:'12px'}} >Your sketch</h3>
+            <div style = {{maxWidth:'100%',height:'auto'}}>
+              <Dropzone   dookie={ setDookie}  files={files} setFiles={setFiles} multiple={false} />
+            </div>
             <Button
               flat
               modal="close"
               node="button"
               waves="green"
               onClick={() => handleSubmitForm()}
+           
             >
-              YES
+              Submit
             </Button>
           </form>   
         </div>
         <div className = 'col s6 m6 l6'>
-          <img  style = {{maxWidth:'100%'}}src={renderedImage}/>  
+          <h3 style = {{fontSize:'12px'}} >Result</h3>
+          <img  style = {{maxWidth:'100%',height:'auto'}}src={renderedImage}/>  
+          <img src = "https://via.placeholder.com/450"/>
         </div>
       </div>
     );

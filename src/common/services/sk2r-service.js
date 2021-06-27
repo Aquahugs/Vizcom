@@ -9,7 +9,7 @@ const apiUploadClient = axios.create({
 
 const renderImage = async (req) => {
   try {
-    return axios.post("http://localhost:5000/gen", req.formData, { responseType: 'arraybuffer' })
+    return axios.post("http://jordobranch.io:5000/gen", req.formData, { responseType: 'arraybuffer' })
     .then((response) => {
       let image = btoa(
         new Uint8Array(response.data)
