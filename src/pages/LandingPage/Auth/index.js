@@ -15,7 +15,7 @@ const Auth = () => {
         return (
           <div>
             <SignUp />
-            <p style={{ color: "#ececec" }}>
+            <p style = {{color:"#232323",paddingTop:"5%"}}>
               Already have an account?
               <a onClick={() => setAuthState((authState = "signIn"))}>
                 <span className = 'alr-signin'> Sign in</span>
@@ -27,7 +27,7 @@ const Auth = () => {
         return (
           <div className="signin-container">
             <SignIn />
-            <p style={{ color: "#ececec" }}>
+            <p style={{ color: "#232323",paddingTop:"5%" }}>
               Dont have an account?
               <a onClick={() => setAuthState((authState = "signUp"))}>
                 Sign Up

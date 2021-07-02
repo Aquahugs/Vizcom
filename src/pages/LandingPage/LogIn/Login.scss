@@ -1,0 +1,65 @@
+.loginpage-container{
+    background-color: rgb(11, 11, 15); 
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/background_image.jpg?alt=media&token=72828482-03c6-41ef-a6ba-5ce539c19bd0");
+    height: 100%;
+}
+
+
+.login-container{
+    position: relative;
+    margin-bottom: 15%;
+
+    
+
+}
+.auth-area {
+    background-color: white;
+    border-radius: 5px;
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    padding:5%;
+
+    
+}
+
+.landing-nav-bar{
+    padding-left: 15%;
+    padding-right: 15%;
+    p{
+      float:right;
+      padding-right: 3%;
+      padding-top: 5px;
+      color:#F6F6F6;
+      font-family: "Inter";
+      font-weight: 600;
+    }
+    .sign-up-btn{
+      float:right;
+      border-radius: 5px;
+      background-color: #256AFE;
+      border: none;
+    }
+    img {
+      width: 100px;
+      height: auto;
+    }
+  }
+  
+
+
+  .loginpage-container-mobile {
+    max-width: 100%;
+    background-color: rgb(11, 11, 15); 
+  
+  }
+
+  .login-container-mobile{
+    margin-bottom: 45%;
+    margin-top: 20%;
+  }
+
+  .auth-area{
+    max-width: 100%;
+  }

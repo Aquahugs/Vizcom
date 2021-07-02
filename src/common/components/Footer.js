@@ -6,7 +6,10 @@ const Footer = ({ darkmode }) => {
   if ((darkmode = "dark")) {
     return (
       <div className="row footer-items-dark">
-        <div className="col s12 m12 l12 info">
+        <div className="col s6 m6 l6 info" style = {{color:"white"}} >
+          <span className = "company">2021 Vizcom AI, Inc.</span> 
+        </div>
+        <div className="col s6 m6 l6 info">
           <ul className="dark-list">
             <Link to="/about">
               <li>About</li>

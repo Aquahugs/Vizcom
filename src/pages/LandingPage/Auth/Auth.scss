@@ -1,5 +1,10 @@
+
+p{
+  font-family: "Inter";
+}
+
 .signin-btn {
-  background-color: #003fff !important;
+  background-color: #256AFE !important;
   text-align: center !important;
   color: #eeeeee;
   width: 100%;
@@ -7,7 +12,7 @@
   box-shadow: none;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
   font-size: 16px;
-  font-family: Roboto, arial, sans-serif;
+  font-family: "Inter";
   line-height: 48px;
   border: none;
   user-select: none;
@@ -19,7 +24,7 @@
 
 .field-wrap{
   input{
-    color:white;
+    color:#232323;
   }
 }
 
@@ -33,7 +38,7 @@
 
 .tab-content {
   input {
-    color: white;
+    color: #232323;
   }
 }
 
