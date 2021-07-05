@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Footer from "../../../common/components/Footer";
-
+import { Link } from "react-router-dom";
 import "./tablet.scss";
 
 import WhiteLogo from "../../../assets/logo-white.png";
@@ -69,9 +69,13 @@ const TabletView = () => {
           <FadeIn delay = {300}>
 
           <div className = "row landing-nav-bar">
-            <img src = {WhiteLogo}/>
+          <Link to = "/"><img src = {WhiteLogo}/></Link>
+          <Link to = "/signin">
             <Button className="sign-up-btn" type="primary">Sign up</Button>
+          </Link>
+          <Link to = "/signin">
             <p>Log in</p>
+          </Link>
           </div>
           </FadeIn>
 
@@ -84,11 +88,15 @@ const TabletView = () => {
                 <p> Ai enabled creative tools that shorten the distance between <br/>having an idea and bringing it to life.</p>
                 <div className = "row intro-btn-container-tablet">
                   <div className = "col s6 m6 l6">
+                  <Link to = "/signin">
                     <Button className="get-started" type="primary">Get Started</Button>
+                  </Link>
                   </div>
                   <div className = "col s6 m6 l6 ply-btn">
+                  <a href = "https://youtu.be/913snu2ZvIU" target="_blank">
                     <Button className = "play" type="primary" shape="circle"><img src = {play}/></Button> 
                     <span className = "lrn-more">Learn more</span>
+                  </a>
                   </div>
                 </div>
               </div>

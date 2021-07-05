@@ -1,0 +1,23 @@
+h1 p {
+    font-family: "Inter";
+}
+
+.modal-container{
+    padding: 10%;
+    overflow-y: scroll;
+    height: 800px;
+    
+    h1{
+        font-size: 16px;
+    }
+
+    p{
+        font-size: 12px;
+       
+    }
+}
+
+.modal-component{
+    height: 800px;
+
+}

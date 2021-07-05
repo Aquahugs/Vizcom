@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Footer from "../../../common/components/Footer";
-
+import { Link } from "react-router-dom";
 import WhiteLogo from "../../../assets/logo-white.png";
 import Video from "../Assets/vid.mp4"
 import play from "../Assets/noun_play_4022420.svg"
@@ -67,9 +67,9 @@ const MobileView = () => {
           <FadeIn delay = {300}>
 
           <div className = "row landing-nav-bar">
-            <img src = {WhiteLogo}/>
-            <Button className="sign-up-btn" type="primary">Sign up</Button>
-            <p>Log in</p>
+          <Link to = "/"><img src = {WhiteLogo}/></Link>
+          <Link to = "/signin"><Button className="sign-up-btn" type="primary">Sign up</Button></Link>
+          <Link to = "/signin"> <p>Log in</p></Link>
           </div>
           </FadeIn>
 
@@ -82,7 +82,9 @@ const MobileView = () => {
                 <p> Ai enabled creative tools that shorten the distance between having an idea and bringing it to life.</p>
                 <div className = "row intro-btn-container-tablet">
                   <div className = "col s6 m6 l6">
+                  <a href = "https://youtu.be/913snu2ZvIU" target="_blank">
                     <Button className="get-started" type="primary">Get Started</Button>
+                  </a>
                   </div>
                
                 </div>
@@ -151,7 +153,7 @@ const MobileView = () => {
               </h1>
             </div>
             <div data-aos="fade-left" className = "col s12 m12 l12">
-            <img src = {image2}/>
+              <img src = {image2}/>
             </div>
             
           </div>

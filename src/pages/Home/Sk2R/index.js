@@ -4,18 +4,23 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import Dropzone from "../../../common/components/Dropzone";
 import sk2rService from "../../../common/services/sk2r-service";
-import { Button } from "react-materialize";
+import "./Sk2r.scss";
 import ProfileThunks from "../../Profile/redux/thunks";
+
+import { Modal, Button } from 'antd';
+
 
 export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [renderedImage, setRenderedImage] = useState("");
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (!user) {
       getUserInfo();
     }
+    setVisible(true)
   }, []);
 
   const getUserInfo = async () => {
@@ -62,7 +67,54 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
   if (isLoading) {
     return <div>Loading</div>;
   } else {
+    
     return (
+    <div className = "component-container">
+      <div className = "row">
+    
+      <Modal
+        title="SK2R Beta v0.0.1"
+        centered
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+        width={800}
+        height={950}
+        className = 'modal-component'
+       
+      
+      >
+        <div className="modal-container">
+
+          <div className = "row">
+            <h1>How to</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <img src = "https://via.placeholder.com/600x250"/>
+            <p>some contents...</p>
+          </div>
+          <div className = "row">
+            <h1>Render your sketch</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <img src = "https://via.placeholder.com/600x250"/>
+            <p>some contents...</p>
+          </div>
+          <div className = "row">
+            <h1>Tips for best result</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <img src = "https://via.placeholder.com/600x250"/>
+            <img src = "https://via.placeholder.com/600x250"/>
+            <p>some contents...</p>
+          </div>
+         
+        </div>
+      </Modal>
+      </div>
       <div className="row">
         <div className="col s6 m6 l6">
           <form>
@@ -80,6 +132,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
         <div className="col s6 m6 l6">
           <img style={{ maxWidth: "100%" }} src={renderedImage} />
         </div>
+      </div>
       </div>
     );
   }

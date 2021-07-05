@@ -57,7 +57,7 @@ const LogIn = ({ authUser, history }) => {
           </div>
             <div className="row">
               <div className = "col s12 m12 l12 login-container-mobile">
-                <div className="auth-area ">
+                <div className="auth-area" style ={{paddingBottom:"20%"}}>
                   <Auth />
                 </div>
               </div>

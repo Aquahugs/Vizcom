@@ -111,7 +111,7 @@ const LandingPage = ({ authUser, history }) => {
                         <img src = {play}/>
                       </Button>
                     </a> 
-                    <a href = "https://youtu.be/913snu2ZvIU">
+                    <a href = "https://youtu.be/913snu2ZvIU" target="_blank">
                       <span className = "lrn-more">Learn more</span>
                     </a>
                   </div>
