@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
-import Dropzone from "../../../common/components/Dropzone";
+import Dropzone from "./components/dropzone";
 import sk2rService from "../../../common/services/sk2r-service";
 import "./Sk2r.scss";
 import ProfileThunks from "../../Profile/redux/thunks";
 
-import { Modal, Button } from 'antd';
-
+import InfoModal from "./components/modal";
+import { Row, Col, Layout, Button, Spin } from "antd";
+import { DownloadOutlined } from "@ant-design/icons";
 
 export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
@@ -20,7 +21,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
     if (!user) {
       getUserInfo();
     }
-    setVisible(true)
+    setVisible(true);
   }, []);
 
   const getUserInfo = async () => {
@@ -60,82 +61,86 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
       });
     } catch (e) {
       setIsLoading(false);
-      console.log(e);
     }
   };
 
-  if (isLoading) {
-    return <div>Loading</div>;
-  } else {
-    
-    return (
-    <div className = "component-container">
-      <div className = "row">
-    
-      <Modal
-        title="SK2R Beta v0.0.1"
-        centered
-        visible={visible}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
-        width={800}
-        height={950}
-        className = 'modal-component'
-       
-      
-      >
-        <div className="modal-container">
-
-          <div className = "row">
-            <h1>How to</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-            <img src = "https://via.placeholder.com/600x250"/>
-            <p>some contents...</p>
-          </div>
-          <div className = "row">
-            <h1>Render your sketch</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-            <img src = "https://via.placeholder.com/600x250"/>
-            <p>some contents...</p>
-          </div>
-          <div className = "row">
-            <h1>Tips for best result</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-            <img src = "https://via.placeholder.com/600x250"/>
-            <img src = "https://via.placeholder.com/600x250"/>
-            <p>some contents...</p>
-          </div>
-         
-        </div>
-      </Modal>
-      </div>
-      <div className="row">
-        <div className="col s6 m6 l6">
-          <form>
-            <h3>Sketch To Render</h3>
+  return (
+    <div>
+      <Row>
+        <InfoModal visible={visible} setVisible={setVisible} />
+      </Row>
+      <Row>
+        <Col span={10}>
+          <h5>Sketch</h5>
+          {files && files.length > 0 ? (
+            files.map((file) => (
+              <div key={file.name}>
+                <div>
+                  <img
+                    style={{ maxWidth: "100%" }}
+                    alt="file preview"
+                    src={URL.createObjectURL(file)}
+                  />
+                </div>
+              </div>
+            ))
+          ) : (
             <Dropzone files={files} setFiles={setFiles} multiple={false} />
-
-            <button
+          )}
+        </Col>
+        <Col span={4}></Col>
+        <Col span={10}>
+          <h5>Render</h5>
+          {!isLoading ? (
+            renderedImage ? (
+              <img style={{ maxWidth: "100%" }} src={renderedImage} />
+            ) : (
+              <div className="sk2r-render-container"></div>
+            )
+          ) : (
+            <div className="sk2r-render-container sk2r-render-spinner">
+              <Spin className="" size="large" />
+            </div>
+          )}
+        </Col>
+      </Row>
+      <Row justify="end" className="sk2r-button-row">
+        <Col span={10}>
+          {isLoading ? (
+            <Button
+              type="primary"
+              size="large"
+              className="sk2r-button-submit"
+              loading
+            >
+              Loading
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              size="large"
               onClick={() => handleSubmitForm()}
-              className="btn waves-effect generate-btn lighten-1 z-depth-0"
+              className="sk2r-button-submit"
+              disabled={!files.length > 0}
             >
               Render
-            </button>
-          </form>
-        </div>
-        <div className="col s6 m6 l6">
-          <img style={{ maxWidth: "100%" }} src={renderedImage} />
-        </div>
-      </div>
-      </div>
-    );
-  }
+            </Button>
+          )}
+        </Col>
+        <Col span={4}></Col>
+        <Col span={10}>
+          {!isLoading && renderedImage && (
+            <Button
+              className="sk2r-button-download"
+              type="primary"
+              icon={<DownloadOutlined />}
+              size="large"
+            />
+          )}
+        </Col>
+      </Row>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({

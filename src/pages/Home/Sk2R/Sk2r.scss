@@ -1,23 +1,52 @@
 h1 p {
-    font-family: "Inter";
+  font-family: "Inter";
 }
 
-.modal-container{
-    padding: 10%;
-    overflow-y: scroll;
-    height: 800px;
-    
-    h1{
-        font-size: 16px;
-    }
+// .modal-container {
+//   padding: 10%;
+//   overflow-y: scroll;
+//   height: 800px;
 
-    p{
-        font-size: 12px;
-       
-    }
+//   h1 {
+//     font-size: 16px;
+//   }
+
+//   p {
+//     font-size: 12px;
+//   }
+// }
+
+.modal-component {
+  height: 800px;
 }
 
-.modal-component{
-    height: 800px;
+.sk2r-line-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
+  .sk2r-line {
+  }
+}
+
+.sk2r-render-container {
+  width: 100%;
+  height: 30rem;
+  background-color: #eee;
+}
+
+.sk2r-render-spinner {
+  margin: auto;
+}
+
+.sk2r-button-row {
+  padding-top: 3rem;
+}
+
+.sk2r-button-submit {
+  float: right;
+}
+.sk2r-button-download {
+  float: right;
 }

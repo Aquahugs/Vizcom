@@ -93,7 +93,6 @@ const updateBucket = (bucket) => async (dispatch) => {
   try {
     const response = await bucketService.updateBucket(bucket);
     dispatch(actions.updateBucketSuccess(response.data));
-    debugger;
     INFO_NOTIFICATION_CONFIG.message =
       "Your profile has been updated successfully";
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
