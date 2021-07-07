@@ -26,7 +26,7 @@ const PrimaryNav = ({ user, profile }) => {
                 src={NewBucket}
                 className="nav-addbucket hide-on-med-and-down"
               />
-              <span className="hide-on-med-and-down">New Bucket </span>
+              <span className="hide-on-med-and-down">New Bucket</span>
             </Link>
           </li>
           <li className="profile-items">

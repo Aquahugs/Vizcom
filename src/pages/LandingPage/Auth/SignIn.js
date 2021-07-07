@@ -10,11 +10,11 @@ import { withFirebase } from "../../../router/auth/firebase";
 
 const SignIn = () => (
   <div style={{ Textalign: "center" }}>
-    <h1 style={{ color: "#fcfbfb", fontSize: "26px", fontWeight: "bold" }}>
+    <h1 style={{ color: "#232323", fontSize: "26px", fontWeight: "bold" }}>
       Sign in
     </h1>
     <SignInForm />
-    <p style={{ color: "#fcfbfb", textAlign: "center" }}> or </p>
+    <p style={{ color: "#232323", textAlign: "center" }}> or </p>
     <SignInGoogle />
   </div>
 );
@@ -72,7 +72,7 @@ class SignInFormBase extends Component {
       <form onSubmit={this.onSubmit}>
         <div className="input-container">
           <div className="field-wrap">
-            <label htmlFor="userEmail">
+            <label htmlFor="userEmail" style = {{color:"#232323"}}>
               Email <span className="req"></span>
             </label>
             <input
@@ -84,7 +84,7 @@ class SignInFormBase extends Component {
             />
           </div>
           <div className="field-wrap">
-            <label htmlFor="userPassword">
+            <label htmlFor="userPassword" style = {{color:"#232323"}}>
               Password<span className="req"></span>
             </label>
             <input

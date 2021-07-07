@@ -98,7 +98,7 @@ class SignUpFormBase extends Component {
             <form onSubmit={this.onSubmit}>
               <div className="top-row">
                 <div className="field-wrap">
-                  <label>
+                  <label style = {{color:"#232323"}}>
                     Username<span className="req">*</span>
                   </label>
                   <input
@@ -110,7 +110,7 @@ class SignUpFormBase extends Component {
                   />
                 </div>
                 <div className="field-wrap">
-                  <label>
+                  <label style = {{color:"#232323"}}>
                     Email Address<span className="req">*</span>
                   </label>
                   <input
@@ -122,7 +122,7 @@ class SignUpFormBase extends Component {
                   />
                 </div>
                 <div className="field-wrap">
-                  <label>
+                  <label style = {{color:"#232323"}}>
                     Password<span className="req">*</span>
                   </label>
                   <input
@@ -134,7 +134,7 @@ class SignUpFormBase extends Component {
                   />
                 </div>
                 <div className="field-wrap">
-                  <label>
+                  <label style = {{color:"#232323"}}>
                     Confirm Password<span className="req">*</span>
                   </label>
                   <input

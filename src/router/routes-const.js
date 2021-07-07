@@ -1,4 +1,5 @@
 export const LANDING_PAGE = "/";
+export const LOGIN_PAGE = "/signin";
 export const HOME = "/home";
 export const ABOUT = "/about";
 export const SKETCH_TO_RENDER = "/sketch-to-render";

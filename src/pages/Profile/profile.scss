@@ -22,9 +22,6 @@
   margin-top: 5%;
 }
 
-// .bio-container{
-
-// }
 .view-selector {
   width: 20% !important;
   padding-left: 4% !important;
@@ -69,6 +66,10 @@
 
 .collection-image {
   max-width: 100%;
+  cursor: pointer;
+}
+
+.collection-container {
   cursor: pointer;
 }
 

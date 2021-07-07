@@ -1,0 +1,114 @@
+h1 p {
+  font-family: "Inter";
+}
+
+// .modal-container {
+//   padding: 10%;
+//   overflow-y: scroll;
+//   height: 800px;
+
+//   h1 {
+//     font-size: 16px;
+//   }
+
+//   p {
+//     font-size: 12px;
+//   }
+// }
+
+.modal-component {
+  height: 800px;
+}
+
+.sk2r-line-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .sk2r-line {
+  }
+}
+
+.sk2r-render-container {
+  width: 100%;
+  height: 30rem;
+  border: 1px solid #eee;
+  border-width: 2px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .sk2r-render-image {
+    max-width: 100%;
+  }
+}
+
+.sk2r-sketch-container {
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  border-width: 2px;
+
+  .sk2r-sketch-image {
+    max-width: 100%;
+  }
+}
+
+.sk2r-button-row {
+  padding-top: 3rem;
+}
+
+.render-btn-container {
+  margin-top: 8%;
+  padding: 0 !important;
+}
+
+.sk2r-button-submit {
+  float: right;
+  float: bottom;
+  .ant-btn-primary {
+    border-radius: 5px;
+    background-color: #256afe;
+  }
+}
+
+.sk2r-button-download {
+  float: right;
+  font-size: 200%;
+}
+
+.sk2r-button-download-container {
+  padding: 0 !important;
+  // margin-top: 10%;
+}
+
+.small-dropzone {
+  height: 6rem;
+  width: 6rem;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+.sk2r-back-arrow {
+  width: 20px;
+  height: 100%;
+  margin-top: 0;
+  float: left;
+  @media (max-width: 480px) {
+    width: 20px;
+    height: auto;
+    margin-top: 0;
+  }
+}
+
+.sk2r-image-thumbnail {
+  width: 6rem;
+  height: 6rem;
+  cursor: pointer;
+}

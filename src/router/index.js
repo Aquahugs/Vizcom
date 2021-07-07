@@ -14,6 +14,7 @@ import SketchToRenderBeta from "../pages/Home/Sk2R";
 import About from "../pages/About";
 import SingleBucketView from "../pages/Bucket/SingleBucketView";
 import LandingPage from "../pages/LandingPage";
+import LogIn from "../pages/LandingPage/LogIn";
 import Admin from "../pages/Admin";
 
 import * as ROUTES from "./routes-const";
@@ -58,6 +59,9 @@ const Router = () => (
     </Route>
     <Route path="/admin">
       <Admin />
+    </Route>
+    <Route path={ROUTES.LOGIN_PAGE}>
+      <LogIn />
     </Route>
 
     <Route path={ROUTES.LANDING_PAGE}>

@@ -1,99 +1,248 @@
-.left-area {
-  background-color: #fcfbfb;
-  height: 1100px;
-  padding-left: 5% !important;
-  padding-top: 10% !important;
+html { font-family: "Inter", "system-ui"; }
 
-  img {
-    padding-top: 45%;
-  }
-
-  p {
-    color: #262626;
-    font-size: 1.3rem;
-  }
+@supports (font-variation-settings: normal) {
+  html { font-family: "Inter var", "system-ui"; }
 }
 
-.auth-area {
-  padding: 5% !important;
-  padding-top: 15% !important;
-  background-color: #161616;
-  height: 1100px;
+
+h1, h2{
+  font-family: "Inter";
 }
-
-.info-container {
-  background-color: #262626;
-  height: 1020px !important;
-
-  .info-image {
-    padding: 5rem;
-  }
-}
-.graph-container {
-  background-color: #161616;
-  padding-bottom: 15%;
-  img {
-    width: 1380px;
-    max-width: 100%;
-    height: auto;
-    padding: 3%;
-    display: block;
-    margin: auto;
-  }
-  h2 {
-    color: #ececec;
-    font-size: 42px;
-    font-weight: bold;
-    line-height: 4rem;
-    padding-top: 5rem;
-    text-align: center;
-  }
-
-  p {
-    text-align: center;
-    color: #ececec;
-    font-size: 20px;
-    padding-left: 15%;
-    padding-right: 15%;
-  }
-}
-
-.content-container {
+.content-container2 {
+  background-color: rgb(11, 11, 15);
   margin-top: 0;
+  padding: 0!important;
   .row {
     margin-bottom: 0;
   }
-}
-
-.info-container {
-  padding: 5%;
-  h2 {
-    color: #ececec;
-    font-size: 42px;
-    font-weight: bold;
-    line-height: 4rem;
-    padding-top: 10rem;
-  }
-}
-
-.logo {
   max-width: 100%;
-  margin-top: 30%;
 }
-
-.signup-container {
-  a {
-    padding-left: 2%;
-    cursor: pointer;
+.landing-nav-bar{
+  padding: 5%;
+  padding-left: 15%;
+  padding-right: 15%;
+  p{
+    float:right;
+    padding-right: 3%;
+    padding-top: 5px;
+    color:#F6F6F6;
+    font-family: "Inter";
+    font-weight: 600;
+  }
+  .sign-up-btn{
+    float:right;
+    border-radius: 5px;
+    background-color: #256AFE;
+    border: none;
+  }
+  img {
+    width: 100px;
+    height: auto;
   }
 }
-.signin-container {
-  a {
-    padding-left: 2%;
-    cursor: pointer;
-  }
-}
-#blue {
-  color: #0040ff;
+
+.landing-banner{
+ padding: 0!important;
+ height: auto;
+
+ h1{
+  color:#F5F5F5;
+  text-align: center;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 2.7rem;
+  line-height: 1.5;
+  
+ }
+ .gradient-create{
+  background: -webkit-linear-gradient(left, #256AFE,#eee,#f3dab9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+ }
+
+ .ply-btn{
+   padding-top: 2%;
+   img{
+     width: 15px;
+     height: auto;
+   }
+   span{
+    font-family: "Inter";
+   }
+ }
+ .lrn-more{
+  color:#F5F5F5;
+  padding-left: 5%;
+  font-family: "Inter";
+ }
+
+ p{
+   color:#A7A7A7;
+   font-size: 1.2rem;
+   text-align: center;
+   padding: 3%;
+ }
+ .intro-btn-container{
+  margin: auto;
+  width: 50%;
+  padding-left: 5%;
+ }
+ .get-started{
+   width: 200px;
+   height: 50px;
+   border-radius: 8px;
+   background-color: #256AFE;
+   border: none;
+   font-family: "Inter";
+   
+ }
+ .intro-container{
+   padding-left: 20%;
+   padding-right: 20%;
+   padding-bottom: 10%;
+   padding-top: 5%;
+ }
+
+ .play{
+   background-color: #256AFE;
+   border: none;
+   margin-left: 20%;
+ }
 }
 
+
+// .demo-container{
+//   position: absolute;
+//   left: 50%;
+
+// }
+
+.demo-video{
+  video{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    max-width: 800px;
+  }
+}
+
+
+
+.quote{
+  padding-top: 5%;
+  padding-left: 15%;
+  padding-right: 15%;
+  h1{
+    color: #F5F5F5;
+    font-size: 2rem;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 15%;
+    text-align: center;
+    font-weight: 600;
+    background: -webkit-linear-gradient(left, #256AFE,#eee,#f3dab9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+  }
+  h2{
+    color: #A7A7A7;
+    font-size: 2rem;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 15%;
+    text-align: center;
+    font-weight: 600;
+
+  }
+  .quote-card{
+    margin: auto;
+    width: 50%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 10px;
+    img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+    border-radius: 500px;
+    width: 125px;
+    }
+
+    p{
+      text-align: center;
+      font-family: "Inter";
+      font-weight: 600;
+    }
+    .sub-text{
+      color:#808080
+    }
+
+  }
+}
+
+.quote2{
+  h2{
+    color: #F5F5F5;
+    font-size: 3rem;
+    text-align: center;
+    padding: 15%;
+    font-weight: 700;
+  }
+  img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width:750px;
+    height: auto;
+  }
+  .creative-thinking{
+    background: -webkit-linear-gradient(left, #256AFE,#eee,#f3dab9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.image-gallery{
+  max-width: 100%;
+  h1{
+    color: #F5F5F5;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 15%;
+    padding-right: 15%;
+    padding-left: 15%;
+    padding-bottom: 5%;
+  }
+}
+.gallery{
+  padding-bottom: 10%;
+  max-width: 100%;
+
+  img:hover{
+    transform: scale(0.95);
+    transition: transform .2s; 
+  }
+  img {
+    max-width: 100%;
+  }
+}
+
+.footer-box{
+  padding: 15%;
+  background-color:#256AFE;
+
+  h1{
+    color:#F5F5F5;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  img {
+    width: 500px;
+    height: auto;
+  }
+}

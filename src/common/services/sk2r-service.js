@@ -10,7 +10,7 @@ const apiUploadClient = axios.create({
 const renderImage = async (req) => {
   try {
     return axios
-      .post("http://jordobranch.io:8000/gen", req.formData, {
+      .post("https://www.jordobranch.io/gen", req.formData, {
         responseType: "arraybuffer",
         headers: {
           Accept: "application/json",
