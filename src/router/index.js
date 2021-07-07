@@ -61,13 +61,12 @@ const Router = () => (
       <Admin />
     </Route>
     <Route path={ROUTES.LOGIN_PAGE}>
-      <LogIn/>
+      <LogIn />
     </Route>
 
     <Route path={ROUTES.LANDING_PAGE}>
       <LandingPage />
     </Route>
-    
   </Switch>
 );
 

@@ -6,8 +6,8 @@ const Footer = ({ darkmode }) => {
   if ((darkmode = "dark")) {
     return (
       <div className="row footer-items-dark">
-        <div className="col s6 m6 l6 info" style = {{color:"white"}} >
-          <span className = "company">2021 Vizcom AI, Inc.</span> 
+        <div className="col s6 m6 l6 info" style={{ color: "white" }}>
+          <span className="company">2021 Vizcom AI, Inc.</span>
         </div>
         <div className="col s6 m6 l6 info">
           <ul className="dark-list">
@@ -18,7 +18,7 @@ const Footer = ({ darkmode }) => {
             <a href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
-            <a href="https://www.instagram.com/vizcom.io/">
+            <a href="https://www.instagram.com/vizcom_/">
               <li>Instagram</li>
             </a>
           </ul>
@@ -38,7 +38,7 @@ const Footer = ({ darkmode }) => {
             <a href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
-            <a href="https://www.instagram.com/vizcom.io/">
+            <a href="https://www.instagram.com/vizcom_/">
               <li>Instagram</li>
             </a>
           </ul>

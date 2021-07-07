@@ -119,7 +119,7 @@ const MobileProfile = ({
             <div className="row bio-header">
               <Link to={EDITOR}>
                 <button className=" btn btn-flat edit-btn ">
-                  Edit profile
+                  Edit Profile
                 </button>
               </Link>
               {profile?.first_name ? (

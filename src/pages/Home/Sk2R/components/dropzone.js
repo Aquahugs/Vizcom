@@ -10,7 +10,7 @@ const baseStyle = {
   flexDirection: "column",
   alignItems: "center",
   padding: "20px",
-  height: "450px",
+  height: "100%",
   width: "100%",
   borderWidth: 2,
   borderRadius: 10,
@@ -20,6 +20,7 @@ const baseStyle = {
   color: "#bdbdbd",
   outline: "none",
   transition: "border .24s ease-in-out",
+  cursor: "pointer", // pointer for dropzone
 };
 
 const activeStyle = {
@@ -38,46 +39,30 @@ const plusStyle = {
   display: "block",
   margin: "auto",
 };
+const plusStyleSmall = {
+  display: "block",
+  margin: "auto",
+  maxWidth: "25px",
+};
 
 const plusContainer = {
   display: "block",
   margin: "auto",
 };
-
-const thumbsContainer = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  marginTop: 16,
-};
-
-const thumb = {
-  display: "inline-flex",
-  borderRadius: 2,
-  border: "1px solid #eaeaea",
-  marginBottom: 8,
-  marginRight: 8,
-  width: "100%",
-  height: 450,
-  padding: 4,
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
+const plusContainerSmall = {
   display: "block",
-  width: "auto",
-  height: "100%",
+  margin: "auto",
 };
 
 const dropzoneContainer = { display: "block", width: "auto", height: "100%" };
 
-const StyledDropzone = ({ files, setFiles, multiple }) => {
+const StyledDropzone = ({
+  useIcon,
+  files,
+  setFiles,
+  multiple,
+  useIconSmall,
+}) => {
   const {
     getRootProps,
     getInputProps,
@@ -93,15 +78,6 @@ const StyledDropzone = ({ files, setFiles, multiple }) => {
     },
   });
 
-  // this will have to be put into index.js later on
-  const thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img alt="file preview" src={URL.createObjectURL(file)} style={img} />
-      </div>
-    </div>
-  ));
-
   const style = useMemo(
     () => ({
       ...baseStyle,
@@ -113,15 +89,19 @@ const StyledDropzone = ({ files, setFiles, multiple }) => {
   );
 
   return (
-    <div>
-      <aside style={thumbsContainer}>{thumbs}</aside>
-      <div style={dropzoneContainer} {...getRootProps({ style })}>
-        <input {...getInputProps()} />
+    <div style={dropzoneContainer} {...getRootProps({ style })}>
+      <input {...getInputProps()} />
+      {useIcon && (
         <div style={plusContainer}>
           <img alt="plus icon" src={plus} style={plusStyle} />
           <p>Drag or upload a sketch</p>
         </div>
-      </div>
+      )}
+      {useIconSmall && (
+        <div style={plusContainerSmall}>
+          <img alt="plus icon" src={plus} style={plusStyleSmall} />
+        </div>
+      )}
     </div>
   );
 };

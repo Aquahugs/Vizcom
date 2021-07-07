@@ -29,7 +29,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
           <Link to={"profile"}>
             <img alt="back arrow" className="backarrow" src={backarrow} />
           </Link>
-          <h1>Edit profile</h1>
+          <h1>Edit Profile</h1>
 
           <div className="input-field col s6">
             <label className="active" for="first_name">
@@ -41,7 +41,7 @@ const Editor = ({ updateProfile, history, uid, user }) => {
               id="firstName"
               ref={register}
               defaultValue={user?.first_name ? user?.first_name : ""}
-              />
+            />
           </div>
           <div className="input-field col s6">
             <label className="active" htmlFor="name">

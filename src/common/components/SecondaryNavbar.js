@@ -20,7 +20,9 @@ const SecondaryNav = ({ profile }) => {
           <Link to={HOME}>
             Tools
             {(location.pathname === "/generate" ||
-              location.pathname === "/home") && (
+              location.pathname === "/home" ||
+              location.pathname === "/sketch-to-render" ||
+              location.pathname === "/sketch-to-render/beta") && (
               <span style={styles}>
                 /{capitalizeFirstLetter(location.pathname)}
               </span>

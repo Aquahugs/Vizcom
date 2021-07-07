@@ -19,9 +19,11 @@ import collectconfirm from "../../../assets/collect-confirm.svg";
 import conceptart from "../../../assets/conceptart-holder.png";
 import footwear from "../../../assets/footwear-holder.png";
 import genanimation from "../../../assets/gen-animation.mp4";
+import backarrow from "../../../assets/back-arrow.svg";
 import AddToBucket from "./AddToBucket";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
+import { Link } from "react-router-dom";
 
 const Generate = ({
   buckets,
@@ -265,7 +267,7 @@ const Generate = ({
 
   //MOBILE VIEW
   const mobileImages = generatedDisplayImages
-    ?.slice(0,4)
+    ?.slice(0, 4)
     .map((image, imageIndex) => {
       return (
         <div
@@ -362,6 +364,9 @@ const Generate = ({
     return (
       <div>
         {modal}
+        <Link to={"home"}>
+          <img alt="back arrow" className="backarrow" src={backarrow} />
+        </Link>
         <div className="row generate-container">
           <div className="row tag"></div>
 
@@ -425,7 +430,7 @@ const Generate = ({
               </div>
             </Mobile>
             {generatorState !== "footwear" && (
-              <div >
+              <div>
                 <div className="row gen-container" style={visibilityStyle}>
                   <div>{images}</div>
                 </div>
