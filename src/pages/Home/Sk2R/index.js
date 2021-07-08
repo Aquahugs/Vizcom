@@ -11,14 +11,14 @@ import { Link } from "react-router-dom";
 import { withAuthorization } from "../../../router/auth/session";
 
 import InfoModal from "./components/modal";
-import { Row, Button, Spin, Popover } from "antd";
+import { Row, Button, Spin, Popover, Alert } from "antd";
 import {
   DownloadOutlined,
   EllipsisOutlined,
   VerticalAlignBottomOutlined,
 } from "@ant-design/icons";
 
-export const Sk2R = ({ history, user, uid, getProfile }) => {
+const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [renderedImage, setRenderedImage] = useState("");
@@ -27,6 +27,9 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [minimizeDropzone, setMinimizeDropzone] = useState(false);
   const [sketchImages, setSketchImages] = useState([]);
   const [renderedImages, setRenderedImages] = useState([]);
+  const [imageDimensionError, setImageDimensionError] = useState({
+    value: false,
+  });
 
   useEffect(() => {
     if (!user) {
@@ -35,9 +38,39 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
     setVisible(true);
   }, []);
 
+  // useEffect to sketchImage to null if image dimensions are too large
+  useEffect(() => {
+    if (sketchImage) {
+      const image = new Image();
+      image.src = sketchImage;
+      image.onload = () => {
+        const { width } = image;
+        switch (true) {
+          case width <= 1000:
+            setSketchImage(null);
+            setImageDimensionError({
+              value: true,
+              message: "Your image is too small",
+              description: "The image should be at least 1080px wide.",
+            });
+            break;
+          case width >= 1700:
+            setSketchImage(null);
+            setImageDimensionError({
+              value: true,
+              message: "Image is too large",
+              description: "The image should be at most 1500px wide.",
+            });
+          default:
+          // code block
+        }
+      };
+    }
+    sketchImage ? setMinimizeDropzone(true) : setMinimizeDropzone(false);
+  }, [sketchImage]);
+
   // use effect to set minimize dropzone
   useEffect(() => {
-    files.length > 0 ? setMinimizeDropzone(true) : setMinimizeDropzone(false);
     files.length > 0
       ? setSketchImage(URL.createObjectURL(files[0]))
       : setSketchImage("");
@@ -62,6 +95,10 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
     //     history.push("/sketch-to-render");
     //   }
     // });
+  };
+
+  const onClose = () => {
+    setImageDimensionError({ value: false });
   };
 
   const download = (renderedImage) => {
@@ -162,7 +199,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
                 ))}
 
               <div className=" small-dropzone">
-                {minimizeDropzone && (
+                {minimizeDropzone && sketchImage && (
                   <Dropzone
                     useIconSmall={true}
                     files={files}
@@ -222,6 +259,19 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="row">
+        {" "}
+        {imageDimensionError.value && (
+          <Alert
+            message={imageDimensionError.message}
+            description={imageDimensionError.description}
+            type="error"
+            closable
+            onClose={onClose}
+            showIcon
+          />
+        )}
       </div>
     </div>
   );
