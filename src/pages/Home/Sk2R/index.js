@@ -8,6 +8,7 @@ import "./Sk2r.scss";
 import ProfileThunks from "../../Profile/redux/thunks";
 import backarrow from "../../../assets/back-arrow.svg";
 import { Link } from "react-router-dom";
+import { withAuthorization } from "../../../router/auth/session";
 
 import InfoModal from "./components/modal";
 import { Row, Button, Spin, Popover } from "antd";
@@ -234,7 +235,10 @@ const mapDispatchToProps = {
   getProfile: ProfileThunks.getProfileAsync,
 };
 
+const condition = (authUser) => !!authUser;
+
 export default compose(
+  withAuthorization(condition),
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
 )(Sk2R);
