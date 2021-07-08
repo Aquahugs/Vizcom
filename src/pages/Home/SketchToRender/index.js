@@ -46,11 +46,33 @@ class SketchToRender extends Component {
   };
   render() {
     return (
-      <div>
-        <h1 className="title">SketchToRender</h1>
-        <p className="subtitle">
-          Instantly render your sketches automatically. Coming soon...
+      <div className="beta-container">
+        <h2 style={{ fontSize: "2rem" }}>Sketch to render Beta v0.0.1</h2>
+        <p>
+          To gain Beta access please{" "}
+          <span className="bold-me">
+            join our Discord and post your account email in the
+            #sketch-to-render
+          </span>{" "}
+          channel .
         </p>
+        <p>
+          Discord link -{" "}
+          <a href="https://discord.gg/hRrbhMBq9x">
+            https://discord.gg/hRrbhMBq9x
+          </a>
+        </p>
+        <a href="https://discord.gg/hRrbhMBq9x">
+          <img src="https://discord.com/assets/ff41b628a47ef3141164bfedb04fb220.png" />
+        </a>
+
+        <p>
+          Sketch to render is a creative tool that takes your uploaded
+          automotive design sketch and automatically renders it for you. If you
+          come across any bugs or have any ideas on how we can improve your
+          experience, please feel free to let us know in our Discord.
+        </p>
+
         <video
           className="sk2r-video"
           muted
@@ -60,51 +82,6 @@ class SketchToRender extends Component {
           src={demovideo}
           type="video/mp4"
         />
-
-        <p
-          className="title2"
-          style={{
-            fontSize: "1.8rem",
-            visibility: this.state.submitted != true ? "hidden" : "visible",
-          }}
-        >
-          Recieve early access updates
-        </p>
-        <p
-          className="title2"
-          style={{
-            fontSize: "1.8rem",
-            visibility: this.state.submitted != true ? "visible" : "hidden",
-          }}
-        >
-          Submitted
-        </p>
-        <form
-          onSubmit={this.handleSubmit}
-          style={{
-            visibility: this.state.submitted != true ? "hidden" : "visible",
-          }}
-        >
-          <input
-            style={{
-              width: "80%",
-              display: "block",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-            type="email"
-            id="email"
-            placeholder="Youremail@email.com"
-            className="input-field"
-            onChange={this.handleChange}
-          />
-          <button
-            className=" updatesbtn2 lighten-1 z-depth-0"
-            onClick={(e) => this.setState({ submitted: false })}
-          >
-            Sign up{" "}
-          </button>
-        </form>
       </div>
     );
   }

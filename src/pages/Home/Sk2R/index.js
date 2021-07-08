@@ -11,7 +11,11 @@ import { Link } from "react-router-dom";
 
 import InfoModal from "./components/modal";
 import { Row, Button, Spin, Popover } from "antd";
-import { DownloadOutlined, EllipsisOutlined } from "@ant-design/icons";
+import {
+  DownloadOutlined,
+  EllipsisOutlined,
+  VerticalAlignBottomOutlined,
+} from "@ant-design/icons";
 
 export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
@@ -51,6 +55,32 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
 
   const getUserInfo = async () => {
     getProfile(uid);
+    // .then((dbUser) => {
+    //   console.log(dbUser);
+    //   if (!dbUser?.sk2r_beta) {
+    //     history.push("/sketch-to-render");
+    //   }
+    // });
+  };
+
+  const download = (renderedImage) => {
+    fetch(renderedImage, {
+      method: "GET",
+      headers: {},
+    })
+      .then((response) => {
+        response.arrayBuffer().then(function (buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "image.jfif"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleSubmitForm = () => {
@@ -87,15 +117,6 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
     }
   };
 
-  if (!user?.sk2r_beta) {
-    return (
-      <h5>
-        You do not have access to this page. Reach out to
-        contactvizcom@gmail.com
-      </h5>
-    );
-  }
-
   return (
     <div>
       <Row>
@@ -108,7 +129,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
         <InfoModal visible={visible} setVisible={setVisible} />
       </div>
       <div className="row">
-        <div className="col s6 m6 l6">
+        <div className="col s6 m6 l6 sketch-col">
           <h5>Sketch</h5>
           <div className="sk2r-sketch-container">
             {sketchImage ? (
@@ -165,7 +186,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
           </div>
         </div>
 
-        <div className="col s6 m6 l6">
+        <div className="col s6 m6 l6 render-col">
           <h5>Render</h5>
           {!isLoading ? (
             renderedImage ? (
@@ -193,6 +214,10 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
                     onClick={() => setRenderedImage(img)}
                   ></img>
                 ))}
+              <VerticalAlignBottomOutlined
+                className="download-btn"
+                onClick={() => download(renderedImage)}
+              />
             </div>
           </div>
         </div>
