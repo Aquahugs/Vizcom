@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "3d-react-carousal": "^3.1.0",
+    "@ant-design/icons": "^4.6.2",
     "antd": "^4.16.3",
     "aos": "^2.3.4",
     "axios": "^0.21.1",

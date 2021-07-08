@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 import InfoModal from "./components/modal";
 import { Row, Button, Spin, Popover } from "antd";
-import { DownloadOutlined, EllipsisOutlined } from "@ant-design/icons";
+import { DownloadOutlined, EllipsisOutlined,VerticalAlignBottomOutlined } from "@ant-design/icons";
 
 export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
@@ -51,6 +51,25 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
 
   const getUserInfo = async () => {
     getProfile(uid);
+  };
+  const download = renderedImage => {
+    fetch(renderedImage, {
+      method: "GET",
+      headers: {}
+    })
+      .then(response => {
+        response.arrayBuffer().then(function(buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "image.jfif"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const handleSubmitForm = () => {
@@ -108,7 +127,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
         <InfoModal visible={visible} setVisible={setVisible} />
       </div>
       <div className="row">
-        <div className="col s6 m6 l6">
+        <div className="col s6 m6 l6 sketch-col">
           <h5>Sketch</h5>
           <div className="sk2r-sketch-container">
             {sketchImage ? (
@@ -165,7 +184,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
           </div>
         </div>
 
-        <div className="col s6 m6 l6">
+        <div className="col s6 m6 l6 render-col">
           <h5>Render</h5>
           {!isLoading ? (
             renderedImage ? (
@@ -184,6 +203,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
           )}
           <div className="col s12 m12 l12 sk2r-button-download-container">
             <div className="sk2r-button-row">
+            
               {renderedImages.length > 0 &&
                 renderedImages.map((img) => (
                   <img
@@ -193,6 +213,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
                     onClick={() => setRenderedImage(img)}
                   ></img>
                 ))}
+                <VerticalAlignBottomOutlined className = "download-btn"  onClick={ ()=> download(renderedImage)}  />
             </div>
           </div>
         </div>

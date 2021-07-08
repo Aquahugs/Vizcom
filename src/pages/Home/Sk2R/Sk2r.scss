@@ -1,24 +1,13 @@
 h1 p {
   font-family: "Inter";
 }
-
-// .modal-container {
-//   padding: 10%;
-//   overflow-y: scroll;
-//   height: 800px;
-
-//   h1 {
-//     font-size: 16px;
-//   }
-
-//   p {
-//     font-size: 12px;
-//   }
-// }
-
-.modal-component {
-  height: 800px;
+.render-col,.sketch-col{
+  h5{
+    font-size: 1.2rem;
+  }
 }
+
+
 
 .sk2r-line-container {
   display: flex;
@@ -111,4 +100,9 @@ h1 p {
   width: 6rem;
   height: 6rem;
   cursor: pointer;
+}
+
+.download-btn{
+  font-size: 2rem;
+  float:right;
 }

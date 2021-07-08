@@ -37,11 +37,7 @@
   }
 }
 
-.title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-}
+
 
 .subtitle {
   text-align: center;
@@ -107,3 +103,32 @@
     margin-left: 0 !important;
   }
 }
+
+
+  .beta-container{
+    h2{
+      font-size: 1rem;
+      font-family: "Inter";
+      text-align: center;
+      font-weight: 600;
+    }
+    img {
+      width: 200px;
+      height: auto;
+      padding-bottom: 5%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto
+    }
+    p{
+      text-align: center;
+      font-family: "Inter";
+      font-size: 1rem;
+      padding-left: 25%;
+      padding-right: 25%;
+    }
+    .bold-me{
+      font-weight: 600;
+    }
+  }
+
