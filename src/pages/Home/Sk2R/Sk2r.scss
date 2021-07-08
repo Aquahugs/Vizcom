@@ -1,13 +1,12 @@
 h1 p {
   font-family: "Inter";
 }
-.render-col,.sketch-col{
-  h5{
+.render-col,
+.sketch-col {
+  h5 {
     font-size: 1.2rem;
   }
 }
-
-
 
 .sk2r-line-container {
   display: flex;
@@ -30,6 +29,7 @@ h1 p {
   justify-content: center;
   .sk2r-render-image {
     max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -45,6 +45,7 @@ h1 p {
 
   .sk2r-sketch-image {
     max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -102,7 +103,7 @@ h1 p {
   cursor: pointer;
 }
 
-.download-btn{
+.download-btn {
   font-size: 2rem;
-  float:right;
+  float: right;
 }

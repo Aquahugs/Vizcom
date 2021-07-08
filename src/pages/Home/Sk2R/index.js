@@ -11,7 +11,11 @@ import { Link } from "react-router-dom";
 
 import InfoModal from "./components/modal";
 import { Row, Button, Spin, Popover } from "antd";
-import { DownloadOutlined, EllipsisOutlined,VerticalAlignBottomOutlined } from "@ant-design/icons";
+import {
+  DownloadOutlined,
+  EllipsisOutlined,
+  VerticalAlignBottomOutlined,
+} from "@ant-design/icons";
 
 export const Sk2R = ({ history, user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
@@ -51,14 +55,21 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
 
   const getUserInfo = async () => {
     getProfile(uid);
+    // .then((dbUser) => {
+    //   console.log(dbUser);
+    //   if (!dbUser?.sk2r_beta) {
+    //     history.push("/sketch-to-render");
+    //   }
+    // });
   };
-  const download = renderedImage => {
+
+  const download = (renderedImage) => {
     fetch(renderedImage, {
       method: "GET",
-      headers: {}
+      headers: {},
     })
-      .then(response => {
-        response.arrayBuffer().then(function(buffer) {
+      .then((response) => {
+        response.arrayBuffer().then(function (buffer) {
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
@@ -67,7 +78,7 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
           link.click();
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -105,15 +116,6 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
       setIsLoading(false);
     }
   };
-
-  if (!user?.sk2r_beta) {
-    return (
-      <h5>
-        You do not have access to this page. Reach out to
-        contactvizcom@gmail.com
-      </h5>
-    );
-  }
 
   return (
     <div>
@@ -203,7 +205,6 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
           )}
           <div className="col s12 m12 l12 sk2r-button-download-container">
             <div className="sk2r-button-row">
-            
               {renderedImages.length > 0 &&
                 renderedImages.map((img) => (
                   <img
@@ -213,7 +214,10 @@ export const Sk2R = ({ history, user, uid, getProfile }) => {
                     onClick={() => setRenderedImage(img)}
                   ></img>
                 ))}
-                <VerticalAlignBottomOutlined className = "download-btn"  onClick={ ()=> download(renderedImage)}  />
+              <VerticalAlignBottomOutlined
+                className="download-btn"
+                onClick={() => download(renderedImage)}
+              />
             </div>
           </div>
         </div>
