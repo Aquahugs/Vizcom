@@ -198,9 +198,9 @@ const Profile = ({
                 </button>
               </Link>
               {profile && profile?.first_name ? (
-                <h2>{profile.first_name}</h2>
+                <h1>{profile.first_name}</h1>
               ) : (
-                <h2>Your Name</h2>
+                <h1>Your Name</h1>
               )}
             </div>
 
@@ -300,15 +300,15 @@ const Profile = ({
       </Tablet>
       <Mobile>
         <div className="row">
-          <div className="col s12 m12 l12">
-            <div className="profile-row-no-padding row bio-header-mobile">
+          <div className="profile-row-no-padding col s12 m12 l12">
+            <div className=" row bio-header-mobile">
               <Link to={EDITOR}>
                 <button className=" btn btn-flat edit-btn">Edit Profile</button>
               </Link>
               {profile?.first_name ? (
-                <h2>{profile.first_name}</h2>
+                <h1>{profile.first_name}</h1>
               ) : (
-                <h2>Your Name</h2>
+                <h1>Your Name</h1>
               )}
             </div>
 

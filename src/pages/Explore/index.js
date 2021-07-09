@@ -70,7 +70,7 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
       <div className="explore">
         <Desktop>
           <div className="explore-header">
-            <h1>Tools</h1>
+            <h1>Explore</h1>
           </div>
           <InfiniteScroll
             dataLength={localFeed}
@@ -115,7 +115,9 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
           </InfiniteScroll>
         </Desktop>
         <Tablet>
-          <h3>Explore</h3>
+          <div className="explore-header">
+            <h1>Explore</h1>
+          </div>
           <InfiniteScroll
             dataLength={localFeed}
             next={() => addToExploreFeed(5)}
@@ -159,6 +161,9 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
           </InfiniteScroll>
         </Tablet>
         <Mobile>
+          <div className="explore-header">
+            <h1>Explore</h1>
+          </div>
           <InfiniteScroll
             dataLength={localFeed}
             next={() => addToExploreFeed(5)}
