@@ -54,7 +54,7 @@ const TabletView = () => {
               }}
               muted
               loop
-              autostart
+              autostart="true"
               autoPlay
               src={demovideo2}
               type="video/mp4"
@@ -79,7 +79,7 @@ const TabletView = () => {
               style={{ width: "100%", height: "auto" }}
               muted
               loop
-              autostart
+              autostart="true"
               autoPlay
               src={demovideo}
               type="video/mp4"

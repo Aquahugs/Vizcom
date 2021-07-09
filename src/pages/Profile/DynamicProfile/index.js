@@ -4,7 +4,6 @@ import { withAuthorization } from "../../../router/auth/session";
 import { Link } from "react-router-dom";
 
 import "../profile.scss";
-import "../../Bucket/BucketList/BucketList.scss";
 import locationIcon from "../../../assets/location-icon.svg";
 import instaIcon from "../../../assets/instagram.png";
 import twitterIcon from "../../../assets/twitter.png";
@@ -19,23 +18,16 @@ import backarrow from "../../../assets/back-arrow.svg";
 
 import userService from "../../../common/services/user-service";
 import collectionService from "../../../common/services/collection-service";
-import bucketService from "../../../common/services/bucket-service";
 
 const DynamicProfile = ({ match }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [view, setView] = useState("collection");
 
-  const [buckets, setBuckets] = useState(null);
   const [profile, setProfile] = useState(null);
   const [collection, setCollection] = useState(null);
 
   useEffect(() => {
     getUserInfo().then(setIsLoaded(true));
   }, []);
-
-  const toggleView = (e) => {
-    setView(e);
-  };
 
   const getUserInfo = async () => {
     const { params } = match;
@@ -46,12 +38,9 @@ const DynamicProfile = ({ match }) => {
       params.uid
     );
     setCollection(collectionResponse.data);
-
-    const bucketResponse = await bucketService.getBuckets(params.uid);
-    setBuckets(bucketResponse.data);
   };
 
-  if (!isLoaded && profile && collection && buckets) {
+  if (!isLoaded && profile && collection) {
     return (
       <div>
         <h1>Loading...</h1>
@@ -74,12 +63,12 @@ const DynamicProfile = ({ match }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col sm6 m6 l6">
+              <div className="col sm12 m12 l12">
                 <div className="row bio-header">
                   {profile && profile?.first_name ? (
-                    <h2>{profile.first_name}</h2>
+                    <h1>{profile.first_name}</h1>
                   ) : (
-                    <h2>{profile?.display_name}</h2>
+                    <h1>{profile?.display_name}</h1>
                   )}
                 </div>
 
@@ -117,121 +106,29 @@ const DynamicProfile = ({ match }) => {
                 </div>
                 {profile && <p>{profile.bio}</p>}
               </div>
-              <div className="view-selector col s6 m6 l6">
-                <h2>View</h2>
-                <ul>
-                  <a>
-                    <li
-                      onClick={() => toggleView("collection")}
-                      style={{
-                        fontWeight: view === "collection" ? "bold" : "400",
-                      }}
-                    >
-                      Collection
-                    </li>
-                  </a>
-                  <a>
-                    <li
-                      onClick={() => toggleView("bucket")}
-                      style={{ fontWeight: view === "bucket" ? "bold" : "400" }}
-                    >
-                      Buckets
-                    </li>
-                  </a>
-                </ul>
-              </div>
             </div>
-            {view === "bucket" && (
-              <div className="buckets-container">
-                <div className="row">
-                  {buckets?.map((bucket, bucketIndex) => {
-                    return (
-                      <div className="row" key={`Key${bucketIndex}`}>
-                        <Link to={`/bucket/${bucket.bucket_id}`}>
-                          <div className="bucket-titlecard">
-                            {/* Bucket title card */}
-                            <h3>{bucket?.bucket_name}</h3>
-                            <p>
-                              by /{" "}
-                              {profile?.first_name
-                                ? profile?.first_name
-                                : profile?.display_name}
-                            </p>
-                            <p>
-                              {bucket?.images ? bucket.images.length : 0} images
-                            </p>
-                          </div>
-                        </Link>
-                        {bucket.images?.length !== 0 ? (
-                          bucket.images.length > 3 ? (
-                            bucket.images
-                              .slice(0, 2)
-                              .map((image, imageIndex) => {
-                                return (
-                                  <div key={`Key${imageIndex}`}>
-                                    <img
-                                      className="bucket-teaser_image col s3 m3 l3 "
-                                      alt="images in the bucket"
-                                      src={image.image_uri}
-                                    />
-                                  </div>
-                                );
-                              })
-                          ) : (
-                            bucket.images?.map((image, imageIndex) => {
-                              return (
-                                <div key={`Key${imageIndex}`}>
-                                  <img
-                                    className="col s3 m3 l3 bucket-preview"
-                                    alt="images in the bucket"
-                                    src={image.image_uri}
-                                  />
-                                </div>
-                              );
-                            })
-                          )
-                        ) : (
-                          <div className="bucket-teaser_add-image-card">
-                            <p>Empty bucket</p>
-                          </div>
-                        )}
-                        {bucket.images?.length > 2 && (
-                          <div className="bucket_teaser_see-more-container">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+            {collection ? (
+              <div className="row">
+                {collection?.map((image) => {
+                  return (
+                    <div
+                      className=" collection-container col s3 m3 l3"
+                      key={image.collection_image_id}
+                    >
+                      <RenderSmoothImage
+                        src={image.image_uri}
+                        alt="images in the collection"
+                        className="collection-image"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div>
+                <p>No images here!</p>
               </div>
             )}
-
-            {view === "collection" &&
-              (collection ? (
-                <div className="row">
-                  {collection?.map((image) => {
-                    return (
-                      <div
-                        className=" collection-container col s3 m3 l3"
-                        key={image.collection_image_id}
-                      >
-                        <RenderSmoothImage
-                          src={image.image_uri}
-                          alt="images in the collection"
-                          className="collection-image"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div>
-                  <p>No images here!</p>
-                </div>
-              ))}
           </div>
         </Desktop>
         <Tablet>
@@ -248,12 +145,12 @@ const DynamicProfile = ({ match }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col sm6 m6 l6">
+              <div className="col sm12 m12 l12">
                 <div className="row bio-header">
                   {profile && profile?.first_name ? (
-                    <h2>{profile?.first_name}</h2>
+                    <h1>{profile?.first_name}</h1>
                   ) : (
-                    <h2>{profile?.display_name}</h2>
+                    <h1>{profile?.display_name}</h1>
                   )}
                 </div>
 
@@ -291,99 +188,9 @@ const DynamicProfile = ({ match }) => {
                 </div>
                 {profile && <p>{profile.bio}</p>}
               </div>
-              <div className="view-selector col s6 m6 l6">
-                <h2>View</h2>
-                <ul>
-                  <a>
-                    <li
-                      onClick={() => toggleView("collection")}
-                      style={{
-                        fontWeight: view == "collection" ? "bold" : "400",
-                      }}
-                    >
-                      Collection
-                    </li>
-                  </a>
-                  <a>
-                    <li
-                      onClick={() => toggleView("bucket")}
-                      style={{ fontWeight: view === "bucket" ? "bold" : "400" }}
-                    >
-                      Buckets
-                    </li>
-                  </a>
-                </ul>
-              </div>
             </div>
-            {view === "bucket" && (
-              <div className="buckets-container">
-                <div className="row">
-                  {buckets?.map((bucket, bucketIndex) => {
-                    return (
-                      <div className="row" key={`Key${bucketIndex}`}>
-                        <Link to={`/bucket/${bucket.bucket_id}`}>
-                          <div className="bucket-titlecard">
-                            {/* Bucket title card */}
-                            <h3>{bucket?.bucket_name}</h3>
-                            <p>
-                              by /{" "}
-                              {profile?.first_name
-                                ? profile?.first_name
-                                : profile?.display_name}
-                            </p>
-                            <p>
-                              {bucket?.images ? bucket.images.length : 0} images
-                            </p>
-                          </div>
-                        </Link>
-                        {bucket.images?.length !== 0 ? (
-                          bucket.images.length > 3 ? (
-                            bucket.images
-                              .slice(0, 2)
-                              .map((image, imageIndex) => {
-                                return (
-                                  <div key={`Key${imageIndex}`}>
-                                    <img
-                                      className="bucket-teaser_image col s3 m3 l3 "
-                                      alt="images in the bucket"
-                                      src={image.image_uri}
-                                    />
-                                  </div>
-                                );
-                              })
-                          ) : (
-                            bucket.images?.map((image, imageIndex) => {
-                              return (
-                                <div key={`Key${imageIndex}`}>
-                                  <img
-                                    className="col s3 m3 l3 bucket-preview"
-                                    alt="images in the bucket"
-                                    src={image.image_uri}
-                                  />
-                                </div>
-                              );
-                            })
-                          )
-                        ) : (
-                          <div className="bucket-teaser_add-image-card">
-                            <p>Empty bucket</p>
-                          </div>
-                        )}
-                        {bucket.images?.length > 2 && (
-                          <div className="bucket_teaser_see-more-container">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
 
-            {view === "collection" && collection && (
+            {collection && (
               <div className="row">
                 {/* CREATE COLLECTION LIST COMPONENT */}
                 {collection?.map((image) => {
@@ -410,7 +217,7 @@ const DynamicProfile = ({ match }) => {
         <Mobile>
           <div className="mobile-profile-container">
             <div className="row">
-              <div className="col s9 m9 l9">
+              <div className="col s12 m12 l12">
                 <Link to={"/explore"}>
                   <img
                     alt="back arrow icon"
@@ -424,9 +231,9 @@ const DynamicProfile = ({ match }) => {
               <div className="col s12 m12 l12">
                 <div className="row bio-header-mobile">
                   {profile?.first_name ? (
-                    <h2>{profile?.first_name}</h2>
+                    <h1>{profile?.first_name}</h1>
                   ) : (
-                    <h2>{profile?.display_name}</h2>
+                    <h1>{profile?.display_name}</h1>
                   )}
                 </div>
 
@@ -467,99 +274,13 @@ const DynamicProfile = ({ match }) => {
               <div className="row">
                 <div className="view-selector-mobile col s12 m12 l12">
                   <ul>
-                    <a>
-                      <li
-                        onClick={() => toggleView("collection")}
-                        style={{
-                          fontWeight: view === "collection" ? "bold" : "400",
-                        }}
-                      >
-                        Collection
-                      </li>
-                    </a>
-                    <a>
-                      <li
-                        onClick={() => toggleView("bucket")}
-                        style={{
-                          fontWeight: view === "bucket" ? "bold" : "400",
-                        }}
-                      >
-                        Buckets
-                      </li>
-                    </a>
+                    <li>Collection</li>
                   </ul>
                 </div>
               </div>
             </div>
-            {view === "bucket" && (
-              <div className="buckets-container">
-                <div className="row">
-                  {buckets?.map((bucket, bucketIndex) => {
-                    return (
-                      <div className="row" key={`Key${bucketIndex}`}>
-                        <Link to={`/bucket/${bucket.bucket_id}`}>
-                          <div className="bucket-titlecard">
-                            {/* Bucket title card */}
-                            <h3>{bucket?.bucket_name}</h3>
-                            <p>
-                              by /{" "}
-                              {profile?.first_name
-                                ? profile?.first_name
-                                : profile?.display_name}
-                            </p>
-                            <p>
-                              {bucket?.images ? bucket.images.length : 0} images
-                            </p>
-                          </div>
-                        </Link>
-                        {bucket.images?.length !== 0 ? (
-                          bucket.images.length > 3 ? (
-                            bucket.images
-                              .slice(0, 2)
-                              .map((image, imageIndex) => {
-                                return (
-                                  <div key={`Key${imageIndex}`}>
-                                    <img
-                                      className="bucket-teaser_image col s3 m3 l3 "
-                                      alt="images in the bucket"
-                                      src={image.image_uri}
-                                    />
-                                  </div>
-                                );
-                              })
-                          ) : (
-                            bucket.images?.map((image, imageIndex) => {
-                              return (
-                                <div key={`Key${imageIndex}`}>
-                                  <img
-                                    className="col s3 m3 l3 bucket-preview"
-                                    alt="images in the bucket"
-                                    src={image.image_uri}
-                                  />
-                                </div>
-                              );
-                            })
-                          )
-                        ) : (
-                          <div className="bucket-teaser_add-image-card">
-                            <p>Empty bucket</p>
-                          </div>
-                        )}
-                        {bucket.images?.length > 2 && (
-                          <div className="bucket_teaser_see-more-container">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
 
-            {view === "collection" && collection && (
+            {collection && (
               <div className="row">
                 {/* CREATE COLLECTION LIST COMPONENT */}
                 {collection?.map((image) => {

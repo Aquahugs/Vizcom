@@ -56,7 +56,7 @@ const About = () => {
                 }}
                 muted
                 loop
-                autostart
+                autostart="true"
                 autoPlay
                 src={demovideo2}
                 type="video/mp4"
@@ -83,7 +83,7 @@ const About = () => {
                 style={{ width: "70%", height: "auto" }}
                 muted
                 loop
-                autostart
+                autostart="true"
                 autoPlay
                 src={demovideo}
                 type="video/mp4"
@@ -118,7 +118,7 @@ const About = () => {
         <TabletView />
       </Tablet>
       <Mobile>
-       <MobileView />
+        <MobileView />
       </Mobile>
     </div>
   );

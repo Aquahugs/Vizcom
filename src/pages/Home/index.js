@@ -8,7 +8,6 @@ import { withAuthorization } from "../../router/auth/session";
 
 import { ProfileThunks } from "../Profile/redux";
 import { CollectionThunks } from "../Profile/Collection/redux";
-import { BucketThunks } from "../Bucket/redux";
 import { GenerateThunks } from "./Generate/redux";
 
 import ToolCard from "../../common/components/Card";
@@ -22,12 +21,8 @@ const Home = ({
   collection,
   getCollection,
   getProfile,
-  buckets,
-  getBuckets,
   getGeneratedImages,
 }) => {
-  const [data, setData] = useState([]);
-
   useEffect(() => {
     if (!user) {
       getProfile(uid);
@@ -35,9 +30,6 @@ const Home = ({
     }
     if (!collection) {
       getCollection(uid);
-    }
-    if (!buckets) {
-      getBuckets(uid);
     }
     getGeneratedImages();
   }, []);
@@ -47,7 +39,6 @@ const Home = ({
       <div className="tools-header">
         <h1>Tools</h1>
       </div>
-      {data && <p>{data.email}</p>}
       <div className="nav row">
         <ToolCard
           link={GENERATE.link}
@@ -70,13 +61,11 @@ const mapStateToProps = (state) => ({
   uid: state.session.authUser.uid,
   user: state.profile.user,
   collection: state.collection.collection,
-  buckets: state.bucket.buckets,
 });
 
 const mapDispatchToProps = {
   getProfile: ProfileThunks.getProfile,
   getCollection: CollectionThunks.getCollectionByUserId,
-  getBuckets: BucketThunks.getBuckets,
   getGeneratedImages: GenerateThunks.getGeneratedImages,
 };
 

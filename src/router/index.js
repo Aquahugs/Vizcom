@@ -3,16 +3,13 @@ import { Switch, Route } from "react-router-dom";
 
 import Profile from "../pages/Profile";
 import DynamicProfile from "../pages/Profile/DynamicProfile";
-import DynamicBucket from "../pages/Bucket/DynamicBucket";
 import Editor from "../pages/Profile/Editor"; //need to put this into /Profile (Profile/Editor)
-import CreateBucket from "../pages/Bucket/CreateBucket"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../pages/Explore";
 import Home from "../pages/Home";
 import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
 import SketchToRenderBeta from "../pages/Home/Sk2R";
 import About from "../pages/About";
-import SingleBucketView from "../pages/Bucket/SingleBucketView";
 import LandingPage from "../pages/LandingPage";
 import LogIn from "../pages/LandingPage/LogIn";
 import Admin from "../pages/Admin";
@@ -26,9 +23,6 @@ const Router = () => (
     </Route>
     <Route path={ROUTES.EDITOR}>
       <Editor />
-    </Route>
-    <Route path={ROUTES.ADD_BUCKET}>
-      <CreateBucket />
     </Route>
     <Route path={ROUTES.EXPLORE}>
       <Explore />
@@ -44,12 +38,6 @@ const Router = () => (
     </Route>
     <Route path={ROUTES.HOME}>
       <Home />
-    </Route>
-    <Route path="/bucket/:bucket_id">
-      <SingleBucketView />
-    </Route>
-    <Route path="/user/:uid/bucket/:bucket_id">
-      <DynamicBucket />
     </Route>
     <Route path="/user/:uid">
       <DynamicProfile />

@@ -11,7 +11,7 @@ const Card = ({ link, logo, name, description, push }) => {
           <div className="col s4 m4">
             <div
               className="card"
-              style={{ opacity: name != "Sketch2Render" ? 1 : 0.5 }}
+              style={{ opacity: name !== "Sketch2Render" ? 1 : 0.5 }}
             >
               <div className="card-image">
                 <img alt="logo" src={logo} />

@@ -67,9 +67,11 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
     return <div></div>;
   } else {
     return (
-      <div>
+      <div className="explore">
         <Desktop>
-          <h3>Explore</h3>
+          <div className="explore-header">
+            <h1>Tools</h1>
+          </div>
           <InfiniteScroll
             dataLength={localFeed}
             next={() => addToExploreFeed(5)}
@@ -91,63 +93,21 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
               {loaded
                 ? localFeed.map((item, index) => (
                     <div className="image-item" key={index}>
-                      {item.image_uri ? (
-                        item.bucket_id ? (
-                          <div>
-                            <RenderSmoothImage
-                              src={item.image_uri}
-                              alt="alternate-text"
-                              className="hover-zoom"
-                            />
-                            <p>
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                              added to
-                              <Link
-                                to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
-                              >
-                                {item.bucket_name}
-                              </Link>
-                            </p>
-                          </div>
-                        ) : (
-                          <div>
-                            <RenderSmoothImage
-                              src={item.image_uri}
-                              alt="alternate-text"
-                              className="hover-zoom"
-                            />
-                            <p>
-                              collected by{" "}
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                            </p>
-                          </div>
-                        )
-                      ) : (
-                        <Link
-                          to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
-                        >
-                          <div className="bucket-card">
-                            {/* Bucket title card */}
-                            <h3>{item?.bucket_name}</h3>
-                            <p>
-                              By:{" "}
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                            </p>
-                          </div>
-                        </Link>
-                      )}
+                      <div>
+                        <RenderSmoothImage
+                          src={item.image_uri}
+                          alt="alternate-text"
+                          className="hover-zoom"
+                        />
+                        <p>
+                          collected by{" "}
+                          <Link to={`/user/${item.uuid}`}>
+                            {item.first_name
+                              ? item.first_name
+                              : item.display_name}
+                          </Link>
+                        </p>
+                      </div>
                     </div>
                   ))
                 : ""}
@@ -177,63 +137,21 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
               {loaded
                 ? localFeed.map((item, index) => (
                     <div className="image-item" key={index}>
-                      {item.image_uri ? (
-                        item.bucket_id ? (
-                          <div>
-                            <RenderSmoothImage
-                              src={item.image_uri}
-                              alt="alternate-text"
-                              className="hover-zoom"
-                            />
-                            <p>
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                              added to
-                              <Link
-                                to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
-                              >
-                                {item.bucket_name}
-                              </Link>
-                            </p>
-                          </div>
-                        ) : (
-                          <div>
-                            <RenderSmoothImage
-                              src={item.image_uri}
-                              alt="alternate-text"
-                              className="hover-zoom"
-                            />
-                            <p>
-                              collected by{" "}
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                            </p>
-                          </div>
-                        )
-                      ) : (
-                        <Link
-                          to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
-                        >
-                          <div className="bucket-card">
-                            {/* Bucket title card */}
-                            <h3>{item?.bucket_name}</h3>
-                            <p>
-                              By:{" "}
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                            </p>
-                          </div>
-                        </Link>
-                      )}
+                      <div>
+                        <RenderSmoothImage
+                          src={item.image_uri}
+                          alt="alternate-text"
+                          className="hover-zoom"
+                        />
+                        <p>
+                          collected by{" "}
+                          <Link to={`/user/${item.uuid}`}>
+                            {item.first_name
+                              ? item.first_name
+                              : item.display_name}
+                          </Link>
+                        </p>
+                      </div>
                     </div>
                   ))
                 : ""}
@@ -257,64 +175,19 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
               {loaded
                 ? localFeed.map((item, index) => (
                     <div className="image-item" key={index}>
-                      {item.image_uri ? (
-                        item.bucket_id ? (
-                          <div>
-                            <RenderSmoothImage
-                              src={item.image_uri}
-                              alt="alternate-text"
-                              className="hover-zoom"
-                            />
-                            <p>
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                              added to
-                              <Link
-                                to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
-                              >
-                                {item.bucket_name}
-                              </Link>
-                            </p>
-                          </div>
-                        ) : (
-                          <div>
-                            {" "}
-                            <RenderSmoothImage
-                              src={item.image_uri}
-                              alt="alternate-text"
-                              className="hover-zoom"
-                            />
-                            <p>
-                              collected by{" "}
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                            </p>
-                          </div>
-                        )
-                      ) : (
-                        <Link
-                          to={`/user/${item.uuid}/bucket/${item.bucket_id}`}
-                        >
-                          <div className="bucket-card">
-                            {/* Bucket title card */}
-                            <h3>{item?.bucket_name}</h3>
-                            <p>
-                              By:{" "}
-                              <Link to={`/user/${item.uuid}`}>
-                                {item.first_name
-                                  ? item.first_name
-                                  : item.display_name}
-                              </Link>
-                            </p>
-                          </div>
+                      <RenderSmoothImage
+                        src={item.image_uri}
+                        alt="alternate-text"
+                        className="hover-zoom"
+                      />
+                      <p>
+                        collected by{" "}
+                        <Link to={`/user/${item.uuid}`}>
+                          {item.first_name
+                            ? item.first_name
+                            : item.display_name}
                         </Link>
-                      )}
+                      </p>
                     </div>
                   ))
                 : ""}

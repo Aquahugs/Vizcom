@@ -9,25 +9,12 @@ nav {
   box-shadow: none;
 }
 
-.bucket {
-  padding-right: 1rem;
-
-  img {
-    height: auto;
-    width: 20px;
-    float: right;
-  }
-  p {
-    float: right;
-  }
-}
-
 .logo-container {
   img {
     width: 105px;
     height: auto;
     @media (max-width: 480px) {
-      width:70px;
+      width: 70px;
     }
   }
 }
@@ -74,17 +61,10 @@ nav {
   }
 }
 
-.profile-name{
-  color:#505050;
-  font-size:16px;
+.profile-name {
+  color: #505050;
+  font-size: 16px;
   @media (max-width: 480px) {
-    font-size:12px;
+    font-size: 12px;
   }
-}
-
-.nav-addbucket {
-  width: 20px;
-  height: 20px;
-  margin-right: 1rem;
-  vertical-align: middle;
 }

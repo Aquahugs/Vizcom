@@ -77,7 +77,7 @@ class SketchToRender extends Component {
           className="sk2r-video"
           muted
           loop
-          autostart
+          autostart="true"
           autoPlay
           src={demovideo}
           type="video/mp4"

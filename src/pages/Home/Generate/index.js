@@ -4,47 +4,31 @@ import { connect } from "react-redux";
 import { fadeInUp } from "react-animations";
 import Radium, { StyleRoot } from "radium";
 import "./generate.scss";
-import "./add-to-bucket.scss";
 import Modal from "react-modal";
 import { Desktop, Tablet, Mobile } from "../../Responsive";
 import { CollectionThunks } from "../../Profile/Collection/redux";
-import { BucketThunks, BucketActions } from "../../Bucket/redux";
 import { GenerateThunks } from "./redux";
 
 import { withAuthorization } from "../../../router/auth/session";
-// import "render-smooth-image-react/build/style.css";
 
-import downloadbutton from "../../../assets/download-button.svg";
 import collectconfirm from "../../../assets/collect-confirm.svg";
-import conceptart from "../../../assets/conceptart-holder.png";
 import footwear from "../../../assets/footwear-holder.png";
-import genanimation from "../../../assets/gen-animation.mp4";
 import backarrow from "../../../assets/back-arrow.svg";
-import AddToBucket from "./AddToBucket";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 import { Link } from "react-router-dom";
 
 const Generate = ({
-  buckets,
   uid,
   getCollection,
-  getBuckets,
-  getBucketDropdownOptions,
   generatedImages,
   collectImage,
   getGeneratedImages,
-  conceptGeneratedImages,
-  carGeneratedImages,
-  bucketDropdownOptions,
   generateStatus,
 }) => {
   // Local state
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [displayBuckets, setDisplayBuckets] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedDisplayImages, setGeneratedDisplayImages] = useState([]);
-  const [imageDownload, setImageDownload] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
   const [generatorState, setToggle] = useState("car");
@@ -54,17 +38,6 @@ const Generate = ({
       ? fetchGeneratedImages()
       : toggleGeneratedImages(generatedImages.car, 18);
     getCollection(uid);
-    if (!buckets) {
-      getBuckets(uid);
-    }
-    // options for bucket search
-    const bucketOptionDropdown = buckets?.map((bucket) => ({
-      name: bucket.bucket_name,
-      value: bucket.bucket_id,
-    }));
-    getBucketDropdownOptions(bucketOptionDropdown);
-
-    setIsLoaded(true);
   }, []);
 
   useEffect(() => {
@@ -129,10 +102,6 @@ const Generate = ({
     }, 1800);
   };
 
-  const toggleBuckets = () => {
-    setDisplayBuckets(!displayBuckets);
-  };
-
   const handleClick = (e) => {
     if (e) {
       e.preventDefault();
@@ -157,10 +126,6 @@ const Generate = ({
     });
   };
 
-  const logDownload = (image) => {
-    setImageDownload(image);
-  };
-
   // modal functions
   const openModal = (image) => {
     setModalImage(image);
@@ -168,7 +133,6 @@ const Generate = ({
   };
   const closeModal = () => {
     setModalIsOpen(false);
-    setDisplayBuckets(false);
   };
 
   //  STYLES
@@ -184,15 +148,6 @@ const Generate = ({
       width: "900px",
       height: "750px",
     },
-  };
-
-  const showBuckets = {
-    visibility: displayBuckets ? "visible" : "hidden",
-    display: displayBuckets ? "block" : "none",
-  };
-  const hideBuckets = {
-    visibility: displayBuckets ? "hidden" : "visible",
-    display: displayBuckets ? "none" : "block",
   };
 
   const visibilityStyle = {
@@ -313,42 +268,23 @@ const Generate = ({
               </div>
               <div className="col s12 m12 l12 generated-info">
                 <div className="button-container row">
-                  <div style={hideBuckets}>
-                    <div>
-                      <div className="col s12 m12 l12">
-                        {modalImage.isCollected ? (
-                          <img
-                            alt="confirm icon"
-                            className="collect-confirm"
-                            src={collectconfirm}
-                          />
-                        ) : (
-                          // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                          <a
-                            className="collect"
-                            onClick={() => collectImageHandler(modalImage)}
-                          >
-                            Collect
-                            <i className="material-icons right">add_box</i>
-                          </a>
-                        )}
-                      </div>
-                      <div className="col s12 m12 l12">
-                        <button
-                          className="waves-effect waves-grey btn-flat add-bucket"
-                          onClick={toggleBuckets}
-                        >
-                          <i className="material-icons right add-to">apps</i>Add
-                          to bucket
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className=" col s12 m12 l12" style={showBuckets}>
-                    <AddToBucket
-                      addBucketMenu={setDisplayBuckets}
-                      image={modalImage}
-                    />
+                  <div className="col s12 m12 l12">
+                    {modalImage.isCollected ? (
+                      <img
+                        alt="confirm icon"
+                        className="collect-confirm"
+                        src={collectconfirm}
+                      />
+                    ) : (
+                      // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                      <a
+                        className="collect"
+                        onClick={() => collectImageHandler(modalImage)}
+                      >
+                        Collect
+                        <i className="material-icons right">add_box</i>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -377,23 +313,21 @@ const Generate = ({
                 <button
                   onClick={() => setToggle("car")}
                   style={carActive}
-                  class=" btn btn-flat "
+                  className=" btn btn-flat "
                 >
                   car-design
                 </button>
                 <button
                   onClick={() => setToggle("concept")}
-                  class=" btn btn-flat "
+                  className=" btn btn-flat "
                   style={conceptActive}
-                  class="btn btn-flat"
                 >
                   concept art
                 </button>
                 <button
                   onClick={() => setToggle("footwear")}
-                  class=" btn btn-flat "
+                  className=" btn btn-flat "
                   style={footActive}
-                  class="btn btn-flat"
                 >
                   footwear
                 </button>
@@ -482,17 +416,13 @@ const mapStateToProps = (state) => ({
   uid: state.session.authUser.uid,
   user: state.profile.user,
   collection: state.collection.collection,
-  buckets: state.bucket.buckets,
   generatedImages: state.generate.images,
-  bucketDropdownOptions: state.bucket.dropdownOptions,
   generateStatus: state.generate.status,
 });
 
 const mapDispatchToProps = {
   getCollection: CollectionThunks.getCollectionByUserId,
   collectImage: CollectionThunks.collectImage,
-  getBuckets: BucketThunks.getBuckets,
-  getBucketDropdownOptions: BucketActions.getBucketDropdownOptions,
   getGeneratedImages: GenerateThunks.getGeneratedImages,
 };
 

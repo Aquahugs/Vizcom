@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./PrimaryNavbar.scss";
 import Logo from "../../assets/logo.png";
-import NewBucket from "../../assets/plus.png";
 import SignOut from "../../pages/LandingPage/Auth/SignOut";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { ADD_BUCKET, PROFILE } from "../../router/routes-const";
+import { PROFILE } from "../../router/routes-const";
 
 const PrimaryNav = ({ user, profile }) => {
   return (
@@ -16,19 +15,6 @@ const PrimaryNav = ({ user, profile }) => {
           <img alt="logo" src={Logo} />
         </a>
         <ul className="nav-items right ">
-          <li>
-            <Link
-              to={ADD_BUCKET}
-              style={{ color: "#505050", fontSize: "16px" }}
-            >
-              <img
-                alt="create a bucket icon"
-                src={NewBucket}
-                className="nav-addbucket hide-on-med-and-down"
-              />
-              <span className="hide-on-med-and-down">New Bucket</span>
-            </Link>
-          </li>
           <li className="profile-items">
             <Link to={PROFILE} className="profile-name">
               {user?.authUser?.providerData[0]?.displayName

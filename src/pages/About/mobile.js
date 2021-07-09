@@ -9,13 +9,10 @@ import cardesign from "../../assets/cardesign.png";
 
 const MobileView = () => {
   return (
-    <div className = "mobile-content">
+    <div className="mobile-content">
       <div className="about-container-mobile">
         <div className="row title-banner-mobile">
-          <h1>
-             Reimagining how we create
-    
-          </h1>
+          <h1>Reimagining how we create</h1>
           <p>
             In 2020 we began to explore the possibilities of <br />
             how man and machine can work together as a <br />
@@ -25,7 +22,7 @@ const MobileView = () => {
         <div className="row exp-mobile">
           <div className="col s12 m12 l12">
             <h1>Car Design</h1>
-            
+
             <img alt="cardesign" src={cardesign} />
           </div>
         </div>
@@ -48,7 +45,7 @@ const MobileView = () => {
               }}
               muted
               loop
-              autostart
+              autostart="true"
               autoPlay
               src={demovideo2}
               type="video/mp4"
@@ -56,7 +53,6 @@ const MobileView = () => {
           </div>
         </div>
 
-        
         <div className="row final">
           <div className="col s12 m12 l12">
             <h1>But, it dosen't stop there</h1>
