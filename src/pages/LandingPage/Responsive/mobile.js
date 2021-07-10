@@ -117,11 +117,11 @@ const MobileView = () => {
               </p>
               <div className="row intro-btn-container-tablet">
                 <div className="col s6 m6 l6">
-                  <a href="https://youtu.be/913snu2ZvIU" target="_blank">
+                  <Link to="/signin">
                     <Button className="get-started" type="primary">
                       Get Started
                     </Button>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

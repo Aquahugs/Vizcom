@@ -9,6 +9,7 @@ import MobileView from "./Responsive/mobile";
 
 import WhiteLogo from "../../assets/logo-white.png";
 import Video from "./Assets/vid.mp4";
+import Video2 from "./Assets/vid2.mp4";
 import play from "./Assets/noun_play_4022420.svg";
 import image1 from "./Assets/Group2.png";
 import image2 from "./Assets/Group1.png";
@@ -111,6 +112,9 @@ const LandingPage = ({ authUser, history }) => {
               <Link to="/signin">
                 <p>Log in</p>
               </Link>
+              <Link to="/about">
+                <p>About</p>
+              </Link>
             </div>
           </FadeIn>
 
@@ -138,12 +142,12 @@ const LandingPage = ({ authUser, history }) => {
                       </Link>
                     </div>
                     <div className="col s6 m6 l6 ply-btn">
-                      <a href="https://youtu.be/913snu2ZvIU">
+                      <a href="https://youtu.be/K37hDASBaeg">
                         <Button className="play" type="primary" shape="circle">
                           <img src={play} />
                         </Button>
                       </a>
-                      <a href="https://youtu.be/913snu2ZvIU" target="_blank">
+                      <a href="https://youtu.be/K37hDASBaeg" target="_blank">
                         <span className="lrn-more">Learn more</span>
                       </a>
                     </div>
@@ -268,6 +272,35 @@ const LandingPage = ({ authUser, history }) => {
               </a>
             </Col>
           </Row>
+
+          <div className="row sk2r-demo">
+            <FadeIn delay={800}>
+              <div className="col s12 m12 l12">
+                <h1>Sketch to Render</h1>
+                <p>Hours of manual hand work becomes seconds of compute.</p>
+              </div>
+              <div className="col s12 m12 l12">
+                <div className="demo-video">
+                  <video
+                    muted
+                    loop
+                    autostart="true"
+                    playsInline
+                    autoPlay
+                    src={Video2}
+                    type="video/mp4"
+                  />
+                </div>
+              </div>
+              <div className="col s12 m12 l12">
+                <Link to="/signin">
+                  <Button className="get-started-try" type="primary">
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
 
           <div className="footer-box row">
             <div data-aos="fade-right" className="col s6 m6 l6">

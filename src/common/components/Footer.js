@@ -11,9 +11,6 @@ const Footer = ({ darkmode }) => {
         </div>
         <div className="col s6 m6 l6 info">
           <ul className="dark-list">
-            <Link to="/about">
-              <li>About</li>
-            </Link>
             {/* <li>Contact</li> */}
             <a href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
