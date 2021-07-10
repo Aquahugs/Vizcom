@@ -1,11 +1,11 @@
 export const GENERATE = {
   link: "generate",
-  description: "Explore uniquely ai generated  generated inspiration",
+  description: "Generate unique AI inspiration on the spot",
   name: "Generate",
 };
 
 export const SKETCH_TO_RENDER = {
   link: "sketch-to-render",
-  description: "Auto fill base values for all of your line drawings..........",
+  description: "Upload your car design sketch for AI to render ",
   name: "Sketch2Render",
 };

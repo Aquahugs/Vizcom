@@ -239,6 +239,7 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
           ) : (
             <div className="sk2r-render-container sk2r-render-spinner">
               <Spin className="" size="large" />
+              <p>Please allow a few moments</p>
             </div>
           )}
           <div className="col s12 m12 l12 sk2r-button-download-container">
@@ -261,7 +262,6 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
         </div>
       </div>
       <div className="row">
-        {" "}
         {imageDimensionError.value && (
           <Alert
             message={imageDimensionError.message}

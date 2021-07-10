@@ -13,6 +13,8 @@ import About from "../pages/About";
 import LandingPage from "../pages/LandingPage";
 import LogIn from "../pages/LandingPage/LogIn";
 import Admin from "../pages/Admin";
+import PrivatePolicy from "../pages/PrivacyPolicy";
+import TermsOfUse from "../pages/TermsOfUse";
 
 import * as ROUTES from "./routes-const";
 
@@ -45,13 +47,18 @@ const Router = () => (
     <Route path={ROUTES.ABOUT}>
       <About />
     </Route>
+    <Route path="/privacy-policy">
+      <PrivatePolicy />
+    </Route>
+    <Route path="/terms-of-use">
+      <TermsOfUse />
+    </Route>
     <Route path="/admin">
       <Admin />
     </Route>
     <Route path={ROUTES.LOGIN_PAGE}>
       <LogIn />
     </Route>
-
     <Route path={ROUTES.LANDING_PAGE}>
       <LandingPage />
     </Route>

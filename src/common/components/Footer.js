@@ -14,13 +14,19 @@ const Footer = ({ darkmode }) => {
             <Link to="/about">
               <li>About</li>
             </Link>
-            <li>Contact</li>
+            {/* <li>Contact</li> */}
             <a href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
             <a href="https://www.instagram.com/vizcom_/">
               <li>Instagram</li>
             </a>
+            <Link to="/privacy-policy">
+              <li>Privacy Policy</li>
+            </Link>
+            <Link to="/terms-of-use">
+              <li>Terms of Use</li>
+            </Link>
           </ul>
         </div>
       </div>
@@ -34,13 +40,19 @@ const Footer = ({ darkmode }) => {
             <Link to="/about">
               <li>About</li>
             </Link>
-            <li>Contact</li>
+
             <a href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
             <a href="https://www.instagram.com/vizcom_/">
               <li>Instagram</li>
             </a>
+            <Link to="/privacy-policy">
+              <li>Privacy Policy</li>
+            </Link>
+            <Link to="/terms-of-use">
+              <li>Terms of Use</li>
+            </Link>
           </ul>
         </div>
       </div>

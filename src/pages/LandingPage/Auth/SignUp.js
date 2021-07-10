@@ -7,6 +7,10 @@ import { connect } from "react-redux";
 import { ProfileThunks } from "../../Profile/redux";
 import { withFirebase } from "../../../router/auth/firebase";
 
+import { Link } from "react-router-dom";
+
+import { Tooltip } from "antd";
+
 const SignUpPage = () => (
   <div>
     <SignUpForm />
@@ -18,6 +22,7 @@ const INITIAL_STATE = {
   email: "",
   passwordOne: "",
   passwordTwo: "",
+  privacyCheckbox: false,
   error: null,
 };
 
@@ -39,7 +44,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = (event) => {
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne, privacyCheckbox } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -78,27 +83,35 @@ class SignUpFormBase extends Component {
   };
 
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      error,
+      privacyCheckbox,
+    } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
       email === "" ||
-      username === "";
+      username === "" ||
+      privacyCheckbox === "";
 
     return (
       <div>
         <div className="tab-content">
           <div id="signup">
             <h1
-              style={{ color: "#fcfbfb", fontSize: "26px", fontWeight: "bold" }}
+              style={{ color: "#232323", fontSize: "26px", fontWeight: "bold" }}
             >
               Sign Up{" "}
             </h1>
             <form onSubmit={this.onSubmit}>
               <div className="top-row">
                 <div className="field-wrap">
-                  <label style = {{color:"#232323"}}>
+                  <label style={{ color: "#232323" }}>
                     Username<span className="req">*</span>
                   </label>
                   <input
@@ -110,7 +123,7 @@ class SignUpFormBase extends Component {
                   />
                 </div>
                 <div className="field-wrap">
-                  <label style = {{color:"#232323"}}>
+                  <label style={{ color: "#232323" }}>
                     Email Address<span className="req">*</span>
                   </label>
                   <input
@@ -122,7 +135,7 @@ class SignUpFormBase extends Component {
                   />
                 </div>
                 <div className="field-wrap">
-                  <label style = {{color:"#232323"}}>
+                  <label style={{ color: "#232323" }}>
                     Password<span className="req">*</span>
                   </label>
                   <input
@@ -134,7 +147,7 @@ class SignUpFormBase extends Component {
                   />
                 </div>
                 <div className="field-wrap">
-                  <label style = {{color:"#232323"}}>
+                  <label style={{ color: "#232323" }}>
                     Confirm Password<span className="req">*</span>
                   </label>
                   <input
@@ -145,13 +158,40 @@ class SignUpFormBase extends Component {
                     placeholder="Confirm Password"
                   />
                 </div>
-                <button
-                  disabled={isInvalid}
-                  type="submit"
-                  className="  signin-btn"
-                >
-                  Sign Up
-                </button>
+                <div className="field-wrap">
+                  <label>
+                    <input
+                      name="privacyCheckbox"
+                      value={privacyCheckbox}
+                      onChange={this.onChange}
+                      type="checkbox"
+                    />
+                    <span>
+                      I agree to the{" "}
+                      <Link target="_blank" to="/terms-of-use">
+                        terms of service
+                      </Link>{" "}
+                      and{" "}
+                      <Link target="_blank" to="/privacy-policy">
+                        privacy policy
+                      </Link>
+                    </span>
+                  </label>
+                </div>
+                {isInvalid ? (
+                  <Tooltip
+                    placement="right"
+                    title="please fill out form completely"
+                  >
+                    <button type="submit" value="Submit" className="signin-btn">
+                      Sign Up
+                    </button>
+                  </Tooltip>
+                ) : (
+                  <button type="submit" value="Submit" className="signin-btn">
+                    Sign Up
+                  </button>
+                )}
                 {error && <p>{error.message}</p>}
               </div>
             </form>

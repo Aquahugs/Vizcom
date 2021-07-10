@@ -15,10 +15,10 @@ const Auth = () => {
         return (
           <div>
             <SignUp />
-            <p style = {{color:"#232323",paddingTop:"5%"}}>
+            <p style={{ color: "#232323", paddingTop: "5%" }}>
               Already have an account?
               <a onClick={() => setAuthState((authState = "signIn"))}>
-                <span className = 'alr-signin'> Sign in</span>
+                <span className="alr-signin"> Sign in</span>
               </a>
             </p>
           </div>
@@ -27,8 +27,8 @@ const Auth = () => {
         return (
           <div className="signin-container">
             <SignIn />
-            <p style={{ color: "#232323",paddingTop:"5%" }}>
-              Dont have an account?
+            <p style={{ color: "#232323", paddingTop: "5%" }}>
+              Dont have an account?{" "}
               <a onClick={() => setAuthState((authState = "signUp"))}>
                 Sign Up
               </a>

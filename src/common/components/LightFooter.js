@@ -16,6 +16,12 @@ const LightFooter = ({ darkmode }) => {
           <a href="https://www.instagram.com/vizcom_/">
             <li>Instagram</li>
           </a>
+          <Link to="/privacy-policy">
+            <li>Privacy Policy</li>
+          </Link>
+          <Link to="/terms-of-use">
+            <li>Terms of Use</li>
+          </Link>
         </ul>
       </div>
     </div>

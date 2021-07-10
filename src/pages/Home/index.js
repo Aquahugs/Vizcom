@@ -39,7 +39,7 @@ const Home = ({
       <div className="tools-header">
         <h1>Tools</h1>
       </div>
-      <div className="nav row">
+      <div className="row">
         <ToolCard
           link={GENERATE.link}
           name={GENERATE.name}

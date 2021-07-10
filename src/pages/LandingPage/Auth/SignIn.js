@@ -72,7 +72,7 @@ class SignInFormBase extends Component {
       <form onSubmit={this.onSubmit}>
         <div className="input-container">
           <div className="field-wrap">
-            <label htmlFor="userEmail" style = {{color:"#232323"}}>
+            <label htmlFor="userEmail" style={{ color: "#232323" }}>
               Email <span className="req"></span>
             </label>
             <input
@@ -84,7 +84,7 @@ class SignInFormBase extends Component {
             />
           </div>
           <div className="field-wrap">
-            <label htmlFor="userPassword" style = {{color:"#232323"}}>
+            <label htmlFor="userPassword" style={{ color: "#232323" }}>
               Password<span className="req"></span>
             </label>
             <input
