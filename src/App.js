@@ -10,7 +10,7 @@ import ScrollToTop from "./common/utils/ScrollToTop";
 
 const App = () => {
   useEffect(() => {
-    ReactGA.initialize("G-X1X9Z9C4ZJ");
+    ReactGA.initialize("UA-201824980-1");
   }, []);
 
   return (
