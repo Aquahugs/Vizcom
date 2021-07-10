@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import { compose } from "recompose";
 import "./sketchtorender.scss";
 import demovideo from "../../../assets/SK2RDEMO.mp4";
+import { withAuthorization } from "../../../router/auth/session";
 
 class SketchToRender extends Component {
   constructor(props) {
@@ -87,4 +88,6 @@ class SketchToRender extends Component {
   }
 }
 
-export default connect()(SketchToRender);
+const condition = (authUser) => !!authUser;
+
+export default compose(withAuthorization(condition))(SketchToRender);
