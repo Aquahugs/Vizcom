@@ -105,12 +105,12 @@ const LandingPage = ({ authUser, history }) => {
             <div className="row landing-nav-bar">
               <img src={WhiteLogo} />
               <Link to="/signin">
-                <Button className="sign-up-btn" type="primary">
+                <Button className="sign-up-btn hvr-grow" type="primary">
                   Sign up
                 </Button>
               </Link>
               <Link to="/signin">
-                <p>Log in</p>
+                <p className="hvr-grow">Log in</p>
               </Link>
               <Link to="/about">
                 <p>About</p>
@@ -136,12 +136,12 @@ const LandingPage = ({ authUser, history }) => {
                   <div className="row intro-btn-container">
                     <div className="col s6 m6 l6">
                       <Link to="/signin">
-                        <Button className="get-started" type="primary">
+                        <Button className="get-started hvr-grow" type="primary">
                           Get Started
                         </Button>
                       </Link>
                     </div>
-                    <div className="col s6 m6 l6 ply-btn">
+                    <div className="col s6 m6 l6 ply-btn hvr-grow">
                       <a href="https://youtu.be/K37hDASBaeg">
                         <Button className="play" type="primary" shape="circle">
                           <img src={play} />

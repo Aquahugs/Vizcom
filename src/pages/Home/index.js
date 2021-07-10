@@ -14,6 +14,7 @@ import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";
 import SketchToRenderLogo from "../../assets/s2r.png";
 import { GENERATE, SKETCH_TO_RENDER } from "./home-const.js";
+import { Tooltip } from "antd";
 
 const Home = ({
   user,
@@ -39,7 +40,8 @@ const Home = ({
       <div className="tools-header">
         <h1>Tools</h1>
       </div>
-      <div className="row">
+      <div className="row ">
+        {" "}
         <ToolCard
           link={GENERATE.link}
           name={GENERATE.name}

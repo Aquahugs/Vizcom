@@ -20,6 +20,7 @@ import {
 } from "../../common/components/Responsive/Responsive";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
+import { Popover, Button } from "antd";
 
 const Profile = ({
   uid,
@@ -31,6 +32,7 @@ const Profile = ({
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
+  const [editPopoverIsOpen, setEditPopoverIsOpen] = useState(true);
 
   // modal functions
   const openModal = (image) => {
@@ -81,7 +83,7 @@ const Profile = ({
                 <button className=" btn btn-flat edit-btn ">
                   Edit Profile
                 </button>
-              </Link>
+              </Link>{" "}
               {profile && profile?.first_name ? (
                 <h1>{profile.first_name}</h1>
               ) : (
@@ -130,7 +132,7 @@ const Profile = ({
             {collection?.map((image) => {
               return (
                 <div
-                  className=" collection-container col s3 m3 l3"
+                  className="hvr-bob collection-container col s3 m3 l3"
                   key={image.collection_image_id}
                   onClick={() => {
                     openModal(image);

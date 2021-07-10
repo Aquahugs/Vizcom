@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import RenderSmoothImage from "render-smooth-image-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "render-smooth-image-react/build/style.css";
+import { Tooltip } from "antd";
 
 import { ExploreThunks } from "./redux";
 
@@ -118,6 +119,7 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
           <div className="explore-header">
             <h1>Explore</h1>
           </div>
+
           <InfiniteScroll
             dataLength={localFeed}
             next={() => addToExploreFeed(5)}

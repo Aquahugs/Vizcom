@@ -8,6 +8,7 @@ import { ProfileThunks } from "../../Profile/redux";
 import { withFirebase } from "../../../router/auth/firebase";
 
 import { Link } from "react-router-dom";
+import ReactGA from "react-ga";
 
 import { Tooltip } from "antd";
 
@@ -62,12 +63,22 @@ class SignUpFormBase extends Component {
           first_name: null,
           last_name: null,
         };
+        ReactGA.event({
+          category: "User",
+          action: "User created with user and email",
+          label: response.user.uid,
+        });
         this.props.createProfile(user);
         this.setState({ ...INITIAL_STATE });
         this.props.history.push("/home");
       })
       .catch((error) => {
         console.log(error);
+        ReactGA.event({
+          category: "Error",
+          action: "failed to create a user with user and email",
+          label: error,
+        });
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
         }

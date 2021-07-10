@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Card.scss";
-import { Desktop, Tablet, Mobile } from "./Responsive/Responsive";
+import { Desktop, Tablet, Mobile } from "../Responsive/Responsive";
 
 const Card = ({ link, logo, name, description, push }) => {
   return (
     <div>
       <Desktop>
         <Link to={link}>
-          <div className="col s4 m4">
+          <div className="col s4 m4 l4">
             <div
               className="card"
               style={{ opacity: name !== "Sketch2Render" ? 1 : 0.5 }}

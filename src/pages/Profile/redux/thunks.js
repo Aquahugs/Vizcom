@@ -7,6 +7,8 @@ import {
   INFO_NOTIFICATION_CONFIG,
 } from "../../../common/constants/notify-configs";
 
+import ReactGA from "react-ga";
+
 const getProfile = (uid) => async (dispatch) => {
   dispatch(actions.getProfileStarted());
   try {
@@ -47,7 +49,7 @@ const createProfile = (user) => async (dispatch) => {
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message =
-      "We fumbled the bag on creating your profile! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
+      "Something went wrong with creating your profile! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.createProfileError(error));
   }
@@ -70,10 +72,20 @@ const updateProfile = (user, uuid) => async (dispatch) => {
     dispatch(actions.updateProfileSuccess(newUser));
     INFO_NOTIFICATION_CONFIG.message =
       "Your profile has been updated successfully";
+    ReactGA.event({
+      category: "Profile",
+      action: "Update",
+      label: uuid,
+    });
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
+    ReactGA.event({
+      category: "Error",
+      action: "Profile Update",
+      label: uuid,
+    });
     ERROR_NOTIFICATION_CONFIG.message =
-      "We fumbled the bag on saving your profile!";
+      "Something went wrong with saving your profile!";
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.updateProfileError(error));
   }

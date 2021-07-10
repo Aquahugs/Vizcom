@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PrimaryNavbar.scss";
-import Logo from "../../assets/logo.png";
-import SignOut from "../../pages/LandingPage/Auth/SignOut";
+import Logo from "../../../assets/logo.png";
+import SignOut from "../../../pages/LandingPage/Auth/SignOut";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { PROFILE } from "../../router/routes-const";
+import { PROFILE } from "../../../router/routes-const";
 
 const PrimaryNav = ({ user, profile }) => {
   return (
     <nav>
       <div className="nav-wrapper">
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="/home" className="logo-container">
+        <Link to="/home" className="logo-container">
           <img alt="logo" src={Logo} />
-        </a>
+        </Link>
         <ul className="nav-items right ">
           <li className="profile-items">
             <Link to={PROFILE} className="profile-name">
