@@ -105,15 +105,15 @@ const LandingPage = ({ authUser, history }) => {
             <div className="row landing-nav-bar">
               <img src={WhiteLogo} />
               <Link to="/signin">
-                <Button className="sign-up-btn hvr-grow" type="primary">
+                <Button className="sign-up-btn hvr-shrink" type="primary">
                   Sign up
                 </Button>
               </Link>
               <Link to="/signin">
-                <p className="hvr-grow">Log in</p>
+                <p className="hvr-shrink">Log in</p>
               </Link>
               <Link to="/about">
-                <p>About</p>
+                <p className="hvr-shrink">About</p>
               </Link>
             </div>
           </FadeIn>
@@ -136,12 +136,15 @@ const LandingPage = ({ authUser, history }) => {
                   <div className="row intro-btn-container">
                     <div className="col s6 m6 l6">
                       <Link to="/signin">
-                        <Button className="get-started hvr-grow" type="primary">
+                        <Button
+                          className="get-started hvr-shrink"
+                          type="primary"
+                        >
                           Get Started
                         </Button>
                       </Link>
                     </div>
-                    <div className="col s6 m6 l6 ply-btn hvr-grow">
+                    <div className="col s6 m6 l6 ply-btn hvr-shrink">
                       <a href="https://youtu.be/K37hDASBaeg">
                         <Button className="play" type="primary" shape="circle">
                           <img src={play} />
@@ -277,7 +280,7 @@ const LandingPage = ({ authUser, history }) => {
             <FadeIn delay={800}>
               <div className="col s12 m12 l12">
                 <h1>Sketch to Render</h1>
-                <p>Hours of manual hand work becomes seconds of compute.</p>
+                <p>Hours of manual work becomes seconds of compute.</p>
               </div>
               <div className="col s12 m12 l12">
                 <div className="demo-video">
@@ -294,7 +297,10 @@ const LandingPage = ({ authUser, history }) => {
               </div>
               <div className="col s12 m12 l12">
                 <Link to="/signin">
-                  <Button className="get-started-try" type="primary">
+                  <Button
+                    className="get-started-try  hvr-shrink"
+                    type="primary"
+                  >
                     Get Started
                   </Button>
                 </Link>

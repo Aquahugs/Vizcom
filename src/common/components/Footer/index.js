@@ -11,12 +11,6 @@ const Footer = ({ darkmode }) => {
         </div>
         <div className="col s6 m6 l6 info">
           <ul className="dark-list">
-<<<<<<< HEAD:src/common/components/Footer.js
-=======
-            <Link className="hvr-grow-shadow" to="/about">
-              <li>About</li>
-            </Link>
->>>>>>> fe77c8c922357f377a59e09913916e8111152264:src/common/components/Footer/index.js
             {/* <li>Contact</li> */}
             <a className="hvr-grow-shadow" href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
