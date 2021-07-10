@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 import "./index.css";
+import "./scss/animations.scss";
 import App from "./App";
 import reportWebVitals from "./common/utils/reportWebVitals";
 import Firebase, { FirebaseContext } from "./router/auth/firebase";

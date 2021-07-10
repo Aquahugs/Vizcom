@@ -47,7 +47,7 @@ const createProfile = (user) => async (dispatch) => {
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message =
-      "We fumbled the bag on creating your profile! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
+      "Something went wrong with creating your profile! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.createProfileError(error));
   }
@@ -73,7 +73,7 @@ const updateProfile = (user, uuid) => async (dispatch) => {
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message =
-      "We fumbled the bag on saving your profile!";
+      "Something went wrong with saving your profile!";
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.updateProfileError(error));
   }

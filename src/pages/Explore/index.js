@@ -118,6 +118,7 @@ const Explore = ({ exploreFeed, getExploreFeed, exploreStatus }) => {
           <div className="explore-header">
             <h1>Explore</h1>
           </div>
+
           <InfiniteScroll
             dataLength={localFeed}
             next={() => addToExploreFeed(5)}

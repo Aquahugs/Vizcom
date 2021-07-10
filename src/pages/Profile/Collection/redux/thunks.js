@@ -70,7 +70,7 @@ const deleteCollectionImage = (req) => async (dispatch) => {
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message =
-      "We fumbled the bag on deleting the image! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
+      "something went wrong with deleting the image! Please reach out to ContactVizcom@gmail.com to resolve this issue!";
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.deleteCollectionImageError(error));
   }

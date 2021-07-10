@@ -39,7 +39,7 @@ const createBucket = (bucket) => async (dispatch) => {
     INFO_NOTIFICATION_CONFIG.message = `${bucket.bucket_name} is ready for some images!`;
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
-    ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on creating ${bucket.bucket_name}! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
+    ERROR_NOTIFICATION_CONFIG.message = `Something went wrong with creating ${bucket.bucket_name}! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.createBucketError(error));
   }
@@ -56,7 +56,7 @@ const addToBucket = (image) => async (dispatch) => {
     INFO_NOTIFICATION_CONFIG.message = `image added to ${bucket.bucket_name}`;
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
-    ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on adding your image! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
+    ERROR_NOTIFICATION_CONFIG.message = `Something went wrong with adding your image! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.addToBucketsError(error));
   }
@@ -70,7 +70,7 @@ const deleteBucket = (bucket) => async (dispatch) => {
     INFO_NOTIFICATION_CONFIG.message = `Bucket deleted`;
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
-    ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on deleting your bucket! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
+    ERROR_NOTIFICATION_CONFIG.message = `Something went wrong when deleting your bucket! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.deleteBucketError(error));
   }
@@ -83,7 +83,7 @@ const deleteBucketImage = (image) => async (dispatch) => {
     INFO_NOTIFICATION_CONFIG.message = `Image deleted`;
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
-    ERROR_NOTIFICATION_CONFIG.message = `We fumbled the bag on deleting your image! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
+    ERROR_NOTIFICATION_CONFIG.message = `Something went wrong with deleting your image! Please reach out to ContactVizcom@gmail.com to resolve this issue!`;
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.deleteBucketImageError(error));
   }
@@ -98,7 +98,7 @@ const updateBucket = (bucket) => async (dispatch) => {
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
     ERROR_NOTIFICATION_CONFIG.message =
-      "We fumbled the bag on saving your profile!";
+      "Something went wrong with saving your profile!";
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));
     dispatch(actions.updateBucketError(error));
   }

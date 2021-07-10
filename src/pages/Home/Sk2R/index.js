@@ -212,6 +212,7 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
             <div className="col s6 m6 l6 render-btn-container">
               <div className="sk2r-button-submit">
                 <Button
+                  className="hvr-grow-shadow"
                   type="primary"
                   size="large"
                   onClick={() => handleSubmitForm()}

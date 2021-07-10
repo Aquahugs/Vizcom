@@ -17,6 +17,7 @@ import backarrow from "../../../assets/back-arrow.svg";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 import { Link } from "react-router-dom";
+import { Tooltip } from "antd";
 
 const Generate = ({
   uid,
@@ -301,8 +302,10 @@ const Generate = ({
       <div>
         {modal}
         <Link to={"home"}>
-          <img alt="back arrow" className="backarrow" src={backarrow} />
-        </Link>
+          <Tooltip placement="right" title={"Back to tools"}>
+            <img alt="back arrow" className="backarrow" src={backarrow} />
+          </Tooltip>
+        </Link>{" "}
         <div className="row generate-container">
           <div className="row tag"></div>
 
@@ -383,7 +386,7 @@ const Generate = ({
                   <button
                     a
                     href="#"
-                    className="btn waves-effect generate-btn lighten-1 z-depth-0"
+                    className="btn waves-effect generate-btn lighten-1 z-depth-0 hvr-bounce-out"
                     onClick={
                       generatorState === "car"
                         ? () => toggleGeneratedImages(generatedImages.car, 18)

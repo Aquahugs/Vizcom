@@ -11,20 +11,23 @@ const Footer = ({ darkmode }) => {
         </div>
         <div className="col s6 m6 l6 info">
           <ul className="dark-list">
-            <Link to="/about">
+            <Link className="hvr-grow-shadow" to="/about">
               <li>About</li>
             </Link>
             {/* <li>Contact</li> */}
-            <a href="https://twitter.com/Vizcom_co">
+            <a className="hvr-grow-shadow" href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
-            <a href="https://www.instagram.com/vizcom_/">
+            <a
+              className="hvr-grow-shadow"
+              href="https://www.instagram.com/vizcom_/"
+            >
               <li>Instagram</li>
             </a>
-            <Link to="/privacy-policy">
+            <Link className="hvr-grow-shadow" to="/privacy-policy">
               <li>Privacy Policy</li>
             </Link>
-            <Link to="/terms-of-use">
+            <Link className="hvr-grow-shadow" to="/terms-of-use">
               <li>Terms of Use</li>
             </Link>
           </ul>
@@ -37,20 +40,23 @@ const Footer = ({ darkmode }) => {
       <div className="row footer-items">
         <div className="col s12 m12 l12 info">
           <ul>
-            <Link to="/about">
+            <Link className="hvr-grow-shadow" to="/about">
               <li>About</li>
             </Link>
 
-            <a href="https://twitter.com/Vizcom_co">
+            <a className="hvr-grow-shadow" href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
             </a>
-            <a href="https://www.instagram.com/vizcom_/">
+            <a
+              className="hvr-grow-shadow"
+              href="https://www.instagram.com/vizcom_/"
+            >
               <li>Instagram</li>
             </a>
-            <Link to="/privacy-policy">
+            <Link className="hvr-grow-shadow" to="/privacy-policy">
               <li>Privacy Policy</li>
             </Link>
-            <Link to="/terms-of-use">
+            <Link className="hvr-grow-shadow" to="/terms-of-use">
               <li>Terms of Use</li>
             </Link>
           </ul>
