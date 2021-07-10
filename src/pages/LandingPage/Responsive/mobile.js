@@ -107,7 +107,7 @@ const MobileView = () => {
           <FadeIn delay={500}>
             <div className="intro-container">
               <h1>
-                We're reimaging the way artist and designers
+                We're reimagining the way artist and designers
                 <span className="gradient-create"> create.</span>
               </h1>
               <p>
