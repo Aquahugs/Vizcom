@@ -15,6 +15,7 @@ import {
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 import backarrow from "../../../assets/back-arrow.svg";
+import { Tooltip } from "antd";
 
 import userService from "../../../common/services/user-service";
 import collectionService from "../../../common/services/collection-service";
@@ -53,13 +54,15 @@ const DynamicProfile = ({ match }) => {
           <div className="profile-container">
             <div className="row">
               <div className="col s9 m9 l9">
-                <Link to={"/explore"}>
-                  <img
-                    alt="back arrow icon"
-                    className="backarrow"
-                    src={backarrow}
-                  />
-                </Link>
+                <Tooltip placement="right" title={"Back to explore"}>
+                  <Link to={"/explore"}>
+                    <img
+                      alt="back arrow"
+                      className="sk2r-back-arrow"
+                      src={backarrow}
+                    />
+                  </Link>
+                </Tooltip>
               </div>
             </div>
             <div className="row">

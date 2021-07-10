@@ -26,7 +26,8 @@ const SecondaryNav = ({ profile }) => {
               <Breadcrumb.Item>
                 {(location.pathname === "/generate" ||
                   location.pathname === "/sketch-to-render" ||
-                  location.pathname === "/sketch-to-render/beta") && (
+                  location.pathname === "/sketch-to-render/beta" ||
+                  location.pathname === "/home") && (
                   <span className="hvr-forward" style={styles}>
                     {capitalizeFirstLetter(location.pathname)}
                   </span>
@@ -53,6 +54,11 @@ const SecondaryNav = ({ profile }) => {
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to={EXPLORE}>Explore</Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              {location.pathname === "/explore" && (
+                <span style={styles}>home</span>
+              )}
             </Breadcrumb.Item>
           </Breadcrumb>
         </li>

@@ -9,16 +9,16 @@ import ProfileThunks from "../../Profile/redux/thunks";
 import backarrow from "../../../assets/back-arrow.svg";
 import { Link } from "react-router-dom";
 import { withAuthorization } from "../../../router/auth/session";
+import ReactGA from "react-ga";
 
 import InfoModal from "./components/modal";
-import { Row, Button, Spin, Popover, Alert } from "antd";
+import { Row, Button, Spin, Alert, Tooltip } from "antd";
 import {
-  DownloadOutlined,
   EllipsisOutlined,
   VerticalAlignBottomOutlined,
 } from "@ant-design/icons";
 
-const Sk2R = ({ history, user, uid, getProfile }) => {
+const Sk2R = ({ user, uid, getProfile }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [renderedImage, setRenderedImage] = useState("");
@@ -53,6 +53,9 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
               message: "Your image is too small",
               description: "The image should be at least 1080px wide.",
             });
+            setTimeout(() => {
+              setImageDimensionError({ value: false });
+            }, 3000);
             break;
           case width >= 1700:
             setSketchImage(null);
@@ -61,6 +64,9 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
               message: "Image is too large",
               description: "The image should be at most 1500px wide.",
             });
+            setTimeout(() => {
+              setImageDimensionError({ value: false });
+            }, 3000);
           default:
           // code block
         }
@@ -102,6 +108,11 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
   };
 
   const download = (renderedImage) => {
+    ReactGA.event({
+      category: "Sketch to Render",
+      action: "Downloaded Image",
+      label: renderedImage,
+    });
     fetch(renderedImage, {
       method: "GET",
       headers: {},
@@ -146,11 +157,21 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
         addImages(files[0], resp);
         sk2rService.uploadPrerender(req).then((resp) => {
           img.prerenderedImage = resp.data;
+          ReactGA.event({
+            category: "Sketch to Render",
+            action: "clicked render button successfully",
+            label: resp.data.image_uri,
+          });
           sk2rService.insertImages(img);
           setIsLoading(false);
         });
       });
     } catch (e) {
+      ReactGA.event({
+        category: "Sketch to Render",
+        action: "clicked render button but failed",
+        label: e,
+      });
       setIsLoading(false);
     }
   };
@@ -158,9 +179,11 @@ const Sk2R = ({ history, user, uid, getProfile }) => {
   return (
     <div>
       <Row>
-        <Link to={"home"}>
-          <img alt="back arrow" className="sk2r-back-arrow" src={backarrow} />
-        </Link>
+        <Tooltip placement="right" title={"Back to tools home"}>
+          <Link to={"home"}>
+            <img alt="back arrow" className="sk2r-back-arrow" src={backarrow} />
+          </Link>
+        </Tooltip>
       </Row>
 
       <div className="row">

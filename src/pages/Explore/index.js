@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import RenderSmoothImage from "render-smooth-image-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "render-smooth-image-react/build/style.css";
+import { Tooltip } from "antd";
 
 import { ExploreThunks } from "./redux";
 

@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import GoogleButton from "react-google-button";
+import ReactGA from "react-ga";
 
 import { ProfileThunks } from "../../Profile/redux";
 
@@ -134,6 +135,11 @@ class SignInGoogleBase extends Component {
               : null,
           };
           this.props.createProfile(newUser);
+          ReactGA.event({
+            category: "User",
+            action: "User created with Google sign in",
+            label: newUser.uuid,
+          });
         });
         this.props.history.push("/home");
       })

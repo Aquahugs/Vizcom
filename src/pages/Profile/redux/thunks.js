@@ -7,6 +7,8 @@ import {
   INFO_NOTIFICATION_CONFIG,
 } from "../../../common/constants/notify-configs";
 
+import ReactGA from "react-ga";
+
 const getProfile = (uid) => async (dispatch) => {
   dispatch(actions.getProfileStarted());
   try {
@@ -70,8 +72,18 @@ const updateProfile = (user, uuid) => async (dispatch) => {
     dispatch(actions.updateProfileSuccess(newUser));
     INFO_NOTIFICATION_CONFIG.message =
       "Your profile has been updated successfully";
+    ReactGA.event({
+      category: "Profile",
+      action: "Update",
+      label: uuid,
+    });
     dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
   } catch (error) {
+    ReactGA.event({
+      category: "Error",
+      action: "Profile Update",
+      label: uuid,
+    });
     ERROR_NOTIFICATION_CONFIG.message =
       "Something went wrong with saving your profile!";
     dispatch(createNotification(ERROR_NOTIFICATION_CONFIG));

@@ -10,6 +10,7 @@ import { CollectionThunks } from "../../Profile/Collection/redux";
 import { GenerateThunks } from "./redux";
 
 import { withAuthorization } from "../../../router/auth/session";
+import ReactGA from "react-ga";
 
 import collectconfirm from "../../../assets/collect-confirm.svg";
 import footwear from "../../../assets/footwear-holder.png";
@@ -79,6 +80,10 @@ const Generate = ({
   }
 
   const toggleGeneratedImages = (arr, n) => {
+    ReactGA.event({
+      category: "Generater",
+      action: "Clicked on Generate",
+    });
     setIsGenerating(true);
     let result = new Array(n),
       len = arr?.length,
@@ -110,6 +115,12 @@ const Generate = ({
   };
 
   const collectImageHandler = (image) => {
+    ReactGA.event({
+      category: "Generater",
+      action: "Collected Image",
+      value: image.image_uri,
+    });
+
     const imageObj = {
       uuid: uid,
       generated_image_id: image.generated_image_id,
@@ -129,6 +140,11 @@ const Generate = ({
 
   // modal functions
   const openModal = (image) => {
+    ReactGA.event({
+      category: "Generater",
+      action: "clicked on generated image",
+      value: image.image_uri,
+    });
     setModalImage(image);
     setModalIsOpen(true);
   };
@@ -252,7 +268,7 @@ const Generate = ({
           ariaHideApp={false}
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          className="modalStyles"
+          style={modalStyles}
           contentLabel="Example Modal"
           onAfterClose={closeModal}
         >
@@ -302,7 +318,7 @@ const Generate = ({
       <div>
         {modal}
         <Link to={"home"}>
-          <Tooltip placement="right" title={"Back to tools"}>
+          <Tooltip placement="right" title={"Back to tools home"}>
             <img alt="back arrow" className="backarrow" src={backarrow} />
           </Tooltip>
         </Link>{" "}
@@ -354,13 +370,17 @@ const Generate = ({
             <Tablet>
               <div className="row load-animation">
                 <div className="col s12 m12 l12 " style={hiddenStyle}>
-                  <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Rolling-1.9s-200px.gif?alt=media&token=37081324-82b9-473f-a4ac-bd23bce13f55" />
+                  <img
+                    alt="loading"
+                    src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Rolling-1.9s-200px.gif?alt=media&token=37081324-82b9-473f-a4ac-bd23bce13f55"
+                  />
                 </div>
               </div>
             </Tablet>
             <Mobile>
               <div className="mobile-loader">
                 <img
+                  alt="loading"
                   style={hiddenStyle}
                   src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/gen-animation.gif?alt=media&token=3a9bac88-388d-4961-afaf-2b3ff28999b9"
                 />
@@ -386,7 +406,7 @@ const Generate = ({
                   <button
                     a
                     href="#"
-                    className="btn waves-effect generate-btn lighten-1 z-depth-0 hvr-bounce-out"
+                    className="btn waves-effect generate-btn lighten-1 z-depth-0"
                     onClick={
                       generatorState === "car"
                         ? () => toggleGeneratedImages(generatedImages.car, 18)
