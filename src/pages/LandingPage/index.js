@@ -119,7 +119,7 @@ const LandingPage = ({ authUser, history }) => {
               <FadeIn delay={500}>
                 <div className="intro-container">
                   <h1>
-                    We're reimaging the way
+                    We're reimagining the way
                     <br /> artist and designers
                     <span className="gradient-create"> create.</span>
                   </h1>
