@@ -24,6 +24,7 @@
     "react-google-button": "^0.7.2",
     "react-hook-form": "^6.15.1",
     "react-hook-popup": "^1.1.0",
+    "react-hotjar": "^3.0.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-materialize": "^3.9.8",
     "react-modal": "^3.12.1",

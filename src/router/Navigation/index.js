@@ -5,10 +5,13 @@ import PrivateNavigation from "./PrivateNavigation";
 import PublicNavigation from "./PublicNavigation";
 
 import ReactGA from "react-ga";
+import { hotjar } from "react-hotjar";
 
 const Navigation = ({ authUser }) => {
   useEffect(() => {
+    hotjar.initialize(2497540, 6);
     if (authUser) {
+      hotjar.identify("USER_ID", { userProperty: "authUser.uid" });
       ReactGA.set({
         userId: authUser.uid,
         userEmail: authUser.email,
