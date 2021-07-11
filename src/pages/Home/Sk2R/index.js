@@ -51,18 +51,18 @@ const Sk2R = ({ user, uid, getProfile }) => {
             setImageDimensionError({
               value: true,
               message: "Your image is too small",
-              description: "The image should be at least 1080px wide.",
+              description: "The image should be at least 1000px wide.",
             });
             setTimeout(() => {
               setImageDimensionError({ value: false });
             }, 3000);
             break;
-          case width >= 1700:
+          case width >= 2000:
             setSketchImage(null);
             setImageDimensionError({
               value: true,
               message: "Image is too large",
-              description: "The image should be at most 1500px wide.",
+              description: "The image should be at most 2000px wide.",
             });
             setTimeout(() => {
               setImageDimensionError({ value: false });
