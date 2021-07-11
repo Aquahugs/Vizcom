@@ -7,6 +7,8 @@ import { Select } from "antd";
 import GeneratorUpload from "./GeneratorUpload";
 import SketchToRenderBetaAccess from "./Sk2RBetaAccess";
 
+import "./admin.scss";
+
 const { Option } = Select;
 
 export const Admin = ({ history, user, uid, getProfile }) => {
@@ -44,7 +46,9 @@ export const Admin = ({ history, user, uid, getProfile }) => {
 
   return (
     <div className="admin-grid-container">
-      <h2>Admin{adminOption ? <span>/ {adminOption}</span> : ""}</h2>
+      <div className="admin-header">
+        <h1>Admin{adminOption ? <span>/ {adminOption}</span> : ""}</h1>
+      </div>
       <Select
         defaultValue="What up doe"
         style={{ width: 500 }}
