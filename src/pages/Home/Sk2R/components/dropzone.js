@@ -2,26 +2,9 @@ import React, { useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 import plus from "../../../../assets/plus.png";
+import dropzone from "./dropzone.scss";
 
 //will move these styles over somewhere
-const baseStyle = {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "20px",
-  height: "100%",
-  width: "100%",
-  borderWidth: 2,
-  borderRadius: 10,
-  borderColor: "#5E89FF",
-  borderStyle: "dashed",
-  backgroundColor: "#EBF8FF",
-  color: "#bdbdbd",
-  outline: "none",
-  transition: "border .24s ease-in-out",
-  cursor: "pointer", // pointer for dropzone
-};
 
 const activeStyle = {
   borderColor: "#2196f3",
@@ -62,6 +45,8 @@ const StyledDropzone = ({
   setFiles,
   multiple,
   useIconSmall,
+  children,
+  sketchImage,
 }) => {
   const {
     getRootProps,
@@ -77,6 +62,24 @@ const StyledDropzone = ({
       setFiles(acceptedFiles);
     },
   });
+  const baseStyle = {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "20px",
+    height: "100%",
+    width: "100%",
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: "#5E89FF",
+    borderStyle: "dashed",
+    backgroundColor: sketchImage ? "#ffffff" : "#EBF8FF",
+    color: "#bdbdbd",
+    outline: "none",
+    transition: "border .24s ease-in-out",
+    cursor: "pointer", // pointer for dropzone
+  };
 
   const style = useMemo(
     () => ({
@@ -85,7 +88,7 @@ const StyledDropzone = ({
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),
     }),
-    [isDragActive, isDragReject, isDragAccept]
+    [isDragActive, isDragReject, isDragAccept, sketchImage]
   );
 
   return (
@@ -100,6 +103,11 @@ const StyledDropzone = ({
       {useIconSmall && (
         <div style={plusContainerSmall}>
           <img alt="plus icon" src={plus} style={plusStyleSmall} />
+        </div>
+      )}
+      {sketchImage && (
+        <div style={plusContainerSmall} className="hover-zone">
+          {children}
         </div>
       )}
     </div>

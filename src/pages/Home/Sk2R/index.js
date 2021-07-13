@@ -46,13 +46,13 @@ const Sk2R = ({ user, uid, getProfile }) => {
       image.onload = () => {
         const { width } = image;
         switch (true) {
-          case width <= 1000:
+          case width <= 512:
             setSketchImage(null);
             setFiles([]);
             setError({
               value: true,
               message: "Your image is too small",
-              description: "The image should be at least 1000px wide.",
+              description: "The image should be at least 512px wide.",
             });
             setTimeout(() => {
               setError({ value: false });
@@ -205,18 +205,26 @@ const Sk2R = ({ user, uid, getProfile }) => {
           <h5>Sketch</h5>
           <div className="sk2r-sketch-container">
             {sketchImage ? (
-              <img
-                className="sk2r-sketch-image center"
-                alt="file preview"
-                src={sketchImage}
-              />
+              <Dropzone
+                useIcon={false}
+                files={files}
+                setFiles={setFiles}
+                multiple={false}
+                sketchImage={true}
+              >
+                <img
+                  className="sk2r-sketch-image "
+                  alt="file preview"
+                  src={sketchImage}
+                />
+              </Dropzone>
             ) : (
               <Dropzone
                 useIcon={true}
                 files={files}
                 setFiles={setFiles}
                 multiple={false}
-              />
+              ></Dropzone>
             )}
           </div>
           <div className="sk2r-button-row">
