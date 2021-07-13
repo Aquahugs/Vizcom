@@ -1,46 +1,48 @@
 @media (max-width: 480px) {
-
-  .landing-nav-bar{
+  .landing-nav-bar {
     padding: 5%;
     padding-left: 5% !important;
     padding-right: 5% !important;
     padding-top: 10% !important;
   }
-  
-  
-  .intro-container{
-    padding:5% !important;
-    padding-top:25% !important;
+
+  .intro-container {
+    padding: 5% !important;
+    padding-top: 25% !important;
     h1 {
       font-size: 25px;
     }
 
-    p{
+    p {
       font-size: 14px;
     }
 
-    .get-started{
+    .get-started {
       margin-top: 30%;
       margin-bottom: 30%;
     }
   }
 
-  .demo-video{
-    video{
+  .demo-video {
+    video {
       max-width: 360px !important;
     }
-    
+    .demo-video2-mobile {
+      video {
+        max-width: 100% !important;
+      }
+    }
   }
-  .quote{
+  .quote {
     padding-top: 15%;
     padding-left: 0;
     padding-right: 0;
   }
 
-  .quote2{
+  .quote2 {
     padding: 2% !important;
-    h2{
-      color: #F5F5F5;
+    h2 {
+      color: #f5f5f5;
       font-size: 3rem;
       text-align: center;
       font-weight: 700;
@@ -49,43 +51,43 @@
       padding-top: 35% !important;
       padding-bottom: 15% !important;
     }
-    img{
+    img {
       margin-left: auto;
       margin-right: auto;
       display: block;
-      width:100% !important;
+      width: 100% !important;
       height: auto;
     }
-    .creative-thinking{
-      background: -webkit-linear-gradient(left, #256AFE,#eee,#f3dab9);
+    .creative-thinking {
+      background: -webkit-linear-gradient(left, #256afe, #eee, #f3dab9);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
   }
 
-  .image-gallery{
-    padding-top: 20% ;
+  .image-gallery {
+    padding-top: 20%;
   }
-  .gallery{
+  .gallery {
     padding-bottom: 20%;
   }
-  
-.footer-box{
-  padding: 2%;
-  padding-top: 25%;
-  padding-bottom: 25%;
-  background-color:#256AFE;
 
-  h1{
-    color:#F5F5F5;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.4;
-  }
+  .footer-box {
+    padding: 2%;
+    padding-top: 25%;
+    padding-bottom: 25%;
+    background-color: #256afe;
 
-  img {
-    width: 100% !important;
-    height: auto;
-  }
+    h1 {
+      color: #f5f5f5;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    img {
+      width: 100% !important;
+      height: auto;
+    }
   }
 }
