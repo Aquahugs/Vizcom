@@ -201,20 +201,30 @@ const Sk2R = ({ user, uid, getProfile }) => {
         <InfoModal visible={visible} setVisible={setVisible} />
       </div>
       <div className="row">
-        <div className="col s6 m6 l6 sketch-col">
+        <div className="col s12 m6 l6 sketch-col">
           <h5>Sketch</h5>
           <div className="sk2r-sketch-container">
             {sketchImage ? (
-              <img
-                className="sk2r-sketch-image center"
-                alt="file preview"
-                src={sketchImage}
-              />
+              <div className="dropzone-fade ">
+                <Dropzone
+                  files={files}
+                  setFiles={setFiles}
+                  multiple={false}
+                  sketchUploaded={true}
+                >
+                  <img
+                    className="sk2r-sketch-image center"
+                    alt="file preview"
+                    src={sketchImage}
+                  />
+                </Dropzone>
+              </div>
             ) : (
               <Dropzone
                 useIcon={true}
                 files={files}
                 setFiles={setFiles}
+                sketchUploaded={false}
                 multiple={false}
               />
             )}
@@ -234,12 +244,16 @@ const Sk2R = ({ user, uid, getProfile }) => {
 
               <div className=" small-dropzone">
                 {minimizeDropzone && sketchImage && (
-                  <Dropzone
-                    useIconSmall={true}
-                    files={files}
-                    setFiles={setFiles}
-                    multiple={false}
-                  />
+                  <Tooltip placement="left" title={"Add another image here"}>
+                    <div>
+                      <Dropzone
+                        useIconSmall={true}
+                        files={files}
+                        setFiles={setFiles}
+                        multiple={false}
+                      />
+                    </div>
+                  </Tooltip>
                 )}
               </div>
             </div>
@@ -259,7 +273,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
           </div>
         </div>
 
-        <div className="col s6 m6 l6 render-col">
+        <div className="col s12 m6 l6 render-col">
           <h5>Render</h5>
           {!isLoading ? (
             renderedImage ? (
@@ -288,10 +302,12 @@ const Sk2R = ({ user, uid, getProfile }) => {
                     onClick={() => setRenderedImage(img)}
                   ></img>
                 ))}
-              <VerticalAlignBottomOutlined
-                className="download-btn"
-                onClick={() => download(renderedImage)}
-              />
+              <Tooltip title={"download as jpg"}>
+                <VerticalAlignBottomOutlined
+                  className="download-btn"
+                  onClick={() => download(renderedImage)}
+                />
+              </Tooltip>
             </div>
           </div>
         </div>
