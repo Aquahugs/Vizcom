@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
+import { Tooltip } from "antd";
+import backarrow from "../../assets/back-arrow.svg";
 
 // a react functional component describing the Terms of Use page
 const TermsOfUse = () => {
   return (
     <div className="container">
+      <Tooltip placement="right" title={"Back to tools home"}>
+        <Link to={"/home"}>
+          <img alt="back arrow" className="sk2r-back-arrow" src={backarrow} />
+        </Link>
+      </Tooltip>
       <div className="row">
         <div className="col-md-12">
           <h1>Terms of Use</h1>

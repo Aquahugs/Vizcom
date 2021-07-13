@@ -191,7 +191,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
     <div>
       <Row>
         <Tooltip placement="right" title={"Back to tools home"}>
-          <Link to={"home"}>
+          <Link to={"/home"}>
             <img alt="back arrow" className="sk2r-back-arrow" src={backarrow} />
           </Link>
         </Tooltip>
@@ -201,7 +201,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
         <InfoModal visible={visible} setVisible={setVisible} />
       </div>
       <div className="row">
-        <div className="col s6 m6 l6 sketch-col">
+        <div className="col s12 m6 l6 sketch-col">
           <h5>Sketch</h5>
           <div className="sk2r-sketch-container">
             {sketchImage ? (
@@ -242,12 +242,16 @@ const Sk2R = ({ user, uid, getProfile }) => {
 
               <div className=" small-dropzone">
                 {minimizeDropzone && sketchImage && (
-                  <Dropzone
-                    useIconSmall={true}
-                    files={files}
-                    setFiles={setFiles}
-                    multiple={false}
-                  />
+                  <Tooltip placement="left" title={"Add another image here"}>
+                    <div>
+                      <Dropzone
+                        useIconSmall={true}
+                        files={files}
+                        setFiles={setFiles}
+                        multiple={false}
+                      />
+                    </div>
+                  </Tooltip>
                 )}
               </div>
             </div>
@@ -267,12 +271,16 @@ const Sk2R = ({ user, uid, getProfile }) => {
           </div>
         </div>
 
-        <div className="col s6 m6 l6 render-col">
+        <div className="col s12 m6 l6 render-col">
           <h5>Render</h5>
           {!isLoading ? (
             renderedImage ? (
               <div className="sk2r-render-container">
-                <img className="sk2r-render-image" src={renderedImage} />
+                <img
+                  alt={"ai rendered"}
+                  className="sk2r-render-image"
+                  src={renderedImage}
+                />
               </div>
             ) : (
               <div className="sk2r-render-container">
@@ -296,10 +304,12 @@ const Sk2R = ({ user, uid, getProfile }) => {
                     onClick={() => setRenderedImage(img)}
                   ></img>
                 ))}
-              <VerticalAlignBottomOutlined
-                className="download-btn"
-                onClick={() => download(renderedImage)}
-              />
+              <Tooltip placement={"left"} title={"download as jpg"}>
+                <VerticalAlignBottomOutlined
+                  className="download-btn"
+                  onClick={() => download(renderedImage)}
+                />
+              </Tooltip>
             </div>
           </div>
         </div>
