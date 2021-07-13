@@ -1,0 +1,13 @@
+.admin-grid-container {
+  display: grid;
+  grid-template-rows: auto;
+  margin: 5%;
+
+  .admin-header {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 5%;
+    h1 {
+      font-size: 20px;
+    }
+  }
+}

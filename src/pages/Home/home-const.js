@@ -1,11 +1,11 @@
 export const GENERATE = {
   link: "generate",
-  description: "Generate unique AI inspiration on the spot",
+  description: "Generate unique AI images for inspiration",
   name: "Generate",
 };
 
 export const SKETCH_TO_RENDER = {
   link: "sketch-to-render",
-  description: "Upload your car design sketch for AI to render ",
+  description: "Upload your car sketch for Auto render ",
   name: "Sketch2Render",
 };

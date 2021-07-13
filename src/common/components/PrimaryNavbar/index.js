@@ -15,6 +15,15 @@ const PrimaryNav = ({ user, profile }) => {
           <img alt="logo" src={Logo} />
         </Link>
         <ul className="nav-items right ">
+          {profile?.is_admin && (
+            <li>
+              <Link to="/admin" className="profile-name">
+                {" "}
+                Admin
+              </Link>
+            </li>
+          )}
+
           <li className="profile-items">
             <Link to={PROFILE} className="profile-name">
               {user?.authUser?.providerData[0]?.displayName

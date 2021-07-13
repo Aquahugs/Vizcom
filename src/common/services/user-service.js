@@ -12,4 +12,7 @@ export default {
     // dont pass in the id
     return apiClient.patch(`/api/user/update/id/${uid}`, user);
   },
+  sk2rBetaAccess(user) {
+    return apiClient.post("api/user/admin/sk2r-beta", user);
+  },
 };

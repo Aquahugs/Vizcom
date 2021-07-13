@@ -27,7 +27,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
   const [minimizeDropzone, setMinimizeDropzone] = useState(false);
   const [sketchImages, setSketchImages] = useState([]);
   const [renderedImages, setRenderedImages] = useState([]);
-  const [imageDimensionError, setImageDimensionError] = useState({
+  const [error, setError] = useState({
     value: false,
   });
 
@@ -48,24 +48,26 @@ const Sk2R = ({ user, uid, getProfile }) => {
         switch (true) {
           case width <= 1000:
             setSketchImage(null);
-            setImageDimensionError({
+            setFiles([]);
+            setError({
               value: true,
               message: "Your image is too small",
-              description: "The image should be at least 1080px wide.",
+              description: "The image should be at least 1000px wide.",
             });
             setTimeout(() => {
-              setImageDimensionError({ value: false });
+              setError({ value: false });
             }, 3000);
             break;
-          case width >= 1700:
+          case width >= 2000:
             setSketchImage(null);
-            setImageDimensionError({
+            setFiles([]);
+            setError({
               value: true,
               message: "Image is too large",
-              description: "The image should be at most 1500px wide.",
+              description: "The image should be at most 2000px wide.",
             });
             setTimeout(() => {
-              setImageDimensionError({ value: false });
+              setError({ value: false });
             }, 3000);
           default:
           // code block
@@ -77,7 +79,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
 
   // use effect to set minimize dropzone
   useEffect(() => {
-    files.length > 0
+    files && files?.length > 0
       ? setSketchImage(URL.createObjectURL(files[0]))
       : setSketchImage("");
     setRenderedImage("");
@@ -104,7 +106,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
   };
 
   const onClose = () => {
-    setImageDimensionError({ value: false });
+    setError({ value: false });
   };
 
   const download = (renderedImage) => {
@@ -122,7 +124,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", "image.jfif"); //or any other extension
+          link.setAttribute("download", "image.jpg"); //or any other extension
           document.body.appendChild(link);
           link.click();
         });
@@ -137,7 +139,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
     setMinimizeDropzone(true);
     const formData = new FormData();
 
-    for (let i = 0; i < files.length; i += 1) {
+    for (let i = 0; i < files?.length; i += 1) {
       formData.append("file", files[i]);
     }
     const req = {
@@ -163,6 +165,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
             label: resp.data.image_uri,
           });
           sk2rService.insertImages(img);
+
           setIsLoading(false);
         });
       });
@@ -172,6 +175,14 @@ const Sk2R = ({ user, uid, getProfile }) => {
         action: "clicked render button but failed",
         label: e,
       });
+      setError({
+        value: true,
+        message: "Sketch Render Failed",
+        description: "We're working on fixing this! ",
+      });
+      setTimeout(() => {
+        setError({ value: false });
+      }, 3000);
       setIsLoading(false);
     }
   };
@@ -239,7 +250,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
                   type="primary"
                   size="large"
                   onClick={() => handleSubmitForm()}
-                  disabled={!files.length > 0 || isLoading}
+                  disabled={!files?.length > 0 || isLoading}
                 >
                   Render
                 </Button>
@@ -286,10 +297,10 @@ const Sk2R = ({ user, uid, getProfile }) => {
         </div>
       </div>
       <div className="row">
-        {imageDimensionError.value && (
+        {error.value && (
           <Alert
-            message={imageDimensionError.message}
-            description={imageDimensionError.description}
+            message={error.message}
+            description={error.description}
             type="error"
             closable
             onClose={onClose}
