@@ -364,29 +364,3 @@
   -webkit-transform: scale(0.97);
   transform: scale(0.97);
 }
-
-/* Fade */
-.dropzone-fade {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  overflow: hidden;
-  -webkit-transition-duration: 0.3s !important;
-  transition-duration: 0.3s !important;
-  -webkit-transition-property: color, background-color;
-  transition-property: color, background-color;
-}
-.dropzone-fade:hover,
-.dropzone-fade:focus,
-.dropzone-fade:active {
-  -webkit-animation-duration: 0.3s, 1.5s;
-  animation-duration: 0.3s, 1.5s;
-  -webkit-animation-delay: 0s, 0.3s;
-  animation-delay: 0s, 0.3s;
-  z-index: 10;
-  opacity: 0.4;
-  background-color: #ebf8ff;
-  color: #ffffff;
-}
