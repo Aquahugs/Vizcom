@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Profile from "../pages/Profile";
 import DynamicProfile from "../pages/Profile/DynamicProfile";
@@ -62,6 +62,7 @@ const Router = () => (
     <Route path={ROUTES.LANDING_PAGE}>
       <LandingPage />
     </Route>
+    <Redirect to="/" />
   </Switch>
 );
 
