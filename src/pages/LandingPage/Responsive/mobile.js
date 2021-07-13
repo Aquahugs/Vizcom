@@ -3,6 +3,7 @@ import Footer from "../../../common/components/Footer";
 import { Link } from "react-router-dom";
 import WhiteLogo from "../../../assets/logo-white.png";
 import Video from "../Assets/vid.mp4";
+import Video2 from "../Assets/vid2.mp4";
 import image1 from "../Assets/Group2.png";
 import image2 from "../Assets/Group1.png";
 import challenge1 from "../Assets/challenge1.jpg";
@@ -141,6 +142,34 @@ const MobileView = () => {
           />
         </div>
       </FadeIn>
+      <div data-aos="fade-up" className="row sk2r-demo">
+        <FadeIn delay={800}>
+          <div className="col s12 m12 l12">
+            <h1>Sketch to Render</h1>
+            <p>Hours of manual work becomes seconds of compute.</p>
+          </div>
+          <div className="col s12 m12 l12">
+            <div className="demo-video ">
+              <video
+                muted
+                loop
+                autostart="true"
+                playsInline
+                autoPlay
+                src={Video2}
+                type="video/mp4"
+              />
+            </div>
+          </div>
+          <div className="col s12 m12 l12">
+            <Link to="/signin">
+              <Button className="get-started-try  hvr-shrink" type="primary">
+                Get Started
+              </Button>
+            </Link>
+          </div>
+        </FadeIn>
+      </div>
 
       <div data-aos="fade-up" className="row quote">
         <h1>Inspired by artist</h1>

@@ -1,5 +1,15 @@
+.about-container {
+  h1 {
+    font-family: "Inter";
+  }
+
+  p {
+    font-family: "Inter";
+  }
+}
+
 .title-banner {
-  background-color: #003fff;
+  background-color: #256afe;
   padding-left: 20%;
   padding-right: 20%;
   margin: 0 !important;
@@ -21,8 +31,8 @@
 }
 
 .exp {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 15%;
+  padding-right: 15%;
   padding-top: 5%;
   padding-bottom: 10%;
   background-color: #eaeaea;
@@ -45,7 +55,7 @@
 }
 
 .insta-box {
-  background-color: #003fff;
+  background-color: #256afe;
 }
 
 .insta-box {
@@ -80,11 +90,12 @@
     padding-top: 5%;
   }
   p {
-    padding-right: 20%;
     font-weight: 500;
     font-size: 20px;
     line-height: 1.8;
     padding-bottom: 5%;
+    padding-left: 15%;
+    padding-right: 15%;
   }
 }
 
@@ -121,7 +132,7 @@
     li {
       font-size: 48px;
       font-weight: bold;
-      color: #003fff;
+      color: #256afe;
     }
   }
 

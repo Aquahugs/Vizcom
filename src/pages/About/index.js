@@ -44,7 +44,8 @@ const About = () => {
               <p>
                 Instantly we started to see how GANs could be a creative
                 assistant for car designers to explore millions of generated
-                ideation sketches during the early 2-D phase of car design.
+                ideation sketches during the early 2-D phase of car design
+                instead of doing them by .
               </p>
               <video
                 className="sk2r-video"
@@ -67,7 +68,7 @@ const About = () => {
           <div className="row exp2 insta-box"></div>
 
           <div className="row sk2r">
-            <div className="col s8 m8 l8">
+            <div className="col s12 m12 l12" style={{ textAlign: "center" }}>
               <h1>So we kept building</h1>
               <p>
                 Car designers also use markers, pastels, pencils and other
