@@ -124,7 +124,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", "image.jfif"); //or any other extension
+          link.setAttribute("download", "image.jpg"); //or any other extension
           document.body.appendChild(link);
           link.click();
         });
