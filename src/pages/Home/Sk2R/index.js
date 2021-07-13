@@ -205,7 +205,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
           <h5>Sketch</h5>
           <div className="sk2r-sketch-container">
             {sketchImage ? (
-              <div className="dropzone-fade ">
+              <div>
                 <Dropzone
                   files={files}
                   setFiles={setFiles}
@@ -251,6 +251,7 @@ const Sk2R = ({ user, uid, getProfile }) => {
                         files={files}
                         setFiles={setFiles}
                         multiple={false}
+                        className="small-drop-box"
                       />
                     </div>
                   </Tooltip>

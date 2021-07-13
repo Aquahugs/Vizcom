@@ -69,7 +69,7 @@ const StyledDropzone = ({
     flexDirection: "column",
     alignItems: "center",
     padding: "20px",
-    height: "100%",
+    height: useIconSmall ? "100%" : "30rem",
     width: "100%",
     borderWidth: 2,
     borderRadius: 10,
@@ -81,6 +81,7 @@ const StyledDropzone = ({
     transition: "border .24s ease-in-out",
     cursor: "pointer", // pointer for dropzone
     opacity: onHover ? "0.5" : "",
+    zIndex: "999",
   };
 
   useEffect(() => {

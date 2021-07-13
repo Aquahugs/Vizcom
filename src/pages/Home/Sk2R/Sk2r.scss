@@ -41,7 +41,7 @@ h1 p {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #eee;
+
   border-radius: 10px;
   border-width: 2px;
 
@@ -107,4 +107,8 @@ h1 p {
 .download-btn {
   font-size: 2rem;
   float: right;
+}
+
+.small-drop-box {
+  max-height: 100% !important;
 }
