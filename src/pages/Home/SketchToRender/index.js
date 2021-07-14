@@ -37,12 +37,15 @@ const SketchToRender = ({ history, user, uid, getProfile }) => {
 
   return (
     <div className="beta-container">
-      <h2 style={{ fontSize: "2rem" }}>Sketch to render Beta v0.0.1</h2>
+      <h2 style={{ fontSize: "2rem" }}>Sketch to render Beta v0.0.1[Closed]</h2>
       <p>
-        The current sketch to render beta access program is currently closed.
+        Due to the unexpected volume of beta users, we have decided to close off
+        beta earlier than anticipated.
       </p>
+      <h2 style={{ paddingTop: "5%" }}>Sign up here</h2>
       <p style={{ fontWeight: "bold" }}>
-        Enter your email down below to sign up for the next beta access.
+        Enter your email down below to recive an invite for the next beta
+        access.
       </p>
       <div className="row email-form">
         <div className="col s12 m12 l12">
@@ -69,7 +72,9 @@ const SketchToRender = ({ history, user, uid, getProfile }) => {
         </div>
       </div>
 
-      <h2 style={{ fontSize: "40px" }}>Check out our Discord</h2>
+      <h2 style={{ fontSize: "20px", paddingTop: "10%" }}>
+        Check out our Discord
+      </h2>
 
       <p>
         Discord link -{" "}
