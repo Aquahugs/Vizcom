@@ -18,7 +18,7 @@ const About = () => {
               helping bring ideas to life.{" "}
             </h1>
             <p>
-              In 2020 we began to explore the possibilities of <br />
+              we began to explore the possibilities of <br />
               how man and machine can work together as a <br />
               team for creative thinking.
             </p>

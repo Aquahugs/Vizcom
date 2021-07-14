@@ -1,0 +1,128 @@
+.page-container {
+  h1 {
+    font-family: "Inter";
+  }
+
+  p {
+    font-family: "Inter";
+  }
+}
+
+.title {
+  padding-left: 25%;
+  padding-right: 25%;
+  text-align: center;
+
+  h1 {
+    font-size: 48px;
+    color: #464646;
+    font-weight: 800;
+    padding-top: 20%;
+  }
+  p {
+    color: #464646;
+    font-size: 16px;
+    padding-bottom: 5%;
+    padding-top: 3%;
+    line-height: 1.75;
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+}
+
+.plans-container {
+  padding-left: 20%;
+  padding-right: 20%;
+  .student {
+    h1 {
+      font-size: 25px;
+      font-weight: 700;
+      padding-top: 25px;
+      border-top: 1px solid #464646;
+    }
+  }
+  .Pro {
+    h1 {
+      font-size: 25px;
+      font-weight: 700;
+      padding-top: 25px;
+      border-top: 2px solid #464646;
+    }
+  }
+  .Enterprise {
+    h1 {
+      font-size: 25px;
+      font-weight: 700;
+      padding-top: 25px;
+      border-top: 4px solid #464646;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  ul {
+    padding-top: 1.25rem;
+    list-style-image: url("https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Path%202.png?alt=media&token=507a9e22-f99e-4388-a447-9cf8febf3554");
+
+    li {
+      font-size: 1.25rem;
+      padding-top: 1.25rem;
+    }
+  }
+
+  .col {
+    padding: 3%;
+  }
+}
+.buttons {
+  padding-left: 20%;
+  padding-right: 20%;
+  .coming-soon {
+    width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #256afe;
+    border: none;
+    font-family: "Inter";
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+  }
+}
+
+.faqs {
+  background-color: #0f0f0f;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 10%;
+
+  h2 {
+    color: #e6e6e6;
+    font-size: 6rem;
+  }
+  h3 {
+    color: #e6e6e6;
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+    color: #e6e6e6;
+    padding-top: 5%;
+  }
+  p {
+    color: #e6e6e6;
+    padding-right: 10%;
+  }
+  .statements {
+    padding-top: 25%;
+  }
+}
+
+.page-container {
+  .landing-nav-bar {
+    background-color: #0f0f0f;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+  }
+}

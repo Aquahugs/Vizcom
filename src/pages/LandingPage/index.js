@@ -22,6 +22,7 @@ import challenge6 from "./Assets/challenge6.jpg";
 import challenge7 from "./Assets/challenge7.jpg";
 import challenge8 from "./Assets/challenge8.jpg";
 import challenge9 from "./Assets/challenge9.jpg";
+import sk2rdemo from "./Assets/sk2rdemo.png";
 
 import { compose } from "recompose";
 import { Button, Card } from "antd";
@@ -95,6 +96,18 @@ const LandingPage = ({ authUser, history }) => {
         is able to provide, compared with starting with a blank canvas.
       </p>
     </Card>,
+    <Card style={{ width: 600 }} className="quote-card">
+      <img src="https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/dan-shapiro.jpg?alt=media&token=8687cb5f-4c59-417f-a49e-59b9019da435" />
+      <p>
+        Dan Shapiro
+        <br />
+        <span className="sub-text">Designer @ Zero Motorcycles</span>
+      </p>
+      <p>
+        Vizcom’s sketch to render tool can render a sketch in seconds. The raw
+        output can save you hours of work even after touching up.
+      </p>
+    </Card>,
   ];
 
   return (
@@ -115,6 +128,9 @@ const LandingPage = ({ authUser, history }) => {
               <Link to="/about">
                 <p className="hvr-shrink">About</p>
               </Link>
+              {/* <Link to="/prices-plans">
+                <p className="hvr-shrink">Plans & Pricing</p>
+              </Link> */}
             </div>
           </FadeIn>
 
@@ -179,6 +195,16 @@ const LandingPage = ({ authUser, history }) => {
                 <p>Hours of manual work becomes seconds of compute.</p>
               </div>
               <div className="col s12 m12 l12">
+                <Link to="/signin">
+                  <Button
+                    className="get-started-try  hvr-shrink"
+                    type="primary"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+              <div className="col s12 m12 l12">
                 <div className="demo-video2">
                   <video
                     muted
@@ -192,14 +218,7 @@ const LandingPage = ({ authUser, history }) => {
                 </div>
               </div>
               <div className="col s12 m12 l12">
-                <Link to="/signin">
-                  <Button
-                    className="get-started-try  hvr-shrink"
-                    type="primary"
-                  >
-                    Get Started
-                  </Button>
-                </Link>
+                <img src={sk2rdemo} />
               </div>
             </FadeIn>
           </div>

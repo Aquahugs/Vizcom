@@ -282,7 +282,9 @@ const Sk2R = ({ user, uid, getProfile }) => {
           ) : (
             <div className="sk2r-render-container sk2r-render-spinner">
               <Spin className="" size="large" />
-              <p>This may take a while</p>
+              <p>
+                We're experiencing higher than usual traffic please wait....
+              </p>
             </div>
           )}
           <div className="col s12 m12 l12 sk2r-button-download-container">

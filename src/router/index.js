@@ -6,6 +6,7 @@ import DynamicProfile from "../pages/Profile/DynamicProfile";
 import Editor from "../pages/Profile/Editor"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../pages/Explore";
 import Home from "../pages/Home";
+import PricePlans from "../pages/PricePlans";
 import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
 import SketchToRenderBeta from "../pages/Home/Sk2R";
@@ -46,6 +47,9 @@ const Router = () => (
     </Route>
     <Route path={ROUTES.ABOUT}>
       <About />
+    </Route>
+    <Route path={ROUTES.PRICE_PLANS}>
+      <PricePlans />
     </Route>
     <Route path="/privacy-policy">
       <PrivatePolicy />

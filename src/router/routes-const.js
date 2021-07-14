@@ -2,6 +2,7 @@ export const LANDING_PAGE = "/";
 export const LOGIN_PAGE = "/signin";
 export const HOME = "/home";
 export const ABOUT = "/about";
+export const PRICE_PLANS = "/prices-plans";
 export const SKETCH_TO_RENDER = "/sketch-to-render";
 export const EXPLORE = "/explore";
 export const GENERATE = "/generate";
