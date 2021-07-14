@@ -1,8 +1,16 @@
 import "./privacy-policy.scss";
+import { Tooltip } from "antd";
+import backarrow from "../../assets/back-arrow.svg";
+import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   return (
     <div className="container">
+      <Tooltip placement="right" title={"Back to tools home"}>
+        <Link to={"/home"}>
+          <img alt="back arrow" className="sk2r-back-arrow" src={backarrow} />
+        </Link>
+      </Tooltip>
       <div className="row">
         <div className="col-md-12">
           <h1>Privacy Policy</h1>
