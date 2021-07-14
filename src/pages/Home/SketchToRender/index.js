@@ -7,6 +7,7 @@ import { withAuthorization } from "../../../router/auth/session";
 import ProfileThunks from "../../Profile/redux/thunks";
 import { connect } from "react-redux";
 import { Form, Input, Button, Checkbox } from "antd";
+import userService from "../../../common/services/user-service";
 
 const SketchToRender = ({ history, user, uid, getProfile }) => {
   useEffect(() => {
@@ -27,11 +28,16 @@ const SketchToRender = ({ history, user, uid, getProfile }) => {
     });
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = (values) => {
     console.log("Success:", values);
+    const signup = {
+      uuid: uid,
+      email: values.email,
+    };
+    userService.sk2rBetaEarlyAccess(signup);
   };
 
-  const onFinishFailed = (errorInfo: any) => {
+  const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 

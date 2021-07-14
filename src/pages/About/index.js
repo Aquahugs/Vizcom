@@ -7,9 +7,18 @@ import cardesign from "../../assets/cardesign.png";
 import { Desktop, Tablet, Mobile, Phone } from "./responsive";
 import TabletView from "./tablet";
 import MobileView from "./mobile";
+import { Tooltip } from "antd";
+import { Link } from "react-router-dom";
+import backarrow from "../../assets/back-arrow.svg";
+
 const About = () => {
   return (
     <div>
+      <Tooltip placement="right" title={"Back to tools home"}>
+        <Link to={"/home"}>
+          <img alt="back arrow" className="sk2r-back-arrow" src={backarrow} />
+        </Link>
+      </Tooltip>
       <Desktop>
         <div className="about-container">
           <div className="row title-banner">

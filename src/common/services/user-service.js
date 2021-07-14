@@ -15,4 +15,7 @@ export default {
   sk2rBetaAccess(user) {
     return apiClient.post("api/user/admin/sk2r-beta", user);
   },
+  sk2rBetaEarlyAccess(signup) {
+    return apiClient.post("api/user/sk2r-beta/early", signup);
+  },
 };
