@@ -79,12 +79,40 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
 
   // use effect to set minimize dropzone
   useEffect(() => {
-    files && files?.length > 0
-      ? setSketchImage(URL.createObjectURL(files[0]))
-      : setSketchImage("");
+    if (files && files.length > 0) {
+      if (checkFileExtension(files[0])) {
+        setSketchImage(URL.createObjectURL(files[0]));
+      } else {
+        setSketchImage(null);
+        setFiles([]);
+        setError({
+          value: true,
+          message: "Invalid file type",
+          description:
+            "Please upload one of the following: jpg, png, jpeg, gif",
+        });
+        setTimeout(() => {
+          setError({ value: false });
+        }, 5000);
+      }
+    }
     setRenderedImage("");
   }, [files, setFiles]);
 
+  const checkFileExtension = (file) => {
+    const { name } = file;
+    const extension = name.split(".").pop();
+    extension.toLowerCase();
+    switch (true) {
+      case extension === "jpg" ||
+        extension === "png" ||
+        extension === "jpeg" ||
+        extension === "gif":
+        return true;
+      default:
+        return false;
+    }
+  };
   // add sketch images and render images to local state
   const addImages = (sketchImage, renderedImage) => {
     const newSketchImagesArray = [...sketchImages];
@@ -153,21 +181,39 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
     };
 
     try {
-      sk2rService.renderImage(req).then((resp) => {
-        setRenderedImage(resp);
-        addImages(files[0], resp);
-        sk2rService.uploadPrerender(req).then((resp) => {
-          img.prerenderedImage = resp.data;
+      sk2rService
+        .renderImage(req)
+        .then((resp) => {
+          setRenderedImage(resp);
+          addImages(files[0], resp);
+          sk2rService.uploadPrerender(req).then((resp) => {
+            img.prerenderedImage = resp.data;
+            ReactGA.event({
+              category: "Sketch to Render",
+              action: "clicked render button successfully",
+              label: resp.data.image_uri,
+            });
+            sk2rService.insertImages(img);
+
+            setIsLoading(false);
+          });
+        })
+        .catch((e) => {
           ReactGA.event({
             category: "Sketch to Render",
-            action: "clicked render button successfully",
-            label: resp.data.image_uri,
+            action: "clicked render button but failed",
+            label: e,
           });
-          sk2rService.insertImages(img);
-
+          setError({
+            value: true,
+            message: "Sketch Render Failed",
+            description: `error: ${e}`,
+          });
+          setTimeout(() => {
+            setError({ value: false });
+          }, 3000);
           setIsLoading(false);
         });
-      });
     } catch (e) {
       ReactGA.event({
         category: "Sketch to Render",
