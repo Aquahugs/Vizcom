@@ -12,3 +12,4 @@ export const EDITOR = "/editor"; //later this can be /profile:uuid/editor
 export const ADD_BUCKET = "/add-bucket";
 export const BUCKET = "/bucket/:bucket_id";
 export const ADMIN = "/admin";
+export const INVITE_CENTER = "/invite-center";

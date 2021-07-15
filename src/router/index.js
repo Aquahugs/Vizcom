@@ -6,6 +6,7 @@ import DynamicProfile from "../pages/Profile/DynamicProfile";
 import Editor from "../pages/Profile/Editor"; //need to put this into /Profile (Profile/Editor)
 import Explore from "../pages/Explore";
 import Home from "../pages/Home";
+import InviteCenter from "../pages/Home/InviteCenter";
 import PricePlans from "../pages/PricePlans";
 import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
@@ -35,6 +36,9 @@ const Router = () => (
     </Route>
     <Route path="/sketch-to-render/beta">
       <SketchToRenderBeta />
+    </Route>
+    <Route path="/invite-center">
+      <InviteCenter />
     </Route>
     <Route path={ROUTES.SKETCH_TO_RENDER}>
       <SketchToRender />

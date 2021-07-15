@@ -5,8 +5,30 @@ import SignOut from "../../../pages/LandingPage/Auth/SignOut";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { PROFILE } from "../../../router/routes-const";
+import { Menu, Dropdown, Button, Space } from "antd";
+
+import bell from "../../../assets/notification-bell.svg";
 
 const PrimaryNav = ({ user, profile }) => {
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="/invite-center">
+          <div className="row noti-box">
+            <div className="col s2 m2 l2">
+              <img src="https://via.placeholder.com/20" />
+            </div>
+            <div className="col s10 m9 l10">
+              <p>
+                You have 5 sketch to render <br />
+                invites available.
+              </p>
+            </div>
+          </div>
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <nav>
       <div className="nav-wrapper">
@@ -23,6 +45,12 @@ const PrimaryNav = ({ user, profile }) => {
               </Link>
             </li>
           )}
+
+          <li className="notification-items">
+            <Dropdown overlay={menu} placement="bottomRight">
+              <img src={bell} />
+            </Dropdown>
+          </li>
 
           <li className="profile-items">
             <Link to={PROFILE} className="profile-name">
