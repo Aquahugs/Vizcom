@@ -6,10 +6,12 @@ import discord from "../../../assets/discord.PNG";
 import { withAuthorization } from "../../../router/auth/session";
 import ProfileThunks from "../../Profile/redux/thunks";
 import { connect } from "react-redux";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Alert } from "antd";
 import userService from "../../../common/services/user-service";
 
 const SketchToRender = ({ history, user, uid, getProfile }) => {
+  const [alert, setAlert] = React.useState({ value: false });
+
   useEffect(() => {
     if (!user) {
       getUserInfo();
@@ -35,10 +37,26 @@ const SketchToRender = ({ history, user, uid, getProfile }) => {
       email: values.email,
     };
     userService.sk2rBetaEarlyAccess(signup);
+    setAlert({
+      description:
+        "Thanks for your interest in Sketch to Render! Your are now on the beta waitlist.",
+      message: "Success",
+      value: true,
+      type: "success",
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    setAlert({
+      description: "Try again with a proper email",
+      message: "Wait!",
+      value: true,
+      type: "error",
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 5000);
   };
 
   return (
@@ -54,7 +72,7 @@ const SketchToRender = ({ history, user, uid, getProfile }) => {
         access.
       </p>
       <div className="row email-form">
-        <div className="col s12 m12 l12">
+        <div className="col s12 m6 l6" style={{ width: "42rem" }}>
           <Form
             name="basic"
             initialValues={{ remember: true }}
@@ -69,12 +87,20 @@ const SketchToRender = ({ history, user, uid, getProfile }) => {
               <Input />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Form.Item>
               <Button type="primary" htmlType="submit">
                 Sign up
               </Button>
             </Form.Item>
           </Form>
+          {alert?.value && (
+            <Alert
+              message={alert.message}
+              description={alert.description}
+              type={alert.type}
+              showIcon
+            />
+          )}
         </div>
       </div>
 
