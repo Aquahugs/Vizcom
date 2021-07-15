@@ -73,26 +73,30 @@ const SketchToRender = ({ history, user, uid, getProfile }) => {
       </p>
       <div className="row email-form">
         <div className="col s12 m6 l6" style={{ width: "42rem" }}>
-          <Form
-            name="basic"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-          >
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[{ required: true, message: "Please input your email!" }]}
+          {alert?.type !== "success" && (
+            <Form
+              name="basic"
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
             >
-              <Input />
-            </Form.Item>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  { required: true, message: "Please input your email!" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Sign up
+                </Button>
+              </Form.Item>
+            </Form>
+          )}
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Sign up
-              </Button>
-            </Form.Item>
-          </Form>
           {alert?.value && (
             <Alert
               message={alert.message}
