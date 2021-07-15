@@ -123,6 +123,7 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
     setRenderedImages(newRenderedImagesArray);
   };
 
+  // Get user profile to check if they have access to beta
   const getUserInfo = async () => {
     getProfile(uid).then((dbUser) => {
       console.log(dbUser);
@@ -136,6 +137,7 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
     setError({ value: false });
   };
 
+  // download render image
   const download = (renderedImage) => {
     ReactGA.event({
       category: "Sketch to Render",
