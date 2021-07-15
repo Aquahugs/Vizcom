@@ -19,7 +19,7 @@ const Card = ({ link, logo, name, description, push }) => {
               <div className="content-container">
                 <div className="card-content">
                   <h2>{name}</h2>
-                  <p>{description}</p>
+                  <p style={{ paddingBottom: "5%" }}>{description}</p>
                 </div>
               </div>
             </div>
