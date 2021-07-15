@@ -1,0 +1,50 @@
+.page-container {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+.header-content {
+  padding-left: 10%;
+  padding-right: 10%;
+  h2 {
+    font-size: 3rem;
+    font-family: "Inter";
+    text-align: center;
+    font-weight: 600;
+  }
+  p {
+    text-align: center;
+    font-family: "Inter";
+    font-size: 1rem;
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+  h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+
+    padding-top: 5%;
+  }
+}
+
+.invite-container {
+  margin-top: 5%;
+  padding: 2%;
+  border: solid 1px #414141;
+  .code {
+    h1 {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    p {
+      font-size: 12px;
+      float: left;
+    }
+  }
+  .invite-btn-container {
+    Button {
+      float: right;
+      border-radius: 5px;
+    }
+  }
+}
