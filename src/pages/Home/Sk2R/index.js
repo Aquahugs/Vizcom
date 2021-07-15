@@ -18,7 +18,7 @@ import {
   VerticalAlignBottomOutlined,
 } from "@ant-design/icons";
 
-const Sk2R = ({ user, uid, getProfile }) => {
+const Sk2R = ({ user, uid, getProfile, history }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [renderedImage, setRenderedImage] = useState("");
@@ -96,13 +96,12 @@ const Sk2R = ({ user, uid, getProfile }) => {
   };
 
   const getUserInfo = async () => {
-    getProfile(uid);
-    // .then((dbUser) => {
-    //   console.log(dbUser);
-    //   if (!dbUser?.sk2r_beta) {
-    //     history.push("/sketch-to-render");
-    //   }
-    // });
+    getProfile(uid).then((dbUser) => {
+      console.log(dbUser);
+      if (!dbUser?.sk2r_beta) {
+        history.push("/sketch-to-render");
+      }
+    });
   };
 
   const onClose = () => {
