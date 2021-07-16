@@ -18,7 +18,8 @@ import challenge6 from "../Assets/challenge6.jpg";
 import challenge7 from "../Assets/challenge7.jpg";
 import challenge8 from "../Assets/challenge8.jpg";
 import challenge9 from "../Assets/challenge9.jpg";
-
+import sk2rdemo from "../Assets/sk2rdemo.png";
+import sk2rdemo2 from "../Assets/sk2rdemo2.png";
 import { compose } from "recompose";
 import { Button, Card } from "antd";
 import { Row } from "antd";
@@ -181,6 +182,21 @@ const TabletView = () => {
               </Button>
             </Link>
           </div>
+          <div className="col s12 m12 l12">
+            <img src={sk2rdemo} />
+            <h1>Hours turned into seconds</h1>
+            <img src={sk2rdemo2} />
+            <p style={{ fontSize: "1rem" }}>
+              <a href="https://www.instagram.com/scoro5/">
+                Sketches by Scott Robertson(@scoro5), rendered by Vizcom
+              </a>
+            </p>
+            <Link to="/signin">
+              <Button className="get-started-try  hvr-shrink" type="primary">
+                Get Started
+              </Button>
+            </Link>
+          </div>
         </FadeIn>
       </div>
 
@@ -262,34 +278,7 @@ const TabletView = () => {
           </a>
         </Col>
       </Row>
-      <div className="row sk2r-demo">
-        <FadeIn delay={800}>
-          <div className="col s12 m12 l12">
-            <h1>Sketch to Render</h1>
-            <p>Hours of manual hand work becomes seconds of compute.</p>
-          </div>
-          <div className="col s12 m12 l12">
-            <div className="demo-video">
-              <video
-                muted
-                loop
-                autostart="true"
-                playsInline
-                autoPlay
-                src={Video2}
-                type="video/mp4"
-              />
-            </div>
-          </div>
-          <div className="col s12 m12 l12">
-            <Link to="/signin">
-              <Button className="get-started-try" type="primary">
-                Get Started
-              </Button>
-            </Link>
-          </div>
-        </FadeIn>
-      </div>
+      <div className="row sk2r-demo"></div>
 
       <div className="footer-box row">
         <div data-aos="fade-right" className="col s6 m6 l6">
