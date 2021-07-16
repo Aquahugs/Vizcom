@@ -15,6 +15,8 @@ import challenge6 from "../Assets/challenge6.jpg";
 import challenge7 from "../Assets/challenge7.jpg";
 import challenge8 from "../Assets/challenge8.jpg";
 import challenge9 from "../Assets/challenge9.jpg";
+import sk2rdemo from "../Assets/sk2rdemo.png";
+import sk2rdemomobile from "../Assets/sk2-mobile.png";
 
 import { Button, Card } from "antd";
 import { Row } from "antd";
@@ -162,6 +164,20 @@ const MobileView = () => {
             </div>
           </div>
           <div className="col s12 m12 l12">
+            <Link to="/signin">
+              <Button className="get-started-try  hvr-shrink" type="primary">
+                Get Started
+              </Button>
+            </Link>
+          </div>
+          <div className="col s12 m12 l12" style={{ paddingTop: "25%" }}>
+            <h1>Hours turned into seconds</h1>
+            <img src={sk2rdemomobile} />
+            <p style={{ fontSize: "0.8rem" }}>
+              <a href="https://www.instagram.com/scoro5/">
+                Sketches by Scott Robertson(@scoro5), rendered by Vizcom
+              </a>
+            </p>
             <Link to="/signin">
               <Button className="get-started-try  hvr-shrink" type="primary">
                 Get Started

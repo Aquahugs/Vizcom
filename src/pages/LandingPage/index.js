@@ -220,7 +220,7 @@ const LandingPage = ({ authUser, history }) => {
               </div>
               <div className="col s12 m12 l12">
                 <img src={sk2rdemo} />
-                <h1>Hours tunrned into seconds</h1>
+                <h1>Hours turned into seconds</h1>
                 <img src={sk2rdemo2} />
                 <p style={{ fontSize: "1rem" }}>
                   <a href="https://www.instagram.com/scoro5/">
