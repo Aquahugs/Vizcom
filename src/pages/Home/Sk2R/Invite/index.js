@@ -8,6 +8,8 @@ import ProfileThunks from "../../../Profile/redux/thunks";
 import { Link } from "react-router-dom";
 import inviteThunks from "./redux/thunks";
 
+import invite from "./invite.scss";
+
 import sk2rService from "../../../../common/services/sk2r-service";
 
 // component to redeem invite code axios
@@ -16,6 +18,8 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [alert, setAlert] = useState(null);
   const [error, setError] = useState(null);
+  const [alreadyHasAccess, setAlreadyHasAccess] = useState(null);
+  const [isRedeemed, setIsRedeemed] = useState(false);
 
   // check if user exists
   useEffect(() => {
@@ -68,7 +72,7 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
       .isAccessValid(invite_id)
       .then((res) => {
         if (res.data.redeemed) {
-          // history.push(`/home`);
+          setIsRedeemed(true);
         }
         setLoading(false);
       })
@@ -123,18 +127,46 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
 
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
+  if (isRedeemed) {
+    return (
+      <div className="redeemed">
+        <h1> Redeemed </h1>
+        <Link to="/sketch-to-render">
+          <div className="center">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="get-started-btn"
+            >
+              Get Started
+            </Button>
+          </div>
+        </Link>
+      </div>
+    );
+  }
   if (profile?.sk2r_beta) {
     return (
-      <div>
-        <h1>You already have acess to sketch to render</h1>
-        <Link to="/sketch-to-render">Sk2R</Link>
+      <div className="redeemed">
+        <h1>You already have access to sketch to render </h1>
+        <Link to="/sketch-to-render">
+          <div className="center">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="get-started-btn"
+            >
+              Get Started
+            </Button>
+          </div>
+        </Link>
       </div>
     );
   }
 
   if (isLoading) {
     return (
-      <div className="col-span-12 " style={{ margin: "auto" }}>
+      <div className="col-span-12 spinner" style={{ margin: "auto" }}>
         <Spin indicator={antIcon} />
       </div>
     );
@@ -143,7 +175,15 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
   return (
     <div className="inviteContainer">
       <div>
-        <h1>Redeem Invite Code</h1>
+        <h1>
+          Accelerate your creative <br />
+          process with Vizcom
+        </h1>
+        <p>
+          You've been invited to join the Sketch to Render Beta access program.
+          <br />
+          We can't wait to see what you create.
+        </p>
       </div>
       <div>
         <Button
@@ -151,8 +191,9 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
           onClick={() => submit()}
           size="large"
           type="primary"
+          className="center get-started-btn"
         >
-          Redeem
+          Accept Invite
         </Button>
       </div>
       {alert && (
