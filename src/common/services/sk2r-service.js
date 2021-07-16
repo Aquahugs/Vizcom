@@ -53,9 +53,34 @@ const insertImages = async (req) => {
   return apiUploadClient.post(`/api/sk2r/insert`, req);
 };
 
+const addInvites = async (req) => {
+  return apiUploadClient.post(`/api/sk2r/invites`, req);
+};
+
+const getInvites = async (req) => {
+  return apiUploadClient.get(`/api/sk2r/invites/${req.id}`);
+};
+
+const redeemInvite = async (req) => {
+  return apiUploadClient.post(`/api/sk2r/invite/redeem`, req);
+};
+
+const getAccessById = async (req) => {
+  return apiUploadClient.post(`/api/sk2r/access`, req);
+};
+
+const isAccessValid = async (invite_id) => {
+  return apiUploadClient.get(`/api/sk2r/access/valid/${invite_id}`);
+};
+
 export default {
   renderImage,
   uploadRender,
   uploadPrerender,
   insertImages,
+  addInvites,
+  getInvites,
+  redeemInvite,
+  getAccessById,
+  isAccessValid,
 };

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 import "react-redux-notify/dist/ReactReduxNotify.css";
 
@@ -9,17 +10,22 @@ import { Notify } from "react-redux-notify";
 
 import history from "../../common/utils/history";
 import Router from "../index";
+import inviteThunks from "../../pages/Home/Sk2R/Invite/redux/thunks";
 
 import ReactGA from "react-ga";
 import { hotjar } from "react-hotjar";
+import { compose } from "redux";
 
-const NavigationAuth = ({ authUser }) => {
+const NavigationAuth = ({ authUser, getInvites }) => {
   useEffect(() => {
-    hotjar.identify("USER_ID", { userProperty: authUser.uid });
-    ReactGA.set({
-      userId: authUser.uid,
-      userEmail: authUser.email,
-    });
+    if (authUser) {
+      hotjar.identify("USER_ID", { userProperty: authUser.uid });
+      ReactGA.set({
+        userId: authUser.uid,
+        userEmail: authUser.email,
+      });
+      getInvites(authUser.uid);
+    }
   }, []);
   return (
     <div className="app-container">
@@ -36,4 +42,8 @@ const NavigationAuth = ({ authUser }) => {
   );
 };
 
-export default NavigationAuth;
+const mapDispatchToProps = {
+  getInvites: inviteThunks.getInvitesByUserId,
+};
+
+export default connect(null, mapDispatchToProps)(NavigationAuth);

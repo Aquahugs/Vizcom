@@ -11,6 +11,7 @@ import PricePlans from "../pages/PricePlans";
 import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
 import SketchToRenderBeta from "../pages/Home/Sk2R";
+import SketchToRenderBetaInvite from "../pages/Home/Sk2R/Invite";
 import About from "../pages/About";
 import LandingPage from "../pages/LandingPage";
 import LogIn from "../pages/LandingPage/LogIn";
@@ -39,6 +40,9 @@ const Router = () => (
     </Route>
     <Route path="/invite-center">
       <InviteCenter />
+    </Route>
+    <Route path="/sketch-to-render/invite/:invite_id">
+      <SketchToRenderBetaInvite />
     </Route>
     <Route path={ROUTES.SKETCH_TO_RENDER}>
       <SketchToRender />
@@ -70,6 +74,7 @@ const Router = () => (
     <Route path={ROUTES.LANDING_PAGE}>
       <LandingPage />
     </Route>
+
     <Redirect to="/" />
   </Switch>
 );

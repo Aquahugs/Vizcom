@@ -4,53 +4,27 @@ import "./invitecenter.scss";
 import { withAuthorization } from "../../../router/auth/session";
 import ProfileThunks from "../../Profile/redux/thunks";
 import { connect } from "react-redux";
-import { Form, Input, Button, Alert } from "antd";
+import { Form, Input, Button, Alert, message } from "antd";
 import userService from "../../../common/services/user-service";
+import { CheckOutlined } from "@ant-design/icons";
 
-const InviteCenter = ({ history, user, uid, getProfile }) => {
-  const [alert, setAlert] = React.useState({ value: false });
+const InviteCenter = ({ invites }) => {
+  const [inviteCopied, setInviteCopied] = React.useState(null);
 
-  useEffect(() => {
-    if (!user) {
-      getUserInfo();
-    }
-  }, []);
-
-  const getUserInfo = async () => {
-    getProfile(uid).then((dbUser) => {
-      //   if (dbUser?.sk2r_beta) {
-      //     history.push("/sketch-to-render/beta");
-      //   }
-    });
+  const success = () => {
+    message.success("Copied to clipboard");
   };
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    const signup = {
-      uuid: uid,
-      email: values.email,
-    };
-    userService.sk2rBetaEarlyAccess(signup);
-    setAlert({
-      description:
-        "Thanks for your interest in Sketch to Render! Your are now on the beta waitlist.",
-      message: "Success",
-      value: true,
-      type: "success",
-    });
-  };
+  const filteredInvited = invites?.filter((invite) => {
+    return invite.redeemed !== 1;
+  });
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-    setAlert({
-      description: "Try again with a proper email",
-      message: "Wait!",
-      value: true,
-      type: "error",
-    });
-    setTimeout(() => {
-      setAlert(null);
-    }, 5000);
+  const copyInviteToClipboard = (id) => {
+    // build invite url
+    const url = `https://www.vizcom.co/sketch-to-render/invite/${id}`;
+    navigator.clipboard.writeText(url);
+    setInviteCopied(id);
+    success();
   };
 
   return (
@@ -61,20 +35,49 @@ const InviteCenter = ({ history, user, uid, getProfile }) => {
           Copy an invite URL and share it with a artist or designer to give them
           access to Vizcom's Sketch to render tools
         </p>
-        <h3>5/5 Invites Available</h3>
+        {invites && (
+          <h3>
+            {filteredInvited.length}/{invites.length} Invites Available
+          </h3>
+        )}
       </div>
 
-      <div className="row invite-container">
-        <div className="col s12 m12 l12 ">
-          <div className="col s8 m8 l8 code">
-            <h1>Invite code</h1>
-            <p>8376513104</p>
-          </div>
-          <div className="col s4 m4 l4 invite-btn-container">
-            <Button>Copy Invite URL</Button>
-          </div>
-        </div>
-      </div>
+      {invites &&
+        invites?.map((invite) => {
+          return (
+            <div
+              key={invite.invite_id}
+              className="row invite-container"
+              style={{
+                opacity: invite.redeemed ? ".5" : "1",
+              }}
+            >
+              <div className="col s12 m12 l12 ">
+                <div className="col s8 m8 l8 code">
+                  <h1>Invite code</h1>
+                  <p>{invite.invite_id}</p>
+                </div>
+                <div className="col s4 m4 l4 invite-btn-container">
+                  {invite.redeemed ? (
+                    <Button disabled>Copy Invite URL</Button>
+                  ) : inviteCopied !== invite.invite_id ? (
+                    <Button
+                      onClick={() => {
+                        copyInviteToClipboard(invite.invite_id);
+                      }}
+                    >
+                      Copy Invite URL
+                    </Button>
+                  ) : (
+                    <div style={{ float: "right" }}>
+                      <CheckOutlined style={{ fontSize: "200%" }} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 };
@@ -84,6 +87,7 @@ const condition = (authUser) => !!authUser;
 const mapStateToProps = (state) => ({
   uid: state.session.authUser.uid,
   user: state.profile.user,
+  invites: state.invites.invites,
 });
 const mapDispatchToProps = {
   getProfile: ProfileThunks.getProfileAsync,

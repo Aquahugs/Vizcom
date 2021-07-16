@@ -6,6 +6,7 @@ import ProfileThunks from "../Profile/redux/thunks";
 import { Select } from "antd";
 import GeneratorUpload from "./GeneratorUpload";
 import SketchToRenderBetaAccess from "./Sk2RBetaAccess";
+import SketchToRenderBetaInvite from "./Sk2RBetaInvite";
 
 import "./admin.scss";
 
@@ -39,6 +40,8 @@ export const Admin = ({ history, user, uid, getProfile }) => {
         return <GeneratorUpload></GeneratorUpload>;
       case "sk2r-beta":
         return <SketchToRenderBetaAccess></SketchToRenderBetaAccess>;
+      case "sk2r-invite":
+        return <SketchToRenderBetaInvite></SketchToRenderBetaInvite>;
       default:
         return "";
     }
@@ -50,12 +53,13 @@ export const Admin = ({ history, user, uid, getProfile }) => {
         <h1>Admin{adminOption ? <span>/ {adminOption}</span> : ""}</h1>
       </div>
       <Select
-        defaultValue="What up doe"
+        defaultValue="Select an admin mode"
         style={{ width: 500 }}
         onChange={handleChange}
       >
         <Option value="generator-upload">Generator Upload</Option>
         <Option value="sk2r-beta">Sketch to Render Beta Access</Option>
+        <Option value="sk2r-invite">Sketch to Render Beta Invites</Option>
       </Select>
       <div>{renderSwitch(adminOption)}</div>
     </div>

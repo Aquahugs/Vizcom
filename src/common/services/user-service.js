@@ -8,6 +8,9 @@ export default {
   getUserById(uid) {
     return apiClient.get(`/api/user/id/${uid}`);
   },
+  getUserByEmail(email) {
+    return apiClient.get(`/api/user/email/${email}`);
+  },
   updateUser(user, uid) {
     // dont pass in the id
     return apiClient.patch(`/api/user/update/id/${uid}`, user);

@@ -9,23 +9,35 @@ import { Menu, Dropdown, Button, Space } from "antd";
 
 import bell from "../../../assets/notification-bell.svg";
 
-const PrimaryNav = ({ user, profile }) => {
+const PrimaryNav = ({ user, profile, notifications }) => {
   const menu = (
     <Menu>
       <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="/invite-center">
-          <div className="row noti-box">
-            <div className="col s2 m2 l2">
-              <img src="https://via.placeholder.com/20" />
+        <div className="row noti-box">
+          {notifications ? (
+            notifications.map((notification) => (
+              <div>
+                <div className="col s2 m2 l2">
+                  <img src="https://via.placeholder.com/20" />
+                </div>
+                <div className="col s10 m9 l10">
+                  <Link to={notification.link}>
+                    <p>{notification.text}</p>
+                  </Link>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>
+              <div className="col s2 m2 l2">
+                <img src="https://via.placeholder.com/20" />
+              </div>
+              <div className="col s10 m9 l10">
+                <p>no notifications</p>
+              </div>
             </div>
-            <div className="col s10 m9 l10">
-              <p>
-                You have 5 sketch to render <br />
-                invites available.
-              </p>
-            </div>
-          </div>
-        </a>
+          )}
+        </div>
       </Menu.Item>
     </Menu>
   );
@@ -95,6 +107,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.session,
     profile: state.profile.user,
+    notifications: state.notificationCenter.notifications,
   };
 };
 
