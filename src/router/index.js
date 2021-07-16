@@ -11,14 +11,13 @@ import PricePlans from "../pages/PricePlans";
 import Generate from "../pages/Home/Generate";
 import SketchToRender from "../pages/Home/SketchToRender";
 import SketchToRenderBeta from "../pages/Home/Sk2R";
-import SketchToRenderBetaInvite from "../pages/Home/Sk2R/Invite";
+import SketchToRenderBetaInvite from "../pages/Home/InviteCenter/Invite";
 import About from "../pages/About";
 import LandingPage from "../pages/LandingPage";
 import LogIn from "../pages/LandingPage/LogIn";
 import Admin from "../pages/Admin";
 import PrivatePolicy from "../pages/PrivacyPolicy";
 import TermsOfUse from "../pages/TermsOfUse";
-import Login from "../pages/LandingPage/Auth";
 
 import * as ROUTES from "./routes-const";
 
