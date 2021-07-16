@@ -1,4 +1,4 @@
-import { Button, Spin, Alert } from "antd";
+import { Button, Spin, Alert, Modal } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
@@ -9,30 +9,36 @@ import { Link } from "react-router-dom";
 import inviteThunks from "./redux/thunks";
 
 import sk2rService from "../../../../common/services/sk2r-service";
-import userService from "../../../../common/services/user-service";
 
 // component to redeem invite code axios
 const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
   const [isLoading, setLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [alert, setAlert] = useState(null);
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const [error, setError] = useState(null);
-  const [alreadyHasAccess, setAlreadyHasAccess] = useState(null);
 
   // check if user exists
   useEffect(() => {
+    const { invite_id } = match.params;
+
     setLoading(true);
-    if (!profile) {
-      getProfile(uid)
-        .then(({ data }) => {
-          if (!data) {
-            setShowLoginModal(true);
-          }
-        })
-        .catch(() => {
-          history.push("/login");
-        });
+    if (uid) {
+      if (!profile) {
+        getProfile(uid)
+          .then(({ data }) => {
+            if (!data) {
+              localStorage.setItem("inviteId", invite_id);
+              history.push(`/signin`);
+            }
+          })
+          .catch(() => {
+            localStorage.setItem("inviteId", invite_id);
+            history.push(`/signin`);
+          });
+      }
+    } else {
+      localStorage.setItem("inviteId", invite_id);
+      history.push(`/signin`);
     }
   }, []);
 
@@ -62,7 +68,7 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
       .isAccessValid(invite_id)
       .then((res) => {
         if (res.data.redeemed) {
-          history.push(`/home`);
+          // history.push(`/home`);
         }
         setLoading(false);
       })
@@ -114,6 +120,7 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
   const submit = () => {
     redeemInvite();
   };
+
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   if (profile?.sk2r_beta) {
@@ -162,7 +169,7 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
 
 const mapStateToProps = (state) => {
   return {
-    uid: state.session.authUser.uid,
+    uid: state?.session?.authUser?.uid,
     profile: state.profile.user,
   };
 };
