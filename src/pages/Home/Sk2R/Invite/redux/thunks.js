@@ -22,8 +22,6 @@ const getInvitesByUserId = (uid) => async (dispatch) => {
         link: "/invite-center",
         text: "You have " + invites.length + " invites to give out",
       };
-      INFO_NOTIFICATION_CONFIG.message = `you have recieved ${invites.length} sketch to render invite links `;
-      dispatch(createNotification(INFO_NOTIFICATION_CONFIG));
       const notifications = [notification];
       dispatch(
         NotificationCenterActions.setNotificationsSuccess(notifications)

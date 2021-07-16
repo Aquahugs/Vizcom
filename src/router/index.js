@@ -18,6 +18,7 @@ import LogIn from "../pages/LandingPage/LogIn";
 import Admin from "../pages/Admin";
 import PrivatePolicy from "../pages/PrivacyPolicy";
 import TermsOfUse from "../pages/TermsOfUse";
+import Login from "../pages/LandingPage/Auth";
 
 import * as ROUTES from "./routes-const";
 
@@ -74,7 +75,6 @@ const Router = () => (
     <Route path={ROUTES.LANDING_PAGE}>
       <LandingPage />
     </Route>
-
     <Redirect to="/" />
   </Switch>
 );

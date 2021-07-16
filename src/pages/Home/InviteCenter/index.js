@@ -15,10 +15,6 @@ const InviteCenter = ({ invites }) => {
     message.success("Copied to clipboard");
   };
 
-  const filteredInvited = invites?.filter((invite) => {
-    return invite.redeemed !== 1;
-  });
-
   const copyInviteToClipboard = (id) => {
     // build invite url
     const url = `https://www.vizcom.co/sketch-to-render/invite/${id}`;
@@ -37,7 +33,12 @@ const InviteCenter = ({ invites }) => {
         </p>
         {invites && (
           <h3>
-            {filteredInvited.length}/{invites.length} Invites Available
+            {
+              invites?.filter((invite) => {
+                return invite.redeemed !== 1;
+              }).length
+            }
+            /{invites.length} Invites Available
           </h3>
         )}
       </div>

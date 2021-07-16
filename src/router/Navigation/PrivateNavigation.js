@@ -19,6 +19,7 @@ import { compose } from "redux";
 const NavigationAuth = ({ authUser, getInvites }) => {
   useEffect(() => {
     if (authUser) {
+      localStorage.removeItem("invite_id");
       hotjar.identify("USER_ID", { userProperty: authUser.uid });
       ReactGA.set({
         userId: authUser.uid,
