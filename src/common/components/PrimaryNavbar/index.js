@@ -49,15 +49,6 @@ const PrimaryNav = ({ user, profile, notifications }) => {
           <img alt="logo" src={Logo} />
         </Link>
         <ul className="nav-items right ">
-          {/* {profile?.is_admin && (
-            <li>
-              <Link to="/admin" className="profile-name">
-                {" "}
-                Admin
-              </Link>
-            </li>
-          )} */}
-
           <li className="notification-items">
             <Dropdown overlay={menu} placement="bottomRight">
               <img src={bell} />

@@ -1,8 +1,9 @@
 import React from "react";
 import "./Footer.scss";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Footer = ({ darkmode }) => {
+const Footer = ({ darkmode, profile }) => {
   if ((darkmode = "dark")) {
     return (
       <div className="row footer-items-dark">
@@ -11,6 +12,11 @@ const Footer = ({ darkmode }) => {
         </div>
         <div className="col s6 m6 l6 info">
           <ul className="dark-list">
+            {profile?.is_admin && (
+              <li>
+                <Link to="/admin"> Admin</Link>
+              </li>
+            )}
             {/* <li>Contact</li> */}
             <a className="hvr-grow-shadow" href="https://twitter.com/Vizcom_co">
               <li>Twitter</li>
@@ -37,6 +43,11 @@ const Footer = ({ darkmode }) => {
       <div className="row footer-items">
         <div className="col s12 m12 l12 info">
           <ul>
+            {profile?.is_admin && (
+              <li>
+                <Link to="/admin"> Admin</Link>
+              </li>
+            )}
             <Link className="hvr-grow-shadow" to="/about">
               <li>About</li>
             </Link>
@@ -63,4 +74,10 @@ const Footer = ({ darkmode }) => {
   }
 };
 
-export default Footer;
+const mapStateToProps = (state) => {
+  return {
+    profile: state.profile.user,
+  };
+};
+
+export default connect(mapStateToProps)(Footer);

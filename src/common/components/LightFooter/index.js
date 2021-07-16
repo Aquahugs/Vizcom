@@ -1,12 +1,18 @@
 import React from "react";
 import "../Footer/Footer.scss";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const LightFooter = ({ darkmode }) => {
+const LightFooter = ({ darkmode, profile }) => {
   return (
     <div className="row footer-items lightlist">
       <div className="col s12 m12 l12 info">
         <ul>
+          {profile?.is_admin && (
+            <li>
+              <Link to="/admin"> Admin</Link>
+            </li>
+          )}
           <Link to="/about">
             <li>About</li>
           </Link>
@@ -28,4 +34,10 @@ const LightFooter = ({ darkmode }) => {
   );
 };
 
-export default LightFooter;
+const mapStateToProps = (state) => {
+  return {
+    profile: state.profile.user,
+  };
+};
+
+export default connect(mapStateToProps)(LightFooter);
