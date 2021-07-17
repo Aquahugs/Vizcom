@@ -52,7 +52,7 @@ const PrimaryNav = ({ user, profile, notifications }) => {
         <ul className="nav-items right ">
           <li className="notification-items">
             <Dropdown overlay={menu} placement="bottomRight">
-              <img src={bell} />
+              {notifications ? <img src={bell} /> : <img></img>}
             </Dropdown>
           </li>
 
