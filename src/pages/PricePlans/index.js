@@ -21,7 +21,7 @@ const PricePlans = () => {
   return (
     <div>
       <Desktop>
-        <div className="page-container">
+        <div className="pricepage-container">
           <div className="row landing-nav-bar">
             <Link to="/">
               <img src={WhiteLogo} />

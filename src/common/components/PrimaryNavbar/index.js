@@ -49,11 +49,11 @@ const PrimaryNav = ({ user, profile, notifications }) => {
           <img alt="logo" src={Logo} />
         </Link>
         <ul className="nav-items right ">
-          <li className="notification-items">
+          {/* <li className="notification-items">
             <Dropdown overlay={menu} placement="bottomRight">
               <img src={bell} />
             </Dropdown>
-          </li>
+          </li> */}
 
           <li className="profile-items">
             <Link to={PROFILE} className="profile-name">
