@@ -8,6 +8,7 @@ import { PROFILE } from "../../../router/routes-const";
 import { Menu, Dropdown, Button, Space } from "antd";
 
 import bell from "../../../assets/notification-bell.svg";
+import notiLogo from "../../../assets/noti-logo.png";
 
 const PrimaryNav = ({ user, profile, notifications }) => {
   const menu = (
@@ -18,7 +19,7 @@ const PrimaryNav = ({ user, profile, notifications }) => {
             notifications.map((notification) => (
               <div>
                 <div className="col s2 m2 l2">
-                  <img src="https://via.placeholder.com/20" />
+                  <img src={notiLogo} />
                 </div>
                 <div className="col s10 m9 l10">
                   <Link to={notification.link}>
@@ -30,7 +31,7 @@ const PrimaryNav = ({ user, profile, notifications }) => {
           ) : (
             <div>
               <div className="col s2 m2 l2">
-                <img src="https://via.placeholder.com/20" />
+                <img src={notiLogo} />
               </div>
               <div className="col s10 m9 l10">
                 <p>no notifications</p>
@@ -49,11 +50,11 @@ const PrimaryNav = ({ user, profile, notifications }) => {
           <img alt="logo" src={Logo} />
         </Link>
         <ul className="nav-items right ">
-          {/* <li className="notification-items">
+          <li className="notification-items">
             <Dropdown overlay={menu} placement="bottomRight">
               <img src={bell} />
             </Dropdown>
-          </li> */}
+          </li>
 
           <li className="profile-items">
             <Link to={PROFILE} className="profile-name">
