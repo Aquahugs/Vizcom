@@ -18,7 +18,6 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [alert, setAlert] = useState(null);
   const [error, setError] = useState(null);
-  const [alreadyHasAccess, setAlreadyHasAccess] = useState(null);
   const [isRedeemed, setIsRedeemed] = useState(false);
 
   // check if user exists
@@ -110,12 +109,14 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
         invites: 3,
         uid: profile.uuid,
       };
+      setButtonLoading(false);
       // add invites to users account
       addInvites(req3);
-
-      setButtonLoading(false);
+      getProfile(profile.uuid).then(() => {
+        history.push(`/sketch-to-render`);
+      });
     } catch (e) {
-      setError(e.message);
+      setError(error + e.message);
 
       setButtonLoading(false);
     }
@@ -124,23 +125,15 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
   const submit = () => {
     redeemInvite();
   };
-
+  //www.vizcom.co/sketch-to-render/invite/1375722526716
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   if (isRedeemed) {
     return (
       <div className="redeemed">
-        <h1> Redeemed </h1>
+        <h1> This invite code has already been used </h1>
         <Link to="/sketch-to-render">
-          <div className="center">
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="get-started-btn"
-            >
-              Get Started
-            </Button>
-          </div>
+          <div className="center"></div>
         </Link>
       </div>
     );
