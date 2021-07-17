@@ -10,7 +10,7 @@ import { Notify } from "react-redux-notify";
 
 import history from "../../common/utils/history";
 import Router from "../index";
-import inviteThunks from "../../pages/Home/Sk2R/Invite/redux/thunks";
+import inviteThunks from "../../pages/Home/InviteCenter/Invite/redux/thunks";
 
 import ReactGA from "react-ga";
 import { hotjar } from "react-hotjar";
