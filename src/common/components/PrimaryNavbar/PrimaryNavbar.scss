@@ -77,5 +77,15 @@ nav {
 }
 
 .noti-box {
-  padding: 5%;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .noti-box {
+    width: 100px;
+  }
+  .noti-text {
+    p {
+    }
+  }
 }

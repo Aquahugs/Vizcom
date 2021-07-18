@@ -12,7 +12,8 @@ import { GenerateThunks } from "./Generate/redux";
 
 import ToolCard from "../../common/components/Card";
 import GenerateLogo from "../../assets/generate-logo.png";
-import SketchToRenderLogo from "../../assets/s2r.png";
+import SketchToRenderLogoLocked from "../../assets/s2r.png";
+import SketchToRenderLogoUnlocked from "../../assets/s2r-unlocked.png";
 import { GENERATE, SKETCH_TO_RENDER } from "./home-const.js";
 import { Tooltip } from "antd";
 
@@ -35,6 +36,12 @@ const Home = ({
     getGeneratedImages();
   }, []);
 
+  const logo = user?.sk2r_beta
+    ? SketchToRenderLogoUnlocked
+    : SketchToRenderLogoLocked;
+
+  const opacity = user?.sk2r_beta ? 1 : 0.5;
+
   return (
     <div className="tools">
       <div className="tools-header">
@@ -48,12 +55,14 @@ const Home = ({
           description={GENERATE.description}
           logo={GenerateLogo}
         />
-        <ToolCard
-          link={SKETCH_TO_RENDER.link}
-          name={SKETCH_TO_RENDER.name}
-          description={SKETCH_TO_RENDER.description}
-          logo={SketchToRenderLogo}
-        />
+        <div style={{ opacity: opacity }}>
+          <ToolCard
+            link={SKETCH_TO_RENDER.link}
+            name={SKETCH_TO_RENDER.name}
+            description={SKETCH_TO_RENDER.description}
+            logo={logo}
+          />
+        </div>
       </div>
     </div>
   );

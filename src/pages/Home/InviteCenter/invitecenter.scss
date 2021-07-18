@@ -48,3 +48,54 @@
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .page-container {
+    padding: 3rem !important;
+  }
+  .header-content {
+    padding: 0 !important;
+    h2 {
+      font-size: 2rem;
+      font-family: "Inter";
+      text-align: center;
+      font-weight: 600;
+      padding-top: 15%;
+    }
+    p {
+      text-align: center;
+      font-family: "Inter";
+      font-size: 1rem;
+      padding: 0 !important;
+    }
+    h3 {
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: bold;
+
+      padding-top: 5%;
+    }
+  }
+  .invite-container {
+    margin-top: 5%;
+    border: solid 1px #414141;
+    .code {
+      h1 {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      p {
+        font-size: 12px;
+        float: left;
+      }
+    }
+    .invite-btn-container {
+      Button {
+        float: right;
+        border-radius: 5px;
+        width: 7rem;
+        font-size: 10px;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}

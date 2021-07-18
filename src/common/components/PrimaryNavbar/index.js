@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { PROFILE } from "../../../router/routes-const";
 import { Menu, Dropdown, Button, Space } from "antd";
 
-import bell from "../../../assets/notification-bell.svg";
+import bell from "../../../assets/bell.svg";
+import bellActive from "../../../assets/active-bell.svg";
 import notiLogo from "../../../assets/noti-logo.png";
 
 const PrimaryNav = ({ user, profile, notifications }) => {
@@ -17,16 +18,16 @@ const PrimaryNav = ({ user, profile, notifications }) => {
         <div className="row noti-box">
           {notifications ? (
             notifications.map((notification) => (
-              <div>
-                <div className="col s2 m2 l2">
-                  <img src={notiLogo} />
-                </div>
-                <div className="col s10 m9 l10">
-                  <Link to={notification.link}>
+              <Link to={notification.link}>
+                <div>
+                  <div className="col s6 m2 l2">
+                    <img src={notiLogo} />
+                  </div>
+                  <div className="col s9 m9 l9 noti-text">
                     <p>{notification.text}</p>
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
             <div>
@@ -52,7 +53,17 @@ const PrimaryNav = ({ user, profile, notifications }) => {
         <ul className="nav-items right ">
           <li className="notification-items">
             <Dropdown overlay={menu} placement="bottomRight">
-              {notifications ? <img src={bell} /> : <img></img>}
+              {notifications ? (
+                <div style={{ width: "100px" }}>
+                  {" "}
+                  <img
+                    style={{ width: "20px", height: "auto" }}
+                    src={bellActive}
+                  />{" "}
+                </div>
+              ) : (
+                <img style={{ width: "20px", height: "auto" }} src={bell} />
+              )}
             </Dropdown>
           </li>
 

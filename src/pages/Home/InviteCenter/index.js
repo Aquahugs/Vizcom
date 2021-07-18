@@ -26,7 +26,7 @@ const InviteCenter = ({ invites }) => {
   return (
     <div className="page-container">
       <div className="header-content">
-        <h2>Invite a Designer</h2>
+        <h2>Invite a creator</h2>
         <p>
           Copy an invite URL and share it with a artist or designer to give them
           access to Vizcom's Sketch to render tools

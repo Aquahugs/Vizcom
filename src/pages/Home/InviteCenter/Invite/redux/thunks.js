@@ -20,7 +20,7 @@ const getInvitesByUserId = (uid) => async (dispatch) => {
     if (invites.length > 0) {
       const notification = {
         link: "/invite-center",
-        text: "You have " + invites.length + " invites to give out",
+        text: "You have " + invites.length + " invites to sketch to render",
       };
       const notifications = [notification];
       dispatch(
