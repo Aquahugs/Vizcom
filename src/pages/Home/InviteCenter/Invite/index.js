@@ -116,7 +116,9 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
         history.push(`/sketch-to-render`);
       });
     } catch (e) {
-      setError(error + e.message);
+      setError(
+        "Email contact@vizcom.co for support. Or join our discord for realtime responses https://discord.com/invite/hRrbhMBq9x"
+      );
 
       setButtonLoading(false);
     }
