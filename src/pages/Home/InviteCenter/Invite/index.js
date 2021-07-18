@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import inviteThunks from "./redux/thunks";
 import Confetti from "../../../../common/components/Confetti";
 
+import "./invite.scss";
+
 import sk2rService from "../../../../common/services/sk2r-service";
 
 // component to redeem invite code axios
