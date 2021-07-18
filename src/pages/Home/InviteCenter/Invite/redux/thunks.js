@@ -14,7 +14,7 @@ const getInvitesByUserId = (uid) => async (dispatch) => {
   try {
     const response = await sk2rService.getInvites({ id: uid });
     dispatch(inviteActions.getInvitesSuccess(response.data));
-    const invites = response.data.filter((invite) => {
+    const invites = response?.data?.filter((invite) => {
       return invite.redeemed !== 1;
     });
     if (invites.length > 0) {
@@ -40,7 +40,7 @@ const addInvites = (invites) => async (dispatch) => {
     INFO_NOTIFICATION_CONFIG.message = `you have recieved ${response.data.length} sketch to render invite links `;
 
     const response2 = await sk2rService.getInvites({ id: invites.uid });
-    const invites2 = response2.data.filter((invite) => {
+    const invites2 = response2?.data?.filter((invite) => {
       return invite.redeemed !== 1;
     });
     if (invites2.length > 0) {
