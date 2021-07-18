@@ -65,7 +65,7 @@ const Sk2RBeta = () => {
           <Input />
         </Form.Item>
         <Form.Item label="Invites" name="invites" rules={[{ required: true }]}>
-          <InputNumber min={0} max={10} />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 2, span: 16 }}>
           <Button type="primary" htmlType="submit">

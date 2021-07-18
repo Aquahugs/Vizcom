@@ -15,6 +15,7 @@
     "radium": "^0.26.1",
     "react": "^16.14.0",
     "react-animations": "^1.0.0",
+    "react-canvas-confetti": "^1.2.0",
     "react-dom": "^17.0.1",
     "react-dropzone": "^11.3.0",
     "react-fade-in": "^2.0.1",
