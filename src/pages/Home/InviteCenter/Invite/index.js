@@ -1,4 +1,4 @@
-import { Button, Spin, Alert, Modal } from "antd";
+import { Button, Spin, Alert } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 import ProfileThunks from "../../../Profile/redux/thunks";
 import { Link } from "react-router-dom";
 import inviteThunks from "./redux/thunks";
-
-import invite from "./invite.scss";
+import Confetti from "../../../../common/components/Confetti";
 
 import sk2rService from "../../../../common/services/sk2r-service";
 
@@ -19,7 +18,6 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
   const [alert, setAlert] = useState(null);
   const [error, setError] = useState(null);
   const [isRedeemed, setIsRedeemed] = useState(false);
-
   // check if user exists
   useEffect(() => {
     const { invite_id } = match.params;
@@ -188,6 +186,7 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
         >
           Accept Invite
         </Button>
+        <Confetti />
       </div>
       {alert && (
         <Alert
