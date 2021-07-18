@@ -173,7 +173,7 @@ const Invite = ({ uid, match, history, profile, getProfile, addInvites }) => {
           process with Vizcom
         </h1>
         <p>
-          You've been invited to join the Sketch to Render Beta access program.
+          You've been invited to join the Sketch to Render Beta program.
           <br />
           We can't wait to see what you create.
         </p>
