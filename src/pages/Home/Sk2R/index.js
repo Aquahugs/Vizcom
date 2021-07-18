@@ -266,7 +266,7 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
 
         <div style={{ text: "right" }}>
           <Tooltip
-            placement="right"
+            placement="left"
             title={"Upload a sketch between 512-2000px width and click render"}
           >
             <InfoCircleOutlined />
