@@ -20,11 +20,10 @@ const PrimaryNav = ({ user, profile, notifications }) => {
             notifications.map((notification) => (
               <Link to={notification.link}>
                 <div>
-                  <div className="col s6 m2 l2">
-                    <img src={notiLogo} />
-                  </div>
-                  <div className="col s9 m9 l9 noti-text">
-                    <p>{notification.text}</p>
+                  <div>
+                    <div className="col s9 m9 l9">
+                      <p>You have invites 🎉</p>
+                    </div>
                   </div>
                 </div>
               </Link>

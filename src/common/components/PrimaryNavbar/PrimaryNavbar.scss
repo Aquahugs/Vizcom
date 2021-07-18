@@ -78,14 +78,15 @@ nav {
 
 .noti-box {
   cursor: pointer;
+  margin: 0 !important;
 }
 
 @media only screen and (max-width: 768px) {
   .noti-box {
-    width: 100px;
+    width: 140px;
   }
   .noti-text {
-    p {
-    }
+    width: 100px;
+    overflow-wrap: break-word;
   }
 }
