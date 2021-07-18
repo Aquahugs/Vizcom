@@ -52,7 +52,7 @@ const bucketReducer = (state = initialState, action) => {
     case TYPES.DELETE_NOTIFICATION_SUCCESS:
       return {
         ...state,
-        notifications: state.notifications.filter(
+        notifications: state.notifications?.filter(
           (notification) => notification.id !== action.id
         ),
       };

@@ -12,10 +12,11 @@ import { withAuthorization } from "../../../router/auth/session";
 import ReactGA from "react-ga";
 
 import InfoModal from "./components/modal";
-import { Row, Button, Spin, Alert, Tooltip } from "antd";
+import { Row, Button, Spin, Alert, Tooltip, message } from "antd";
 import {
   EllipsisOutlined,
   VerticalAlignBottomOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
 
 const Sk2R = ({ user, uid, getProfile, history }) => {
@@ -54,6 +55,7 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
               message: "Your image is too small",
               description: "The image should be at least 512px wide.",
             });
+            errorMessageTop("The image should be at least 512px wide.");
             setTimeout(() => {
               setError({ value: false });
             }, 3000);
@@ -66,6 +68,8 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
               message: "Image is too large",
               description: "The image should be at most 2000px wide.",
             });
+            errorMessageTop("The image should be at most 2000px wide.");
+
             setTimeout(() => {
               setError({ value: false });
             }, 3000);
@@ -234,14 +238,40 @@ const Sk2R = ({ user, uid, getProfile, history }) => {
     }
   };
 
+  const errorMessageTop = (error) => {
+    message.error(error);
+  };
+
   return (
     <div>
-      <Row>
-        <Tooltip placement="right" title={"Back to tools home"}>
-          <Link to={"/home"}>
-            <img alt="back arrow" className="sk2r-back-arrow" src={backarrow} />
-          </Link>
-        </Tooltip>
+      <Row
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          paddingLeft: "1rem",
+          paddingRight: "1rem",
+        }}
+      >
+        <div>
+          <Tooltip placement="right" title={"Back to tools home"}>
+            <Link to={"/home"}>
+              <img
+                alt="back arrow"
+                className="sk2r-back-arrow"
+                src={backarrow}
+              />
+            </Link>
+          </Tooltip>
+        </div>
+
+        <div style={{ text: "right" }}>
+          <Tooltip
+            placement="right"
+            title={"Upload a sketch between 512-2000px width and click render"}
+          >
+            <InfoCircleOutlined />
+          </Tooltip>
+        </div>
       </Row>
 
       <div className="row">
