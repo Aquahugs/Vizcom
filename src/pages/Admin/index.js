@@ -7,6 +7,7 @@ import { Select } from "antd";
 import GeneratorUpload from "./GeneratorUpload";
 import SketchToRenderBetaAccess from "./Sk2RBetaAccess";
 import SketchToRenderBetaInvite from "./Sk2RBetaInvite";
+import SketchToRenderBetaBulkInvite from "./SK2RBetaBulkInvite";
 
 import "./admin.scss";
 
@@ -42,6 +43,8 @@ export const Admin = ({ history, user, uid, getProfile }) => {
         return <SketchToRenderBetaAccess></SketchToRenderBetaAccess>;
       case "sk2r-invite":
         return <SketchToRenderBetaInvite></SketchToRenderBetaInvite>;
+      case "sk2r-invite-bulk":
+        return <SketchToRenderBetaBulkInvite></SketchToRenderBetaBulkInvite>;
       default:
         return "";
     }
@@ -60,6 +63,9 @@ export const Admin = ({ history, user, uid, getProfile }) => {
         <Option value="generator-upload">Generator Upload</Option>
         <Option value="sk2r-beta">Sketch to Render Beta Access</Option>
         <Option value="sk2r-invite">Sketch to Render Beta Invites</Option>
+        <Option value="sk2r-invite-bulk">
+          Sketch to Render Beta Bulk Invites
+        </Option>
       </Select>
       <div>{renderSwitch(adminOption)}</div>
     </div>

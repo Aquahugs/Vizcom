@@ -57,6 +57,10 @@ const addInvites = async (req) => {
   return apiUploadClient.post(`/api/sk2r/invites`, req);
 };
 
+const addBulkInvites = async (req) => {
+  return apiUploadClient.post(`/api/sk2r/invites/bulk`, req);
+};
+
 const getInvites = async (req) => {
   return apiUploadClient.get(`/api/sk2r/invites/${req.id}`);
 };
@@ -74,6 +78,7 @@ const isAccessValid = async (invite_id) => {
 };
 
 export default {
+  addBulkInvites,
   renderImage,
   uploadRender,
   uploadPrerender,
